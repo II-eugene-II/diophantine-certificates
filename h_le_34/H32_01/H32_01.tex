@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={H32\_01: y\textasciicircum 3-y=x\textasciicircum 4+2x-2 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Z}{\mathbb{Z}}
+\title{\textbf{H32\_01}\\[4pt] The equation $y^3-y=x^4+2x-2$ has no integer solutions}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=32$, length $l=11$, identifier E0150 (with $y$ replaced by $-y$)
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+y^3-y=x^4+2x-2
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses a polynomial identity of the form $HT=U^2+V^2$ on the curve \eqref{eq:main}, and the fact that a prime $p$ with $p\equiv3\pmod4$ divides $U^2+V^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only Fermat's little theorem.
+
+\section{\texorpdfstring{The norm form $a^2+b^2$}{The norm form}}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$.
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be a prime with $p\equiv3\pmod4$, and let $a,b\in\Z$. If $p\mid a^2+b^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$ and put $r=ac$. Then $r^2\equiv-(bc)^2\equiv-1\pmod p$, so $p\nmid r$, and Fermat's little theorem gives
+\[
+1\equiv r^{p-1}=(r^2)^{(p-1)/2}\equiv(-1)^{(p-1)/2}=-1\pmod p,
+\]
+because $(p-1)/2$ is odd. Then $p\mid2$, which is impossible. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $p$ be a prime with $p\equiv3\pmod4$, and let $a,b\in\Z$ be not both zero. Then $v_p(a^2+b^2)$ is even.
+\end{lemma}
+
+\begin{proof}
+Let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2+b'^2$ by Lemma~\ref{lem:divides}. Since $a^2+b^2=p^{2k}(a'^2+b'^2)$, we get $v_p(a^2+b^2)=2k$.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=y^3-y-x^4-2x+2$, so that \eqref{eq:main} is the equation $F(x,y)=0$. Define
+\begin{align*}
+H&=y^2-(2x+2)y+4x^2+3,\\
+T&=2x^5+x^4y+18x^4+8x^3y+8x^2y+32x^2+8xy^2+8xy-8x+4y+8,\\
+U&=x^4+8x^3-2x^2+12x,\qquad V=2x^3+2x^2-4,\\
+G&=x^4+8x^3-8x^2+8xy-8x+4,
+\end{align*}
+and
+\[
+A=28x^2+18x+18,\qquad B=-14x^3-107x^2+54x-304.
+\]
+Expanding both sides, one checks the identities
+\begin{align}
+HT-U^2-V^2&=GF,\label{eq:norm}\\
+3H&=3(y-x-1)^2+(3x-1)^2+5,\label{eq:sign}\\
+AU+BV&=1216=2^6\cdot19.\label{eq:bezout}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm} gives
+\begin{equation}\label{eq:HT}
+H\,T=U^2+V^2,
+\end{equation}
+where $H$, $T$, $U$ and $V$ now denote the values of these polynomials at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $16$ residue pairs modulo $4$, we find that the only solutions of \eqref{eq:main} modulo $4$ are $(x,y)\equiv(0,2)$ and $(x,y)\equiv(2,2)$. In both cases $H\equiv3\pmod4$.
+
+\paragraph{Step 2: signs.} By \eqref{eq:sign}, $H>0$.
+
+\paragraph{Step 3: primes with $p\equiv3\pmod4$.} Let $p$ be a prime with $p\equiv3\pmod4$. We show that $v_p(H)$ is even. By \eqref{eq:bezout}, $U$ and $V$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(HT)=v_p(U^2+V^2)$ is even. Suppose that $p$ divides both $H$ and $T$. Then $p\mid U^2+V^2$ by \eqref{eq:HT}, so $p\mid U$ and $p\mid V$ by Lemma~\ref{lem:divides}, and $p\mid 2^6\cdot19$ by \eqref{eq:bezout}. As $p$ is odd, $p=19$. Checking the $19^2$ residue pairs modulo $19$, we find that the only solution of $F(x,y)\equiv H(x,y)\equiv0\pmod{19}$ is $(x,y)\equiv(1,6)$, and for this pair $T(x,y)\equiv1\pmod{19}$, a contradiction. Hence $p$ does not divide both $H$ and $T$. If $p\nmid T$, then $v_p(H)=v_p(HT)$ is even, and if $p\nmid H$, then $v_p(H)=0$.
+
+\paragraph{Step 4: contradiction.} By Steps~1 and~2, $H$ is a positive odd integer. Every prime factor $p$ of $H$ with $p\not\equiv3\pmod4$ satisfies $p\equiv1\pmod4$, and every prime factor with $p\equiv3\pmod4$ occurs with an even exponent by Step~3. Since the residue $1$ modulo $4$ is closed under multiplication and contains the squares of all odd integers, $H\equiv1\pmod4$. This contradicts Step~1, and the theorem is proved.
+\qed
+
+\end{document}

@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={H33\_01: y\textasciicircum 3+y\textasciicircum 2+xy=x\textasciicircum 4+1 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\Z}{\mathbb{Z}}
+\title{\textbf{H33\_01}\\[4pt] The equation $y^3+y^2+xy=x^4+1$ has no integer solutions}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=33$, length $l=11$, identifier E0258 (with $y$ replaced by $-y$)
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+y^3+y^2+xy=x^4+1
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses a polynomial identity of the form $HT=U^2+V^2$ on the curve \eqref{eq:main}, and the fact that a prime $p$ with $p\equiv3\pmod4$ divides $U^2+V^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only Fermat's little theorem.
+
+\section{\texorpdfstring{The norm form $a^2+b^2$}{The norm form}}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$.
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be a prime with $p\equiv3\pmod4$, and let $a,b\in\Z$. If $p\mid a^2+b^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$ and put $r=ac$. Then $r^2\equiv-(bc)^2\equiv-1\pmod p$, so $p\nmid r$, and Fermat's little theorem gives
+\[
+1\equiv r^{p-1}=(r^2)^{(p-1)/2}\equiv(-1)^{(p-1)/2}=-1\pmod p,
+\]
+because $(p-1)/2$ is odd. Then $p\mid2$, which is impossible. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $p$ be a prime with $p\equiv3\pmod4$, and let $a,b\in\Z$ be not both zero. Then $v_p(a^2+b^2)$ is even.
+\end{lemma}
+
+\begin{proof}
+Let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2+b'^2$ by Lemma~\ref{lem:divides}. Since $a^2+b^2=p^{2k}(a'^2+b'^2)$, we get $v_p(a^2+b^2)=2k$.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=y^3+y^2+xy-x^4-1$, so that \eqref{eq:main} is the equation $F(x,y)=0$. Define
+\begin{align*}
+H&=x^2+2x+2y,\\
+T&=4y^2+(4-2x^2-4x)y+(x^2+2x)^2-2x^2,\\
+U&=x^3+3x^2+2,\qquad V=2-3x^2,\\
+G&=8,
+\end{align*}
+and
+\[
+A=9(x-6),\qquad B=3x^2-9x-52.
+\]
+Expanding both sides, one checks the identities
+\begin{align}
+HT-U^2-V^2&=GF,\label{eq:norm}\\
+H&=(x+1)^2+2y-1,\label{eq:sign}\\
+AU+BV&=-212=-2^2\cdot53.\label{eq:bezout}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm} gives
+\begin{equation}\label{eq:HT}
+H\,T=U^2+V^2,
+\end{equation}
+where $H$, $T$, $U$ and $V$ now denote the values of these polynomials at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $16$ residue pairs modulo $4$, we find that the only solutions of \eqref{eq:main} modulo $4$ are $(x,y)\equiv(1,2)$ and $(x,y)\equiv(3,2)$. In both cases $H\equiv3\pmod4$. In particular, $x$ is odd and $y$ is even.
+
+\paragraph{Step 2: signs.} If $y=0$, then \eqref{eq:main} gives $x^4+1=0$, which is impossible. Suppose that $y<0$. Since $y$ is even, $z=-y\geq2$, and \eqref{eq:main} becomes $x^4+xz+z^3-z^2+1=0$. But $x^4\geq x^2$ for every integer $x$, and $z^3-z^2=z^2(z-1)\geq z^2$, so the left-hand side is at least $x^2+xz+z^2+1=(x+z/2)^2+3z^2/4+1>0$, a contradiction. Hence $y\geq2$, and \eqref{eq:sign} gives $H\geq3>0$.
+
+\paragraph{Step 3: primes with $p\equiv3\pmod4$.} Let $p$ be a prime with $p\equiv3\pmod4$. We show that $v_p(H)$ is even. By \eqref{eq:bezout}, $U$ and $V$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(HT)=v_p(U^2+V^2)$ is even. Suppose that $p$ divides both $H$ and $T$. Then $p\mid U^2+V^2$ by \eqref{eq:HT}, so $p\mid U$ and $p\mid V$ by Lemma~\ref{lem:divides}, and $p\mid 2^2\cdot53$ by \eqref{eq:bezout}. But $2\not\equiv3$ and $53\equiv1\pmod4$, a contradiction. Hence $p$ does not divide both $H$ and $T$. If $p\nmid T$, then $v_p(H)=v_p(HT)$ is even, and if $p\nmid H$, then $v_p(H)=0$.
+
+\paragraph{Step 4: contradiction.} By Steps~1 and~2, $H$ is a positive odd integer. Every prime factor $p$ of $H$ with $p\not\equiv3\pmod4$ satisfies $p\equiv1\pmod4$, and every prime factor with $p\equiv3\pmod4$ occurs with an even exponent by Step~3. Since the residue $1$ modulo $4$ is closed under multiplication and contains the squares of all odd integers, $H\equiv1\pmod4$. This contradicts Step~1, and the theorem is proved.
+\qed
+
+\end{document}

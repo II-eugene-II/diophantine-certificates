@@ -1,0 +1,13 @@
+{
+  "challenge_module": "l_le_12.E0037.Challenge",
+  "solution_module": "l_le_12.E0037.Solution",
+  "theorem_names": [
+    "E0037"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}
