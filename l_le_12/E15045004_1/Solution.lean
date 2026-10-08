@@ -2904,8 +2904,14 @@ def kappa0 : ℤ := 1
 def H0 (x y : ℤ) : ℤ := 2*x^2 - 2*x*y + 4*x + y^2 - 4*y + 7
 def U0 (x : ℤ) : ℤ := 2*x^4 + 2*x^3 - 2*x^2 + 27*x + 17
 def V0 (x : ℤ) : ℤ := -2*x^3 + 9*x^2 + 12*x - 7
+def d1 : ℤ := 1
+def kappa1 : ℤ := 1
+def H1 (x y : ℤ) : ℤ := y
+def U1 (x : ℤ) : ℤ := x^2 + 1
+def V1 (x : ℤ) : ℤ := x^2 - 1
 def cert_list := [
-  QuadraticNorm.cert d0 kappa0 H0 U0 V0
+  QuadraticNorm.cert d0 kappa0 H0 U0 V0,
+  QuadraticNorm.cert d1 kappa1 H1 U1 V1
 ]
 without_editor_info theorem no_integer_solutions : ¬ ∃ x y : ℤ, f x y = 0 := by
   quadratic_norm f using cert_list
