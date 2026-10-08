@@ -1,0 +1,1329 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{longtable,booktabs,array}
+\emergencystretch=1.5em
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E12794531250\_1: x\textasciicircum 4+x+y\textasciicircum 3+8y+1=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+% Legendre symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E12794531250\_1}\\[4pt] {\Large The equation $x^{4}+x+y^{3}+8y+1=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=43$, length $l=12$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+x+y^{3}+8y+1=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses 46 auxiliary polynomials $H_0,\dots,H_{45}$, 5 of which are constants, and 2 graphs on these vertices with 60 and 86 edges, respectively; to each edge $\{i,j\}$ we attach the Hilbert symbol $(H_i,H_j)_v$ of the values at a hypothetical solution. By the product formula, the product of these symbols over all edges and all places is $1$. We show that the product over the edges is $1$ at every odd prime outside a finite set $S$, compute it at the primes of $S$ and at the real place, and obtain a contradiction. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Legendre symbol and of the Hilbert symbol.
+
+\section{Legendre symbols and Hilbert symbols}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. It is multiplicative in $a$, and it depends only on $a$ modulo $p$ \cite[Chapter~5]{IR}.
+
+For a prime $p$, let $\Q_p$ be the field of $p$-adic numbers, and put $\Q_\infty=\mathbb R$. For $v$ a prime or $v=\infty$, and non-zero $a,b\in\Q$, the Hilbert symbol $(a,b)_v$ is $1$ if the equation $z^2=ar^2+bs^2$ has a solution $(r,s,z)\neq(0,0,0)$ in $\Q_v$, and $-1$ otherwise. In particular, $(a,b)_v=1$ for every $v$ if this equation has a non-zero solution in $\Q$. For an odd integer $t$, we put $\varepsilon(t)=(t-1)/2$ and $\omega(t)=(t^2-1)/8$. We use the following facts \cite[Chapter~III, Proposition~2 and Theorems~1 and~3]{Se}.
+
+\begin{theorem}\label{thm:hilbert}
+Let $a$, $a'$ and $b$ be non-zero integers, and let $v$ be a prime or $v=\infty$.
+\begin{itemize}
+\item[(i)] $(a,b)_\infty=-1$ if and only if $a<0$ and $b<0$.
+\item[(ii)] Let $p$ be an odd prime, and write $a=p^\alpha u$ and $b=p^\beta w$ with $p\nmid uw$. Then $(a,b)_p=(-1)^{\alpha\beta\varepsilon(p)}\leg{u}{p}^\beta\leg{w}{p}^\alpha$.
+\item[(iii)] Write $a=2^\alpha u$ and $b=2^\beta w$ with $u$ and $w$ odd. Then $(a,b)_2=(-1)^{\varepsilon(u)\varepsilon(w)+\alpha\omega(w)+\beta\omega(u)}$.
+\item[(iv)] $(a,b)_v=1$ for all but finitely many $v$, and $\prod_v(a,b)_v=1$, the product over all primes $v$ and $v=\infty$.
+\item[(v)] $(a,b)_v=(b,a)_v$ and $(aa',b)_v=(a,b)_v(a',b)_v$.
+\end{itemize}
+\end{theorem}
+
+\begin{lemma}\label{lem:square}
+Let $a$ and $b$ be non-zero integers. If $p$ is an odd prime with $p\nmid a$ and $\leg{a}{p}=1$, then $(a,b)_p=1$. If $a\equiv1\pmod8$, then $(a,b)_2=1$.
+\end{lemma}
+
+\begin{proof}
+The first claim is Theorem~\ref{thm:hilbert}(ii) with $\alpha=0$. For the second, $\varepsilon(a)$ and $\omega(a)$ are even, and Theorem~\ref{thm:hilbert}(iii) with $\alpha=0$ gives $(a,b)_2=1$.
+\end{proof}
+
+
+\begin{lemma}\label{lem:classes}
+Let $p$ be a prime. For a non-zero integer $X$, write $X=p^ju$ with $p\nmid u$. If $p$ is odd, put $c_p(X)=(j,e)\in\F_2^2$, where $\leg{u}{p}=(-1)^e$; if $p=2$, put $c_2(X)=(j,e_1,e_2)\in\F_2^3$, where $u\equiv(-1)^{e_1}5^{e_2}\pmod8$; all entries are taken modulo $2$. Then $c_p(XX')=c_p(X)+c_p(X')$ and $(X,X')_p=(-1)^{\beta_p(c_p(X),c_p(X'))}$ for non-zero integers $X,X'$, where $\beta_p$ is the symmetric bilinear form
+\begin{align*}
+\beta_p\bigl((j,e),(j',e')\bigr)&=jj'\varepsilon(p)+je'+j'e&&\text{if $p$ is odd},\\
+\beta_2\bigl((j,e_1,e_2),(j',e_1',e_2')\bigr)&=e_1e_1'+je_2'+j'e_2.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+For odd $p$, this is Theorem~\ref{thm:hilbert}(ii), as the Legendre symbol is multiplicative. For $p=2$, the odd residues $1,3,5,7$ modulo $8$ are $(-1)^{e_1}5^{e_2}$ with $(e_1,e_2)=(0,0),(1,1),(0,1),(1,0)$, respectively; in each case $\varepsilon(u)\equiv e_1$ and $\omega(u)\equiv e_2\pmod2$, so Theorem~\ref{thm:hilbert}(iii) gives the formula, and $c_2$ is additive because $(e_1,e_2)\mapsto(-1)^{e_1}5^{e_2}$ is an isomorphism from $\F_2^2$ to the group of odd residues modulo $8$.
+\end{proof}
+
+\begin{lemma}\label{lem:residue}
+Let $p$ be a prime, $k\geq1$, and let $X$ be a non-zero integer with $X\equiv r\pmod{p^k}$, where $0\leq r<p^k$. Then $c_p(X)\in b+D$ for the vector $b$ and the subspace $D$ given as follows. If $r=0$, then $b=0$ and $D$ is the whole space. Otherwise write $r=p^jr'$ with $p\nmid r'$, so that $j<k$. If $p$ is odd, or if $p=2$ and $k-j\geq3$, then $b=c_p(r)$ and $D=0$. If $p=2$ and $k-j=2$, then $b=(j,e_1,0)$ with $r'\equiv(-1)^{e_1}\pmod4$, and $D$ is spanned by $(0,0,1)$. If $p=2$ and $k-j=1$, then $b=(j,0,0)$, and $D$ is spanned by $(0,1,0)$ and $(0,0,1)$.
+\end{lemma}
+
+\begin{proof}
+If $r\neq0$, then $v_p(X)=j$ and $X/p^j\equiv r'\pmod{p^{k-j}}$. For odd $p$, the Legendre symbol of $X/p^j$ is therefore that of $r'$. For $p=2$, the residue of $X/2^j$ modulo $8$ is that of $r'$ if $k-j\geq3$, and its residue modulo $4$, which determines $e_1$, is that of $r'$ if $k-j=2$.
+\end{proof}
+
+\begin{lemma}\label{lem:envelope}
+Let $p$ be a prime, and let $E$ be a set of edges on a finite set of vertices. For every vertex $i$, let $b_i$ be a vector and $D_i$ a subspace of $\F_2^2$ (of $\F_2^3$ if $p=2$), and put $\sigma_i=\sum_{j\sim i}b_j$, the sum over the edges $\{i,j\}\in E$. Suppose that $\beta_p(d,\sigma_i)=0$ for every vertex $i$ and every $d\in D_i$, and that $\beta_p(d,d')=0$ for every edge $\{i,j\}\in E$ and all $d\in D_i$ and $d'\in D_j$. Then
+\[
+\sum_{\{i,j\}\in E}\beta_p(c_i,c_j)=\sum_{\{i,j\}\in E}\beta_p(b_i,b_j)\qquad\text{whenever $c_i\in b_i+D_i$ for every $i$.}
+\]
+By bilinearity, it suffices to check the hypotheses for $d$ and $d'$ in spanning sets of $D_i$ and $D_j$.
+\end{lemma}
+
+\begin{proof}
+Write $c_i=b_i+d_i$ with $d_i\in D_i$. As $\beta_p$ is bilinear and symmetric, the left side equals the right side plus $\sum_i\beta_p(d_i,\sigma_i)+\sum_{\{i,j\}\in E}\beta_p(d_i,d_j)$, and both sums vanish.
+\end{proof}
+
+\begin{lemma}\label{lem:cubic}
+Let $f(z)=az^3+bz^2+cz+d$ be a real polynomial with $a\neq0$ and discriminant $\Delta<0$. Then $f$ has exactly one real root $\eta$, and $f(z)$ has the sign of $a(z-\eta)$ for every real $z\neq\eta$.
+\end{lemma}
+
+\begin{proof}
+The discriminant is $\Delta=a^4\prod_{i<j}(\rho_i-\rho_j)^2$, where $\rho_1,\rho_2,\rho_3$ are the complex roots of $f$. If all roots were real, then $\Delta\geq0$. Hence $f$ has a non-real root $\rho$; then $\bar\rho\neq\rho$ is also a root, and the third root $\eta$ is real. Thus $f(z)=a(z-\eta)(z-\rho)(z-\bar\rho)=a(z-\eta)|z-\rho|^2$ for real $z$, and $|z-\rho|^2>0$.
+\end{proof}
+
+\section{The graph}
+
+Put $F(x,y)=x^{4}+x+y^{3}+8y+1$, so that \eqref{eq:main} is the equation $F(x,y)=0$. The vertices are the polynomials
+\begin{align*}
+H_{0}&=-y,\\
+H_{1}&=-x-y,\\
+H_{2}&=-y-1,\\
+H_{3}&=-y+1,\\
+H_{4}&=x-y,\\
+H_{5}&=-2x-y,\\
+H_{6}&=-x-y+1,\\
+H_{7}&=x-y+1,\\
+H_{8}&=2x-y,\\
+H_{9}&=-2x-y+1,\\
+H_{10}&=-x-y-2,\\
+H_{11}&=2x-y-1,\\
+H_{12}&=x^{2}+y-1,\\
+H_{13}&=x^{2}-y+1,\\
+H_{14}&=x^{2}+x-y,\\
+H_{15}&=x^{2}-x+y-1,\\
+H_{16}&=x^{2}-x+y+1,\\
+H_{17}&=x^{2}+y-2,\\
+H_{18}&=x^{2}+x+y+1,\\
+H_{19}&=x^{2}+2x+y,\\
+H_{20}&=x^{2}-2x-y,\\
+H_{21}&=x^{2}-x-y-1,\\
+H_{22}&=x^{2}-x-y+1,\\
+H_{23}&=x^{2}+x-y-1,\\
+H_{24}&=x^{2}+2x-y,\\
+H_{25}&=x^{2}+x+y-2,\\
+H_{26}&=x^{2}+2x+y-1,\\
+H_{27}&=-1,\\
+H_{28}&=1,\\
+H_{29}&=2,\\
+H_{30}&=-3,\\
+H_{31}&=-x-y-1,\\
+H_{32}&=-y-2,\\
+H_{33}&=-y+2,\\
+H_{34}&=x-y-1,\\
+H_{35}&=-x-y+2,\\
+H_{36}&=2x-y+1,\\
+H_{37}&=-2x-y+2,\\
+H_{38}&=2x-y-2,\\
+H_{39}&=2x-y+2,\\
+H_{40}&=x^{2}+y,\\
+H_{41}&=x^{2}-y-2,\\
+H_{42}&=x^{2}-2x+y+1,\\
+H_{43}&=x^{2}-x+y-2,\\
+H_{44}&=x^{2}-x+y+2,\\
+H_{45}&=3.
+\end{align*}
+There are 2 graphs on these vertices. The edges of the first graph are $\{0,3\}$, $\{0,4\}$, $\{0,11\}$, $\{0,13\}$, $\{0,14\}$, $\{0,16\}$, $\{0,25\}$, $\{1,5\}$, $\{1,9\}$, $\{1,20\}$, $\{2,20\}$, $\{3,8\}$, $\{3,16\}$, $\{3,18\}$, $\{4,13\}$, $\{5,8\}$, $\{6,18\}$, $\{6,25\}$, $\{7,10\}$, $\{7,13\}$, $\{7,14\}$, $\{7,18\}$, $\{7,22\}$, $\{7,23\}$, $\{9,12\}$, $\{9,15\}$, $\{9,21\}$, $\{9,23\}$, $\{10,11\}$, $\{10,13\}$, $\{10,15\}$, $\{10,19\}$, $\{11,16\}$, $\{11,18\}$, $\{11,22\}$, $\{11,23\}$, $\{12,13\}$, $\{12,16\}$, $\{12,17\}$, $\{12,26\}$, $\{13,14\}$, $\{13,21\}$, $\{13,26\}$, $\{14,24\}$, $\{15,22\}$, $\{15,23\}$, $\{18,19\}$, $\{19,25\}$, $\{20,21\}$, $\{20,24\}$, $\{25,26\}$, $\{0,27\}$, $\{4,29\}$, $\{6,30\}$, $\{10,29\}$, $\{14,27\}$, $\{16,27\}$, $\{18,29\}$, $\{22,29\}$, $\{23,27\}$. The edges of the second graph are $\{0,6\}$, $\{0,9\}$, $\{0,10\}$, $\{0,36\}$, $\{0,13\}$, $\{1,7\}$, $\{1,37\}$, $\{1,14\}$, $\{1,18\}$, $\{1,41\}$, $\{2,32\}$, $\{2,9\}$, $\{2,11\}$, $\{2,40\}$, $\{2,44\}$, $\{3,8\}$, $\{3,9\}$, $\{3,11\}$, $\{3,15\}$, $\{3,16\}$, $\{3,18\}$, $\{4,10\}$, $\{4,40\}$, $\{4,13\}$, $\{5,6\}$, $\{5,33\}$, $\{31,11\}$, $\{31,36\}$, $\{31,16\}$, $\{31,21\}$, $\{31,42\}$, $\{6,38\}$, $\{6,40\}$, $\{33,37\}$, $\{33,13\}$, $\{33,43\}$, $\{34,23\}$, $\{7,40\}$, $\{7,44\}$, $\{8,14\}$, $\{8,16\}$, $\{9,11\}$, $\{9,15\}$, $\{9,16\}$, $\{9,21\}$, $\{9,43\}$, $\{10,37\}$, $\{10,13\}$, $\{10,15\}$, $\{35,37\}$, $\{35,40\}$, $\{35,18\}$, $\{11,36\}$, $\{11,40\}$, $\{11,16\}$, $\{11,23\}$, $\{11,44\}$, $\{36,38\}$, $\{36,16\}$, $\{36,43\}$, $\{37,38\}$, $\{37,39\}$, $\{37,18\}$, $\{39,44\}$, $\{40,43\}$, $\{13,14\}$, $\{13,21\}$, $\{14,41\}$, $\{15,23\}$, $\{16,42\}$, $\{18,23\}$, $\{21,41\}$, $\{42,43\}$, $\{1,30\}$, $\{2,29\}$, $\{5,29\}$, $\{6,29\}$, $\{7,29\}$, $\{8,45\}$, $\{10,27\}$, $\{11,45\}$, $\{37,29\}$, $\{15,29\}$, $\{16,27\}$, $\{43,27\}$, $\{44,29\}$. For a vertex $i$, we write $j\sim_g i$ if $\{i,j\}$ is an edge of the $g$-th graph.
+For every non-constant vertex $i$ and every graph $g$ in which $i$ has a neighbour, Table~\ref{tab:star} gives a positive integer $m_{g,i}$ and polynomials $W_{g,i}$, $A_{g,i}$ and $B_{g,i}$ with integer coefficients such that
+\begin{equation}\label{eq:star}
+m_{g,i}^2\prod_{j\sim_g i}H_j-W_{g,i}^2=A_{g,i}F+B_{g,i}H_i.
+\end{equation}
+For every edge $\{i,j\}$ between two non-constant vertices, Table~\ref{tab:sep} gives a positive integer $k_{ij}$ and polynomials $\alpha_{ij}$, $\beta_{ij}$ and $\gamma_{ij}$ with integer coefficients such that
+\begin{equation}\label{eq:sep}
+\alpha_{ij}F+\beta_{ij}H_i+\gamma_{ij}H_j=k_{ij}.
+\end{equation}
+These identities can be checked by expanding both sides.
+For the signs of the vertices, we regard $F$ as a polynomial in $y$; it has degree $3$ and leading coefficient $1$, and its discriminant is
+\begin{align*}
+\Delta(x)&=-27x^{8}-54x^{5}-54x^{4}-27x^{2}-54x-2075.
+\end{align*}
+For $i\in I=\{0,\allowbreak 1,\allowbreak 2,\allowbreak 3,\allowbreak 4,\allowbreak 5,\allowbreak 6,\allowbreak 7,\allowbreak 8,\allowbreak 9,\allowbreak 10,\allowbreak 11,\allowbreak 12,\allowbreak 13,\allowbreak 14,\allowbreak 15,\allowbreak 16,\allowbreak 17,\allowbreak 18,\allowbreak 19,\allowbreak 20,\allowbreak 21,\allowbreak 22,\allowbreak 23,\allowbreak 24,\allowbreak 25,\allowbreak 26,\allowbreak 31,\allowbreak 32,\allowbreak 33,\allowbreak 34,\allowbreak 35,\allowbreak 36,\allowbreak 37,\allowbreak 38,\allowbreak 39,\allowbreak 40,\allowbreak 41,\allowbreak 42,\allowbreak 43,\allowbreak 44\}$, the vertex $H_i$ has the form $k_iy+r_i(x)$ with a non-zero integer $k_i$, and Table~\ref{tab:phi} lists the polynomial $\varphi_i(x)=k_i^3F\bigl(x,-r_i(x)/k_i\bigr)$, which has integer coefficients.
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}, so that $F(x,y)=0$; from now on the polynomials denote their values at $(x,y)$.
+\paragraph{Step 1: the values are non-zero.} The non-constant $H_i$ are non-zero by Step~2.
+
+\paragraph{Step 2: signs.} \emph{The signs of $H_i$ for $i\in I$.} If $\Delta(x)<0$, then by Lemma~\ref{lem:cubic}, applied to $F(x,z)$ as a polynomial in $z$, $y$ is its only real root, and $F(x,z)$ has the sign of $(z-y)$ for $z\neq y$. For $i\in I$ and $z=-r_i(x)/k_i$, we have $z-y=-H_i/k_i$, so if moreover $\varphi_i(x)=k_i^3F(x,z)\neq0$, then $H_i\neq0$, and $H_i$ has the sign of $-\varphi_i(x)$. Expanding $\Delta(9+t)$ and the $\varphi_i(9+t)$ as polynomials in $t$ gives in each case coefficients of one sign and a non-zero constant term, and likewise for $\Delta(-11-t)$ and the $\varphi_i(-11-t)$. Hence, for $x\geq9$ and for $x\leq-11$, we have $\Delta(x)<0$, and $\varphi_i(x)$ is non-zero and has the sign of the constant term of the corresponding expansion; the resulting signs of the $H_i$ are listed in Table~\ref{tab:phi}. It remains to consider $-10\leq x\leq8$. Checking the residues of $y$, we find that for $x\in\{-10,\allowbreak -9,\allowbreak -7,\allowbreak -6,\allowbreak -4,\allowbreak -3,\allowbreak -1,\allowbreak 0,\allowbreak 2,\allowbreak 3,\allowbreak 5,\allowbreak 6,\allowbreak 8\}$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, for $x=1$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$, for $x\in\{-8,\allowbreak -2,\allowbreak 7\}$, we have $F(x,y)\not\equiv0\pmod{7}$ for every $y$, for $x=-5$, we have $F(x,y)\not\equiv0\pmod{11}$ for every $y$, and for $x=4$, we have $F(x,y)\not\equiv0\pmod{37}$ for every $y$. Hence \eqref{eq:main} has no solution with $-10\leq x\leq8$.
+
+For a place $v$, put $B^{(g)}_v=\prod_{\{i,j\}}(H_i,H_j)_v$, the product over the edges of the $g$-th graph. By Theorem~\ref{thm:hilbert}(i), $(H_i,H_j)_\infty=-1$ exactly when $H_i<0$ and $H_j<0$. Here $H_i>0$ for $i\in\{28,\allowbreak 29,\allowbreak 45\}$ and $H_i<0$ for $i\in\{27,\allowbreak 30\}$. The other signs are given in Table~\ref{tab:phi} for $x\geq9$ and for $x\leq-11$. In both cases, counting the edges of each graph whose two values are negative gives $(B^{(g)}_\infty)_g=(1,1)$.
+
+\paragraph{Step 3: odd primes outside $S$.} Let $S=\{2,3,5,7,11,13\}$ be the set of primes dividing $2$, the $m_{g,i}$, the $k_{ij}$ and the constant vertices. Let $p\notin S$ be an odd prime; we show that $B^{(g)}_p=1$ for every $g$. For an edge $\{i,j\}$ of the $g$-th graph such that $p$ divides neither $H_i$ nor $H_j$, $(H_i,H_j)_p=1$ by Theorem~\ref{thm:hilbert}(ii). Now let $i$ be a vertex with $p\mid H_i$. Then $H_i$ is not constant, as $p\notin S$. For every edge $\{i,j\}$ of the $g$-th graph, $p\nmid H_j$: if $H_j$ is constant, because $p\notin S$, and otherwise by \eqref{eq:sep}, because $p\nmid k_{ij}$. In particular, no edge has both values divisible by $p$. By Theorem~\ref{thm:hilbert}(v), the edges at $i$ contribute $\prod_{j\sim_g i}(H_i,H_j)_p=(H_i,\Pi_i)_p$, where $\Pi_i=\prod_{j\sim_g i}H_j$ is not divisible by $p$. By \eqref{eq:star}, $m_{g,i}^2\Pi_i\equiv W_{g,i}^2\pmod p$, and $p\nmid m_{g,i}$, so $\Pi_i$ is a non-zero square modulo $p$, and $(H_i,\Pi_i)_p=(\Pi_i,H_i)_p=1$ by Lemma~\ref{lem:square}. Hence $B^{(g)}_p=1$.
+
+\paragraph{Step 4: the primes in $S$.} Let $p\in S$. By Lemma~\ref{lem:classes}, $B^{(g)}_p=(-1)^{N_g}$, where $N_g=\sum_{\{i,j\}}\beta_p\bigl(c_p(H_i),c_p(H_j)\bigr)$, the sum over the edges of the $g$-th graph. Suppose that $x\equiv a$ and $y\equiv b\pmod{p^k}$. Then $H_i\equiv H_i(a,b)\pmod{p^k}$, and Lemma~\ref{lem:residue} gives a vector $b_i$ and a subspace $D_i$ with $c_p(H_i)\in b_i+D_i$; for a constant vertex, we take $b_i=c_p(H_i)$ and $D_i=0$. If the hypotheses of Lemma~\ref{lem:envelope} hold for the edges of every graph, then $N_g=\sum_{\{i,j\}}\beta_p(b_i,b_j)$, so $B^{(g)}_p$ is determined by $a$, $b$ and $k$. Starting from the solutions of \eqref{eq:main} modulo $p$, we refine a residue class $x\equiv a$, $y\equiv b\pmod{p^k}$ to the classes modulo $p^{k+1}$ that contain solutions of \eqref{eq:main} modulo $p^{k+1}$, until these hypotheses hold, or until no solution remains. Table~\ref{tab:local} lists the resulting terminal classes together with the value of the vector $(B^{(g)}_p)_g$; every integer solution lies in one of them. The result is $(B^{(g)}_{2})_g\in\{(1,1)\}$, $(B^{(g)}_{3})_g\in\{(1,-1),\allowbreak (-1,1),\allowbreak (-1,-1)\}$, $(B^{(g)}_{5})_g\in\{(1,1)\}$, $(B^{(g)}_{7})_g\in\{(1,1)\}$, $(B^{(g)}_{11})_g\in\{(1,1)\}$, $(B^{(g)}_{13})_g\in\{(1,1)\}$.
+
+\paragraph{Step 5: contradiction.} By Theorem~\ref{thm:hilbert}(iv), applied to each edge, $\prod_vB^{(g)}_v=1$ for every $g$. By Step~3, the factors with $p\notin S$ are $1$, so the componentwise product of the vectors $(B^{(g)}_p)_g$ with $p\in S$ is $(B^{(g)}_\infty)_g=(1,1)$ by Step~2. But by Step~4, this product is $(1,-1)$, $(-1,1)$, or $(-1,-1)$. This contradiction proves the theorem.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\bibitem{Se} J.-P. Serre, \emph{A Course in Arithmetic}, Graduate Texts in Mathematics 7, Springer, New York, 1973.
+\end{thebibliography}
+
+\clearpage
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:star}.}\label{tab:star}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\multicolumn{2}{@{}l}{$g=1$, $i=0$, $m=1$, neighbours $27,3,4,11,13,14,16,25$}\\
+$W$ & $x^{3}-2x^{2}+x+3$\\
+$A$ & $2x^{6}y-2x^{6}-3x^{5}y^{2}+4x^{5}y-x^{5}+x^{4}y^{3}-3x^{4}y^{2}-x^{4}y+3x^{4}$\\
+ & $\quad +x^{3}y^{3}+5x^{3}y^{2}-3x^{3}y-3x^{3}-2x^{2}y^{4}-6x^{2}y^{3}-5x^{2}y^{2}$\\
+ & $\quad +6x^{2}y+6x^{2}+3xy^{5}+3xy^{4}+8xy^{3}-22xy^{2}+9xy+3x-y^{6}+y^{5}+25y^{3}$\\
+ & $\quad +4y^{2}-26y-9$\\
+$B$ & $x^{3}y^{5}+6x^{3}y^{4}+5x^{3}y^{3}+28x^{3}y^{2}-13x^{3}y-26x^{3}-2x^{2}y^{6}$\\
+ & $\quad -6x^{2}y^{5}-22x^{2}y^{4}-20x^{2}y^{3}-51x^{2}y^{2}+10x^{2}y+74x^{2}+3xy^{7}$\\
+ & $\quad +3xy^{6}+35xy^{5}-7xy^{4}+77xy^{3}-123xy^{2}+49xy+3x-y^{8}+y^{7}-9y^{6}+34y^{5}$\\
+ & $\quad +7y^{4}+170y^{3}+47y^{2}-202y-98$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=1$, $m=1$, neighbours $5,9,20$}\\
+$W$ & $-x^{2}+x$\\
+$A$ & $0$\\
+$B$ & $-3x^{3}-x^{2}y+8x^{2}+5xy-3x+y^{2}-y$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=2$, $m=1$, neighbours $20$}\\
+$W$ & $-x+1$\\
+$A$ & $0$\\
+$B$ & $1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=3$, $m=1$, neighbours $0,8,16,18$}\\
+$W$ & $-x^{2}+3x+2$\\
+$A$ & $-2xy+y^{2}-1$\\
+$B$ & $4x^{3}y+6x^{3}-2x^{2}y^{2}-3x^{2}y-5x^{2}-2xy^{3}-11xy-11x+y^{4}+5y^{2}+5y-3$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=4$, $m=2$, neighbours $29,0,13$}\\
+$W$ & $-x^{3}-1$\\
+$A$ & $-x^{2}+y-1$\\
+$B$ & $-x^{3}y+x^{3}-x^{2}y^{2}+x^{2}y-x^{2}+xy^{2}-xy+x+y^{3}-y^{2}+1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=5$, $m=1$, neighbours $1,8$}\\
+$W$ & $2x$\\
+$A$ & $0$\\
+$B$ & $3x-y$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=6$, $m=1$, neighbours $30,18,25$}\\
+$W$ & $x^{3}-4$\\
+$A$ & $-x^{2}+y-2$\\
+$B$ & $x^{3}y+x^{3}-x^{2}y^{2}-2x^{2}-xy^{2}-3x+y^{3}-y^{2}+10y-8$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=7$, $m=1$, neighbours $10,13,14,18,22,23$}\\
+$W$ & $6x^{3}+37x^{2}+62x+30$\\
+$A$ & $-x^{7}-x^{6}y-4x^{6}+x^{5}y-6x^{5}+3x^{4}y^{2}+10x^{4}y-6x^{4}+x^{3}y^{3}$\\
+ & $\quad +4x^{3}y^{2}+26x^{3}y-3x^{3}+x^{2}y^{4}+2x^{2}y^{3}+6x^{2}y^{2}+53x^{2}y-32x^{2}$\\
+ & $\quad -xy^{4}-2xy^{3}-26xy^{2}+54xy-437x-5y^{5}-15y^{4}-44y^{3}-15y^{2}+395y-406$\\
+$B$ & $2x^{3}y^{5}+3x^{3}y^{4}+13x^{3}y^{3}-90x^{3}y^{2}-369x^{3}y-1700x^{3}+x^{2}y^{6}$\\
+ & $\quad -3x^{2}y^{5}-20x^{2}y^{4}-130x^{2}y^{3}-503x^{2}y^{2}-1378x^{2}y-3213x^{2}$\\
+ & $\quad -6xy^{6}-28xy^{5}-169xy^{4}-387xy^{3}-1292xy^{2}-1689xy-2381x-5y^{7}-20y^{6}$\\
+ & $\quad -103y^{5}-241y^{4}-215y^{3}-789y^{2}+2357y-494$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=8$, $m=3$, neighbours $3,5$}\\
+$W$ & $-2x^{2}-8x-2$\\
+$A$ & $-4$\\
+$B$ & $-16x^{2}-8xy-36x-4y^{2}-9y-23$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=9$, $m=1$, neighbours $1,12,15,21,23$}\\
+$W$ & $-13x^{3}+8x^{2}-17x+10$\\
+$A$ & $-x^{5}-x^{4}y+x^{4}+x^{3}y+5x^{3}+4x^{2}y-172x^{2}+xy^{3}+xy^{2}+7xy+200x+y^{4}$\\
+ & $\quad -5y^{3}+55y^{2}-y-60$\\
+$B$ & $-3x^{3}y^{3}+23x^{3}y^{2}+7x^{3}y+224x^{3}+2x^{2}y^{4}-10x^{2}y^{3}+13x^{2}y^{2}$\\
+ & $\quad -87x^{2}y-240x^{2}-xy^{5}+8xy^{4}-96xy^{3}+67xy^{2}-608xy+119x+y^{6}-4y^{5}$\\
+ & $\quad +60y^{4}+20y^{3}+393y^{2}+440y-40$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=10$, $m=1$, neighbours $29,7,11,13,15,19$}\\
+$W$ & $-6x^{3}-20x^{2}-18x-4$\\
+$A$ & $4x^{4}-6x^{3}y+6x^{3}+2x^{2}y^{2}-2x^{2}y-44x^{2}-4xy^{2}+14xy-254x-10y^{3}$\\
+ & $\quad +18y^{2}-96y-348$\\
+$B$ & $-8x^{3}y^{3}+26x^{3}y^{2}-90x^{3}y+288x^{3}+2x^{2}y^{4}-10x^{2}y^{3}$\\
+ & $\quad +24x^{2}y^{2}-106x^{2}y+166x^{2}+6xy^{4}-42xy^{3}+56xy^{2}-300xy-148x-10y^{5}$\\
+ & $\quad +40y^{4}-260y^{3}+306y^{2}-1358y-166$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=11$, $m=1$, neighbours $0,10,16,18,22,23$}\\
+$W$ & $-181x^{3}+259x^{2}-426x+144$\\
+$A$ & $x^{5}y+x^{4}y^{2}+2x^{4}y+x^{2}y-32761x^{2}-xy^{4}-2xy^{3}-9xy^{2}+93758x-y^{5}$\\
+ & $\quad +20y^{4}-406y^{3}+8198y^{2}-33118y-39151$\\
+$B$ & $-12x^{3}y^{4}+196x^{3}y^{3}-4108x^{3}y^{2}+16558x^{3}y-91071x^{3}-6x^{2}y^{5}$\\
+ & $\quad +92x^{2}y^{4}-1956x^{2}y^{3}+6227x^{2}y^{2}-37256x^{2}y+107243x^{2}-3xy^{6}$\\
+ & $\quad +43xy^{5}-934xy^{4}+18511xy^{3}-15519xy^{2}+166036xy-104911x-y^{7}+21y^{6}$\\
+ & $\quad -436y^{5}+8789y^{4}-45139y^{3}+71168y^{2}-327909y-18415$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=12$, $m=1$, neighbours $9,13,16,17,26$}\\
+$W$ & $2x^{3}-4x^{2}$\\
+$A$ & $-2x^{5}-x^{4}y-x^{4}+2x^{3}y^{2}-x^{3}y+17x^{3}-2x^{2}y^{2}+3x^{2}y-9x^{2}$\\
+ & $\quad +2xy^{3}-xy^{2}+14xy-15x-y^{3}+4y^{2}-13y+10$\\
+$B$ & $-2x^{5}y^{2}-4x^{5}y-10x^{5}+2x^{3}y^{3}+2x^{3}y^{2}+6x^{3}y+28x^{3}+x^{2}y^{4}$\\
+ & $\quad +2x^{2}y^{3}+3x^{2}y^{2}+21x^{2}y-33x^{2}-2xy^{5}-xy^{4}-28xy^{3}-13xy^{2}-133xy$\\
+ & $\quad +5x+y^{5}-2y^{4}+15y^{3}-22y^{2}+80y+8$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=13$, $m=1$, neighbours $0,4,7,10,12,14,21,26$}\\
+$W$ & $-8x^{4}-2x^{3}-50x^{2}-6x-60$\\
+$A$ & $x^{7}y-x^{6}y^{2}+5x^{6}y-x^{5}y^{3}-6x^{5}y^{2}+4x^{5}y+x^{4}y^{4}-x^{4}y^{3}$\\
+ & $\quad -8x^{4}y^{2}-16x^{4}y-64x^{4}-x^{3}y^{5}-6x^{3}y^{4}-8x^{3}y^{3}-64x^{3}y^{2}$\\
+ & $\quad -3x^{3}y-102x^{3}+x^{2}y^{5}-5x^{2}y^{4}+13x^{2}y^{3}-7x^{2}y^{2}-8x^{2}y$\\
+ & $\quad -804x^{2}+xy^{6}+6xy^{5}+5xy^{4}+40xy^{3}-26xy^{2}+36xy-98x-2y^{6}+10y^{5}$\\
+ & $\quad -25y^{4}+67y^{3}-15y^{2}+497y-892$\\
+$B$ & $x^{5}y^{5}+7x^{5}y^{4}+14x^{5}y^{3}+69x^{5}y^{2}-29x^{5}y+70x^{5}+x^{3}y^{6}$\\
+ & $\quad +6x^{3}y^{5}+7x^{3}y^{4}+55x^{3}y^{3}-98x^{3}y^{2}+99x^{3}y-204x^{3}-x^{2}y^{7}$\\
+ & $\quad +x^{2}y^{6}-10x^{2}y^{5}+68x^{2}y^{4}+72x^{2}y^{3}+179x^{2}y^{2}+45x^{2}y$\\
+ & $\quad -2426x^{2}+xy^{8}+7xy^{7}+19xy^{6}+108xy^{5}+136xy^{4}+470xy^{3}+278xy^{2}+521xy$\\
+ & $\quad +270x-2y^{8}+7y^{7}-34y^{6}+115y^{5}-92y^{4}+913y^{3}-30y^{2}+3931y-2708$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=14$, $m=1$, neighbours $27,0,7,13,24$}\\
+$W$ & $x^{3}-x$\\
+$A$ & $-x^{3}-x^{2}+xy$\\
+$B$ & $x^{5}-x^{4}+x^{3}y+x^{3}-x^{2}y^{2}+x^{2}y+2x^{2}+xy^{3}-2xy^{2}+11xy+y^{3}$\\
+ & $\quad -2y^{2}+y$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=15$, $m=1$, neighbours $9,10,22,23$}\\
+$W$ & $2x^{4}-6x^{3}-2x^{2}+6x$\\
+$A$ & $-4x^{4}+11x^{3}-26x^{2}+3xy+16x+4y^{2}-27y+23$\\
+$B$ & $13x^{5}+13x^{4}-13x^{3}y-31x^{3}+4x^{2}y^{3}-3x^{2}y^{2}+30x^{2}y+16x^{2}$\\
+ & $\quad -7xy^{3}+4xy^{2}-49xy+25x-4y^{4}+24y^{3}-30y^{2}+179y+21$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=16$, $m=2$, neighbours $27,0,3,11,12$}\\
+$W$ & $x^{5}-3x^{4}+5x^{3}-9x^{2}+8x-4$\\
+$A$ & $-x^{6}+6x^{5}-19x^{4}-5x^{3}y^{2}+3x^{3}y-11x^{3}+x^{2}y^{3}+8x^{2}y-100x^{2}$\\
+ & $\quad -6xy^{3}-48xy+84x+y^{4}-5y^{3}+14y^{2}-98y-116$\\
+$B$ & $5x^{5}y^{2}-3x^{5}y+60x^{5}+5x^{4}y^{2}-3x^{4}y+60x^{4}-5x^{3}y^{3}+3x^{3}y^{2}$\\
+ & $\quad -60x^{3}y+75x^{3}-x^{2}y^{4}+14x^{2}y^{3}-8x^{2}y^{2}+130x^{2}y-24x^{2}+5xy^{5}$\\
+ & $\quad +xy^{4}+66xy^{3}+22xy^{2}+200xy+196x-y^{6}+6y^{5}-28y^{4}+169y^{3}-164y^{2}+930y$\\
+ & $\quad +100$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=17$, $m=1$, neighbours $12$}\\
+$W$ & $1$\\
+$A$ & $0$\\
+$B$ & $1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=18$, $m=1$, neighbours $29,3,6,7,11,19$}\\
+$W$ & $x^{5}+4x^{4}+5x^{3}+8x^{2}+6x$\\
+$A$ & $-x^{6}-8x^{5}-26x^{4}+7x^{3}y^{2}-12x^{3}y+31x^{3}+x^{2}y^{3}+8x^{2}y-92x^{2}$\\
+ & $\quad +8xy^{3}-7xy^{2}+80xy-69x+y^{4}-7y^{3}+24y^{2}-97y-129$\\
+$B$ & $-7x^{5}y^{2}+12x^{5}y-86x^{5}+7x^{4}y^{2}-12x^{4}y+86x^{4}+7x^{3}y^{3}$\\
+ & $\quad -5x^{3}y^{2}+74x^{3}y-29x^{3}-x^{2}y^{4}+19x^{2}y^{3}-23x^{2}y^{2}+177x^{2}y$\\
+ & $\quad -63x^{2}-7xy^{5}+6xy^{4}-113xy^{3}+55xy^{2}-482xy+65x-y^{6}+8y^{5}-38y^{4}$\\
+ & $\quad +186y^{3}-242y^{2}+998y+129$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=19$, $m=1$, neighbours $10,18,25$}\\
+$W$ & $x^{2}+x-2$\\
+$A$ & $0$\\
+$B$ & $-x^{3}-x^{2}y-3x^{2}-xy-y^{2}-y+4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=20$, $m=1$, neighbours $1,2,21,24$}\\
+$W$ & $2x^{3}-4x^{2}+2x$\\
+$A$ & $-x^{3}-4x^{2}+xy+12x+6y$\\
+$B$ & $x^{5}+2x^{4}+x^{3}y+9x^{3}+x^{2}y^{2}-4x^{2}+xy^{3}+2xy^{2}+13xy+10x+5y^{3}$\\
+ & $\quad -2y^{2}+47y+6$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=21$, $m=1$, neighbours $9,13,20$}\\
+$W$ & $x^{2}+x-2$\\
+$A$ & $0$\\
+$B$ & $-2x^{3}-x^{2}y+2x^{2}+3xy-6x+y^{2}-3y+4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=22$, $m=1$, neighbours $29,7,11,15$}\\
+$W$ & $2x^{3}-6x^{2}+4x$\\
+$A$ & $-4x^{2}+4x+4y-4$\\
+$B$ & $20x^{3}-4x^{2}y-24x^{2}+10xy+6x+4y^{3}-2y^{2}+32y+6$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=23$, $m=1$, neighbours $27,7,9,11,15$}\\
+$W$ & $x^{5}+x^{4}-x^{3}-x^{2}$\\
+$A$ & $-x^{6}-2x^{5}+x^{4}-x^{3}y^{2}-3x^{3}+x^{2}y^{3}+8x^{2}y+4x^{2}+2xy^{3}+xy^{2}$\\
+ & $\quad +16xy+18x-y^{4}-y^{3}-9y^{2}-21y-12$\\
+$B$ & $x^{5}y^{2}+8x^{5}-x^{4}y^{2}-8x^{4}+x^{3}y^{3}+x^{3}y^{2}+8x^{3}y+x^{3}$\\
+ & $\quad +x^{2}y^{4}-2x^{2}y^{3}+8x^{2}y^{2}-7x^{2}y+xy^{5}+14xy^{3}+xy^{2}+44xy-7x-y^{6}$\\
+ & $\quad -17y^{4}-14y^{3}-69y^{2}-108y-11$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=24$, $m=1$, neighbours $14,20$}\\
+$W$ & $2x$\\
+$A$ & $0$\\
+$B$ & $x^{2}-3x-y$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=25$, $m=1$, neighbours $0,6,19,26$}\\
+$W$ & $x^{3}+2x^{2}-x-2$\\
+$A$ & $x^{3}-x^{2}+xy-4x-2y+4$\\
+$B$ & $-x^{5}+x^{4}+x^{3}y-3x^{3}+x^{2}y^{2}+3x^{2}y-2x^{2}-xy^{3}+4xy^{2}-7xy+4x$\\
+ & $\quad +3y^{3}+17y+4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=26$, $m=1$, neighbours $12,13,25$}\\
+$W$ & $-2x^{2}-2x$\\
+$A$ & $x^{2}+2x+y-1$\\
+$B$ & $-x^{3}-3x^{2}+xy-4x-y^{3}-y^{2}-5y-3$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=0$, $m=1$, neighbours $6,9,10,36,13$}\\
+$W$ & $x^{3}+4x+1$\\
+$A$ & $-5x^{2}-8xy-4x-3y^{2}-2y-3$\\
+$B$ & $-2x^{3}y^{2}-5x^{3}y+4x^{3}-x^{2}y^{3}-7x^{2}y^{2}-38x^{2}-6xy^{3}-9xy^{2}-64xy$\\
+ & $\quad -41x-2y^{4}-4y^{3}-29y^{2}-11y-33$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=1$, $m=1$, neighbours $30,7,37,14,18,41$}\\
+$W$ & $-3x^{3}+6x^{2}-15x$\\
+$A$ & $6x^{4}-3x^{3}y+12x^{3}-3x^{2}y^{2}-3x^{2}y-15x^{2}-3xy^{2}+6xy-3y^{3}-24y$\\
+$B$ & $9x^{3}y^{2}+24x^{3}y+168x^{3}-3x^{2}y^{4}-6x^{2}y^{3}-51x^{2}y^{2}-69x^{2}y$\\
+ & $\quad -189x^{2}+6xy^{3}+27xy^{2}+72xy+186x-3y^{5}+3y^{4}-48y^{3}-18y^{2}-192y-12$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=2$, $m=1$, neighbours $29,32,9,11,40,44$}\\
+$W$ & $-8x+8$\\
+$A$ & $8x^{2}y+16x^{2}-16xy-32x-2y^{3}+12y^{2}+58y+52$\\
+$B$ & $-2x^{3}y^{2}+22x^{3}y+52x^{3}+12x^{2}y^{3}+8x^{2}y^{2}+20x^{2}y+40x^{2}-18xy^{3}$\\
+ & $\quad -12xy^{2}-70xy-108x-2y^{5}+16y^{4}+34y^{3}+118y^{2}+350y+116$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=3$, $m=1$, neighbours $8,9,11,15,16,18$}\\
+$W$ & $8x^{3}-2x^{2}-2x+20$\\
+$A$ & $-8x^{5}+4x^{4}y+16x^{4}+2x^{3}y^{2}-32x^{3}y-10x^{3}-x^{2}y^{3}+10x^{2}y^{2}$\\
+ & $\quad +45x^{2}y-46x^{2}+15xy^{3}-44xy^{2}+25xy+16x-7y^{4}-8y^{3}+11y^{2}-68y+32$\\
+$B$ & $2x^{3}y^{4}-38x^{3}y^{3}-12x^{3}y^{2}-220x^{3}y-272x^{3}-x^{2}y^{5}+12x^{2}y^{4}$\\
+ & $\quad +48x^{2}y^{3}+81x^{2}y^{2}+394x^{2}y+100x^{2}+15xy^{5}-32xy^{4}+106xy^{3}$\\
+ & $\quad -215xy^{2}-46xy+34x-7y^{6}-14y^{5}-58y^{4}-199y^{3}-89y^{2}-621y-432$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=4$, $m=1$, neighbours $10,40,13$}\\
+$W$ & $-4x$\\
+$A$ & $-x-y$\\
+$B$ & $-2x^{3}-2x^{2}y-x^{2}-2xy^{2}-2xy-17x-y^{3}-y^{2}-9y+1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=5$, $m=1$, neighbours $29,6,33$}\\
+$W$ & $2x+2$\\
+$A$ & $0$\\
+$B$ & $2x-2y+6$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=6$, $m=1$, neighbours $29,0,5,38,40$}\\
+$W$ & $-x^{3}+3x^{2}-3x-2$\\
+$A$ & $-x^{2}+6x+7y-8$\\
+$B$ & $-x^{3}y+7x^{3}+x^{2}y^{2}-8x^{2}-3xy^{2}-6x+9y^{3}+5y^{2}+61y+4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=7$, $m=1$, neighbours $29,1,40,44$}\\
+$W$ & $-x^{3}+x^{2}+x+2$\\
+$A$ & $-x^{2}-y$\\
+$B$ & $-x^{3}y+3x^{3}-x^{2}y^{2}+2x^{2}y-4x^{2}-xy^{2}-y^{3}+y^{2}-3y-4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=8$, $m=3$, neighbours $45,3,14,16$}\\
+$W$ & $-2x^{3}+6x^{2}+6x-1$\\
+$A$ & $-4x^{2}+24x-11y-1$\\
+$B$ & $-8x^{3}y+8x^{3}-4x^{2}y^{2}+4x^{2}y-36x^{2}+2xy^{2}-2xy-22x-11y^{3}-28y^{2}-88y$\\
+ & $\quad +8$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=9$, $m=1$, neighbours $0,2,3,11,15,16,21,43$}\\
+$W$ & $-720x^{3}+1048x^{2}-2344x+1200$\\
+$A$ & $-2x^{5}y^{3}+2x^{5}y+x^{4}y^{4}+9x^{4}y^{3}-x^{4}y^{2}-9x^{4}y-8x^{3}y^{4}$\\
+ & $\quad -10x^{3}y^{3}+8x^{3}y^{2}+10x^{3}y+2x^{2}y^{5}+17x^{2}y^{4}-7x^{2}y^{3}$\\
+ & $\quad -17x^{2}y^{2}+5x^{2}y-518400x^{2}+2xy^{6}-6xy^{5}+10xy^{4}+18xy^{3}-12xy^{2}$\\
+ & $\quad -12xy+1509120x-y^{7}-y^{6}-62y^{5}+950y^{4}-11205y^{3}+137739y^{2}+379140y$\\
+ & $\quad -650560$\\
+$B$ & $4x^{3}y^{6}-28x^{3}y^{5}+514x^{3}y^{4}-5602x^{3}y^{3}+68826x^{3}y^{2}$\\
+ & $\quad +189566x^{3}y+1911552x^{3}-6x^{2}y^{7}+9x^{2}y^{6}-303x^{2}y^{5}+3024x^{2}y^{4}$\\
+ & $\quad -37182x^{2}y^{3}-60329x^{2}y^{2}-860989x^{2}y-2623936x^{2}+4xy^{8}+2xy^{7}$\\
+ & $\quad +165xy^{6}-1605xy^{5}+20082xy^{4}-247696xy^{3}+400341xy^{2}-1192125xy+3188160x$\\
+ & $\quad -y^{9}-2y^{8}-71y^{7}+870y^{6}-10837y^{5}+134438y^{4}+424895y^{3}+865046y^{2}$\\
+ & $\quad +4035902y-789440$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=10$, $m=1$, neighbours $27,0,4,37,13,15$}\\
+$W$ & $2x^{2}-2x-12$\\
+$A$ & $-2x^{2}y+xy^{2}+4xy+y^{3}-4y$\\
+$B$ & $3x^{3}y^{2}-2x^{3}y+4x^{3}-2x^{2}y^{3}-4x^{2}y^{2}-4x^{2}y-16x^{2}+5xy^{3}+26xy$\\
+ & $\quad -12x+y^{5}-y^{4}+2y^{3}+2y^{2}-38y+72$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=11$, $m=5$, neighbours $45,2,3,31,9,36,40,16,23,44$}\\
+$W$ & $-55608x^{3}+84192x^{2}-137928x+46272$\\
+$A$ & $300x^{7}y^{2}-300x^{7}+300x^{6}y^{3}-300x^{6}y-75x^{5}y^{4}+450x^{5}y^{3}$\\
+ & $\quad -450x^{5}y+75x^{5}-75x^{4}y^{5}+750x^{4}y^{4}+1200x^{4}y^{3}+150x^{4}y^{2}$\\
+ & $\quad -1125x^{4}y-900x^{4}-375x^{3}y^{5}+450x^{3}y^{4}-2400x^{3}y^{3}-1350x^{3}y^{2}$\\
+ & $\quad +2775x^{3}y+900x^{3}-450x^{2}y^{6}-1425x^{2}y^{4}+150x^{2}y^{3}+1650x^{2}y^{2}$\\
+ & $\quad -150x^{2}y-3092249439x^{2}+75xy^{7}-525xy^{6}+1725xy^{5}-1575xy^{4}-1275xy^{3}$\\
+ & $\quad +2325xy^{2}-525xy+9363497247x+75y^{8}+4425y^{6}-97050y^{5}+1957725y^{4}$\\
+ & $\quad -39231900y^{3}+786444975y^{2}-3395866794y-3955965696$\\
+$B$ & $-375x^{3}y^{7}-2850x^{3}y^{6}+44475x^{3}y^{5}-984900x^{3}y^{4}$\\
+ & $\quad +19616475x^{3}y^{3}-393216150x^{3}y^{2}+1697937297x^{3}y-9236063508x^{3}$\\
+ & $\quad -1950x^{2}y^{7}+24000x^{2}y^{6}-469800x^{2}y^{5}+9325500x^{2}y^{4}$\\
+ & $\quad -186794550x^{2}y^{3}+652347936x^{2}y^{2}-3769068468x^{2}y+11113620180x^{2}$\\
+ & $\quad +225xy^{9}-900xy^{8}+13500xy^{7}-223425xy^{6}+4430250xy^{5}-88733775xy^{4}$\\
+ & $\quad +1778896800xy^{3}-1558360491xy^{2}+16041274137xy-10986612705x+75y^{10}-75y^{9}$\\
+ & $\quad +5025y^{8}-102225y^{7}+2095425y^{6}-42098625y^{5}+844108575y^{4}-4551873519y^{3}$\\
+ & $\quad +6848235348y^{2}-33228724500y-1814867712$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=13$, $m=1$, neighbours $0,4,33,10,14,21$}\\
+$W$ & $3x^{4}+8x^{2}-x+8$\\
+$A$ & $-9x^{4}+2x^{3}y-3x^{3}-x^{2}y^{2}+2x^{2}y-48x^{2}-2xy^{2}+4xy+x+y^{3}+5y^{2}+28y$\\
+ & $\quad -41$\\
+$B$ & $-2x^{5}y+3x^{5}-2x^{3}y^{2}+5x^{3}y+11x^{3}+x^{2}y^{4}+10x^{2}y^{3}-11x^{2}y^{2}$\\
+ & $\quad +38x^{2}y-59x^{2}-2xy^{4}+5xy^{3}-11xy^{2}+16xy+56x+4y^{4}+44y^{3}+48y^{2}+277y$\\
+ & $\quad -23$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=14$, $m=1$, neighbours $1,8,13,41$}\\
+$W$ & $x^{3}+x^{2}-2x$\\
+$A$ & $x^{3}-3x^{2}-xy-4x+4y$\\
+$B$ & $-x^{5}+x^{4}-x^{3}y+x^{3}+x^{2}y^{2}+2x^{2}y+3x^{2}-xy^{3}-8xy+3x+3y^{3}-y^{2}$\\
+ & $\quad +34y+4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=15$, $m=1$, neighbours $29,3,9,10,23$}\\
+$W$ & $-2x^{4}+6x^{3}+2x^{2}-6x$\\
+$A$ & $-4x^{4}+8x^{3}-28x^{2}+24x+4y^{2}-32y+28$\\
+$B$ & $16x^{5}+16x^{4}-16x^{3}y-36x^{3}+4x^{2}y^{3}-4x^{2}y^{2}+28x^{2}y+20x^{2}$\\
+ & $\quad -4xy^{3}+6xy^{2}-20xy+38x-4y^{4}+30y^{3}-28y^{2}+218y+24$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=16$, $m=1$, neighbours $27,3,31,8,9,11,36,42$}\\
+$W$ & $-x^{5}+4x^{4}-x^{3}+14x^{2}-12x+8$\\
+$A$ & $-x^{6}+8x^{5}-18x^{4}-24x^{3}y^{2}+26x^{3}y-45x^{3}+x^{2}y^{3}-16x^{2}y-120x^{2}$\\
+ & $\quad -24xy^{3}+20xy^{2}-80xy+103x+y^{4}-21y^{3}+3y^{2}-166y-183$\\
+$B$ & $24x^{5}y^{2}-10x^{5}y+66x^{5}+24x^{4}y^{2}-10x^{4}y+66x^{4}-24x^{3}y^{3}$\\
+ & $\quad +10x^{3}y^{2}-66x^{3}y+59x^{3}+3x^{2}y^{4}+25x^{2}y^{3}+19x^{2}y^{2}+152x^{2}y$\\
+ & $\quad -75x^{2}+27xy^{5}-27xy^{4}+255xy^{3}-103xy^{2}+542xy+389x-2y^{6}+23y^{5}-31y^{4}$\\
+ & $\quad +364y^{3}-187y^{2}+1512y+119$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=18$, $m=1$, neighbours $1,3,35,37,23$}\\
+$W$ & $x^{5}-x^{4}+3x^{3}+x^{2}-4$\\
+$A$ & $-x^{6}+2x^{5}-7x^{4}-3x^{3}y^{2}+8x^{3}y-43x^{3}+x^{2}y^{3}+8x^{2}y-8x^{2}$\\
+ & $\quad -2xy^{3}+3xy^{2}-22xy-6x+y^{4}+3y^{3}+13y^{2}+49y+40$\\
+$B$ & $3x^{5}y^{2}-8x^{5}y+48x^{5}-3x^{4}y^{2}+8x^{4}y-48x^{4}-3x^{3}y^{3}+5x^{3}y^{2}$\\
+ & $\quad -40x^{3}y+11x^{3}-x^{2}y^{4}+10x^{2}y^{3}-15x^{2}y^{2}+70x^{2}y+42x^{2}+3xy^{5}$\\
+ & $\quad -4xy^{4}+58xy^{3}-22xy^{2}+290xy+26x-y^{6}-2y^{5}-20y^{4}-50y^{3}-100y^{2}-309y$\\
+ & $\quad -56$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=21$, $m=1$, neighbours $31,9,13,41$}\\
+$W$ & $x^{3}+x^{2}-2x$\\
+$A$ & $-3x^{3}+x^{2}+3xy+5x+2y+2$\\
+$B$ & $3x^{5}+3x^{4}+3x^{3}y+x^{2}y^{2}+4x^{2}+3xy^{3}-2xy^{2}+22xy+9x+y^{3}+19y$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=23$, $m=1$, neighbours $34,11,15,18$}\\
+$W$ & $-2x^{4}+2x^{2}$\\
+$A$ & $-4x^{4}-5x^{3}+10x^{2}-3xy+8x+4y^{2}-3y-7$\\
+$B$ & $5x^{5}-5x^{4}+5x^{3}y+3x^{3}+4x^{2}y^{3}-3x^{2}y^{2}+31x^{2}y+3x^{2}+xy^{3}$\\
+ & $\quad +2xy^{2}+14xy-6x+4y^{4}-8y^{3}+31y^{2}-51y-6$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=31$, $m=1$, neighbours $11,36,16,21,42$}\\
+$W$ & $-3x^{3}+4x^{2}+28x+16$\\
+$A$ & $4x^{4}-4x^{3}y-16x^{3}+x^{2}y^{2}+20x^{2}y+14x^{2}-8xy^{2}-32xy+8x-8y^{3}$\\
+ & $\quad -23y^{2}-62y-15$\\
+$B$ & $-5x^{3}y^{3}-33x^{3}y^{2}-45x^{3}y-173x^{3}+x^{2}y^{4}+20x^{2}y^{3}+39x^{2}y^{2}$\\
+ & $\quad +88x^{2}y+287x^{2}-24xy^{3}+53xy^{2}-256xy+651x-8y^{5}-14y^{4}-109y^{3}-96y^{2}$\\
+ & $\quad -425y+240$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=32$, $m=1$, neighbours $2$}\\
+$W$ & $-1$\\
+$A$ & $0$\\
+$B$ & $1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=33$, $m=1$, neighbours $5,37,13,43$}\\
+$W$ & $2x^{3}-2x$\\
+$A$ & $4xy-8x+y^{2}-6y+8$\\
+$B$ & $x^{3}y+x^{2}y+4xy^{3}+3xy^{2}+26xy+4x+y^{4}-3y^{3}+5y^{2}-29y-4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=34$, $m=1$, neighbours $23$}\\
+$W$ & $-x$\\
+$A$ & $0$\\
+$B$ & $1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=35$, $m=1$, neighbours $37,40,18$}\\
+$W$ & $-x^{2}+5$\\
+$A$ & $-2x-y+1$\\
+$B$ & $2x^{3}+3x^{2}y+4x^{2}-xy^{2}+xy-6x-y^{3}-9y-13$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=36$, $m=1$, neighbours $0,31,11,38,16,43$}\\
+$W$ & $6x^{3}+10x^{2}+10x+4$\\
+$A$ & $4x^{3}y-10x^{2}y-36x^{2}-3xy^{3}+xy^{2}-120x+y^{4}+2y^{3}+3y^{2}+42y-52$\\
+$B$ & $4x^{3}y^{3}+2x^{3}y^{2}-16x^{3}y-84x^{3}-4x^{2}y^{4}-10x^{2}y^{3}-34x^{2}y^{2}$\\
+ & $\quad -38x^{2}y-64x^{2}-xy^{5}+9xy^{4}+17xy^{3}+41xy^{2}+136xy+20x+y^{6}+2y^{5}$\\
+ & $\quad +10y^{4}+70y^{3}+55y^{2}+406y+36$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=37$, $m=1$, neighbours $29,1,33,10,35,38,39,18$}\\
+$W$ & $16x^{3}-72x^{2}+80x$\\
+$A$ & $8x^{3}y-16x^{3}+16x^{2}y^{2}-24x^{2}y-272x^{2}+2xy^{3}+20xy^{2}-80xy+2368x$\\
+ & $\quad +2y^{4}-10y^{3}+24y^{2}+1112y-2272$\\
+$B$ & $6x^{3}y^{4}-24x^{3}y^{3}+34x^{3}y^{2}+572x^{3}y+2688x^{3}-2x^{2}y^{5}$\\
+ & $\quad +24x^{2}y^{4}-58x^{2}y^{3}-178x^{2}y^{2}-904x^{2}y-3224x^{2}+2xy^{5}+42xy^{4}$\\
+ & $\quad -54xy^{3}+168xy^{2}-440xy+1056x-8y^{5}+44y^{4}+1106y^{3}+58y^{2}+9068y+1136$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=38$, $m=1$, neighbours $6,36,37$}\\
+$W$ & $6x-6$\\
+$A$ & $0$\\
+$B$ & $2x^{2}+3xy-19x+y^{2}-6y+17$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=39$, $m=3$, neighbours $37,44$}\\
+$W$ & $2x^{3}+12x^{2}+36x+40$\\
+$A$ & $-4x^{2}-48x+16y-96$\\
+$B$ & $-8x^{3}y-96x^{3}-4x^{2}y^{2}-40x^{2}y-423x^{2}-16xy^{2}-160xy-661x+16y^{3}$\\
+ & $\quad -64y^{2}+9y-734$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=40$, $m=1$, neighbours $2,4,6,7,35,11,43$}\\
+$W$ & $-x^{5}-x^{4}-8x^{3}-5x^{2}+3x$\\
+$A$ & $-x^{6}-2x^{5}-17x^{4}+7x^{3}y^{2}-16x^{3}y+12x^{3}+x^{2}y^{3}+x^{2}y^{2}$\\
+ & $\quad +16x^{2}y-58x^{2}+6xy^{3}-9xy^{2}+2xy-4x+y^{4}-4y^{3}+42y^{2}-57y$\\
+$B$ & $-7x^{5}y^{2}+14x^{5}y-39x^{5}+7x^{3}y^{3}-14x^{3}y^{2}+39x^{3}y-52x^{3}$\\
+ & $\quad -3x^{2}y^{4}+14x^{2}y^{3}-30x^{2}y^{2}+218x^{2}y+13x^{2}-9xy^{5}+23xy^{4}$\\
+ & $\quad -67xy^{3}+64xy^{2}-26xy+83x-48y^{4}+96y^{3}-339y^{2}+410y+61$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=41$, $m=1$, neighbours $1,14,21$}\\
+$W$ & $x^{2}+x-2$\\
+$A$ & $0$\\
+$B$ & $-x^{3}-x^{2}y-x^{2}+xy-2x+y^{2}-y+2$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=42$, $m=1$, neighbours $31,16,43$}\\
+$W$ & $x^{2}-3x$\\
+$A$ & $0$\\
+$B$ & $-x^{3}-x^{2}y-2x^{2}-xy+5x-y^{2}+y+2$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=43$, $m=1$, neighbours $27,33,9,36,40,42$}\\
+$W$ & $x^{5}-3x^{4}-x^{3}+6x^{2}-2x-10$\\
+$A$ & $-x^{6}+6x^{5}-7x^{4}-5x^{3}y^{2}-12x^{3}y-85x^{3}+x^{2}y^{3}+4x^{2}y+42x^{2}$\\
+ & $\quad -6xy^{3}-40xy+202x+y^{4}-8y^{3}+7y^{2}-36y+88$\\
+$B$ & $5x^{5}y^{2}+12x^{5}y+68x^{5}+5x^{4}y^{2}+12x^{4}y+68x^{4}-5x^{3}y^{3}$\\
+ & $\quad +3x^{3}y^{2}-32x^{3}y+7x^{3}-x^{2}y^{4}+6x^{2}y^{3}-13x^{2}y^{2}+45x^{2}y$\\
+ & $\quad +53x^{2}+5xy^{5}+16xy^{4}+115xy^{3}+142xy^{2}+636xy+118x-y^{6}+6y^{5}-2y^{4}$\\
+ & $\quad +92y^{3}+49y^{2}+382y+94$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=44$, $m=1$, neighbours $29,2,7,11,39$}\\
+$W$ & $-x^{4}-2x^{3}-3x^{2}-2x-1$\\
+$A$ & $-x^{4}+2x^{3}-10x^{2}+7x+y^{2}-4y-13$\\
+$B$ & $-6x^{5}-6x^{4}+6x^{3}y-16x^{3}+x^{2}y^{3}-x^{2}y^{2}+24x^{2}y-11x^{2}-xy^{3}$\\
+ & $\quad -7xy^{2}+4xy+5x-y^{4}+8y^{3}-13y^{2}+51y+8$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:sep}.}\label{tab:sep}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,3\}$, $k_{ij}=1$}\\
+$\alpha$ & $0$\\
+$\beta$ & $-1$\\
+$\gamma$ & $1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,4\}$, $k_{ij}=1$}\\
+$\alpha$ & $1$\\
+$\beta$ & $x^{3}+y^{2}+9$\\
+$\gamma$ & $-x^{3}-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,11\}$, $k_{ij}=5^{2}$}\\
+$\alpha$ & $16$\\
+$\beta$ & $8x^{3}+4x^{2}+2x+16y^{2}+137$\\
+$\gamma$ & $-8x^{3}-4x^{2}-2x-9$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,13\}$, $k_{ij}=5$}\\
+$\alpha$ & $x^{3}+2$\\
+$\beta$ & $x^{5}+x^{3}y^{2}+7x^{3}+3x^{2}+2x+2y^{2}+13$\\
+$\gamma$ & $-x^{5}+x^{3}-3x^{2}-2x+3$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,14\}$, $k_{ij}=1$}\\
+$\alpha$ & $1$\\
+$\beta$ & $x^{2}-x+y^{2}+9$\\
+$\gamma$ & $-x^{2}+x-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,16\}$, $k_{ij}=1$}\\
+$\alpha$ & $1$\\
+$\beta$ & $-x^{2}-x+y^{2}+8$\\
+$\gamma$ & $-x^{2}-x$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,25\}$, $k_{ij}=3^{3}\cdot 5$}\\
+$\alpha$ & $4x^{3}+41$\\
+$\beta$ & $-4x^{5}+4x^{4}+4x^{3}y^{2}+20x^{3}-25x^{2}-3x+41y^{2}+281$\\
+$\gamma$ & $-4x^{5}+4x^{4}-12x^{3}-25x^{2}-3x-47$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,5\}$, $k_{ij}=1$}\\
+$\alpha$ & $1$\\
+$\beta$ & $x^{3}-x^{2}y+xy^{2}+y^{3}+2y^{2}+15$\\
+$\gamma$ & $-y^{3}-y^{2}-7$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,9\}$, $k_{ij}=2\cdot 3$}\\
+$\alpha$ & $-1$\\
+$\beta$ & $-x^{3}+x^{2}y-xy^{2}-y^{3}-15$\\
+$\gamma$ & $y^{3}+7$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,20\}$, $k_{ij}=2^{4}\cdot 3$}\\
+$\alpha$ & $-7x^{4}+49y+48$\\
+$\beta$ & $-7x^{7}+7x^{6}y-14x^{4}y^{2}-7x^{4}+41x^{3}-41x^{2}y-49xy^{2}+42xy-385x+49y^{3}$\\
+ & $\quad +138y^{2}+350y+818$\\
+$\gamma$ & $7x^{4}y^{2}-90y^{2}+42y-385$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,20\}$, $k_{ij}=2^{2}\cdot 3^{3}$}\\
+$\alpha$ & $-5x^{3}-13$\\
+$\beta$ & $-5x^{5}-10x^{4}-5x^{3}y^{2}+5x^{3}y-60x^{3}-38x^{2}-21x-13y^{2}+13y-121$\\
+$\gamma$ & $5x^{5}+10x^{4}+15x^{3}+38x^{2}+21x+4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{3,8\}$, $k_{ij}=13^{2}$}\\
+$\alpha$ & $16$\\
+$\beta$ & $8x^{3}+4x^{2}+2x+16y^{2}+16y+153$\\
+$\gamma$ & $-8x^{3}-4x^{2}-2x-9$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{3,16\}$, $k_{ij}=2^{6}$}\\
+$\alpha$ & $-x^{3}+3$\\
+$\beta$ & $x^{5}+x^{4}-x^{3}y^{2}-x^{3}y-10x^{3}-5x^{2}+7x+3y^{2}+3y+44$\\
+$\gamma$ & $x^{5}+x^{4}-x^{3}-5x^{2}+7x+17$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{3,18\}$, $k_{ij}=2^{5}$}\\
+$\alpha$ & $x^{3}$\\
+$\beta$ & $-x^{5}+x^{4}+x^{3}y^{2}+x^{3}y+10x^{3}-4x^{2}-8x+16$\\
+$\gamma$ & $-x^{5}+x^{4}+x^{3}-4x^{2}-8x+16$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{4,13\}$, $k_{ij}=2^{3}\cdot 3^{2}$}\\
+$\alpha$ & $x^{4}-8y+9$\\
+$\beta$ & $-x^{7}-x^{6}y+2x^{5}y+x^{5}+2x^{4}y^{2}+x^{4}y-x^{4}-9x^{3}-9x^{2}y-8xy^{2}+10xy$\\
+ & $\quad -63x-8y^{3}+10y^{2}-55y-9$\\
+$\gamma$ & $-x^{4}y^{2}-2x^{4}y-x^{4}-y^{2}-10y+63$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{5,8\}$, $k_{ij}=2^{5}$}\\
+$\alpha$ & $32$\\
+$\beta$ & $16x^{3}-8x^{2}y+4xy^{2}-y^{3}+16y^{2}+136$\\
+$\gamma$ & $y^{3}+16y^{2}+120$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{6,18\}$, $k_{ij}=2^{6}\cdot 3$}\\
+$\alpha$ & $x^{4}-8y+12$\\
+$\beta$ & $x^{7}-x^{6}y+x^{6}-x^{5}y+12x^{3}-12x^{2}y+12x^{2}+8xy^{2}+4xy+64x-8y^{3}-40y$\\
+ & $\quad +128$\\
+$\gamma$ & $-x^{4}y^{2}+x^{4}y-x^{4}-4y^{2}+28y+52$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{6,25\}$, $k_{ij}=3\cdot 5^{2}$}\\
+$\alpha$ & $x^{4}-11y+24$\\
+$\beta$ & $x^{7}-x^{6}y+x^{6}-x^{5}y-3x^{5}+3x^{4}y-6x^{4}+27x^{3}-27x^{2}y+27x^{2}$\\
+ & $\quad +11xy^{2}-2xy+46x-11y^{3}-3y^{2}-7y+89$\\
+$\gamma$ & $-x^{4}y^{2}+x^{4}y-4x^{4}-16y^{2}+52y+19$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,10\}$, $k_{ij}=7$}\\
+$\alpha$ & $16$\\
+$\beta$ & $-16x^{3}-16x^{2}y+16x^{2}-16xy^{2}+32xy-16x-8y^{3}+20y^{2}+14y+9$\\
+$\gamma$ & $8y^{3}-28y^{2}+62y+9$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,13\}$, $k_{ij}=2^{5}\cdot 3^{3}\cdot 5$}\\
+$\alpha$ & $17x^{4}-289y+721$\\
+$\beta$ & $-17x^{7}-17x^{6}y+17x^{6}+34x^{5}y+51x^{5}+34x^{4}y^{2}+17x^{4}y-68x^{4}$\\
+ & $\quad -602x^{3}-602x^{2}y+602x^{2}-289xy^{2}+456xy-2461x-289y^{3}+745y^{2}-2628y+1740$\\
+$\gamma$ & $-17x^{4}y^{2}-68x^{4}-313y^{2}+748y+1859$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,14\}$, $k_{ij}=3^{3}$}\\
+$\alpha$ & $x^{4}-13y+26$\\
+$\beta$ & $-x^{7}-x^{6}y+x^{6}+x^{5}y+3x^{5}+2x^{4}y^{2}+x^{4}y-27x^{3}-27x^{2}y+27x^{2}$\\
+ & $\quad -13xy^{2}-90x-13y^{3}+27y^{2}-131y+1$\\
+$\gamma$ & $-x^{4}y^{2}+x^{4}y-4x^{4}-14y^{2}+54y+63$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,18\}$, $k_{ij}=2^{4}\cdot 5$}\\
+$\alpha$ & $x^{4}-8y$\\
+$\beta$ & $-x^{7}-x^{6}y+x^{6}-x^{5}y+4x^{5}+2x^{4}y+4x^{3}+4x^{2}y-4x^{2}-8xy^{2}+8xy-80x$\\
+ & $\quad -8y^{3}+4y^{2}-64y-4$\\
+$\gamma$ & $-x^{4}y^{2}+3x^{4}y-5x^{4}+12y^{2}-16y+84$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,22\}$, $k_{ij}=2\cdot 5\cdot 7$}\\
+$\alpha$ & $-6x^{4}+45y-38$\\
+$\beta$ & $-24x^{7}-9x^{6}y+9x^{6}+27x^{5}y+54x^{5}+3x^{4}y^{2}+93x^{4}y-141x^{4}-47x^{3}$\\
+ & $\quad -552x^{2}y+552x^{2}-270xy^{2}+756xy-653x-60y^{3}+574y^{2}-766y+512$\\
+$\gamma$ & $30x^{6}-15x^{5}y+45x^{5}-9x^{4}y^{2}+6x^{4}y-48x^{4}+105x^{2}y^{2}-285x^{2}y$\\
+ & $\quad +280x^{2}+105xy^{2}+220xy-225x+105y^{3}-567y^{2}+1133y-404$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,23\}$, $k_{ij}=2^{3}$}\\
+$\alpha$ & $x^{4}-14y+30$\\
+$\beta$ & $-x^{7}-x^{6}y+x^{6}+x^{5}y+4x^{5}+2x^{4}y^{2}+2x^{4}y-36x^{3}-36x^{2}y+36x^{2}$\\
+ & $\quad -14xy^{2}+2xy-64x-14y^{3}+38y^{2}-122y+6$\\
+$\gamma$ & $-x^{4}y^{2}+x^{4}y-5x^{4}-22y^{2}+70y+28$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{9,12\}$, $k_{ij}=2^{7}\cdot 5$}\\
+$\alpha$ & $21y+43$\\
+$\beta$ & $42x^{3}y+86x^{3}-441x+21y^{3}+y^{2}+166y-156$\\
+$\gamma$ & $63x^{2}y+129x^{2}+42xy^{2}+44xy-86x-63y^{2}-66y-753$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{9,15\}$, $k_{ij}=2^{5}\cdot 5$}\\
+$\alpha$ & $3y+13$\\
+$\beta$ & $6x^{3}y+26x^{3}-90x+3y^{3}+13y^{2}+39y+19$\\
+$\gamma$ & $9x^{2}y+39x^{2}+6xy^{2}+29xy+13x-3y^{2}-y-128$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{9,21\}$, $k_{ij}=2^{2}\cdot 3^{3}\cdot 5$}\\
+$\alpha$ & $-3069x^{4}+7688y+10667$\\
+$\beta$ & $5518x^{7}+62x^{6}y-62x^{6}+558x^{5}y+2294x^{5}-3131x^{4}y^{2}-18290x^{4}y$\\
+ & $\quad -18228x^{4}-78984x^{3}+9826x^{2}y-9826x^{2}-15376xy^{2}+14530xy+120991x$\\
+ & $\quad +2046y^{3}-48170y^{2}-1629y+60773$\\
+$\gamma$ & $14105x^{6}+5642x^{5}y+8463x^{5}+62x^{4}y^{2}+20739x^{4}y+27218x^{4}$\\
+ & $\quad +5642x^{2}y^{2}+64883x^{2}y-120120x^{2}+5642xy^{2}+5551xy-60788x+5642y^{3}$\\
+ & $\quad +55241y^{2}-40278y+70900$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{9,23\}$, $k_{ij}=2^{6}$}\\
+$\alpha$ & $-2001x^{4}+39008y+5096$\\
+$\beta$ & $3772x^{7}+23x^{6}y-23x^{6}+253x^{5}y+1909x^{5}-2024x^{4}y^{2}+7038x^{4}y$\\
+ & $\quad +20010x^{4}+52792x^{3}+13776x^{2}y-13776x^{2}-16928xy^{2}+13904xy-107844x$\\
+ & $\quad +23736y^{3}-19812y^{2}+183924y+91856$\\
+$\gamma$ & $9545x^{6}+3818x^{5}y-13363x^{5}+23x^{4}y^{2}+6187x^{4}y+26749x^{4}$\\
+ & $\quad +15272x^{2}y^{2}+22908x^{2}y+109228x^{2}-15272xy^{2}+57436xy-189572x+15272y^{3}$\\
+ & $\quad +33372y^{2}+74956y+96888$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{10,11\}$, $k_{ij}=2^{3}\cdot 5^{2}\cdot 7$}\\
+$\alpha$ & $-81$\\
+$\beta$ & $-81x^{3}+81x^{2}y+162x^{2}-81xy^{2}-324xy-324x+27y^{3}+90y^{2}+336y-479$\\
+$\gamma$ & $-27y^{3}-198y^{2}-318y-523$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{10,13\}$, $k_{ij}=2\cdot 5^{2}$}\\
+$\alpha$ & $6x^{4}+27y+20$\\
+$\beta$ & $-12x^{7}+3x^{6}y+6x^{6}+6x^{5}y-9x^{5}+3x^{4}y^{2}+6x^{4}y+6x^{4}-40x^{3}$\\
+ & $\quad -2x^{2}y-4x^{2}-18xy^{2}+20xy-33x+18y^{3}+58y^{2}+62y+2$\\
+$\gamma$ & $-18x^{6}-9x^{5}y-18x^{5}+3x^{4}y^{2}+21x^{4}+9x^{2}y^{2}-36x^{2}y-75x^{2}-42xy$\\
+ & $\quad -84x+9y^{3}-65y^{2}-27y+34$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{10,15\}$, $k_{ij}=2^{6}\cdot 5$}\\
+$\alpha$ & $45x^{4}+891y+806$\\
+$\beta$ & $45x^{7}+36x^{6}y+72x^{6}-36x^{5}y-108x^{5}+81x^{4}y^{2}+72x^{4}y-99x^{4}$\\
+ & $\quad +4253x^{3}-6404x^{2}y-12808x^{2}-648xy^{2}+9932xy+5208x+810y^{3}-6408y^{2}+1952y$\\
+ & $\quad +9196$\\
+$\gamma$ & $81x^{5}y+162x^{5}+36x^{4}y^{2}+189x^{4}y+198x^{4}+81x^{2}y^{2}-1215x^{2}y$\\
+ & $\quad +3402x^{2}+81xy^{2}-3366xy-900x-81y^{3}-5675y^{2}-23667y-17906$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{10,19\}$, $k_{ij}=2^{8}\cdot 3\cdot 5$}\\
+$\alpha$ & $-7x^{4}+147y+368$\\
+$\beta$ & $-7x^{7}+7x^{6}y+14x^{6}+14x^{5}y+14x^{5}+42x^{4}y+49x^{4}+263x^{3}-263x^{2}y$\\
+ & $\quad -526x^{2}-147xy^{2}-190xy-2563x+147y^{3}-336y^{2}+606y-1736$\\
+$\gamma$ & $7x^{4}y^{2}+42x^{4}y+42x^{4}-410y^{2}-1242y-3615$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{11,16\}$, $k_{ij}=2^{3}\cdot 5^{2}$}\\
+$\alpha$ & $21x^{4}-25$\\
+$\beta$ & $-42x^{7}+21x^{4}y^{2}-42x^{4}y-42x^{4}-34x^{3}-157x-84y^{3}+80y^{2}-81y+55$\\
+$\gamma$ & $63x^{6}-42x^{5}y+21x^{5}-105x^{4}y-42x^{4}+84x^{2}y^{2}-105x^{2}y+72x^{2}$\\
+ & $\quad +84xy^{2}-139xy+38x-84y^{3}+105y^{2}-106y+280$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{11,18\}$, $k_{ij}=2^{6}\cdot 5$}\\
+$\alpha$ & $2223x^{4}+30004y+29964$\\
+$\beta$ & $-4524x^{7}+13x^{6}y+13x^{6}-65x^{5}y+637x^{5}+2236x^{4}y^{2}+9308x^{4}y$\\
+ & $\quad +3250x^{4}-100638x^{3}-5344x^{2}y-5344x^{2}+5408xy^{2}-11968xy+12010x+16354y^{3}$\\
+ & $\quad +20200y^{2}+174220y+90230$\\
+$\gamma$ & $6825x^{6}-4550x^{5}y-11375x^{5}+13x^{4}y^{2}-2119x^{4}y+3289x^{4}$\\
+ & $\quad +13650x^{2}y^{2}-36400x^{2}y+169050x^{2}-13650xy^{2}-53550xy-259000x-13650y^{3}$\\
+ & $\quad +20240y^{2}-65852y+60586$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{11,22\}$, $k_{ij}=2^{2}\cdot 3\cdot 5\cdot 7$}\\
+$\alpha$ & $-435x^{4}+3248y-2778$\\
+$\beta$ & $-1160x^{7}-29x^{6}y-29x^{6}+319x^{5}y+1421x^{5}-406x^{4}y^{2}+2726x^{4}y$\\
+ & $\quad -1885x^{4}-9006x^{3}-1824x^{2}y-1824x^{2}-6728xy^{2}-2904xy+533x-58y^{3}$\\
+ & $\quad -7189y^{2}+20833y-11446$\\
+$\gamma$ & $2755x^{6}-1102x^{5}y+1653x^{5}-29x^{4}y^{2}+957x^{4}y-3973x^{4}+3306x^{2}y^{2}$\\
+ & $\quad -3857x^{2}y+23313x^{2}+3306xy^{2}-9215xy+17955x+3306y^{3}+7775y^{2}+20115y-8248$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{11,23\}$, $k_{ij}=2^{3}\cdot 3$}\\
+$\alpha$ & $5x^{4}-3$\\
+$\beta$ & $10x^{7}+5x^{4}y^{2}+40x^{4}y+45x^{4}-16x^{3}+72x-10y^{3}+27y^{2}+72y+71$\\
+$\gamma$ & $-25x^{6}+10x^{5}y+35x^{5}-35x^{4}y-60x^{4}+10x^{2}y^{2}-50x^{2}y+15x^{2}$\\
+ & $\quad -10xy^{2}+34xy-31x+10y^{3}-30y^{2}-69y-98$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{12,13\}$, $k_{ij}=2^{3}\cdot 5^{2}$}\\
+$\alpha$ & $-2x+20$\\
+$\beta$ & $2x^{3}-20x^{2}+xy^{2}+10x-10y^{2}-99$\\
+$\gamma$ & $-xy^{2}-2xy-8x+10y^{2}+20y+81$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{12,16\}$, $k_{ij}=2^{7}$}\\
+$\alpha$ & $y-1$\\
+$\beta$ & $-x^{7}+x^{6}-2x^{5}+x^{4}y-x^{4}-11x^{3}+x^{2}y^{2}+x^{2}y+9x^{2}-54x-y^{3}+13y$\\
+ & $\quad -44$\\
+$\gamma$ & $x^{7}-2x^{4}y+2x^{4}+11x^{3}+32x-21y+85$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{12,17\}$, $k_{ij}=1$}\\
+$\alpha$ & $0$\\
+$\beta$ & $1$\\
+$\gamma$ & $-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{12,26\}$, $k_{ij}=2^{4}\cdot 5$}\\
+$\alpha$ & $-2y+10$\\
+$\beta$ & $-x^{7}-2x^{6}+2x^{4}y-2x^{4}+5x^{3}-2x^{2}y^{2}+6x^{2}y-2x^{2}-34x+2y^{3}-8y^{2}$\\
+ & $\quad +7y-65$\\
+$\gamma$ & $x^{7}-5x^{3}+34x+y-5$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{13,14\}$, $k_{ij}=2^{2}\cdot 3^{3}$}\\
+$\alpha$ & $-y+6$\\
+$\beta$ & $-x^{7}-x^{6}+x^{5}-2x^{4}y+2x^{4}+9x^{3}-x^{2}y^{2}+4x^{2}y+x^{2}+44x-y^{3}$\\
+ & $\quad +5y^{2}+5y+102$\\
+$\gamma$ & $x^{7}+x^{4}y-x^{4}-9x^{3}-53x-8y-50$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{13,21\}$, $k_{ij}=2^{4}\cdot 3^{2}\cdot 5$}\\
+$\alpha$ & $-y+9$\\
+$\beta$ & $x^{7}-x^{6}-2x^{5}-3x^{4}y+3x^{4}-21x^{3}-x^{2}y^{2}+7x^{2}y+7x^{2}-122x-y^{3}$\\
+ & $\quad +8y^{2}+43y+434$\\
+$\gamma$ & $-x^{7}+2x^{4}y-2x^{4}+21x^{3}+164x-43y-277$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{13,26\}$, $k_{ij}=2^{4}\cdot 5^{2}$}\\
+$\alpha$ & $6x^{4}-30y+70$\\
+$\beta$ & $-3x^{7}-12x^{6}-6x^{5}y+6x^{5}+3x^{4}y^{2}-18x^{4}y+18x^{4}+10x^{3}-30x^{2}y^{2}$\\
+ & $\quad +30x^{2}y-80x^{2}+20xy+30x-30y^{3}+50y^{2}-155y+255$\\
+$\gamma$ & $3x^{7}-3x^{4}y^{2}+6x^{4}y-6x^{4}-10x^{3}-50x+10y^{2}+45y-75$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{14,24\}$, $k_{ij}=1$}\\
+$\alpha$ & $y+1$\\
+$\beta$ & $x^{7}+x^{6}-x^{5}+3x^{4}y+2x^{4}+9x^{3}+x^{2}y^{2}+8x^{2}-xy^{2}-7x+3y^{3}$\\
+ & $\quad +2y^{2}+25y+19$\\
+$\gamma$ & $-x^{7}-2x^{4}y-x^{4}-9x^{3}-x-2y^{3}-y^{2}-17y-10$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{15,22\}$, $k_{ij}=2^{3}\cdot 3\cdot 5$}\\
+$\alpha$ & $-2x^{3}+12$\\
+$\beta$ & $2x^{5}+x^{3}y^{2}+11x^{3}-8x^{2}+10x-6y^{2}-2y-52$\\
+$\gamma$ & $2x^{4}-x^{3}y^{2}-2x^{3}y-7x^{3}+2x+6y^{2}+10y+56$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{15,23\}$, $k_{ij}=2^{5}\cdot 3$}\\
+$\alpha$ & $10x^{4}+10y-12$\\
+$\beta$ & $5x^{7}-10x^{5}y-5x^{4}y^{2}+5x^{4}-61x^{3}-10x^{2}y^{2}-110x^{2}y-120x^{2}$\\
+ & $\quad -10xy^{2}+12xy-54x+56y^{2}+16y$\\
+$\gamma$ & $-5x^{7}+5x^{4}y^{2}-10x^{4}y-5x^{4}+61x^{3}-66x+10y^{3}+34y^{2}+6y-108$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{18,19\}$, $k_{ij}=2^{5}\cdot 3$}\\
+$\alpha$ & $-y-5$\\
+$\beta$ & $-x^{7}-x^{6}+2x^{5}+4x^{4}y-6x^{3}-x^{2}y^{2}-2x^{2}y-x^{2}+xy^{2}+2xy+44x$\\
+ & $\quad +3y^{3}+7y^{2}+10y+101$\\
+$\gamma$ & $x^{7}-3x^{4}y-x^{4}+6x^{3}-37x-2y^{3}-5y^{2}-9y-70$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{19,25\}$, $k_{ij}=3\cdot 5$}\\
+$\alpha$ & $-y+1$\\
+$\beta$ & $x^{7}+3x^{6}+3x^{4}y-4x^{4}+27x^{3}+3x^{2}y^{2}-15x^{2}y-204x^{2}-6xy^{2}+30xy$\\
+ & $\quad -301x+y^{3}-5y^{2}-225y+482$\\
+$\gamma$ & $-x^{7}-4x^{6}-4x^{5}-2x^{4}y-27x^{3}-4x^{2}y^{2}+16x^{2}y+176x^{2}+4xy^{2}-16xy$\\
+ & $\quad +479x+4y^{2}+241y-7$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{20,21\}$, $k_{ij}=2\cdot 3$}\\
+$\alpha$ & $-y-2$\\
+$\beta$ & $-x^{7}+x^{6}+x^{5}-20x^{3}+x^{2}y^{2}+4x^{2}y-32x^{2}+2xy^{2}+8xy+52x+y^{3}$\\
+ & $\quad -2y^{2}+43y+44$\\
+$\gamma$ & $x^{7}-2x^{6}-x^{4}y+20x^{3}-2x^{2}y^{2}-4x^{2}y+14x^{2}-2xy^{2}-4xy-82x-2y^{3}$\\
+ & $\quad +2y^{2}-53y-8$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{20,24\}$, $k_{ij}=2^{2}\cdot 7$}\\
+$\alpha$ & $4y+28$\\
+$\beta$ & $x^{7}+4x^{6}+8x^{5}+8x^{4}+3x^{3}+4x^{2}y^{2}+12x^{2}y-16x^{2}+8xy^{2}+24xy+41x$\\
+ & $\quad +8y^{2}+25y+121$\\
+$\gamma$ & $-x^{7}+4x^{4}y+8x^{4}-3x^{3}-73x+4y^{3}+20y^{2}+7y+107$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{25,26\}$, $k_{ij}=5^{2}$}\\
+$\alpha$ & $-y+3$\\
+$\beta$ & $-x^{7}-3x^{6}+2x^{4}-42x^{3}-3x^{2}y^{2}+18x^{2}y+135x^{2}+3xy^{2}-18xy+476x$\\
+ & $\quad +y^{3}+10y^{2}+216y-232$\\
+$\gamma$ & $x^{7}+2x^{6}-2x^{5}+x^{4}y-2x^{4}+42x^{3}+2x^{2}y^{2}-16x^{2}y-178x^{2}-4xy^{2}$\\
+ & $\quad +32xy-297x-11y^{2}-199y+442$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,6\}$, $k_{ij}=3$}\\
+$\alpha$ & $1$\\
+$\beta$ & $-x^{3}-x^{2}-x+y^{2}+6$\\
+$\gamma$ & $x^{3}+x^{2}+x+2$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,9\}$, $k_{ij}=5^{2}$}\\
+$\alpha$ & $16$\\
+$\beta$ & $-8x^{3}-4x^{2}-2x+16y^{2}+119$\\
+$\gamma$ & $8x^{3}+4x^{2}+2x+9$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,10\}$, $k_{ij}=3\cdot 5$}\\
+$\alpha$ & $1$\\
+$\beta$ & $-x^{3}+2x^{2}-4x+y^{2}+15$\\
+$\gamma$ & $x^{3}-2x^{2}+4x-7$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,36\}$, $k_{ij}=3^{2}$}\\
+$\alpha$ & $16$\\
+$\beta$ & $8x^{3}-4x^{2}+2x+16y^{2}+135$\\
+$\gamma$ & $-8x^{3}+4x^{2}-2x-7$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,7\}$, $k_{ij}=3\cdot 5^{2}$}\\
+$\alpha$ & $16$\\
+$\beta$ & $16x^{3}-16x^{2}y+16xy^{2}-8y^{3}+12y^{2}+6y+75$\\
+$\gamma$ & $8y^{3}+12y^{2}+6y+59$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,14\}$, $k_{ij}=3\cdot 13$}\\
+$\alpha$ & $38x^{4}-323y+39$\\
+$\beta$ & $-76x^{7}+19x^{6}y+57x^{5}y+114x^{5}+19x^{4}y^{2}-228x^{4}y+38x^{4}-1201x^{3}$\\
+ & $\quad +448x^{2}y-361xy^{2}+603xy+1253x-95y^{3}+123y^{2}-2719y+14$\\
+$\gamma$ & $-114x^{6}-57x^{5}y+114x^{5}+19x^{4}y^{2}-228x^{2}y^{2}+57x^{2}y-1278x^{2}$\\
+ & $\quad +228xy^{2}-810xy+1278x-228y^{3}-84y^{2}+135y-25$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,18\}$, $k_{ij}=2^{3}\cdot 5$}\\
+$\alpha$ & $x^{4}-6y+1$\\
+$\beta$ & $x^{7}-x^{6}y-x^{5}y+x^{5}-2x^{4}y+2x^{4}+3x^{3}-3x^{2}y+6xy^{2}-xy+39x-6y^{3}$\\
+ & $\quad +4y^{2}-46y+40$\\
+$\gamma$ & $-x^{4}y^{2}-x^{4}y+x^{4}+3y^{2}-y+39$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,37\}$, $k_{ij}=5$}\\
+$\alpha$ & $-1$\\
+$\beta$ & $-x^{3}+x^{2}y-xy^{2}-y^{3}+2y^{2}-4y-7$\\
+$\gamma$ & $y^{3}-y^{2}+2y+3$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,41\}$, $k_{ij}=2^{2}\cdot 3\cdot 13$}\\
+$\alpha$ & $-x^{4}+15y-10$\\
+$\beta$ & $-x^{7}+x^{6}y+2x^{5}y+4x^{5}-2x^{4}y^{2}-4x^{4}y-x^{4}-19x^{3}+19x^{2}y-15xy^{2}$\\
+ & $\quad +14xy-83x+15y^{3}-14y^{2}+98y-10$\\
+$\gamma$ & $x^{4}y^{2}+2x^{4}y+4x^{4}+4y^{2}+14y-83$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,9\}$, $k_{ij}=2^{2}\cdot 3$}\\
+$\alpha$ & $-2$\\
+$\beta$ & $x^{3}+x^{2}+x-2y^{2}+2y-16$\\
+$\gamma$ & $-x^{3}-x^{2}-x-2$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,11\}$, $k_{ij}=2^{4}$}\\
+$\alpha$ & $-2$\\
+$\beta$ & $-x^{3}-2y^{2}+2y-19$\\
+$\gamma$ & $x^{3}+1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,32\}$, $k_{ij}=1$}\\
+$\alpha$ & $0$\\
+$\beta$ & $1$\\
+$\gamma$ & $-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,40\}$, $k_{ij}=2^{4}\cdot 3$}\\
+$\alpha$ & $-x^{3}-7$\\
+$\beta$ & $x^{5}-x^{3}y^{2}+x^{3}y-8x^{3}+8x^{2}-7x-7y^{2}+7y-55$\\
+$\gamma$ & $x^{5}+x^{3}+8x^{2}-7x+8$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,44\}$, $k_{ij}=2^{3}$}\\
+$\alpha$ & $-1$\\
+$\beta$ & $x^{2}+x-y^{2}+y-9$\\
+$\gamma$ & $x^{2}+x$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{3,9\}$, $k_{ij}=2^{2}\cdot 5$}\\
+$\alpha$ & $2$\\
+$\beta$ & $-x^{3}+2y^{2}+2y+17$\\
+$\gamma$ & $x^{3}+1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{3,11\}$, $k_{ij}=2^{3}\cdot 3$}\\
+$\alpha$ & $2$\\
+$\beta$ & $x^{3}+x^{2}+x+2y^{2}+2y+20$\\
+$\gamma$ & $-x^{3}-x^{2}-x-2$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{3,15\}$, $k_{ij}=2^{2}\cdot 3\cdot 5$}\\
+$\alpha$ & $-x^{3}+6$\\
+$\beta$ & $x^{5}+x^{4}-x^{3}y^{2}-x^{3}y-8x^{3}-4x^{2}+6x+6y^{2}+6y+60$\\
+$\gamma$ & $x^{5}+x^{4}+x^{3}-4x^{2}+6x+6$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{4,10\}$, $k_{ij}=2^{4}$}\\
+$\alpha$ & $-2$\\
+$\beta$ & $2x^{3}+2x^{2}y+2xy^{2}+y^{3}-7$\\
+$\gamma$ & $-y^{3}-9$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{4,40\}$, $k_{ij}=2^{4}\cdot 5$}\\
+$\alpha$ & $-9x^{4}+81y+80$\\
+$\beta$ & $9x^{7}+9x^{6}y+9x^{4}-71x^{3}-71x^{2}y+81xy^{2}-72xy+801x+81y^{3}-72y^{2}+720y$\\
+ & $\quad -80$\\
+$\gamma$ & $9x^{4}y^{2}-152y^{2}+72y-801$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{5,6\}$, $k_{ij}=2^{3}\cdot 5^{2}$}\\
+$\alpha$ & $8$\\
+$\beta$ & $4x^{3}-2x^{2}y+xy^{2}-y^{3}-9y^{2}-18y-92$\\
+$\gamma$ & $y^{3}+18y^{2}+36y+192$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{5,33\}$, $k_{ij}=2^{4}\cdot 5^{2}$}\\
+$\alpha$ & $16$\\
+$\beta$ & $8x^{3}-4x^{2}y+2xy^{2}-y^{3}+8$\\
+$\gamma$ & $y^{3}+18y^{2}+36y+192$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{6,38\}$, $k_{ij}=3^{2}$}\\
+$\alpha$ & $3$\\
+$\beta$ & $3x^{3}-3x^{2}y+3x^{2}+3xy^{2}-6xy+3x-y^{3}+3y^{2}+3y+12$\\
+$\gamma$ & $y^{3}-3y^{2}+6y+3$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{6,40\}$, $k_{ij}=2^{3}$}\\
+$\alpha$ & $x^{4}-2y+2$\\
+$\beta$ & $x^{7}+x^{4}y^{2}-x^{4}y+x^{4}+6x^{3}+4x+6y^{2}-12y+6$\\
+$\gamma$ & $x^{5}y-x^{5}-2x^{2}y^{2}-4x^{2}y+2x^{2}+6xy-6x+2y^{3}+4y^{2}-2y+4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,40\}$, $k_{ij}=2\cdot 3\cdot 7$}\\
+$\alpha$ & $5x^{4}-10y+9$\\
+$\beta$ & $-5x^{7}+5x^{4}y^{2}-5x^{4}y-5x^{4}-39x^{3}-42x+39y^{2}-71y+33$\\
+$\gamma$ & $-5x^{5}y+5x^{5}-10x^{2}y^{2}-30x^{2}y+30x^{2}-39xy+39x+10y^{3}+30y^{2}-30y+42$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,44\}$, $k_{ij}=7^{3}$}\\
+$\alpha$ & $x^{4}-9y+10$\\
+$\beta$ & $-x^{7}-x^{6}y+x^{6}+x^{5}y-x^{5}-x^{4}y-11x^{3}-11x^{2}y+11x^{2}-9xy^{2}-8xy-94x$\\
+ & $\quad -9y^{3}-y^{2}-47y+167$\\
+$\gamma$ & $-x^{4}y^{2}+x^{4}y-2y^{2}+30y+83$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{8,14\}$, $k_{ij}=2^{2}\cdot 3^{3}\cdot 5^{2}$}\\
+$\alpha$ & $104x^{4}-1352y+2700$\\
+$\beta$ & $-52x^{7}-26x^{6}y+234x^{5}y+468x^{5}+130x^{4}y^{2}+468x^{4}y+416x^{4}-1402x^{3}$\\
+ & $\quad -701x^{2}y-2704xy^{2}+693xy-21598x-1352y^{3}-2007y^{2}-9430y-22948$\\
+$\gamma$ & $-26x^{4}y^{2}-468x^{4}y-936x^{4}+4707y^{2}-1386y+43196$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{8,16\}$, $k_{ij}=3^{3}$}\\
+$\alpha$ & $-2x^{4}-1$\\
+$\beta$ & $4x^{7}-2x^{4}y^{2}+6x^{4}y+4x^{4}-2x^{3}-14x+4y^{3}-7y^{2}-19y+11$\\
+$\gamma$ & $-6x^{6}+4x^{5}y-6x^{5}+10x^{4}y-4x^{2}y^{2}+10x^{2}y+7x^{2}-4xy^{2}+8xy+7x$\\
+ & $\quad +4y^{3}-10y^{2}-9y+28$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{9,11\}$, $k_{ij}=2\cdot 5^{2}$}\\
+$\alpha$ & $32$\\
+$\beta$ & $16x^{3}-8x^{2}y+8x^{2}+4xy^{2}-8xy+4x-y^{3}+18y^{2}+134$\\
+$\gamma$ & $y^{3}+12y^{2}+6y+116$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{9,16\}$, $k_{ij}=2^{5}\cdot 3$}\\
+$\alpha$ & $507x^{4}+3796y+3273$\\
+$\beta$ & $1170x^{7}+26x^{6}y-26x^{6}+130x^{5}y-390x^{5}+533x^{4}y^{2}+1378x^{4}y+1352x^{4}$\\
+ & $\quad +16900x^{3}-1494x^{2}y+1494x^{2}-2704xy^{2}+1890xy-3651x+2574y^{3}+3222y^{2}$\\
+ & $\quad +22223y+19531$\\
+$\gamma$ & $1833x^{6}+1222x^{5}y+611x^{5}+26x^{4}y^{2}-403x^{4}y-1976x^{4}+1222x^{2}y^{2}$\\
+ & $\quad -5499x^{2}y+30644x^{2}+1222xy^{2}+8413xy+16732x-1222y^{3}-1403y^{2}-9964y-22708$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{9,43\}$, $k_{ij}=2^{5}\cdot 3^{3}\cdot 5\cdot 13$}\\
+$\alpha$ & $-16x^{4}+256y+2764$\\
+$\beta$ & $-8x^{7}+4x^{6}y-4x^{6}+20x^{5}y-36x^{5}-12x^{4}y^{2}+12x^{4}y+8x^{4}+1446x^{3}$\\
+ & $\quad -723x^{2}y+723x^{2}-512xy^{2}-1311xy-11157x+256y^{3}+1273y^{2}+5639y+7322$\\
+$\gamma$ & $4x^{4}y^{2}+32x^{4}y-68x^{4}-1747y^{2}-1176y-23037$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{10,37\}$, $k_{ij}=3$}\\
+$\alpha$ & $-1$\\
+$\beta$ & $-x^{3}+x^{2}y+2x^{2}-xy^{2}-4xy-4x-y^{3}+1$\\
+$\gamma$ & $y^{3}+3y^{2}+6y+3$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{11,36\}$, $k_{ij}=2$}\\
+$\alpha$ & $0$\\
+$\beta$ & $-1$\\
+$\gamma$ & $1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{11,40\}$, $k_{ij}=2^{3}\cdot 7$}\\
+$\alpha$ & $-150x^{4}-750y+724$\\
+$\beta$ & $300x^{7}-150x^{4}y^{2}-150x^{4}y+75x^{4}+2302x^{3}+2060x-1151y^{2}+254y+668$\\
+$\gamma$ & $-450x^{6}+300x^{5}y+300x^{5}+450x^{4}y-750x^{2}y^{2}+1875x^{2}y-5103x^{2}+2302xy$\\
+ & $\quad +2302x+750y^{3}-1875y^{2}+5103y-4120$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{11,44\}$, $k_{ij}=2^{4}\cdot 3\cdot 5\cdot 7^{2}$}\\
+$\alpha$ & $12x^{4}-216y-496$\\
+$\beta$ & $-6x^{7}-3x^{6}y-3x^{6}+21x^{5}y-99x^{5}+9x^{4}y^{2}-63x^{4}y+42x^{4}+68x^{3}$\\
+ & $\quad +34x^{2}y+34x^{2}-432xy^{2}+770xy-3558x-216y^{3}+618y^{2}-2022y+2044$\\
+$\gamma$ & $-3x^{4}y^{2}-48x^{4}y+195x^{4}+898y^{2}-1472y+7150$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{14,41\}$, $k_{ij}=3\cdot 5\cdot 13$}\\
+$\alpha$ & $y+3$\\
+$\beta$ & $-x^{7}+x^{6}+x^{5}+x^{4}y-21x^{3}+x^{2}y^{2}-2x^{2}y+16x^{2}-xy^{2}+2xy-47x$\\
+ & $\quad -y^{3}+2y^{2}+25y+143$\\
+$\gamma$ & $x^{7}-x^{4}+21x^{3}+73x+2y^{3}-3y^{2}-11y-96$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{16,42\}$, $k_{ij}=2^{3}$}\\
+$\alpha$ & $-1$\\
+$\beta$ & $-x^{5}+x^{4}-3x^{2}y+x^{2}-7x+2y^{2}-4y+17$\\
+$\gamma$ & $x^{5}+x^{3}+2x^{2}y+x^{2}+9x-y^{2}+3y-8$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{18,23\}$, $k_{ij}=2^{4}$}\\
+$\alpha$ & $-2$\\
+$\beta$ & $2x^{2}+y^{2}-2y+9$\\
+$\gamma$ & $-2x-y^{2}-9$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{21,41\}$, $k_{ij}=2^{2}\cdot 3^{2}$}\\
+$\alpha$ & $-y-7$\\
+$\beta$ & $-x^{7}-x^{6}+2x^{3}-x^{2}y^{2}-2x^{2}y+7x^{2}-xy^{2}-2xy-74x+y^{3}+3y^{2}-4y-91$\\
+$\gamma$ & $x^{7}-x^{4}y-x^{4}-2x^{3}+79x-2y^{3}-7y^{2}+7y+24$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{31,11\}$, $k_{ij}=2^{3}\cdot 3$}\\
+$\alpha$ & $-3$\\
+$\beta$ & $-3x^{3}+3x^{2}y+3x^{2}-3xy^{2}-6xy-3x+y^{3}+y^{2}+5y-18$\\
+$\gamma$ & $-y^{3}-4y^{2}-2y-9$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{31,16\}$, $k_{ij}=2^{8}\cdot 5$}\\
+$\alpha$ & $3x^{4}-36y-196$\\
+$\beta$ & $3x^{7}-3x^{6}y-3x^{6}+3x^{5}y+6x^{5}-6x^{4}y-6x^{4}-184x^{3}+184x^{2}y+184x^{2}$\\
+ & $\quad +36xy^{2}-316xy+304x-36y^{3}+60y^{2}-76y-988$\\
+$\gamma$ & $-3x^{4}y^{2}-3x^{4}y+3x^{4}+220y^{2}+52y+488$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{31,21\}$, $k_{ij}=2^{6}$}\\
+$\alpha$ & $x^{4}-10y-18$\\
+$\beta$ & $x^{7}-x^{6}y-x^{6}-x^{5}y+2x^{5}+2x^{4}y^{2}+2x^{4}y-2x^{4}-16x^{3}+16x^{2}y$\\
+ & $\quad +16x^{2}+10xy^{2}-2xy+64x-10y^{3}-34y^{2}-102y-162$\\
+$\gamma$ & $-x^{4}y^{2}-3x^{4}y+x^{4}+26y^{2}+30y+80$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{31,36\}$, $k_{ij}=2^{4}\cdot 11$}\\
+$\alpha$ & $-81$\\
+$\beta$ & $-81x^{3}+81x^{2}y+81x^{2}-81xy^{2}-162xy-81x+27y^{3}-9y^{2}+3y-514$\\
+$\gamma$ & $-27y^{3}-126y^{2}-120y-257$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{31,42\}$, $k_{ij}=2^{3}\cdot 11$}\\
+$\alpha$ & $x-11$\\
+$\beta$ & $x^{4}-x^{3}y-12x^{3}+13x^{2}y+10x^{2}-23xy+18x+11y-76$\\
+$\gamma$ & $-xy^{2}-2x+11y^{2}+23$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{33,13\}$, $k_{ij}=3^{3}\cdot 5^{2}$}\\
+$\alpha$ & $-x^{3}+26$\\
+$\beta$ & $-x^{5}-x^{3}y^{2}-2x^{3}y-13x^{3}+25x^{2}-26x+26y^{2}+52y+337$\\
+$\gamma$ & $x^{5}+x^{3}-25x^{2}+26x-25$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{33,37\}$, $k_{ij}=2\cdot 5^{2}$}\\
+$\alpha$ & $2$\\
+$\beta$ & $-x^{3}+2y^{2}+4y+23$\\
+$\gamma$ & $x^{3}+1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{33,43\}$, $k_{ij}=3^{3}\cdot 5^{2}$}\\
+$\alpha$ & $-2x^{3}+27$\\
+$\beta$ & $2x^{5}+2x^{4}-2x^{3}y^{2}-4x^{3}y-22x^{3}-23x^{2}+27x+27y^{2}+54y+351$\\
+$\gamma$ & $2x^{5}+2x^{4}+2x^{3}-23x^{2}+27x+27$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{34,23\}$, $k_{ij}=2^{6}$}\\
+$\alpha$ & $x^{4}-12y-20$\\
+$\beta$ & $-x^{7}-x^{6}y-x^{6}+x^{5}y-2x^{5}+2x^{4}y^{2}+2x^{4}y-4x^{4}+16x^{3}+16x^{2}y$\\
+ & $\quad +16x^{2}-12xy^{2}+4xy-104x-12y^{3}-36y^{2}-116y-204$\\
+$\gamma$ & $-x^{4}y^{2}-3x^{4}y+x^{4}+28y^{2}+28y+120$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{35,18\}$, $k_{ij}=2^{10}$}\\
+$\alpha$ & $x^{4}-16y+39$\\
+$\beta$ & $x^{7}-x^{6}y+2x^{6}-x^{5}y-x^{5}+2x^{4}y-6x^{4}+23x^{3}-23x^{2}y+46x^{2}$\\
+ & $\quad +16xy^{2}+25xy+169x-16y^{3}-18y+454$\\
+$\gamma$ & $-x^{4}y^{2}+3x^{4}y-5x^{4}-7y^{2}+117y+77$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{35,37\}$, $k_{ij}=5^{2}$}\\
+$\alpha$ & $1$\\
+$\beta$ & $x^{3}-x^{2}y+2x^{2}+xy^{2}-4xy+4x+y^{3}-4y^{2}+16y+15$\\
+$\gamma$ & $-y^{3}+5y^{2}-14y-3$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{35,40\}$, $k_{ij}=2^{4}\cdot 11^{2}$}\\
+$\alpha$ & $5x^{4}-75y+148$\\
+$\beta$ & $5x^{7}-5x^{6}y+10x^{6}-20x^{5}+20x^{4}y-35x^{4}+83x^{3}-83x^{2}y+166x^{2}$\\
+ & $\quad +75xy^{2}+160xy+373x-75y^{3}-10y^{2}-128y+894$\\
+$\gamma$ & $-5x^{4}y^{2}+20x^{4}y-40x^{4}-8y^{2}+492y+41$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{36,16\}$, $k_{ij}=2^{7}$}\\
+$\alpha$ & $4x^{4}-12y$\\
+$\beta$ & $-2x^{7}-x^{6}y+x^{6}+7x^{5}y-x^{5}+3x^{4}y^{2}-10x^{4}y-x^{4}-2x^{3}-x^{2}y$\\
+ & $\quad +x^{2}-24xy^{2}-xy-37x-12y^{3}+35y^{2}-10y+55$\\
+$\gamma$ & $-x^{4}y^{2}-12x^{4}y+x^{4}+47y^{2}+4y+73$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{36,38\}$, $k_{ij}=3$}\\
+$\alpha$ & $0$\\
+$\beta$ & $1$\\
+$\gamma$ & $-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{36,43\}$, $k_{ij}=2^{5}\cdot 3^{2}\cdot 11$}\\
+$\alpha$ & $-4x^{4}+48y-4$\\
+$\beta$ & $2x^{7}+x^{6}y-x^{6}-7x^{5}y-5x^{5}-3x^{4}y^{2}+7x^{4}y+10x^{4}+10x^{3}+5x^{2}y$\\
+ & $\quad -5x^{2}+96xy^{2}-3xy+1271x+48y^{3}-143y^{2}+611y-1902$\\
+$\gamma$ & $x^{4}y^{2}+12x^{4}y+11x^{4}-187y^{2}-4y-2537$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{37,18\}$, $k_{ij}=2^{2}\cdot 3^{4}\cdot 5$}\\
+$\alpha$ & $-16x^{4}+32y-52$\\
+$\beta$ & $-8x^{7}+4x^{6}y-8x^{6}+28x^{5}y+56x^{5}-12x^{4}y^{2}+20x^{4}y+112x^{4}+142x^{3}$\\
+ & $\quad -71x^{2}y+142x^{2}-64xy^{2}+47xy+382x+32y^{3}-187y^{2}+61y+596$\\
+$\gamma$ & $4x^{4}y^{2}+40x^{4}y+128x^{4}-199y^{2}+378y+480$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{37,38\}$, $k_{ij}=2^{5}\cdot 3$}\\
+$\alpha$ & $32$\\
+$\beta$ & $16x^{3}-8x^{2}y+16x^{2}+4xy^{2}-16xy+16x-y^{3}+20y^{2}+120$\\
+$\gamma$ & $y^{3}+8y^{2}+24y+88$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{37,39\}$, $k_{ij}=2^{5}\cdot 5^{2}$}\\
+$\alpha$ & $32$\\
+$\beta$ & $16x^{3}-8x^{2}y+16x^{2}+4xy^{2}-16xy+16x-y^{3}+22y^{2}+20y+208$\\
+$\gamma$ & $y^{3}+10y^{2}+44y+176$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{39,44\}$, $k_{ij}=2^{2}\cdot 3^{3}$}\\
+$\alpha$ & $-4$\\
+$\beta$ & $2x^{3}+x^{2}y-2x^{2}-7xy-12x-3y^{2}+6y+28$\\
+$\gamma$ & $y^{2}+10y+28$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{40,43\}$, $k_{ij}=3^{4}$}\\
+$\alpha$ & $y+3$\\
+$\beta$ & $-x^{7}+x^{6}+2x^{5}-3x^{4}y-11x^{3}+x^{2}y^{2}+3x^{2}y+8x^{2}+x-y^{3}-3y^{2}-31y$\\
+ & $\quad +60$\\
+$\gamma$ & $x^{7}+2x^{4}y+11x^{3}+21x+23y-39$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{42,43\}$, $k_{ij}=2\cdot 3^{2}\cdot 11$}\\
+$\alpha$ & $y-14$\\
+$\beta$ & $x^{7}+x^{6}-x^{5}+2x^{4}-3x^{3}+x^{2}y^{2}-x^{2}+2xy^{2}+84x+3y^{3}-y^{2}+7y+132$\\
+$\gamma$ & $-x^{7}-x^{4}y-5x^{4}+3x^{3}-77x-4y^{3}+4y^{2}-6y-40$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rrlcc@{}}
+\caption{The polynomials $\varphi_i(x)=k_i^3F\bigl(x,-r_i(x)/k_i\bigr)$ of Step~2 and the signs of $H_i$ for $x\geq9$ and for $x\leq-11$.}\label{tab:phi}\\
+\hline $i$ & $k_i$ & $\varphi_i(x)$ & $x\geq9$ & $x\leq-11$\\\hline\endfirsthead\hline $i$ & $k_i$ & $\varphi_i(x)$ & $x\geq9$ & $x\leq-11$\\\hline\endhead\hline\endfoot
+0 & $-1$ & $-x^{4}-x-1$ & $+$ & $+$\\
+1 & $-1$ & $-x^{4}+x^{3}+7x-1$ & $+$ & $+$\\
+2 & $-1$ & $-x^{4}-x+8$ & $+$ & $+$\\
+3 & $-1$ & $-x^{4}-x-10$ & $+$ & $+$\\
+4 & $-1$ & $-x^{4}-x^{3}-9x-1$ & $+$ & $+$\\
+5 & $-1$ & $-x^{4}+8x^{3}+15x-1$ & $+$ & $+$\\
+6 & $-1$ & $-x^{4}+x^{3}-3x^{2}+10x-10$ & $+$ & $+$\\
+7 & $-1$ & $-x^{4}-x^{3}-3x^{2}-12x-10$ & $+$ & $+$\\
+8 & $-1$ & $-x^{4}-8x^{3}-17x-1$ & $+$ & $+$\\
+9 & $-1$ & $-x^{4}+8x^{3}-12x^{2}+21x-10$ & $+$ & $+$\\
+10 & $-1$ & $-x^{4}+x^{3}+6x^{2}+19x+23$ & $+$ & $+$\\
+11 & $-1$ & $-x^{4}-8x^{3}+12x^{2}-23x+8$ & $+$ & $+$\\
+12 & $1$ & $-x^{6}+4x^{4}-11x^{2}+x+10$ & $+$ & $+$\\
+13 & $-1$ & $-x^{6}-4x^{4}-11x^{2}-x-10$ & $+$ & $+$\\
+14 & $-1$ & $-x^{6}-3x^{5}-4x^{4}-x^{3}-8x^{2}-9x-1$ & $+$ & $+$\\
+15 & $1$ & $-x^{6}+3x^{5}+x^{4}-5x^{3}-8x^{2}+12x+10$ & $+$ & $+$\\
+16 & $1$ & $-x^{6}+3x^{5}-5x^{4}+7x^{3}-14x^{2}+12x-8$ & $+$ & $+$\\
+17 & $1$ & $-x^{6}+7x^{4}-20x^{2}+x+25$ & $+$ & $+$\\
+18 & $1$ & $-x^{6}-3x^{5}-5x^{4}-7x^{3}-14x^{2}-10x-8$ & $+$ & $+$\\
+19 & $1$ & $-x^{6}-6x^{5}-11x^{4}-8x^{3}-8x^{2}-15x+1$ & $+$ & $+$\\
+20 & $-1$ & $-x^{6}+6x^{5}-13x^{4}+8x^{3}-8x^{2}+15x-1$ & $+$ & $+$\\
+21 & $-1$ & $-x^{6}+3x^{5}-x^{4}-5x^{3}-8x^{2}+10x+8$ & $+$ & $+$\\
+22 & $-1$ & $-x^{6}+3x^{5}-7x^{4}+7x^{3}-14x^{2}+10x-10$ & $+$ & $+$\\
+23 & $-1$ & $-x^{6}-3x^{5}-x^{4}+5x^{3}-8x^{2}-12x+8$ & $+$ & $+$\\
+24 & $-1$ & $-x^{6}-6x^{5}-13x^{4}-8x^{3}-8x^{2}-17x-1$ & $+$ & $+$\\
+25 & $1$ & $-x^{6}-3x^{5}+4x^{4}+11x^{3}-14x^{2}-19x+25$ & $+$ & $+$\\
+26 & $1$ & $-x^{6}-6x^{5}-8x^{4}+4x^{3}+x^{2}-21x+10$ & $+$ & $+$\\
+31 & $-1$ & $-x^{4}+x^{3}+3x^{2}+10x+8$ & $+$ & $+$\\
+32 & $-1$ & $-x^{4}-x+23$ & $+$ & $+$\\
+33 & $-1$ & $-x^{4}-x-25$ & $+$ & $+$\\
+34 & $-1$ & $-x^{4}-x^{3}+3x^{2}-12x+8$ & $+$ & $+$\\
+35 & $-1$ & $-x^{4}+x^{3}-6x^{2}+19x-25$ & $+$ & $+$\\
+36 & $-1$ & $-x^{4}-8x^{3}-12x^{2}-23x-10$ & $+$ & $+$\\
+37 & $-1$ & $-x^{4}+8x^{3}-24x^{2}+39x-25$ & $+$ & $+$\\
+38 & $-1$ & $-x^{4}-8x^{3}+24x^{2}-41x+23$ & $+$ & $+$\\
+39 & $-1$ & $-x^{4}-8x^{3}-24x^{2}-41x-25$ & $+$ & $+$\\
+40 & $1$ & $-x^{6}+x^{4}-8x^{2}+x+1$ & $+$ & $+$\\
+41 & $-1$ & $-x^{6}+5x^{4}-20x^{2}-x+23$ & $+$ & $+$\\
+42 & $1$ & $-x^{6}+6x^{5}-14x^{4}+20x^{3}-23x^{2}+23x-8$ & $+$ & $+$\\
+43 & $1$ & $-x^{6}+3x^{5}+4x^{4}-11x^{3}-14x^{2}+21x+25$ & $+$ & $+$\\
+44 & $1$ & $-x^{6}+3x^{5}-8x^{4}+13x^{3}-26x^{2}+21x-23$ & $+$ & $+$\\
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rrl>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\caption{The terminal residue classes $x\equiv a$, $y\equiv b\pmod{p^k}$ of Step~4, grouped by $p$, $k$ and the value of $(B^{(g)}_p)_g$.}\label{tab:local}\\
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endfirsthead
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endhead\hline\endfoot
+2 & 6 & $(1,1)$ & $(0,23)$,\allowbreak\ $(15,39)$,\allowbreak\ $(16,39)$,\allowbreak\ $(31,55)$,\allowbreak\ $(32,55)$,\allowbreak\ $(46,41)$,\allowbreak\ $(47,7)$,\allowbreak\ $(48,7)$,\allowbreak\ $(63,23)$\\
+2 & 7 & $(1,1)$ & $(1,13)$,\allowbreak\ $(4,91)$,\allowbreak\ $(7,95)$,\allowbreak\ $(8,127)$,\allowbreak\ $(9,21)$,\allowbreak\ $(12,67)$,\allowbreak\ $(17,29)$,\allowbreak\ $(20,43)$,\allowbreak\ $(23,111)$,\allowbreak\ $(24,79)$,\allowbreak\ $(25,37)$,\allowbreak\ $(26,21)$,\allowbreak\ $(28,19)$,\allowbreak\ $(33,45)$,\allowbreak\ $(36,123)$,\allowbreak\ $(39,127)$,\allowbreak\ $(40,31)$,\allowbreak\ $(41,53)$,\allowbreak\ $(44,99)$,\allowbreak\ $(45,105)$,\allowbreak\ $(49,61)$,\allowbreak\ $(52,75)$,\allowbreak\ $(55,15)$,\allowbreak\ $(56,111)$,\allowbreak\ $(57,69)$,\allowbreak\ $(60,51)$,\allowbreak\ $(65,77)$,\allowbreak\ $(68,27)$,\allowbreak\ $(70,97)$,\allowbreak\ $(71,31)$,\allowbreak\ $(72,63)$,\allowbreak\ $(73,85)$,\allowbreak\ $(76,3)$,\allowbreak\ $(81,93)$,\allowbreak\ $(84,107)$,\allowbreak\ $(87,47)$,\allowbreak\ $(88,15)$,\allowbreak\ $(89,101)$,\allowbreak\ $(90,85)$,\allowbreak\ $(92,83)$,\allowbreak\ $(97,109)$,\allowbreak\ $(100,59)$,\allowbreak\ $(103,63)$,\allowbreak\ $(104,95)$,\allowbreak\ $(105,117)$,\allowbreak\ $(108,35)$,\allowbreak\ $(113,125)$,\allowbreak\ $(116,11)$,\allowbreak\ $(119,79)$,\allowbreak\ $(120,47)$,\allowbreak\ $(121,5)$,\allowbreak\ $(124,115)$\\
+2 & 8 & $(1,1)$ & $(2,93)$,\allowbreak\ $(3,107)$,\allowbreak\ $(5,129)$,\allowbreak\ $(6,161)$,\allowbreak\ $(10,197)$,\allowbreak\ $(11,51)$,\allowbreak\ $(18,173)$,\allowbreak\ $(21,145)$,\allowbreak\ $(27,67)$,\allowbreak\ $(35,139)$,\allowbreak\ $(37,161)$,\allowbreak\ $(42,101)$,\allowbreak\ $(43,83)$,\allowbreak\ $(50,77)$,\allowbreak\ $(53,177)$,\allowbreak\ $(58,181)$,\allowbreak\ $(59,99)$,\allowbreak\ $(66,157)$,\allowbreak\ $(67,171)$,\allowbreak\ $(69,193)$,\allowbreak\ $(74,5)$,\allowbreak\ $(75,115)$,\allowbreak\ $(82,237)$,\allowbreak\ $(85,209)$,\allowbreak\ $(91,131)$,\allowbreak\ $(99,203)$,\allowbreak\ $(101,225)$,\allowbreak\ $(102,129)$,\allowbreak\ $(106,165)$,\allowbreak\ $(107,147)$,\allowbreak\ $(114,141)$,\allowbreak\ $(117,241)$,\allowbreak\ $(122,245)$,\allowbreak\ $(123,163)$,\allowbreak\ $(125,57)$,\allowbreak\ $(130,221)$,\allowbreak\ $(131,235)$,\allowbreak\ $(133,1)$,\allowbreak\ $(134,33)$,\allowbreak\ $(138,69)$,\allowbreak\ $(139,179)$,\allowbreak\ $(146,45)$,\allowbreak\ $(147,251)$,\allowbreak\ $(149,17)$,\allowbreak\ $(155,195)$,\allowbreak\ $(163,11)$,\allowbreak\ $(165,33)$,\allowbreak\ $(170,229)$,\allowbreak\ $(171,211)$,\allowbreak\ $(178,205)$,\allowbreak\ $(179,27)$,\allowbreak\ $(181,49)$,\allowbreak\ $(186,53)$,\allowbreak\ $(187,227)$,\allowbreak\ $(194,29)$,\allowbreak\ $(195,43)$,\allowbreak\ $(197,65)$,\allowbreak\ $(202,133)$,\allowbreak\ $(203,243)$,\allowbreak\ $(210,109)$,\allowbreak\ $(213,81)$,\allowbreak\ $(219,3)$,\allowbreak\ $(227,75)$,\allowbreak\ $(229,97)$,\allowbreak\ $(234,37)$,\allowbreak\ $(235,19)$,\allowbreak\ $(242,13)$,\allowbreak\ $(245,113)$,\allowbreak\ $(250,117)$,\allowbreak\ $(251,35)$,\allowbreak\ $(253,185)$\\
+2 & 9 & $(1,1)$ & $(13,457)$,\allowbreak\ $(14,73)$,\allowbreak\ $(19,123)$,\allowbreak\ $(22,369)$,\allowbreak\ $(29,473)$,\allowbreak\ $(30,25)$,\allowbreak\ $(34,509)$,\allowbreak\ $(38,65)$,\allowbreak\ $(51,155)$,\allowbreak\ $(54,273)$,\allowbreak\ $(61,505)$,\allowbreak\ $(62,441)$,\allowbreak\ $(77,9)$,\allowbreak\ $(78,393)$,\allowbreak\ $(83,187)$,\allowbreak\ $(86,177)$,\allowbreak\ $(93,25)$,\allowbreak\ $(94,345)$,\allowbreak\ $(98,317)$,\allowbreak\ $(109,41)$,\allowbreak\ $(115,219)$,\allowbreak\ $(118,81)$,\allowbreak\ $(126,249)$,\allowbreak\ $(141,73)$,\allowbreak\ $(142,201)$,\allowbreak\ $(150,497)$,\allowbreak\ $(157,89)$,\allowbreak\ $(158,153)$,\allowbreak\ $(162,125)$,\allowbreak\ $(166,193)$,\allowbreak\ $(182,401)$,\allowbreak\ $(189,121)$,\allowbreak\ $(190,57)$,\allowbreak\ $(205,137)$,\allowbreak\ $(206,9)$,\allowbreak\ $(211,315)$,\allowbreak\ $(214,305)$,\allowbreak\ $(221,153)$,\allowbreak\ $(222,473)$,\allowbreak\ $(226,445)$,\allowbreak\ $(230,1)$,\allowbreak\ $(237,169)$,\allowbreak\ $(243,347)$,\allowbreak\ $(246,209)$,\allowbreak\ $(254,377)$,\allowbreak\ $(269,201)$,\allowbreak\ $(270,329)$,\allowbreak\ $(275,379)$,\allowbreak\ $(278,113)$,\allowbreak\ $(285,217)$,\allowbreak\ $(286,281)$,\allowbreak\ $(290,253)$,\allowbreak\ $(294,321)$,\allowbreak\ $(307,411)$,\allowbreak\ $(310,17)$,\allowbreak\ $(317,249)$,\allowbreak\ $(318,185)$,\allowbreak\ $(333,265)$,\allowbreak\ $(334,137)$,\allowbreak\ $(339,443)$,\allowbreak\ $(342,433)$,\allowbreak\ $(349,281)$,\allowbreak\ $(350,89)$,\allowbreak\ $(354,61)$,\allowbreak\ $(365,297)$,\allowbreak\ $(371,475)$,\allowbreak\ $(374,337)$,\allowbreak\ $(382,505)$,\allowbreak\ $(397,329)$,\allowbreak\ $(398,457)$,\allowbreak\ $(406,241)$,\allowbreak\ $(413,345)$,\allowbreak\ $(414,409)$,\allowbreak\ $(418,381)$,\allowbreak\ $(422,449)$,\allowbreak\ $(438,145)$,\allowbreak\ $(445,377)$,\allowbreak\ $(446,313)$,\allowbreak\ $(461,393)$,\allowbreak\ $(462,265)$,\allowbreak\ $(467,59)$,\allowbreak\ $(470,49)$,\allowbreak\ $(477,409)$,\allowbreak\ $(478,217)$,\allowbreak\ $(482,189)$,\allowbreak\ $(486,257)$,\allowbreak\ $(493,425)$,\allowbreak\ $(499,91)$,\allowbreak\ $(502,465)$,\allowbreak\ $(510,121)$\\
+\addlinespace[3pt]
+3 & 2 & $(-1,1)$ & $(1,3)$\\
+3 & 3 & $(-1,1)$ & $(4,18)$,\allowbreak\ $(7,6)$,\allowbreak\ $(13,9)$,\allowbreak\ $(22,0)$,\allowbreak\ $(25,15)$\\
+3 & 3 & $(-1,-1)$ & $(1,22)$,\allowbreak\ $(4,1)$,\allowbreak\ $(7,7)$,\allowbreak\ $(10,13)$,\allowbreak\ $(13,19)$,\allowbreak\ $(16,25)$,\allowbreak\ $(19,4)$,\allowbreak\ $(22,10)$,\allowbreak\ $(25,16)$\\
+3 & 4 & $(1,-1)$ & $(1,29)$,\allowbreak\ $(4,35)$,\allowbreak\ $(10,47)$,\allowbreak\ $(13,53)$,\allowbreak\ $(19,65)$,\allowbreak\ $(22,71)$,\allowbreak\ $(28,2)$,\allowbreak\ $(31,8)$,\allowbreak\ $(37,20)$,\allowbreak\ $(40,26)$,\allowbreak\ $(46,38)$,\allowbreak\ $(49,44)$,\allowbreak\ $(55,56)$,\allowbreak\ $(58,62)$,\allowbreak\ $(64,74)$,\allowbreak\ $(67,80)$,\allowbreak\ $(73,11)$,\allowbreak\ $(76,17)$\\
+3 & 4 & $(-1,1)$ & $(43,24)$,\allowbreak\ $(70,78)$\\
+3 & 5 & $(1,-1)$ & $(7,176)$,\allowbreak\ $(16,194)$,\allowbreak\ $(25,212)$,\allowbreak\ $(34,230)$,\allowbreak\ $(43,5)$,\allowbreak\ $(52,23)$,\allowbreak\ $(61,41)$,\allowbreak\ $(70,59)$,\allowbreak\ $(79,77)$,\allowbreak\ $(88,95)$,\allowbreak\ $(97,113)$,\allowbreak\ $(106,131)$,\allowbreak\ $(115,149)$,\allowbreak\ $(124,167)$,\allowbreak\ $(133,185)$,\allowbreak\ $(142,203)$,\allowbreak\ $(151,221)$,\allowbreak\ $(160,239)$,\allowbreak\ $(169,14)$,\allowbreak\ $(178,32)$,\allowbreak\ $(187,50)$,\allowbreak\ $(196,68)$,\allowbreak\ $(205,86)$,\allowbreak\ $(214,104)$,\allowbreak\ $(223,122)$,\allowbreak\ $(232,140)$,\allowbreak\ $(241,158)$\\
+3 & 5 & $(-1,1)$ & $(16,132)$,\allowbreak\ $(97,51)$,\allowbreak\ $(178,213)$\\
+\addlinespace[3pt]
+5 & 1 & $(1,1)$ & $(2,4)$,\allowbreak\ $(4,1)$\\
+5 & 2 & $(1,1)$ & $(0,7)$,\allowbreak\ $(0,12)$,\allowbreak\ $(0,16)$,\allowbreak\ $(0,17)$,\allowbreak\ $(0,22)$,\allowbreak\ $(5,11)$,\allowbreak\ $(10,6)$,\allowbreak\ $(12,3)$,\allowbreak\ $(12,8)$,\allowbreak\ $(12,18)$,\allowbreak\ $(12,23)$,\allowbreak\ $(20,21)$,\allowbreak\ $(24,7)$,\allowbreak\ $(24,12)$,\allowbreak\ $(24,17)$\\
+5 & 3 & $(1,1)$ & $(8,65)$,\allowbreak\ $(13,100)$,\allowbreak\ $(15,101)$,\allowbreak\ $(18,110)$,\allowbreak\ $(23,95)$,\allowbreak\ $(24,22)$,\allowbreak\ $(24,47)$,\allowbreak\ $(24,72)$,\allowbreak\ $(24,97)$,\allowbreak\ $(24,122)$,\allowbreak\ $(33,115)$,\allowbreak\ $(37,13)$,\allowbreak\ $(37,38)$,\allowbreak\ $(37,63)$,\allowbreak\ $(37,88)$,\allowbreak\ $(37,113)$,\allowbreak\ $(38,25)$,\allowbreak\ $(40,76)$,\allowbreak\ $(43,35)$,\allowbreak\ $(48,20)$,\allowbreak\ $(49,2)$,\allowbreak\ $(49,27)$,\allowbreak\ $(49,52)$,\allowbreak\ $(49,77)$,\allowbreak\ $(49,102)$,\allowbreak\ $(58,40)$,\allowbreak\ $(63,75)$,\allowbreak\ $(65,51)$,\allowbreak\ $(68,85)$,\allowbreak\ $(73,70)$,\allowbreak\ $(83,90)$,\allowbreak\ $(88,0)$,\allowbreak\ $(90,26)$,\allowbreak\ $(93,10)$,\allowbreak\ $(98,120)$,\allowbreak\ $(100,2)$,\allowbreak\ $(100,27)$,\allowbreak\ $(100,52)$,\allowbreak\ $(100,77)$,\allowbreak\ $(100,102)$,\allowbreak\ $(108,15)$,\allowbreak\ $(113,50)$,\allowbreak\ $(115,1)$,\allowbreak\ $(118,60)$,\allowbreak\ $(123,45)$\\
+5 & 4 & $(1,1)$ & $(3,130)$,\allowbreak\ $(28,180)$,\allowbreak\ $(53,230)$,\allowbreak\ $(78,280)$,\allowbreak\ $(103,330)$,\allowbreak\ $(128,380)$,\allowbreak\ $(153,430)$,\allowbreak\ $(178,480)$,\allowbreak\ $(203,530)$,\allowbreak\ $(228,580)$,\allowbreak\ $(253,5)$,\allowbreak\ $(278,55)$,\allowbreak\ $(303,105)$,\allowbreak\ $(328,155)$,\allowbreak\ $(353,205)$,\allowbreak\ $(378,255)$,\allowbreak\ $(403,305)$,\allowbreak\ $(428,355)$,\allowbreak\ $(453,405)$,\allowbreak\ $(478,455)$,\allowbreak\ $(503,505)$,\allowbreak\ $(528,555)$,\allowbreak\ $(553,605)$,\allowbreak\ $(578,30)$,\allowbreak\ $(603,80)$\\
+\addlinespace[3pt]
+7 & 1 & $(1,1)$ & $(1,5)$,\allowbreak\ $(2,1)$,\allowbreak\ $(4,4)$,\allowbreak\ $(4,6)$\\
+7 & 2 & $(1,1)$ & $(37,3)$,\allowbreak\ $(37,10)$,\allowbreak\ $(37,17)$,\allowbreak\ $(37,24)$,\allowbreak\ $(37,31)$,\allowbreak\ $(37,45)$\\
+7 & 3 & $(1,1)$ & $(37,87)$,\allowbreak\ $(37,136)$,\allowbreak\ $(37,185)$,\allowbreak\ $(37,234)$,\allowbreak\ $(37,283)$,\allowbreak\ $(37,332)$\\
+7 & 4 & $(1,1)$ & $(723,38)$,\allowbreak\ $(723,381)$,\allowbreak\ $(723,724)$,\allowbreak\ $(723,1067)$,\allowbreak\ $(723,1410)$,\allowbreak\ $(723,1753)$,\allowbreak\ $(723,2096)$\\
+\addlinespace[3pt]
+11 & 1 & $(1,1)$ & $(1,4)$,\allowbreak\ $(2,7)$,\allowbreak\ $(4,7)$,\allowbreak\ $(5,3)$,\allowbreak\ $(7,0)$,\allowbreak\ $(7,5)$,\allowbreak\ $(8,1)$,\allowbreak\ $(8,9)$,\allowbreak\ $(9,3)$\\
+11 & 2 & $(1,1)$ & $(3,7)$,\allowbreak\ $(7,105)$,\allowbreak\ $(14,18)$,\allowbreak\ $(18,28)$,\allowbreak\ $(25,29)$,\allowbreak\ $(29,72)$,\allowbreak\ $(36,40)$,\allowbreak\ $(40,116)$,\allowbreak\ $(47,51)$,\allowbreak\ $(51,39)$,\allowbreak\ $(58,62)$,\allowbreak\ $(62,83)$,\allowbreak\ $(69,73)$,\allowbreak\ $(73,6)$,\allowbreak\ $(80,84)$,\allowbreak\ $(84,50)$,\allowbreak\ $(91,95)$,\allowbreak\ $(95,94)$,\allowbreak\ $(102,106)$,\allowbreak\ $(113,117)$,\allowbreak\ $(117,61)$\\
+11 & 3 & $(1,1)$ & $(106,985)$,\allowbreak\ $(227,138)$,\allowbreak\ $(348,622)$,\allowbreak\ $(469,1106)$,\allowbreak\ $(590,259)$,\allowbreak\ $(711,743)$,\allowbreak\ $(832,1227)$,\allowbreak\ $(953,380)$,\allowbreak\ $(1074,864)$,\allowbreak\ $(1195,17)$,\allowbreak\ $(1316,501)$\\
+\addlinespace[3pt]
+13 & 1 & $(1,1)$ & $(0,3)$,\allowbreak\ $(4,3)$,\allowbreak\ $(7,5)$,\allowbreak\ $(7,7)$,\allowbreak\ $(10,3)$,\allowbreak\ $(12,3)$\\
+13 & 2 & $(1,1)$ & $(7,27)$,\allowbreak\ $(11,54)$,\allowbreak\ $(20,79)$,\allowbreak\ $(24,15)$,\allowbreak\ $(33,131)$,\allowbreak\ $(37,145)$,\allowbreak\ $(46,14)$,\allowbreak\ $(50,106)$,\allowbreak\ $(59,66)$,\allowbreak\ $(63,67)$,\allowbreak\ $(72,118)$,\allowbreak\ $(76,28)$,\allowbreak\ $(89,158)$,\allowbreak\ $(98,53)$,\allowbreak\ $(102,119)$,\allowbreak\ $(111,105)$,\allowbreak\ $(115,80)$,\allowbreak\ $(124,157)$,\allowbreak\ $(128,41)$,\allowbreak\ $(137,40)$,\allowbreak\ $(141,2)$,\allowbreak\ $(150,92)$,\allowbreak\ $(154,132)$,\allowbreak\ $(163,144)$,\allowbreak\ $(167,93)$\\
+13 & 3 & $(1,1)$ & $(85,1)$,\allowbreak\ $(254,677)$,\allowbreak\ $(423,1353)$,\allowbreak\ $(592,2029)$,\allowbreak\ $(761,508)$,\allowbreak\ $(930,1184)$,\allowbreak\ $(1099,1860)$,\allowbreak\ $(1268,339)$,\allowbreak\ $(1437,1015)$,\allowbreak\ $(1606,1691)$,\allowbreak\ $(1775,170)$,\allowbreak\ $(1944,846)$,\allowbreak\ $(2113,1522)$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+\end{document}
