@@ -287,7 +287,7 @@ theorem E49131_20 : ¬ ∃ x y : ℤ, x^4 + 2*x + y^3 - y - 2 = 0 := by
 
 To trust a Lean proof, it is enough to read its `Challenge.lean`: comparator checks that `Solution.lean` proves exactly this statement, using only the standard axioms `propext`, `Quot.sound` and `Classical.choice`.
 
-The PDF proofs do not depend on a computer. They contain all identities and tables needed to check every step by hand, so the proofs of the larger graph certificates are long.
+Each PDF proof is self-contained: it states all the identities and tables that it uses. For the larger graph certificates these tables take many pages.
 
 ## Checking the proofs
 
