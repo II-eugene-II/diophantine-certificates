@@ -10,11 +10,9 @@ This equation has **no integer solutions**.
 | Length | $l = 12.32$ |
 | Method | Cubic graph |
 
-## Certificate
+## Outline of the proof
 
-One reciprocity graph over $K=\mathbb{Q}(\omega)$, where $\omega^2+\omega+1=0$, for the cubic Hilbert symbol. Its 44 vertices are auxiliary polynomials $H_0,\dots,H_{43}$ with coefficients in $\mathbb{Z}[\omega]$, each with a constant $c_i\in\mathbb{Z}[\omega]$, and it has 187 weighted edges.
-
-At an integer solution, the edges give local contributions $B_p\in\mathbb{Z}/3\mathbb{Z}$ of the primes $p$, and by the Hilbert reciprocity law their sum is $0$. The proof shows that $B_p=0$ for every prime $p$ outside $S=\lbrace 2,3,7,13 \rbrace$, while $\sum_{p\in S}B_p=1$.
+The proof uses the cubic Hilbert reciprocity law over the field $K=\mathbb{Q}(\omega)$, where $\omega^2+\omega+1=0$. To a hypothetical integer solution we attach the values of 44 auxiliary polynomials $H_0,\dots,H_{43}$ with coefficients in $\mathbb{Z}[\omega]$, constants $c_0,\dots,c_{43}\in\mathbb{Z}[\omega]$, and a sum $B$ of cubic Hilbert symbols of these values, recorded by a graph with 187 weighted edges. By the reciprocity law, the local contributions $B_p$ of all primes $p$ add up to $0$ modulo $3$. We show that $B_p=0$ for $p\notin S$, compute $B_p$ for the primes $p\in S$, and obtain a contradiction. Two standard facts from class field theory are quoted without proof: the explicit formula for the cubic Hilbert symbol at the places not above $3$, and the Hilbert reciprocity law. Apart from these, the proof uses polynomial identities, which can be checked by expanding both sides, and finite computations with residues.
 
 The complete proof, with all the identities and tables that it uses, is in [E524064_25.pdf](E524064_25.pdf) (11 pages).
 
