@@ -1,15 +1,19 @@
-name = "DiophantineCertificates"
-version = "0.1.0"
+   name = "DiophantineCertificates"
+   version = "0.1.0"
 
-[[require]]
-name = "mathlib"
-scope = "leanprover-community"
-rev = "5ed2965256430c3649e86755f9576b54eca72435"
+   [[require]]
+   name = "mathlib"
+   scope = "leanprover-community"
+   rev = "5ed2965256430c3649e86755f9576b54eca72435"
 
-[[lean_lib]]
-name = "h_le_34"
-globs = ["h_le_34.+"]
+   [[lean_lib]]
+   name = "h_le_34"
+   globs = ["h_le_34.+"]
 
-[[lean_lib]]
-name = "l_le_12"
-globs = ["l_le_12.+"]
+   [[lean_lib]]
+   name = "h_eq_35"
+   globs = ["h_eq_35.+"]
+
+   [[lean_lib]]
+   name = "l_le_12"
+   globs = ["l_le_12.+"]
