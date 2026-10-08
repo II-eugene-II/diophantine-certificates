@@ -1,0 +1,168 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E4585560\_1: x\textasciicircum 4+x\textasciicircum 2+x+y\textasciicircum 3+y+3=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+% Legendre and Jacobi symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E4585560\_1}\\[4pt] {\Large The equation $x^{4}+x^{2}+x+y^{3}+y+3=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=35$, length $l=12.58$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+x^{2}+x+y^{3}+y+3=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses two polynomial identities of the form $H_kT_k=U_k^2-5V_k^2$ on the curve \eqref{eq:main}, and the fact that an odd prime $p$ with $\leg{5}{p}=-1$ divides $U_k^2-5V_k^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Jacobi symbol and the law of quadratic reciprocity.
+
+\section{\texorpdfstring{Jacobi symbols and the norm form $a^2-5b^2$}{Jacobi symbols and the norm form}}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. For an odd positive integer $n$, the Jacobi symbol is $\leg{a}{n}=\prod_p\leg{a}{p}^{v_p(n)}$, the product over the prime factors $p$ of $n$. It is multiplicative in $a$ and in $n$, it depends only on $a$ modulo $n$, and it is non-zero exactly when $a$ and $n$ are coprime. We use the law of quadratic reciprocity for Jacobi symbols together with its supplements \cite[Chapter~5, \S2]{IR}: for odd positive integers $m$ and $n$,
+\begin{gather*}
+\leg{-1}{n}=(-1)^{(n-1)/2},\qquad\leg{2}{n}=(-1)^{(n^2-1)/8},\\
+\leg{m}{n}\leg{n}{m}=(-1)^{(m-1)(n-1)/4}\quad\text{if }\gcd(m,n)=1.
+\end{gather*}
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be an odd prime with $\leg{5}{p}=-1$, and let $a,b\in\Z$. If $p\mid a^2-5b^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$. Then $(ac)^2\equiv5(bc)^2\equiv5\pmod p$, so $5$ is a square modulo $p$. As $\leg{5}{p}\neq0$, it is a non-zero square, so $\leg{5}{p}=1$, a contradiction. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $a,b\in\Z$ be not both zero. Then $a^2-5b^2\neq0$, and $v_p(a^2-5b^2)$ is even for every odd prime $p$ with $\leg{5}{p}=-1$.
+\end{lemma}
+
+\begin{proof}
+Since $5$ is not the square of an integer, $a^2-5b^2\neq0$. Let $p$ be an odd prime with $\leg{5}{p}=-1$, let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2-5b'^2$ by Lemma~\ref{lem:divides}. Since $a^2-5b^2=p^{2k}(a'^2-5b'^2)$, we get $v_p(a^2-5b^2)=2k$.
+\end{proof}
+
+\begin{lemma}\label{lem:period}
+Let $n$ and $n'$ be odd positive integers with $n'\equiv n\pmod{20}$, or with $n'\equiv-n\pmod{20}$. Then $\leg{5}{n'}=\leg{5}{n}$.
+\end{lemma}
+
+\begin{proof}
+Write $5=\varepsilon2^eq$ with $\varepsilon=1$, $e=0$ and $q=5$. By multiplicativity and the reciprocity laws,
+\[
+\leg{5}{n}=\leg{\varepsilon}{n}\leg{2}{n}^e(-1)^{(n-1)(q-1)/4}\leg{n}{q}.
+\]
+Here $\leg{\varepsilon}{n}$ and $(-1)^{(n-1)(q-1)/4}$ depend only on $n$ modulo $4$, $\leg{2}{n}$ depends only on $n$ modulo $8$, and $\leg{n}{q}$ depends only on $n$ modulo $q$. Since $20$ is divisible by $4q$, the first claim follows. If $n'\equiv-n\pmod{20}$, then, as $\varepsilon=1$, the factor $\leg{\varepsilon}{n}$ does not change, $\leg{2}{n}$ does not change because $n'^2\equiv n^2\pmod{16}$, and each of $(-1)^{(n-1)(q-1)/4}$ and $\leg{n}{q}$ is multiplied by $(-1)^{(q-1)/2}$, because $(n'-1)/2\equiv(n-1)/2+1\pmod 2$ and $\leg{n'}{q}=\leg{-1}{q}\leg{n}{q}=(-1)^{(q-1)/2}\leg{n}{q}$. This proves the second claim.
+\end{proof}
+
+\begin{lemma}\label{lem:odd}
+Let $n$ be a non-zero integer, and let $s$, $u$ and $m$ be positive integers such that every prime factor of $s$ divides $10$, both $2s$ and $20s$ divide $m$, $u$ is odd, $\leg{5}{u}=-1$, and $n\equiv su\pmod m$. Then there is an odd prime $p$ with $\leg{5}{p}=-1$ such that $v_p(n)$ is odd.
+\end{lemma}
+
+\begin{proof}
+Since $s\mid m$, we have $s\mid n$, and $n'=n/s$ satisfies $n'\equiv u\pmod{m/s}$. Since $m/s$ is even and divisible by $20$, $n'$ is odd and $n'\equiv u\pmod{20}$. Since $|n'|\equiv\pm u\pmod{20}$, Lemma~\ref{lem:period} gives $\leg{5}{|n'|}=\leg{5}{u}=-1$. By multiplicativity, the product of $\leg{5}{p}^{v_p(n')}$ over the prime factors $p$ of $|n'|$ is $-1$, so some prime factor $p$ of $n'$ satisfies $\leg{5}{p}=-1$ and $v_p(n')$ is odd. Then $p$ is odd, and $p\nmid10$, so $p\nmid s$ and $v_p(n)=v_p(n')$ is odd.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=x^{4}+x^{2}+x+y^{3}+y+3$, so that \eqref{eq:main} is the equation $F(x,y)=0$.
+For the first identity, we define
+\begin{align*}
+H_{1}&=x^{2}+2x+4y+4,\\
+T_{1}&=x^{4}+4x^{3}-4x^{2}y+12x^{2}-8xy+16x+16y^{2}-16y+32,\\
+U_{1}&=x^{3}+3x^{2}-22x+44,\\
+V_{1}&=x^{2}-10x+20,\\
+G_{1}&=64,\\
+A_{1}&=-11x+83,\\
+B_{1}&=11x^{2}+60x-111,\\
+\intertext{for the second identity, we define}
+H_{2}&=x-y+1,\\
+T_{2}&=4x^{2}+4xy+8x+4y^{2}+4y+8,\\
+U_{2}&=2x^{2}+x+5,\\
+V_{2}&=x-1,\\
+G_{2}&=-4,\\
+A_{2}&=1,\\
+B_{2}&=-2x-3.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+H_{1}T_{1}-U_{1}^2+5V_{1}^2&=G_{1}F,\label{eq:norm1}\\
+H_{2}T_{2}-U_{2}^2+5V_{2}^2&=G_{2}F,\label{eq:norm2}\\
+A_{1}U_{1}+B_{1}V_{1}&=2^{3}\cdot 179,\label{eq:bez1}\\
+A_{2}U_{2}+B_{2}V_{2}&=2^{3}.\label{eq:bez2}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm1} and \eqref{eq:norm2} give
+\begin{equation}\label{eq:HT}
+H_kT_k=U_k^2-5V_k^2\qquad(k=1,2),
+\end{equation}
+where the polynomials now denote their values at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $1600^2$ residue pairs modulo $1600$, we find that \eqref{eq:main} has exactly 1280 solutions modulo $1600$, and that at each of them $H_{1}\bmod 1600$ lies in the set $\mathcal R_{1}$ listed in Table~\ref{tab:res} or $H_{2}\bmod 1600$ lies in the set $\mathcal R_{2}$ listed in Table~\ref{tab:res}. For $k=1$, each $r\in\mathcal R_{1}$ is listed as $r=su$ with $s$ and $u$ positive and $u$ odd, or as $r$ if $s=1$, and in each case $\leg{5}{u}=-1$; here for $s=1$, $2s=2$ and $20s=20$ divide $1600$, and for $s=5$, every prime factor of $s$ divides $10$, and $2s=10$ and $20s=100$ divide $1600$. For $k=2$, each $r\in\mathcal R_{2}$ is listed as $r=su$ with $s$ and $u$ positive and $u$ odd, or as $r$ if $s=1$, and in each case $\leg{5}{u}=-1$; here every prime factor of each $s\in\{5,20,80\}$ divides $10$, and $2s$ and $20s$ divide $1600$ for each such $s$.
+
+\paragraph{Step 2: signs.} \emph{The value of $H_{1}$.} By \eqref{eq:bez1}, $U_{1}$ and $V_{1}$ are not both zero, so $U_{1}^2-5V_{1}^2\neq0$ by Lemma~\ref{lem:even}, and \eqref{eq:HT} gives $H_{1}\neq0$.
+
+\emph{The value of $H_{2}$.} By \eqref{eq:bez2}, $U_{2}$ and $V_{2}$ are not both zero, so $U_{2}^2-5V_{2}^2\neq0$ by Lemma~\ref{lem:even}, and \eqref{eq:HT} gives $H_{2}\neq0$.
+
+\paragraph{Step 3: primes $p$ with $\leg{5}{p}=-1$.} Let $k\in\{1,2\}$, and let $p$ be an odd prime with $\leg{5}{p}=-1$. We show that $v_p(H_k)$ is even. By \eqref{eq:bez1}--\eqref{eq:bez2}, $U_k$ and $V_k$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(H_kT_k)=v_p(U_k^2-5V_k^2)$ is even. Suppose that $p$ divides both $H_k$ and $T_k$. Then $p\mid U_k^2-5V_k^2$ by \eqref{eq:HT}, so $p\mid U_k$ and $p\mid V_k$ by Lemma~\ref{lem:divides}, and $p\mid R_k$, where $R_k$ is the right-hand side of the identity for $A_kU_k+B_kV_k$. For $k=1$, we have $R_{1}=2^{3}\cdot 179$. But $p$ is odd, and $p\neq179$ because $\leg{5}{179}=1$, a contradiction. For $k=2$, we have $R_{2}=2^{3}$. But $p$ is odd, a contradiction. Hence $p$ does not divide both $H_k$ and $T_k$. If $p\nmid T_k$, then $v_p(H_k)=v_p(H_kT_k)$ is even, and if $p\nmid H_k$, then $v_p(H_k)=0$.
+
+\paragraph{Step 4: contradiction.} By Step~1, there is $k$ such that $H_k\equiv su\pmod{1600}$ with $s$ and $u$ as in Lemma~\ref{lem:odd}, and $H_k\neq0$ by Step~2. Hence Lemma~\ref{lem:odd} applies to $n=H_k$, so there is an odd prime $p$ with $\leg{5}{p}=-1$ such that $v_p(H_k)$ is odd. This contradicts Step~3, and the theorem is proved.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\end{thebibliography}
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{The sets $\mathcal R_k$ of residues modulo $1600$ in Step~1.}\label{tab:res}
+\begin{tabular}{@{}llllll@{}}
+\hline
+\multicolumn{6}{@{}l}{$\mathcal R_{1}$, the residues of $H_{1}$}\\[2pt]
+$3$ & $267$ & $527$ & $827$ & $1107$ & $1387$\\
+$15=5\cdot3$ & $283$ & $547$ & $843$ & $1115=5\cdot223$ & $1403$\\
+$27$ & $307$ & $563$ & $847$ & $1123$ & $1407$\\
+$43$ & $315=5\cdot63$ & $587$ & $867$ & $1147$ & $1423$\\
+$63$ & $323$ & $603$ & $883$ & $1163$ & $1427$\\
+$67$ & $347$ & $627$ & $907$ & $1167$ & $1443$\\
+$83$ & $363$ & $643$ & $915=5\cdot183$ & $1187$ & $1467$\\
+$107$ & $383$ & $667$ & $923$ & $1203$ & $1483$\\
+$115=5\cdot23$ & $387$ & $683$ & $947$ & $1215=5\cdot243$ & $1487$\\
+$123$ & $403$ & $703$ & $963$ & $1227$ & $1507$\\
+$127$ & $427$ & $707$ & $987$ & $1243$ & $1515=5\cdot303$\\
+$143$ & $443$ & $715=5\cdot143$ & $1003$ & $1267$ & $1523$\\
+$147$ & $447$ & $723$ & $1023$ & $1283$ & $1547$\\
+$163$ & $463$ & $747$ & $1027$ & $1307$ & $1563$\\
+$187$ & $467$ & $763$ & $1043$ & $1315=5\cdot263$ & $1587$\\
+$203$ & $483$ & $767$ & $1067$ & $1323$ & \\
+$207$ & $507$ & $783$ & $1083$ & $1343$ & \\
+$227$ & $515=5\cdot103$ & $787$ & $1087$ & $1347$ & \\
+$243$ & $523$ & $803$ & $1103$ & $1363$ & \\
+\hline
+\multicolumn{6}{@{}l}{$\mathcal R_{2}$, the residues of $H_{2}$}\\[2pt]
+$35=5\cdot7$ & $285=5\cdot57$ & $560=80\cdot7$ & $835=5\cdot167$ & $1085=5\cdot217$ & $1360=80\cdot17$\\
+$85=5\cdot17$ & $335=5\cdot67$ & $585=5\cdot117$ & $885=5\cdot177$ & $1135=5\cdot227$ & $1385=5\cdot277$\\
+$135=5\cdot27$ & $385=5\cdot77$ & $635=5\cdot127$ & $935=5\cdot187$ & $1185=5\cdot237$ & $1435=5\cdot287$\\
+$185=5\cdot37$ & $435=5\cdot87$ & $685=5\cdot137$ & $985=5\cdot197$ & $1235=5\cdot247$ & $1485=5\cdot297$\\
+$235=5\cdot47$ & $485=5\cdot97$ & $735=5\cdot147$ & $1035=5\cdot207$ & $1285=5\cdot257$ & $1535=5\cdot307$\\
+$260=20\cdot13$ & $535=5\cdot107$ & $785=5\cdot157$ & $1060=20\cdot53$ & $1335=5\cdot267$ & $1585=5\cdot317$\\
+\hline
+\end{tabular}
+\end{table}
+\end{document}

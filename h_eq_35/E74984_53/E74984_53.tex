@@ -1,0 +1,145 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E74984\_53: -x\textasciicircum 4+x\textasciicircum 2+xy+y\textasciicircum 3+3=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+% Legendre and Jacobi symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E74984\_53}\\[4pt] {\Large The equation $-x^{4}+x^{2}+xy+y^{3}+3=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=35$, length $l=12.58$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+-x^{4}+x^{2}+xy+y^{3}+3=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses two polynomial identities of the form $H_kT_k=U_k^2-3V_k^2$ on the curve \eqref{eq:main}, and the fact that an odd prime $p$ with $\leg{3}{p}=-1$ divides $U_k^2-3V_k^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Jacobi symbol and the law of quadratic reciprocity.
+
+\section{\texorpdfstring{Jacobi symbols and the norm form $a^2-3b^2$}{Jacobi symbols and the norm form}}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. For an odd positive integer $n$, the Jacobi symbol is $\leg{a}{n}=\prod_p\leg{a}{p}^{v_p(n)}$, the product over the prime factors $p$ of $n$. It is multiplicative in $a$ and in $n$, it depends only on $a$ modulo $n$, and it is non-zero exactly when $a$ and $n$ are coprime. We use the law of quadratic reciprocity for Jacobi symbols together with its supplements \cite[Chapter~5, \S2]{IR}: for odd positive integers $m$ and $n$,
+\begin{gather*}
+\leg{-1}{n}=(-1)^{(n-1)/2},\qquad\leg{2}{n}=(-1)^{(n^2-1)/8},\\
+\leg{m}{n}\leg{n}{m}=(-1)^{(m-1)(n-1)/4}\quad\text{if }\gcd(m,n)=1.
+\end{gather*}
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be an odd prime with $\leg{3}{p}=-1$, and let $a,b\in\Z$. If $p\mid a^2-3b^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$. Then $(ac)^2\equiv3(bc)^2\equiv3\pmod p$, so $3$ is a square modulo $p$. As $\leg{3}{p}\neq0$, it is a non-zero square, so $\leg{3}{p}=1$, a contradiction. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $a,b\in\Z$ be not both zero. Then $a^2-3b^2\neq0$, and $v_p(a^2-3b^2)$ is even for every odd prime $p$ with $\leg{3}{p}=-1$.
+\end{lemma}
+
+\begin{proof}
+Since $3$ is not the square of an integer, $a^2-3b^2\neq0$. Let $p$ be an odd prime with $\leg{3}{p}=-1$, let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2-3b'^2$ by Lemma~\ref{lem:divides}. Since $a^2-3b^2=p^{2k}(a'^2-3b'^2)$, we get $v_p(a^2-3b^2)=2k$.
+\end{proof}
+
+\begin{lemma}\label{lem:period}
+Let $n$ and $n'$ be odd positive integers with $n'\equiv n\pmod{12}$, or with $n'\equiv-n\pmod{12}$. Then $\leg{3}{n'}=\leg{3}{n}$.
+\end{lemma}
+
+\begin{proof}
+Write $3=\varepsilon2^eq$ with $\varepsilon=1$, $e=0$ and $q=3$. By multiplicativity and the reciprocity laws,
+\[
+\leg{3}{n}=\leg{\varepsilon}{n}\leg{2}{n}^e(-1)^{(n-1)(q-1)/4}\leg{n}{q}.
+\]
+Here $\leg{\varepsilon}{n}$ and $(-1)^{(n-1)(q-1)/4}$ depend only on $n$ modulo $4$, $\leg{2}{n}$ depends only on $n$ modulo $8$, and $\leg{n}{q}$ depends only on $n$ modulo $q$. Since $12$ is divisible by $4q$, the first claim follows. If $n'\equiv-n\pmod{12}$, then, as $\varepsilon=1$, the factor $\leg{\varepsilon}{n}$ does not change, $\leg{2}{n}$ does not change because $n'^2\equiv n^2\pmod{16}$, and each of $(-1)^{(n-1)(q-1)/4}$ and $\leg{n}{q}$ is multiplied by $(-1)^{(q-1)/2}$, because $(n'-1)/2\equiv(n-1)/2+1\pmod 2$ and $\leg{n'}{q}=\leg{-1}{q}\leg{n}{q}=(-1)^{(q-1)/2}\leg{n}{q}$. This proves the second claim.
+\end{proof}
+
+\begin{lemma}\label{lem:odd}
+Let $n$ be a non-zero integer, and let $s$, $u$ and $m$ be positive integers such that every prime factor of $s$ divides $6$, both $2s$ and $12s$ divide $m$, $u$ is odd, $\leg{3}{u}=-1$, and $n\equiv su\pmod m$. Then there is an odd prime $p$ with $\leg{3}{p}=-1$ such that $v_p(n)$ is odd.
+\end{lemma}
+
+\begin{proof}
+Since $s\mid m$, we have $s\mid n$, and $n'=n/s$ satisfies $n'\equiv u\pmod{m/s}$. Since $m/s$ is even and divisible by $12$, $n'$ is odd and $n'\equiv u\pmod{12}$. Since $|n'|\equiv\pm u\pmod{12}$, Lemma~\ref{lem:period} gives $\leg{3}{|n'|}=\leg{3}{u}=-1$. By multiplicativity, the product of $\leg{3}{p}^{v_p(n')}$ over the prime factors $p$ of $|n'|$ is $-1$, so some prime factor $p$ of $n'$ satisfies $\leg{3}{p}=-1$ and $v_p(n')$ is odd. Then $p$ is odd, and $p\nmid6$, so $p\nmid s$ and $v_p(n)=v_p(n')$ is odd.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=-x^{4}+x^{2}+xy+y^{3}+3$, so that \eqref{eq:main} is the equation $F(x,y)=0$.
+For the first identity, we define
+\begin{align*}
+H_{1}&=-2x+y-2,\\
+T_{1}&=4x^{2}+2xy+9x+y^{2}+2y+4,\\
+U_{1}&=x^{2}-4x-8,\\
+V_{1}&=3x+5,\\
+G_{1}&=1,\\
+A_{1}&=9,\\
+B_{1}&=-3x+17,\\
+\intertext{for the second identity, we define}
+H_{2}&=4x+y+4,\\
+T_{2}&=16x^{2}-4xy+33x+y^{2}-4y+16,\\
+U_{2}&=x^{2}+32x+19,\\
+V_{2}&=17x+10,\\
+G_{2}&=1,\\
+A_{2}&=289,\\
+B_{2}&=-17x-534.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+H_{1}T_{1}-U_{1}^2+3V_{1}^2&=G_{1}F,\label{eq:norm1}\\
+H_{2}T_{2}-U_{2}^2+3V_{2}^2&=G_{2}F,\label{eq:norm2}\\
+A_{1}U_{1}+B_{1}V_{1}&=13,\label{eq:bez1}\\
+A_{2}U_{2}+B_{2}V_{2}&=151.\label{eq:bez2}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm1} and \eqref{eq:norm2} give
+\begin{equation}\label{eq:HT}
+H_kT_k=U_k^2-3V_k^2\qquad(k=1,2),
+\end{equation}
+where the polynomials now denote their values at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $36^2$ residue pairs modulo $36$, we find that \eqref{eq:main} has exactly 24 solutions modulo $36$, and that at each of them $H_{1}\bmod 36$ lies in the set $\mathcal R_{1}$ listed in Table~\ref{tab:res} or $H_{2}\bmod 36$ lies in the set $\mathcal R_{2}$ listed in Table~\ref{tab:res}. For $k=1$, each $r\in\mathcal R_{1}$ is listed as $r=su$ with $s$ and $u$ positive and $u$ odd, or as $r$ if $s=1$, and in each case $\leg{3}{u}=-1$; here for $s=1$, $2s=2$ and $12s=12$ divide $36$, and for $s=3$, every prime factor of $s$ divides $6$, and $2s=6$ and $12s=36$ divide $36$. For $k=2$, each $r\in\mathcal R_{2}$ is listed as $r=su$ with $s$ and $u$ positive and $u$ odd, or as $r$ if $s=1$, and in each case $\leg{3}{u}=-1$; here for $s=1$, $2s=2$ and $12s=12$ divide $36$, and for $s=3$, every prime factor of $s$ divides $6$, and $2s=6$ and $12s=36$ divide $36$.
+
+\paragraph{Step 2: signs.} \emph{The value of $H_{1}$.} By \eqref{eq:bez1}, $U_{1}$ and $V_{1}$ are not both zero, so $U_{1}^2-3V_{1}^2\neq0$ by Lemma~\ref{lem:even}, and \eqref{eq:HT} gives $H_{1}\neq0$.
+
+\emph{The value of $H_{2}$.} By \eqref{eq:bez2}, $U_{2}$ and $V_{2}$ are not both zero, so $U_{2}^2-3V_{2}^2\neq0$ by Lemma~\ref{lem:even}, and \eqref{eq:HT} gives $H_{2}\neq0$.
+
+\paragraph{Step 3: primes $p$ with $\leg{3}{p}=-1$.} Let $k\in\{1,2\}$, and let $p$ be an odd prime with $\leg{3}{p}=-1$. We show that $v_p(H_k)$ is even. By \eqref{eq:bez1}--\eqref{eq:bez2}, $U_k$ and $V_k$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(H_kT_k)=v_p(U_k^2-3V_k^2)$ is even. Suppose that $p$ divides both $H_k$ and $T_k$. Then $p\mid U_k^2-3V_k^2$ by \eqref{eq:HT}, so $p\mid U_k$ and $p\mid V_k$ by Lemma~\ref{lem:divides}, and $p\mid R_k$, where $R_k$ is the right-hand side of the identity for $A_kU_k+B_kV_k$. For $k=1$, we have $R_{1}=13$. But $p$ is odd, and $p\neq13$ because $\leg{3}{13}=1$, a contradiction. For $k=2$, we have $R_{2}=151$. As $p$ is odd, we get $p=151$. Checking the $151^2$ residue pairs modulo $151$, we find that $F$, $H_{2}$ and $T_{2}$ have no common zero modulo $151$, a contradiction. Hence $p$ does not divide both $H_k$ and $T_k$. If $p\nmid T_k$, then $v_p(H_k)=v_p(H_kT_k)$ is even, and if $p\nmid H_k$, then $v_p(H_k)=0$.
+
+\paragraph{Step 4: contradiction.} By Step~1, there is $k$ such that $H_k\equiv su\pmod{36}$ with $s$ and $u$ as in Lemma~\ref{lem:odd}, and $H_k\neq0$ by Step~2. Hence Lemma~\ref{lem:odd} applies to $n=H_k$, so there is an odd prime $p$ with $\leg{3}{p}=-1$ such that $v_p(H_k)$ is odd. This contradicts Step~3, and the theorem is proved.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\end{thebibliography}
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{The sets $\mathcal R_k$ of residues modulo $36$ in Step~1.}\label{tab:res}
+\begin{tabular}{@{}llllllll@{}}
+\hline
+\multicolumn{8}{@{}l}{$\mathcal R_{1}$, the residues of $H_{1}$}\\[2pt]
+$5$ & $7$ & $17$ & $19$ & $21=3\cdot7$ & $29$ & $31$ & \\
+\hline
+\multicolumn{8}{@{}l}{$\mathcal R_{2}$, the residues of $H_{2}$}\\[2pt]
+$5$ & $7$ & $17$ & $19$ & $21=3\cdot7$ & $29$ & $31$ & \\
+\hline
+\end{tabular}
+\end{table}
+\end{document}

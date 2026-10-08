@@ -1,0 +1,13 @@
+{
+  "challenge_module": "h_eq_35.E212901_32.Challenge",
+  "solution_module": "h_eq_35.E212901_32.Solution",
+  "theorem_names": [
+    "E212901_32"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}

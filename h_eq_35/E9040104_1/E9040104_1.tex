@@ -1,0 +1,142 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E9040104\_1: x\textasciicircum 4+2x+y\textasciicircum 3+y\textasciicircum 2+3=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+% Legendre and Jacobi symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E9040104\_1}\\[4pt] {\Large The equation $x^{4}+2x+y^{3}+y^{2}+3=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=35$, length $l=12.58$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+2x+y^{3}+y^{2}+3=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses a polynomial identity of the form $HT=U^2+2V^2$ on the curve \eqref{eq:main}, and the fact that an odd prime $p$ with $\leg{-2}{p}=-1$ divides $U^2+2V^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Jacobi symbol and the law of quadratic reciprocity.
+
+\section{\texorpdfstring{Jacobi symbols and the norm form $a^2+2b^2$}{Jacobi symbols and the norm form}}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. For an odd positive integer $n$, the Jacobi symbol is $\leg{a}{n}=\prod_p\leg{a}{p}^{v_p(n)}$, the product over the prime factors $p$ of $n$. It is multiplicative in $a$ and in $n$, it depends only on $a$ modulo $n$, and it is non-zero exactly when $a$ and $n$ are coprime. We use the law of quadratic reciprocity for Jacobi symbols together with its supplements \cite[Chapter~5, \S2]{IR}: for odd positive integers $m$ and $n$,
+\begin{gather*}
+\leg{-1}{n}=(-1)^{(n-1)/2},\qquad\leg{2}{n}=(-1)^{(n^2-1)/8},\\
+\leg{m}{n}\leg{n}{m}=(-1)^{(m-1)(n-1)/4}\quad\text{if }\gcd(m,n)=1.
+\end{gather*}
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be an odd prime with $\leg{-2}{p}=-1$, and let $a,b\in\Z$. If $p\mid a^2+2b^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$. Then $(ac)^2\equiv-2(bc)^2\equiv-2\pmod p$, so $-2$ is a square modulo $p$. As $\leg{-2}{p}\neq0$, it is a non-zero square, so $\leg{-2}{p}=1$, a contradiction. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $a,b\in\Z$ be not both zero. Then $a^2+2b^2\neq0$, and $v_p(a^2+2b^2)$ is even for every odd prime $p$ with $\leg{-2}{p}=-1$.
+\end{lemma}
+
+\begin{proof}
+Clearly $a^2+2b^2>0$. Let $p$ be an odd prime with $\leg{-2}{p}=-1$, let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2+2b'^2$ by Lemma~\ref{lem:divides}. Since $a^2+2b^2=p^{2k}(a'^2+2b'^2)$, we get $v_p(a^2+2b^2)=2k$.
+\end{proof}
+
+\begin{lemma}\label{lem:period}
+Let $n$ and $n'$ be odd positive integers with $n'\equiv n\pmod{8}$. Then $\leg{-2}{n'}=\leg{-2}{n}$.
+\end{lemma}
+
+\begin{proof}
+Write $-2=\varepsilon2^eq$ with $\varepsilon=-1$, $e=1$ and $q=1$. By multiplicativity and the reciprocity laws,
+\[
+\leg{-2}{n}=\leg{\varepsilon}{n}\leg{2}{n}^e(-1)^{(n-1)(q-1)/4}\leg{n}{q}.
+\]
+Here $\leg{\varepsilon}{n}$ and $(-1)^{(n-1)(q-1)/4}$ depend only on $n$ modulo $4$, $\leg{2}{n}$ depends only on $n$ modulo $8$, and $\leg{n}{q}$ depends only on $n$ modulo $q$. Since $8$ is divisible by $4q$, and by $8q$, the claim follows.
+\end{proof}
+
+\begin{lemma}\label{lem:odd}
+Let $n$ be a non-zero integer, and let $s$, $u$ and $m$ be positive integers such that every prime factor of $s$ divides $4$, both $2s$ and $8s$ divide $m$, $u$ is odd, $\leg{-2}{u}=-1$, and $n\equiv su\pmod m$. Suppose also that $n>0$. Then there is an odd prime $p$ with $\leg{-2}{p}=-1$ such that $v_p(n)$ is odd.
+\end{lemma}
+
+\begin{proof}
+Since $s\mid m$, we have $s\mid n$, and $n'=n/s$ satisfies $n'\equiv u\pmod{m/s}$. Since $m/s$ is even and divisible by $8$, $n'$ is odd and $n'\equiv u\pmod{8}$. Since $n>0$, Lemma~\ref{lem:period} gives $\leg{-2}{n'}=\leg{-2}{u}=-1$. By multiplicativity, the product of $\leg{-2}{p}^{v_p(n')}$ over the prime factors $p$ of $n'$ is $-1$, so some prime factor $p$ of $n'$ satisfies $\leg{-2}{p}=-1$ and $v_p(n')$ is odd. Then $p$ is odd, and $p\nmid4$, so $p\nmid s$ and $v_p(n)=v_p(n')$ is odd.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=x^{4}+2x+y^{3}+y^{2}+3$, so that \eqref{eq:main} is the equation $F(x,y)=0$. Define
+\begin{align*}
+H&=-2x-3y+5,\\
+T&=108x^{2}-162xy-702x+243y^{2}+648y+1080,\\
+U&=27x^{2}-4x+25,\\
+V&=17x-59,\\
+G&=-729,\\
+A&=289,\\
+B&=-459x-1525,\\
+\intertext{and, for the sign of $H$,}
+Q&=4x^{2}-6xy-26x+9y^{2}+24y+40,\\
+M&=27x^{4}-8x^{3}+72x^{2}-156x+281,\\
+E&=108x^{2}-648x+864.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+HT-U^2-2V^2&=GF,\label{eq:norm}\\
+AU+BV&=2^{4}\cdot 3^{5}\cdot 5^{2},\label{eq:bezout}\\
+-27F&=QH-M,\label{eq:sign}\\
+36Q&=(-6x+18y+24)^2+E.\label{eq:sign2}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm} gives
+\begin{equation}\label{eq:HT}
+HT=U^2+2V^2,
+\end{equation}
+where $H$, $T$, $U$, $V$, $Q$, $M$ and $E$ now denote the values of these polynomials at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $2048^2$ residue pairs modulo $2048$, we find that \eqref{eq:main} has exactly 1024 solutions modulo $2048$, and that at each of them $H$ is congruent modulo $2048$ to one of the 44 residues $r$ listed in Table~\ref{tab:res}. Each $r$ is listed there as $r=su$ with $s$ and $u$ positive and $u$ odd, or as $r$ if $s=1$, and in each case $\leg{-2}{u}=-1$. Here every prime factor of each $s\in\{8,32,128,256\}$ divides $4$, and $2s$ and $8s$ divide $2048$ for each such $s$.
+
+\paragraph{Step 2: signs.} Since $F(x,y)=0$, \eqref{eq:sign} gives $QH=M$, and $M$ and $E$ depend only on $x$. We show that $M>0$ and $E>0$. If $x\geq5$, write $x=5+z$ with $z\geq0$; if $x\leq-1$, write $x=-1-z$ with $z\geq0$. In both cases, expanding $M$ and $E$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M>0$ and $E>0$. It remains to consider $0\leq x\leq4$. For $x=0$ and $x=1$ we have $M>0$ and $E>0$. For $x=2$ and $x=4$, we have $F(x,y)\not\equiv0\pmod{2}$ for every $y$, as one checks for the 2 residues of $y$ modulo $2$, so \eqref{eq:main} has no solution with such $x$. For $x=3$, we have $F(x,y)\not\equiv0\pmod{11}$ for every $y$, as one checks for the 11 residues of $y$ modulo $11$, so \eqref{eq:main} has no solution with this $x$. Hence $M>0$ and $E>0$, so \eqref{eq:sign2} gives $36Q\geq E>0$, and $QH=M>0$ gives $H>0$.
+
+\paragraph{\texorpdfstring{Step 3: primes $p$ with $\leg{-2}{p}=-1$.}{Step 3: inert primes.}} Let $p$ be an odd prime with $\leg{-2}{p}=-1$. We show that $v_p(H)$ is even. By \eqref{eq:bezout}, $U$ and $V$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(HT)=v_p(U^2+2V^2)$ is even. Suppose that $p$ divides both $H$ and $T$. Then $p\mid U^2+2V^2$ by \eqref{eq:HT}, so $p\mid U$ and $p\mid V$ by Lemma~\ref{lem:divides}, and $p\mid 2^{4}\cdot 3^{5}\cdot 5^{2}$ by \eqref{eq:bezout}. As $p$ is odd and $p\neq3$ because $\leg{-2}{3}=1$, we get $p=5$. Checking the $5^2$ residue pairs modulo $5$, we find that $F$, $H$ and $T$ have no common zero modulo $5$, a contradiction. Hence $p$ does not divide both $H$ and $T$. If $p\nmid T$, then $v_p(H)=v_p(HT)$ is even, and if $p\nmid H$, then $v_p(H)=0$.
+
+\paragraph{Step 4: contradiction.} By Step~1, $H\equiv su\pmod{2048}$ with $s$ and $u$ as in Lemma~\ref{lem:odd}, and $H>0$ by Step~2. Hence Lemma~\ref{lem:odd} applies to $n=H$, so there is an odd prime $p$ with $\leg{-2}{p}=-1$ such that $v_p(H)$ is odd. This contradicts Step~3, and the theorem is proved.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\end{thebibliography}
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{The residues $r=su$ of $H$ modulo $2048$ in Step~1.}\label{tab:res}
+\begin{tabular}{llllll}
+\hline
+$56=8\cdot7$ & $440=8\cdot55$ & $888=8\cdot111$ & $1208=8\cdot151$ & $1592=8\cdot199$ & $1920=128\cdot15$\\
+$120=8\cdot15$ & $504=8\cdot63$ & $896=128\cdot7$ & $1272=8\cdot159$ & $1656=8\cdot207$ & $1952=32\cdot61$\\
+$160=32\cdot5$ & $568=8\cdot71$ & $928=32\cdot29$ & $1280=256\cdot5$ & $1696=32\cdot53$ & $1976=8\cdot247$\\
+$184=8\cdot23$ & $632=8\cdot79$ & $952=8\cdot119$ & $1336=8\cdot167$ & $1720=8\cdot215$ & $2040=8\cdot255$\\
+$248=8\cdot31$ & $672=32\cdot21$ & $1016=8\cdot127$ & $1400=8\cdot175$ & $1784=8\cdot223$ & \\
+$312=8\cdot39$ & $696=8\cdot87$ & $1080=8\cdot135$ & $1440=32\cdot45$ & $1792=256\cdot7$ & \\
+$376=8\cdot47$ & $760=8\cdot95$ & $1144=8\cdot143$ & $1464=8\cdot183$ & $1848=8\cdot231$ & \\
+$416=32\cdot13$ & $824=8\cdot103$ & $1184=32\cdot37$ & $1528=8\cdot191$ & $1912=8\cdot239$ & \\
+\hline
+\end{tabular}
+\end{table}
+
+\end{document}
