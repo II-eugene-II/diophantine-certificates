@@ -1,0 +1,163 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E189854315148111\_10: x\textasciicircum 4+x+6y\textasciicircum 3-y-1=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+% Legendre and Jacobi symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E189854315148111\_10}\\[4pt] {\Large The equation $x^{4}+x+6y^{3}-y-1=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=69$, length $l=11.58$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+x+6y^{3}-y-1=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses a polynomial identity of the form $HT=U^2+3V^2$ on the curve \eqref{eq:main}, and the fact that an odd prime $p$ with $\leg{-3}{p}=-1$ divides $U^2+3V^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Jacobi symbol and the law of quadratic reciprocity.
+
+\section{\texorpdfstring{Jacobi symbols and the norm form $a^2+3b^2$}{Jacobi symbols and the norm form}}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. For an odd positive integer $n$, the Jacobi symbol is $\leg{a}{n}=\prod_p\leg{a}{p}^{v_p(n)}$, the product over the prime factors $p$ of $n$. It is multiplicative in $a$ and in $n$, it depends only on $a$ modulo $n$, and it is non-zero exactly when $a$ and $n$ are coprime. We use the law of quadratic reciprocity for Jacobi symbols together with its supplements \cite[Chapter~5, \S2]{IR}: for odd positive integers $m$ and $n$,
+\begin{gather*}
+\leg{-1}{n}=(-1)^{(n-1)/2},\qquad\leg{2}{n}=(-1)^{(n^2-1)/8},\\
+\leg{m}{n}\leg{n}{m}=(-1)^{(m-1)(n-1)/4}\quad\text{if }\gcd(m,n)=1.
+\end{gather*}
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be an odd prime with $\leg{-3}{p}=-1$, and let $a,b\in\Z$. If $p\mid a^2+3b^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$. Then $(ac)^2\equiv-3(bc)^2\equiv-3\pmod p$, so $-3$ is a square modulo $p$. As $\leg{-3}{p}\neq0$, it is a non-zero square, so $\leg{-3}{p}=1$, a contradiction. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $a,b\in\Z$ be not both zero. Then $a^2+3b^2\neq0$, and $v_p(a^2+3b^2)$ is even for every odd prime $p$ with $\leg{-3}{p}=-1$.
+\end{lemma}
+
+\begin{proof}
+Clearly $a^2+3b^2>0$. Let $p$ be an odd prime with $\leg{-3}{p}=-1$, let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2+3b'^2$ by Lemma~\ref{lem:divides}. Since $a^2+3b^2=p^{2k}(a'^2+3b'^2)$, we get $v_p(a^2+3b^2)=2k$.
+\end{proof}
+
+\begin{lemma}\label{lem:period}
+Let $n$ and $n'$ be odd positive integers with $n'\equiv n\pmod{12}$. Then $\leg{-3}{n'}=\leg{-3}{n}$.
+\end{lemma}
+
+\begin{proof}
+Write $-3=\varepsilon2^eq$ with $\varepsilon=-1$, $e=0$ and $q=3$. By multiplicativity and the reciprocity laws,
+\[
+\leg{-3}{n}=\leg{\varepsilon}{n}\leg{2}{n}^e(-1)^{(n-1)(q-1)/4}\leg{n}{q}.
+\]
+Here $\leg{\varepsilon}{n}$ and $(-1)^{(n-1)(q-1)/4}$ depend only on $n$ modulo $4$, $\leg{2}{n}$ depends only on $n$ modulo $8$, and $\leg{n}{q}$ depends only on $n$ modulo $q$. Since $12$ is divisible by $4q$, the claim follows.
+\end{proof}
+
+\begin{lemma}\label{lem:odd}
+Let $n$ be a non-zero integer, and let $s$, $u$ and $m$ be positive integers such that every prime factor of $s$ divides $6$, both $2s$ and $12s$ divide $m$, $u$ is odd, $\leg{-3}{u}=-1$, and $n\equiv su\pmod m$. Suppose also that $n>0$. Then there is an odd prime $p$ with $\leg{-3}{p}=-1$ such that $v_p(n)$ is odd.
+\end{lemma}
+
+\begin{proof}
+Since $s\mid m$, we have $s\mid n$, and $n'=n/s$ satisfies $n'\equiv u\pmod{m/s}$. Since $m/s$ is even and divisible by $12$, $n'$ is odd and $n'\equiv u\pmod{12}$. Since $n>0$, Lemma~\ref{lem:period} gives $\leg{-3}{n'}=\leg{-3}{u}=-1$. By multiplicativity, the product of $\leg{-3}{p}^{v_p(n')}$ over the prime factors $p$ of $n'$ is $-1$, so some prime factor $p$ of $n'$ satisfies $\leg{-3}{p}=-1$ and $v_p(n')$ is odd. Then $p$ is odd, and $p\nmid6$, so $p\nmid s$ and $v_p(n)=v_p(n')$ is odd.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=x^{4}+x+6y^{3}-y-1$, so that \eqref{eq:main} is the equation $F(x,y)=0$. Define
+\begin{align*}
+H&=4x^{2}+12xy+2x+36y^{2}+18y+4,\\
+T&=3359232x^{5}-10077696x^{4}y+5785344x^{4}-2239488x^{3}y+746496x^{3}\\
+&\quad-4478976x^{2}y+6158592x^{2}+16796160xy^{2}-13996800xy+186624x\\
+&\quad-1679616y^{2}+6718464y-2892672,\\
+U&=7776x^{4}+1728x^{3}-10368x^{2}-3888x+4320,\\
+V&=-7776x^{3}-4752x^{2}+5616x-1296,\\
+G&=-60466176x^{4}-13436928x^{3}+6718464x^{2}+100776960xy-36951552x\\
+&\quad-10077696y+35271936,\\
+A&=1535310x^{2}+1737517x-97905,\\
+B&=1535310x^{3}+1140452x^{2}-1346978x-1715173.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+HT-U^2-3V^2&=GF,\label{eq:norm}\\
+AU+BV&=2^{4}\cdot 3^{5}\cdot 457\cdot 1013,\label{eq:bezout}\\
+12H&=3(2x+12y+3)^2+(6x-1)^2+20.\label{eq:sign}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm} gives
+\begin{equation}\label{eq:HT}
+HT=U^2+3V^2,
+\end{equation}
+where $H$, $T$, $U$ and $V$ now denote the values of these polynomials at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $2592^2$ residue pairs modulo $2592$, we find that \eqref{eq:main} has exactly 2592 solutions modulo $2592$, and that at each of them $H$ is congruent modulo $2592$ to one of the 186 residues $r$ listed in Table~\ref{tab:res}. Each $r$ is listed there as $r=su$ with $s$ and $u$ positive and $u$ odd, or as $r$ if $s=1$, and in each case $\leg{-3}{u}=-1$. Here every prime factor of each $s\in\{2,8,18,54,72,216\}$ divides $6$, and $2s$ and $12s$ divide $2592$ for each such $s$.
+
+\paragraph{Step 2: signs.} By \eqref{eq:sign}, $H>0$.
+
+\paragraph{\texorpdfstring{Step 3: primes $p$ with $\leg{-3}{p}=-1$.}{Step 3: inert primes.}} Let $p$ be an odd prime with $\leg{-3}{p}=-1$. We show that $v_p(H)$ is even. By \eqref{eq:bezout}, $U$ and $V$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(HT)=v_p(U^2+3V^2)$ is even. Suppose that $p$ divides both $H$ and $T$. Then $p\mid U^2+3V^2$ by \eqref{eq:HT}, so $p\mid U$ and $p\mid V$ by Lemma~\ref{lem:divides}, and $p\mid 2^{4}\cdot 3^{5}\cdot 457\cdot 1013$ by \eqref{eq:bezout}. As $p$ is odd and $p\neq3$ and $p\neq457$ because $\leg{-3}{3}=0$ and $\leg{-3}{457}=1$, we get $p=1013$. Checking the $1013^2$ residue pairs modulo $1013$, we find that $F$, $H$ and $T$ have no common zero modulo $1013$, a contradiction. Hence $p$ does not divide both $H$ and $T$. If $p\nmid T$, then $v_p(H)=v_p(HT)$ is even, and if $p\nmid H$, then $v_p(H)=0$.
+
+\paragraph{Step 4: contradiction.} By Step~1, $H\equiv su\pmod{2592}$ with $s$ and $u$ as in Lemma~\ref{lem:odd}, and $H>0$ by Step~2. Hence Lemma~\ref{lem:odd} applies to $n=H$, so there is an odd prime $p$ with $\leg{-3}{p}=-1$ such that $v_p(H)$ is odd. This contradicts Step~3, and the theorem is proved.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\end{thebibliography}
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{The residues $r=su$ of $H$ modulo $2592$ in Step~1.}\label{tab:res}
+\begin{tabular}{llllll}
+\hline
+$10=2\cdot5$ & $466=2\cdot233$ & $898=2\cdot449$ & $1306=2\cdot653$ & $1762=2\cdot881$ & $2194=2\cdot1097$\\
+$34=2\cdot17$ & $472=8\cdot59$ & $904=8\cdot113$ & $1330=2\cdot665$ & $1768=8\cdot221$ & $2200=8\cdot275$\\
+$40=8\cdot5$ & $490=2\cdot245$ & $922=2\cdot461$ & $1336=8\cdot167$ & $1786=2\cdot893$ & $2218=2\cdot1109$\\
+$58=2\cdot29$ & $514=2\cdot257$ & $946=2\cdot473$ & $1354=2\cdot677$ & $1810=2\cdot905$ & $2242=2\cdot1121$\\
+$82=2\cdot41$ & $520=8\cdot65$ & $952=8\cdot119$ & $1378=2\cdot689$ & $1816=8\cdot227$ & $2248=8\cdot281$\\
+$88=8\cdot11$ & $522=18\cdot29$ & $954=18\cdot53$ & $1384=8\cdot173$ & $1818=18\cdot101$ & $2250=18\cdot125$\\
+$90=18\cdot5$ & $538=2\cdot269$ & $970=2\cdot485$ & $1386=18\cdot77$ & $1834=2\cdot917$ & $2266=2\cdot1133$\\
+$106=2\cdot53$ & $562=2\cdot281$ & $994=2\cdot497$ & $1402=2\cdot701$ & $1858=2\cdot929$ & $2290=2\cdot1145$\\
+$130=2\cdot65$ & $568=8\cdot71$ & $1000=8\cdot125$ & $1426=2\cdot713$ & $1864=8\cdot233$ & $2296=8\cdot287$\\
+$136=8\cdot17$ & $586=2\cdot293$ & $1018=2\cdot509$ & $1432=8\cdot179$ & $1882=2\cdot941$ & $2314=2\cdot1157$\\
+$154=2\cdot77$ & $594=54\cdot11$ & $1042=2\cdot521$ & $1450=2\cdot725$ & $1890=54\cdot35$ & $2338=2\cdot1169$\\
+$178=2\cdot89$ & $610=2\cdot305$ & $1048=8\cdot131$ & $1474=2\cdot737$ & $1906=2\cdot953$ & $2344=8\cdot293$\\
+$184=8\cdot23$ & $616=8\cdot77$ & $1066=2\cdot533$ & $1480=8\cdot185$ & $1912=8\cdot239$ & $2362=2\cdot1181$\\
+$202=2\cdot101$ & $634=2\cdot317$ & $1080=216\cdot5$ & $1498=2\cdot749$ & $1930=2\cdot965$ & $2376=216\cdot11$\\
+$226=2\cdot113$ & $658=2\cdot329$ & $1090=2\cdot545$ & $1522=2\cdot761$ & $1954=2\cdot977$ & $2386=2\cdot1193$\\
+$232=8\cdot29$ & $664=8\cdot83$ & $1096=8\cdot137$ & $1528=8\cdot191$ & $1960=8\cdot245$ & $2392=8\cdot299$\\
+$250=2\cdot125$ & $682=2\cdot341$ & $1114=2\cdot557$ & $1546=2\cdot773$ & $1978=2\cdot989$ & $2410=2\cdot1205$\\
+$274=2\cdot137$ & $706=2\cdot353$ & $1138=2\cdot569$ & $1570=2\cdot785$ & $2002=2\cdot1001$ & $2434=2\cdot1217$\\
+$280=8\cdot35$ & $712=8\cdot89$ & $1144=8\cdot143$ & $1576=8\cdot197$ & $2008=8\cdot251$ & $2440=8\cdot305$\\
+$298=2\cdot149$ & $730=2\cdot365$ & $1162=2\cdot581$ & $1594=2\cdot797$ & $2026=2\cdot1013$ & $2458=2\cdot1229$\\
+$306=18\cdot17$ & $738=18\cdot41$ & $1170=18\cdot65$ & $1602=18\cdot89$ & $2034=18\cdot113$ & $2466=18\cdot137$\\
+$322=2\cdot161$ & $754=2\cdot377$ & $1186=2\cdot593$ & $1618=2\cdot809$ & $2050=2\cdot1025$ & $2482=2\cdot1241$\\
+$328=8\cdot41$ & $760=8\cdot95$ & $1192=8\cdot149$ & $1624=8\cdot203$ & $2056=8\cdot257$ & $2488=8\cdot311$\\
+$346=2\cdot173$ & $778=2\cdot389$ & $1210=2\cdot605$ & $1642=2\cdot821$ & $2074=2\cdot1037$ & $2506=2\cdot1253$\\
+$360=72\cdot5$ & $792=72\cdot11$ & $1224=72\cdot17$ & $1656=72\cdot23$ & $2088=72\cdot29$ & $2520=72\cdot35$\\
+$370=2\cdot185$ & $802=2\cdot401$ & $1234=2\cdot617$ & $1666=2\cdot833$ & $2098=2\cdot1049$ & $2530=2\cdot1265$\\
+$376=8\cdot47$ & $808=8\cdot101$ & $1240=8\cdot155$ & $1672=8\cdot209$ & $2104=8\cdot263$ & $2536=8\cdot317$\\
+$394=2\cdot197$ & $826=2\cdot413$ & $1242=54\cdot23$ & $1690=2\cdot845$ & $2122=2\cdot1061$ & $2538=54\cdot47$\\
+$418=2\cdot209$ & $850=2\cdot425$ & $1258=2\cdot629$ & $1714=2\cdot857$ & $2146=2\cdot1073$ & $2554=2\cdot1277$\\
+$424=8\cdot53$ & $856=8\cdot107$ & $1282=2\cdot641$ & $1720=8\cdot215$ & $2152=8\cdot269$ & $2578=2\cdot1289$\\
+$442=2\cdot221$ & $874=2\cdot437$ & $1288=8\cdot161$ & $1738=2\cdot869$ & $2170=2\cdot1085$ & $2584=8\cdot323$\\
+\hline
+\end{tabular}
+\end{table}
+
+\end{document}
