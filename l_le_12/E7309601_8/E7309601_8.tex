@@ -1,0 +1,297 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{longtable,booktabs,array}
+\emergencystretch=1.5em
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E7309601\_8: x\textasciicircum 4+xy+2y\textasciicircum 3-3=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+% Legendre symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E7309601\_8}\\[4pt] {\Large The equation $x^{4}+xy+2y^{3}-3=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=39$, length $l=11.58$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+xy+2y^{3}-3=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses 9 auxiliary polynomials $H_0,\dots,H_{8}$, 4 of which are constants, and 2 graphs on these vertices with 7 and 1 edges, respectively; to each edge $\{i,j\}$ we attach the Hilbert symbol $(H_i,H_j)_v$ of the values at a hypothetical solution. By the product formula, the product of these symbols over all edges and all places is $1$. We show that the product over the edges is $1$ at every odd prime outside a finite set $S$, compute it at the primes of $S$ and at the real place, and obtain a contradiction. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Legendre symbol and of the Hilbert symbol.
+
+\section{Legendre symbols and Hilbert symbols}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. It is multiplicative in $a$, and it depends only on $a$ modulo $p$ \cite[Chapter~5]{IR}.
+
+For a prime $p$, let $\Q_p$ be the field of $p$-adic numbers, and put $\Q_\infty=\mathbb R$. For $v$ a prime or $v=\infty$, and non-zero $a,b\in\Q$, the Hilbert symbol $(a,b)_v$ is $1$ if the equation $z^2=ar^2+bs^2$ has a solution $(r,s,z)\neq(0,0,0)$ in $\Q_v$, and $-1$ otherwise. In particular, $(a,b)_v=1$ for every $v$ if this equation has a non-zero solution in $\Q$. For an odd integer $t$, we put $\varepsilon(t)=(t-1)/2$ and $\omega(t)=(t^2-1)/8$. We use the following facts \cite[Chapter~III, Proposition~2 and Theorems~1 and~3]{Se}.
+
+\begin{theorem}\label{thm:hilbert}
+Let $a$, $a'$ and $b$ be non-zero integers, and let $v$ be a prime or $v=\infty$.
+\begin{itemize}
+\item[(i)] $(a,b)_\infty=-1$ if and only if $a<0$ and $b<0$.
+\item[(ii)] Let $p$ be an odd prime, and write $a=p^\alpha u$ and $b=p^\beta w$ with $p\nmid uw$. Then $(a,b)_p=(-1)^{\alpha\beta\varepsilon(p)}\leg{u}{p}^\beta\leg{w}{p}^\alpha$.
+\item[(iii)] Write $a=2^\alpha u$ and $b=2^\beta w$ with $u$ and $w$ odd. Then $(a,b)_2=(-1)^{\varepsilon(u)\varepsilon(w)+\alpha\omega(w)+\beta\omega(u)}$.
+\item[(iv)] $(a,b)_v=1$ for all but finitely many $v$, and $\prod_v(a,b)_v=1$, the product over all primes $v$ and $v=\infty$.
+\item[(v)] $(a,b)_v=(b,a)_v$ and $(aa',b)_v=(a,b)_v(a',b)_v$.
+\end{itemize}
+\end{theorem}
+
+\begin{lemma}\label{lem:square}
+Let $a$ and $b$ be non-zero integers. If $p$ is an odd prime with $p\nmid a$ and $\leg{a}{p}=1$, then $(a,b)_p=1$. If $a\equiv1\pmod8$, then $(a,b)_2=1$.
+\end{lemma}
+
+\begin{proof}
+The first claim is Theorem~\ref{thm:hilbert}(ii) with $\alpha=0$. For the second, $\varepsilon(a)$ and $\omega(a)$ are even, and Theorem~\ref{thm:hilbert}(iii) with $\alpha=0$ gives $(a,b)_2=1$.
+\end{proof}
+
+
+\begin{lemma}\label{lem:classes}
+Let $p$ be a prime. For a non-zero integer $X$, write $X=p^ju$ with $p\nmid u$. If $p$ is odd, put $c_p(X)=(j,e)\in\F_2^2$, where $\leg{u}{p}=(-1)^e$; if $p=2$, put $c_2(X)=(j,e_1,e_2)\in\F_2^3$, where $u\equiv(-1)^{e_1}5^{e_2}\pmod8$; all entries are taken modulo $2$. Then $c_p(XX')=c_p(X)+c_p(X')$ and $(X,X')_p=(-1)^{\beta_p(c_p(X),c_p(X'))}$ for non-zero integers $X,X'$, where $\beta_p$ is the symmetric bilinear form
+\begin{align*}
+\beta_p\bigl((j,e),(j',e')\bigr)&=jj'\varepsilon(p)+je'+j'e&&\text{if $p$ is odd},\\
+\beta_2\bigl((j,e_1,e_2),(j',e_1',e_2')\bigr)&=e_1e_1'+je_2'+j'e_2.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+For odd $p$, this is Theorem~\ref{thm:hilbert}(ii), as the Legendre symbol is multiplicative. For $p=2$, the odd residues $1,3,5,7$ modulo $8$ are $(-1)^{e_1}5^{e_2}$ with $(e_1,e_2)=(0,0),(1,1),(0,1),(1,0)$, respectively; in each case $\varepsilon(u)\equiv e_1$ and $\omega(u)\equiv e_2\pmod2$, so Theorem~\ref{thm:hilbert}(iii) gives the formula, and $c_2$ is additive because $(e_1,e_2)\mapsto(-1)^{e_1}5^{e_2}$ is an isomorphism from $\F_2^2$ to the group of odd residues modulo $8$.
+\end{proof}
+
+\begin{lemma}\label{lem:residue}
+Let $p$ be a prime, $k\geq1$, and let $X$ be a non-zero integer with $X\equiv r\pmod{p^k}$, where $0\leq r<p^k$. Then $c_p(X)\in b+D$ for the vector $b$ and the subspace $D$ given as follows. If $r=0$, then $b=0$ and $D$ is the whole space. Otherwise write $r=p^jr'$ with $p\nmid r'$, so that $j<k$. If $p$ is odd, or if $p=2$ and $k-j\geq3$, then $b=c_p(r)$ and $D=0$. If $p=2$ and $k-j=2$, then $b=(j,e_1,0)$ with $r'\equiv(-1)^{e_1}\pmod4$, and $D$ is spanned by $(0,0,1)$. If $p=2$ and $k-j=1$, then $b=(j,0,0)$, and $D$ is spanned by $(0,1,0)$ and $(0,0,1)$.
+\end{lemma}
+
+\begin{proof}
+If $r\neq0$, then $v_p(X)=j$ and $X/p^j\equiv r'\pmod{p^{k-j}}$. For odd $p$, the Legendre symbol of $X/p^j$ is therefore that of $r'$. For $p=2$, the residue of $X/2^j$ modulo $8$ is that of $r'$ if $k-j\geq3$, and its residue modulo $4$, which determines $e_1$, is that of $r'$ if $k-j=2$.
+\end{proof}
+
+\begin{lemma}\label{lem:envelope}
+Let $p$ be a prime, and let $E$ be a set of edges on a finite set of vertices. For every vertex $i$, let $b_i$ be a vector and $D_i$ a subspace of $\F_2^2$ (of $\F_2^3$ if $p=2$), and put $\sigma_i=\sum_{j\sim i}b_j$, the sum over the edges $\{i,j\}\in E$. Suppose that $\beta_p(d,\sigma_i)=0$ for every vertex $i$ and every $d\in D_i$, and that $\beta_p(d,d')=0$ for every edge $\{i,j\}\in E$ and all $d\in D_i$ and $d'\in D_j$. Then
+\[
+\sum_{\{i,j\}\in E}\beta_p(c_i,c_j)=\sum_{\{i,j\}\in E}\beta_p(b_i,b_j)\qquad\text{whenever $c_i\in b_i+D_i$ for every $i$.}
+\]
+By bilinearity, it suffices to check the hypotheses for $d$ and $d'$ in spanning sets of $D_i$ and $D_j$.
+\end{lemma}
+
+\begin{proof}
+Write $c_i=b_i+d_i$ with $d_i\in D_i$. As $\beta_p$ is bilinear and symmetric, the left side equals the right side plus $\sum_i\beta_p(d_i,\sigma_i)+\sum_{\{i,j\}\in E}\beta_p(d_i,d_j)$, and both sums vanish.
+\end{proof}
+
+\begin{lemma}\label{lem:cubic}
+Let $f(z)=az^3+bz^2+cz+d$ be a real polynomial with $a\neq0$ and discriminant $\Delta<0$. Then $f$ has exactly one real root $\eta$, and $f(z)$ has the sign of $a(z-\eta)$ for every real $z\neq\eta$.
+\end{lemma}
+
+\begin{proof}
+The discriminant is $\Delta=a^4\prod_{i<j}(\rho_i-\rho_j)^2$, where $\rho_1,\rho_2,\rho_3$ are the complex roots of $f$. If all roots were real, then $\Delta\geq0$. Hence $f$ has a non-real root $\rho$; then $\bar\rho\neq\rho$ is also a root, and the third root $\eta$ is real. Thus $f(z)=a(z-\eta)(z-\rho)(z-\bar\rho)=a(z-\eta)|z-\rho|^2$ for real $z$, and $|z-\rho|^2>0$.
+\end{proof}
+
+\section{The graph}
+
+Put $F(x,y)=x^{4}+xy+2y^{3}-3$, so that \eqref{eq:main} is the equation $F(x,y)=0$. The vertices are the polynomials
+\begin{align*}
+H_{0}&=-2x-2y+4,\\
+H_{1}&=2x-2y+8,\\
+H_{2}&=-2x-2y,\\
+H_{3}&=-x-2y+2,\\
+H_{4}&=3,\\
+H_{5}&=6,\\
+H_{6}&=2,\\
+H_{7}&=-3,\\
+H_{8}&=8x^{2}+8xy-8x+8y^{2}+12y+24.
+\end{align*}
+There are 2 graphs on these vertices. The edges of the first graph are $\{0,1\}$, $\{1,3\}$, $\{2,3\}$, $\{0,4\}$, $\{1,5\}$, $\{2,6\}$, $\{3,7\}$. The edges of the second graph are $\{8,4\}$. For a vertex $i$, we write $j\sim_g i$ if $\{i,j\}$ is an edge of the $g$-th graph.
+For every non-constant vertex $i$ and every graph $g$ in which $i$ has a neighbour, Table~\ref{tab:star} gives a positive integer $m_{g,i}$ and polynomials $W_{g,i}$, $A_{g,i}$ and $B_{g,i}$ with integer coefficients such that
+\begin{equation}\label{eq:star}
+m_{g,i}^2\prod_{j\sim_g i}H_j-W_{g,i}^2=A_{g,i}F+B_{g,i}H_i.
+\end{equation}
+For every edge $\{i,j\}$ between two non-constant vertices, Table~\ref{tab:sep} gives a positive integer $k_{ij}$ and polynomials $\alpha_{ij}$, $\beta_{ij}$ and $\gamma_{ij}$ with integer coefficients such that
+\begin{equation}\label{eq:sep}
+\alpha_{ij}F+\beta_{ij}H_i+\gamma_{ij}H_j=k_{ij}.
+\end{equation}
+These identities can be checked by expanding both sides.
+For the signs, we use
+the identities
+\begin{align}
+6H_{8}&=3(2x+4y+3)^2+(6x-7)^2+68.\label{eq:sign8}
+\end{align}
+For the signs of the other vertices, we regard $F$ as a polynomial in $y$; it has degree $3$ and leading coefficient $2$, and its discriminant is
+\begin{align*}
+\Delta(x)&=-108x^{8}+648x^{4}-8x^{3}-972.
+\end{align*}
+For $i\in I=\{0,\allowbreak 1,\allowbreak 2,\allowbreak 3\}$, the vertex $H_i$ has the form $k_iy+r_i(x)$ with a non-zero integer $k_i$, and Table~\ref{tab:phi} lists the polynomial $\varphi_i(x)=k_i^3F\bigl(x,-r_i(x)/k_i\bigr)$, which has integer coefficients.
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}, so that $F(x,y)=0$; from now on the polynomials denote their values at $(x,y)$.
+\paragraph{Step 1: the values are non-zero.} The non-constant $H_i$ are non-zero by Step~2.
+
+\paragraph{Step 2: signs.} \emph{The sign of $H_{8}$.} By \eqref{eq:sign8}, $H_{8}>0$.
+
+\emph{The signs of $H_i$ for $i\in I$.} If $\Delta(x)<0$, then by Lemma~\ref{lem:cubic}, applied to $F(x,z)$ as a polynomial in $z$, $y$ is its only real root, and $F(x,z)$ has the sign of $2(z-y)$ for $z\neq y$. For $i\in I$ and $z=-r_i(x)/k_i$, we have $z-y=-H_i/k_i$, so if moreover $\varphi_i(x)=k_i^3F(x,z)\neq0$, then $H_i\neq0$, and $H_i$ has the sign of $-\varphi_i(x)$. Expanding $\Delta(3+t)$ and the $\varphi_i(3+t)$ as polynomials in $t$ gives in each case coefficients of one sign and a non-zero constant term, and likewise for $\Delta(-2-t)$ and the $\varphi_i(-2-t)$. Hence, for $x\geq3$ and for $x\leq-2$, we have $\Delta(x)<0$, and $\varphi_i(x)$ is non-zero and has the sign of the constant term of the corresponding expansion; the resulting signs of the $H_i$ are listed in Table~\ref{tab:phi}. It remains to consider $-1\leq x\leq2$. Checking the residues of $y$, we find that for $x=0$ and $x=2$, we have $F(x,y)\not\equiv0\pmod{2}$ for every $y$, for $x=1$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, and for $x=-1$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$. Hence \eqref{eq:main} has no solution with $-1\leq x\leq2$.
+
+For a place $v$, put $B^{(g)}_v=\prod_{\{i,j\}}(H_i,H_j)_v$, the product over the edges of the $g$-th graph. By Theorem~\ref{thm:hilbert}(i), $(H_i,H_j)_\infty=-1$ exactly when $H_i<0$ and $H_j<0$. Here $H_i>0$ for $i\in\{4,\allowbreak 5,\allowbreak 6,\allowbreak 8\}$ and $H_i<0$ for $i\in\{7\}$. The other signs are given in Table~\ref{tab:phi} for $x\geq3$ and for $x\leq-2$. In both cases, counting the edges of each graph whose two values are negative gives $(B^{(g)}_\infty)_g=(1,1)$.
+
+\paragraph{Step 3: odd primes outside $S$.} Let $S=\{2,3,5,7,37,229\}$ be the set of primes dividing $2$, the $m_{g,i}$, the $k_{ij}$ and the constant vertices. Let $p\notin S$ be an odd prime; we show that $B^{(g)}_p=1$ for every $g$. For an edge $\{i,j\}$ of the $g$-th graph such that $p$ divides neither $H_i$ nor $H_j$, $(H_i,H_j)_p=1$ by Theorem~\ref{thm:hilbert}(ii). Now let $i$ be a vertex with $p\mid H_i$. Then $H_i$ is not constant, as $p\notin S$. For every edge $\{i,j\}$ of the $g$-th graph, $p\nmid H_j$: if $H_j$ is constant, because $p\notin S$, and otherwise by \eqref{eq:sep}, because $p\nmid k_{ij}$. In particular, no edge has both values divisible by $p$. By Theorem~\ref{thm:hilbert}(v), the edges at $i$ contribute $\prod_{j\sim_g i}(H_i,H_j)_p=(H_i,\Pi_i)_p$, where $\Pi_i=\prod_{j\sim_g i}H_j$ is not divisible by $p$. By \eqref{eq:star}, $m_{g,i}^2\Pi_i\equiv W_{g,i}^2\pmod p$, and $p\nmid m_{g,i}$, so $\Pi_i$ is a non-zero square modulo $p$, and $(H_i,\Pi_i)_p=(\Pi_i,H_i)_p=1$ by Lemma~\ref{lem:square}. Hence $B^{(g)}_p=1$.
+
+\paragraph{Step 4: the primes in $S$.} Let $p\in S$. By Lemma~\ref{lem:classes}, $B^{(g)}_p=(-1)^{N_g}$, where $N_g=\sum_{\{i,j\}}\beta_p\bigl(c_p(H_i),c_p(H_j)\bigr)$, the sum over the edges of the $g$-th graph. Suppose that $x\equiv a$ and $y\equiv b\pmod{p^k}$. Then $H_i\equiv H_i(a,b)\pmod{p^k}$, and Lemma~\ref{lem:residue} gives a vector $b_i$ and a subspace $D_i$ with $c_p(H_i)\in b_i+D_i$; for a constant vertex, we take $b_i=c_p(H_i)$ and $D_i=0$. If the hypotheses of Lemma~\ref{lem:envelope} hold for the edges of every graph, then $N_g=\sum_{\{i,j\}}\beta_p(b_i,b_j)$, so $B^{(g)}_p$ is determined by $a$, $b$ and $k$. Starting from the solutions of \eqref{eq:main} modulo $p$, we refine a residue class $x\equiv a$, $y\equiv b\pmod{p^k}$ to the classes modulo $p^{k+1}$ that contain solutions of \eqref{eq:main} modulo $p^{k+1}$, until these hypotheses hold, or until no solution remains. Table~\ref{tab:local} lists the resulting terminal classes together with the value of the vector $(B^{(g)}_p)_g$; every integer solution lies in one of them. For $p=229$, every residue class modulo $p$ that contains a solution of \eqref{eq:main} modulo $p$ is already terminal, with $(B^{(g)}_{229})_g=(1,1)$; these classes are not listed in Table~\ref{tab:local}. The result is $(B^{(g)}_{2})_g\in\{(1,-1),\allowbreak (-1,1)\}$, $(B^{(g)}_{3})_g\in\{(-1,-1)\}$, $(B^{(g)}_{5})_g\in\{(1,1)\}$, $(B^{(g)}_{7})_g\in\{(1,1)\}$, $(B^{(g)}_{37})_g\in\{(1,1)\}$, $(B^{(g)}_{229})_g\in\{(1,1)\}$.
+
+\paragraph{Step 5: contradiction.} By Theorem~\ref{thm:hilbert}(iv), applied to each edge, $\prod_vB^{(g)}_v=1$ for every $g$. By Step~3, the factors with $p\notin S$ are $1$, so the componentwise product of the vectors $(B^{(g)}_p)_g$ with $p\in S$ is $(B^{(g)}_\infty)_g=(1,1)$ by Step~2. But by Step~4, this product is $(1,-1)$ or $(-1,1)$. This contradiction proves the theorem.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\bibitem{Se} J.-P. Serre, \emph{A Course in Arithmetic}, Graduate Texts in Mathematics 7, Springer, New York, 1973.
+\end{thebibliography}
+
+\clearpage
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:star}.}\label{tab:star}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\multicolumn{2}{@{}l}{$g=1$, $i=0$, $m=2$, neighbours $4,1$}\\
+$W$ & $-2x^{2}+2x-10$\\
+$A$ & $-4$\\
+$B$ & $-4x^{2}+4xy+14x-4y^{2}-8y-4$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=1$, $m=25$, neighbours $5,0,3$}\\
+$W$ & $-12x^{3}+6x^{2}-90x-150$\\
+$A$ & $-144x^{2}+144x+288y-612$\\
+$B$ & $-144x^{3}y-792x^{3}-144x^{2}y^{2}-144x^{2}y+1908x^{2}+432xy^{2}+2412xy-7248x$\\
+ & $\quad +288y^{3}+540y^{2}-5340y+708$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=2$, $m=2$, neighbours $6,3$}\\
+$W$ & $-2x^{2}+2x+2$\\
+$A$ & $-4$\\
+$B$ & $-4x^{2}+4xy-2x-4y^{2}+8$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=3$, $m=1$, neighbours $7,1,2$}\\
+$W$ & $-3x-6$\\
+$A$ & $0$\\
+$B$ & $-3x+6y-18$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=8$, $m=4067040$, neighbours $4$}\\
+$W$ & $30296x^{7}+250504x^{6}+504432x^{5}-725200x^{4}-665426x^{3}+5041350x^{2}-3228642x$\\
+ & $\quad +8839350$\\
+$A$ & $-6424933312x^{10}-106249768576x^{9}-653217584320x^{8}+6424933312x^{7}y$\\
+ & $\quad -1461482043392x^{7}+12849866624x^{6}y^{3}-14685561856x^{6}y^{2}$\\
+ & $\quad +202754889344x^{6}y-877850226848x^{6}+212499537152x^{5}y^{3}+653217584320x^{5}y$\\
+ & $\quad +4998075795328x^{5}+1306435168640x^{4}y^{3}-6424933312x^{4}y^{2}$\\
+ & $\quad +1461482043392x^{4}y-31842145926976x^{4}+14685561856x^{3}y^{5}$\\
+ & $\quad -63462606592x^{3}y^{4}+4623480512000x^{3}y^{3}+6205947547520x^{3}y^{2}$\\
+ & $\quad -10275945031328x^{3}y-40863842755040x^{3}-25699733248x^{2}y^{6}$\\
+ & $\quad -424999074304x^{2}y^{4}-2011684716608x^{2}y^{3}-653217584320x^{2}y^{2}$\\
+ & $\quad -4679326489600x^{2}y+42960356749604x^{2}+5507085696xy^{9}+66085028352xy^{8}$\\
+ & $\quad -1222487757984xy^{7}-5555440011616xy^{6}+14846491144488xy^{5}$\\
+ & $\quad +85493355315032xy^{4}+91222106794352xy^{3}-104335076420432xy^{2}$\\
+ & $\quad -301395332183480xy-256523114286440x+137881458624y^{9}+105794918016y^{8}$\\
+ & $\quad -6314496234512y^{7}-21678795710376y^{6}-77657644596y^{5}+118296419864592y^{4}$\\
+ & $\quad +369474344880376y^{3}+474795818729960y^{2}+357309192886404y+36703627185300$\\
+$B$ & $688385712x^{12}-688385712x^{11}y+12072289488x^{11}-13793253768x^{10}y$\\
+ & $\quad +79994730672x^{10}+688385712x^{9}y^{3}+2753542848x^{9}y^{2}-109831261536x^{9}y$\\
+ & $\quad +200365224000x^{9}-688385712x^{8}y^{4}+11728096632x^{8}y^{3}$\\
+ & $\quad +55115649596x^{8}y^{2}-400871960336x^{8}y+86352816744x^{8}-16202603760x^{7}y^{4}$\\
+ & $\quad +60248237164x^{7}y^{3}+412108649692x^{7}y^{2}-458278828472x^{7}y$\\
+ & $\quad -1084402687512x^{7}+688385712x^{6}y^{6}+5507085696x^{6}y^{5}$\\
+ & $\quad -147093478332x^{6}y^{4}-68846216482x^{6}y^{3}+1219995653136x^{6}y^{2}$\\
+ & $\quad +1699210514932x^{6}y+2118760820424x^{6}-688385712x^{5}y^{7}$\\
+ & $\quad +11383903776x^{5}y^{6}+114820537272x^{5}y^{5}-527400096840x^{5}y^{4}$\\
+ & $\quad -1840199585096x^{5}y^{3}-744807685260x^{5}y^{2}+3978523968456x^{5}y$\\
+ & $\quad +9310744858460x^{5}-18611953752x^{4}y^{7}+33331059156x^{4}y^{6}$\\
+ & $\quad +918857201468x^{4}y^{5}+613227314647x^{4}y^{4}-3942315398754x^{4}y^{3}$\\
+ & $\quad -13056402291642x^{4}y^{2}-13571804245148x^{4}y-2032543794529x^{4}$\\
+ & $\quad -28963278960x^{3}y^{7}+76796554456x^{3}y^{6}+736656612300x^{3}y^{5}$\\
+ & $\quad -1370428139714x^{3}y^{4}-798418647420x^{3}y^{3}+330493495272x^{3}y^{2}$\\
+ & $\quad +4458691714250x^{3}y+3113485136019x^{3}+1376771424x^{2}y^{9}$\\
+ & $\quad +10325785680x^{2}y^{8}-229465733048x^{2}y^{7}-369961375756x^{2}y^{6}$\\
+ & $\quad +2392233839120x^{2}y^{5}+827825895616x^{2}y^{4}+5344854852678x^{2}y^{3}$\\
+ & $\quad -636134744122x^{2}y^{2}+6101822005320x^{2}y-9429074256858x^{2}-1376771424xy^{10}$\\
+ & $\quad +20014264704xy^{9}+202768492248xy^{8}-605387846092xy^{7}-3883011784980xy^{6}$\\
+ & $\quad +715644046699xy^{5}+3258038307874xy^{4}+15453231660702xy^{3}$\\
+ & $\quad -14618813801132xy^{2}-11738930565049xy-28553808783105x-34470364656y^{10}$\\
+ & $\quad +25256817480y^{9}+1644149926376y^{8}+2929409132574y^{7}-9267475972584y^{6}$\\
+ & $\quad -26829054492936y^{5}-32452124954329y^{4}+10437274611088y^{3}+36734322173976y^{2}$\\
+ & $\quad +42963665439588y+3399967342425$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:sep}.}\label{tab:sep}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,1\}$, $k_{ij}=2^{2}\cdot 7^{2}$}\\
+$\alpha$ & $4$\\
+$\beta$ & $2x^{3}-2x^{2}y+4x^{2}+2xy^{2}-8xy+8x-y^{3}+9y^{2}-8y+28$\\
+$\gamma$ & $y^{3}-3y^{2}+14y+12$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,3\}$, $k_{ij}=2\cdot 3\cdot 5^{2}$}\\
+$\alpha$ & $6$\\
+$\beta$ & $-3x^{3}-3x^{2}y+12x^{2}-3xy^{2}+24xy-48x-2y^{3}+24y^{2}-74y+78$\\
+$\gamma$ & $2y^{3}-24y^{2}+146y-228$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,3\}$, $k_{ij}=2\cdot 5^{2}$}\\
+$\alpha$ & $2$\\
+$\beta$ & $x^{3}-x^{2}y+xy^{2}-2y^{3}-4y^{2}-6y-14$\\
+$\gamma$ & $2y^{3}+8y^{2}+14y+28$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rrlcc@{}}
+\caption{The polynomials $\varphi_i(x)=k_i^3F\bigl(x,-r_i(x)/k_i\bigr)$ of Step~2 and the signs of $H_i$ for $x\geq3$ and for $x\leq-2$.}\label{tab:phi}\\
+\hline $i$ & $k_i$ & $\varphi_i(x)$ & $x\geq3$ & $x\leq-2$\\\hline\endfirsthead\hline $i$ & $k_i$ & $\varphi_i(x)$ & $x\geq3$ & $x\leq-2$\\\hline\endhead\hline\endfoot
+0 & $-2$ & $-8x^{4}+16x^{3}-88x^{2}+176x-104$ & $+$ & $+$\\
+1 & $-2$ & $-8x^{4}-16x^{3}-200x^{2}-800x-1000$ & $+$ & $+$\\
+2 & $-2$ & $-8x^{4}+16x^{3}+8x^{2}+24$ & $+$ & $+$\\
+3 & $-2$ & $-8x^{4}+2x^{3}-8x^{2}+16x+8$ & $+$ & $+$\\
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rrl>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\caption{The terminal residue classes $x\equiv a$, $y\equiv b\pmod{p^k}$ of Step~4, grouped by $p$, $k$ and the value of $(B^{(g)}_p)_g$.}\label{tab:local}\\
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endfirsthead
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endhead\hline\endfoot
+2 & 7 & $(1,-1)$ & $(1,114)$,\allowbreak\ $(5,90)$,\allowbreak\ $(9,66)$,\allowbreak\ $(13,42)$,\allowbreak\ $(17,18)$,\allowbreak\ $(21,122)$,\allowbreak\ $(25,98)$,\allowbreak\ $(29,74)$,\allowbreak\ $(33,50)$,\allowbreak\ $(37,26)$,\allowbreak\ $(41,2)$,\allowbreak\ $(45,106)$,\allowbreak\ $(49,82)$,\allowbreak\ $(53,58)$,\allowbreak\ $(57,34)$,\allowbreak\ $(61,10)$,\allowbreak\ $(65,114)$,\allowbreak\ $(69,90)$,\allowbreak\ $(73,66)$,\allowbreak\ $(77,42)$,\allowbreak\ $(81,18)$,\allowbreak\ $(85,122)$,\allowbreak\ $(89,98)$,\allowbreak\ $(93,74)$,\allowbreak\ $(97,50)$,\allowbreak\ $(101,26)$,\allowbreak\ $(105,2)$,\allowbreak\ $(109,106)$,\allowbreak\ $(113,82)$,\allowbreak\ $(117,58)$,\allowbreak\ $(121,34)$,\allowbreak\ $(125,10)$\\
+2 & 9 & $(-1,1)$ & $(3,214)$,\allowbreak\ $(11,422)$,\allowbreak\ $(19,118)$,\allowbreak\ $(27,326)$,\allowbreak\ $(35,22)$,\allowbreak\ $(43,230)$,\allowbreak\ $(51,438)$,\allowbreak\ $(59,134)$,\allowbreak\ $(67,342)$,\allowbreak\ $(75,38)$,\allowbreak\ $(83,246)$,\allowbreak\ $(91,454)$,\allowbreak\ $(99,150)$,\allowbreak\ $(107,358)$,\allowbreak\ $(115,54)$,\allowbreak\ $(123,262)$,\allowbreak\ $(131,470)$,\allowbreak\ $(139,166)$,\allowbreak\ $(147,374)$,\allowbreak\ $(155,70)$,\allowbreak\ $(163,278)$,\allowbreak\ $(171,486)$,\allowbreak\ $(179,182)$,\allowbreak\ $(187,390)$,\allowbreak\ $(195,86)$,\allowbreak\ $(203,294)$,\allowbreak\ $(211,502)$,\allowbreak\ $(219,198)$,\allowbreak\ $(227,406)$,\allowbreak\ $(235,102)$,\allowbreak\ $(243,310)$,\allowbreak\ $(251,6)$,\allowbreak\ $(259,214)$,\allowbreak\ $(267,422)$,\allowbreak\ $(275,118)$,\allowbreak\ $(283,326)$,\allowbreak\ $(291,22)$,\allowbreak\ $(299,230)$,\allowbreak\ $(307,438)$,\allowbreak\ $(315,134)$,\allowbreak\ $(323,342)$,\allowbreak\ $(331,38)$,\allowbreak\ $(339,246)$,\allowbreak\ $(347,454)$,\allowbreak\ $(355,150)$,\allowbreak\ $(363,358)$,\allowbreak\ $(371,54)$,\allowbreak\ $(379,262)$,\allowbreak\ $(387,470)$,\allowbreak\ $(395,166)$,\allowbreak\ $(403,374)$,\allowbreak\ $(411,70)$,\allowbreak\ $(419,278)$,\allowbreak\ $(427,486)$,\allowbreak\ $(435,182)$,\allowbreak\ $(443,390)$,\allowbreak\ $(451,86)$,\allowbreak\ $(459,294)$,\allowbreak\ $(467,502)$,\allowbreak\ $(475,198)$,\allowbreak\ $(483,406)$,\allowbreak\ $(491,102)$,\allowbreak\ $(499,310)$,\allowbreak\ $(507,6)$\\
+2 & 11 & $(-1,1)$ & $(7,318)$,\allowbreak\ $(23,1758)$,\allowbreak\ $(39,1150)$,\allowbreak\ $(55,542)$,\allowbreak\ $(71,1982)$,\allowbreak\ $(87,1374)$,\allowbreak\ $(103,766)$,\allowbreak\ $(119,158)$,\allowbreak\ $(135,1598)$,\allowbreak\ $(151,990)$,\allowbreak\ $(167,382)$,\allowbreak\ $(183,1822)$,\allowbreak\ $(199,1214)$,\allowbreak\ $(215,606)$,\allowbreak\ $(231,2046)$,\allowbreak\ $(247,1438)$,\allowbreak\ $(263,830)$,\allowbreak\ $(279,222)$,\allowbreak\ $(295,1662)$,\allowbreak\ $(311,1054)$,\allowbreak\ $(327,446)$,\allowbreak\ $(343,1886)$,\allowbreak\ $(359,1278)$,\allowbreak\ $(375,670)$,\allowbreak\ $(391,62)$,\allowbreak\ $(407,1502)$,\allowbreak\ $(423,894)$,\allowbreak\ $(439,286)$,\allowbreak\ $(455,1726)$,\allowbreak\ $(471,1118)$,\allowbreak\ $(487,510)$,\allowbreak\ $(503,1950)$,\allowbreak\ $(519,1342)$,\allowbreak\ $(535,734)$,\allowbreak\ $(551,126)$,\allowbreak\ $(567,1566)$,\allowbreak\ $(583,958)$,\allowbreak\ $(599,350)$,\allowbreak\ $(615,1790)$,\allowbreak\ $(631,1182)$,\allowbreak\ $(647,574)$,\allowbreak\ $(663,2014)$,\allowbreak\ $(679,1406)$,\allowbreak\ $(695,798)$,\allowbreak\ $(711,190)$,\allowbreak\ $(727,1630)$,\allowbreak\ $(743,1022)$,\allowbreak\ $(759,414)$,\allowbreak\ $(775,1854)$,\allowbreak\ $(791,1246)$,\allowbreak\ $(807,638)$,\allowbreak\ $(823,30)$,\allowbreak\ $(839,1470)$,\allowbreak\ $(855,862)$,\allowbreak\ $(871,254)$,\allowbreak\ $(887,1694)$,\allowbreak\ $(903,1086)$,\allowbreak\ $(919,478)$,\allowbreak\ $(935,1918)$,\allowbreak\ $(951,1310)$,\allowbreak\ $(967,702)$,\allowbreak\ $(983,94)$,\allowbreak\ $(999,1534)$,\allowbreak\ $(1015,926)$,\allowbreak\ $(1031,318)$,\allowbreak\ $(1047,1758)$,\allowbreak\ $(1063,1150)$,\allowbreak\ $(1079,542)$,\allowbreak\ $(1095,1982)$,\allowbreak\ $(1111,1374)$,\allowbreak\ $(1127,766)$,\allowbreak\ $(1143,158)$,\allowbreak\ $(1159,1598)$,\allowbreak\ $(1175,990)$,\allowbreak\ $(1191,382)$,\allowbreak\ $(1207,1822)$,\allowbreak\ $(1223,1214)$,\allowbreak\ $(1239,606)$,\allowbreak\ $(1255,2046)$,\allowbreak\ $(1271,1438)$,\allowbreak\ $(1287,830)$,\allowbreak\ $(1303,222)$,\allowbreak\ $(1319,1662)$,\allowbreak\ $(1335,1054)$,\allowbreak\ $(1351,446)$,\allowbreak\ $(1367,1886)$,\allowbreak\ $(1383,1278)$,\allowbreak\ $(1399,670)$,\allowbreak\ $(1415,62)$,\allowbreak\ $(1431,1502)$,\allowbreak\ $(1447,894)$,\allowbreak\ $(1463,286)$,\allowbreak\ $(1479,1726)$,\allowbreak\ $(1495,1118)$,\allowbreak\ $(1511,510)$,\allowbreak\ $(1527,1950)$,\allowbreak\ $(1543,1342)$,\allowbreak\ $(1559,734)$,\allowbreak\ $(1575,126)$,\allowbreak\ $(1591,1566)$,\allowbreak\ $(1607,958)$,\allowbreak\ $(1623,350)$,\allowbreak\ $(1639,1790)$,\allowbreak\ $(1655,1182)$,\allowbreak\ $(1671,574)$,\allowbreak\ $(1687,2014)$,\allowbreak\ $(1703,1406)$,\allowbreak\ $(1719,798)$,\allowbreak\ $(1735,190)$,\allowbreak\ $(1751,1630)$,\allowbreak\ $(1767,1022)$,\allowbreak\ $(1783,414)$,\allowbreak\ $(1799,1854)$,\allowbreak\ $(1815,1246)$,\allowbreak\ $(1831,638)$,\allowbreak\ $(1847,30)$,\allowbreak\ $(1863,1470)$,\allowbreak\ $(1879,862)$,\allowbreak\ $(1895,254)$,\allowbreak\ $(1911,1694)$,\allowbreak\ $(1927,1086)$,\allowbreak\ $(1943,478)$,\allowbreak\ $(1959,1918)$,\allowbreak\ $(1975,1310)$,\allowbreak\ $(1991,702)$,\allowbreak\ $(2007,94)$,\allowbreak\ $(2023,1534)$,\allowbreak\ $(2039,926)$\\
+2 & 12 & $(-1,1)$ & $(15,3086)$,\allowbreak\ $(31,2478)$,\allowbreak\ $(47,1870)$,\allowbreak\ $(63,1262)$,\allowbreak\ $(79,654)$,\allowbreak\ $(95,46)$,\allowbreak\ $(111,3534)$,\allowbreak\ $(127,2926)$,\allowbreak\ $(143,2318)$,\allowbreak\ $(159,1710)$,\allowbreak\ $(175,1102)$,\allowbreak\ $(191,494)$,\allowbreak\ $(207,3982)$,\allowbreak\ $(223,3374)$,\allowbreak\ $(239,2766)$,\allowbreak\ $(255,2158)$,\allowbreak\ $(271,1550)$,\allowbreak\ $(287,942)$,\allowbreak\ $(303,334)$,\allowbreak\ $(319,3822)$,\allowbreak\ $(335,3214)$,\allowbreak\ $(351,2606)$,\allowbreak\ $(367,1998)$,\allowbreak\ $(383,1390)$,\allowbreak\ $(399,782)$,\allowbreak\ $(415,174)$,\allowbreak\ $(431,3662)$,\allowbreak\ $(447,3054)$,\allowbreak\ $(463,2446)$,\allowbreak\ $(479,1838)$,\allowbreak\ $(495,1230)$,\allowbreak\ $(511,622)$,\allowbreak\ $(527,14)$,\allowbreak\ $(543,3502)$,\allowbreak\ $(559,2894)$,\allowbreak\ $(575,2286)$,\allowbreak\ $(591,1678)$,\allowbreak\ $(607,1070)$,\allowbreak\ $(623,462)$,\allowbreak\ $(639,3950)$,\allowbreak\ $(655,3342)$,\allowbreak\ $(671,2734)$,\allowbreak\ $(687,2126)$,\allowbreak\ $(703,1518)$,\allowbreak\ $(719,910)$,\allowbreak\ $(735,302)$,\allowbreak\ $(751,3790)$,\allowbreak\ $(767,3182)$,\allowbreak\ $(783,2574)$,\allowbreak\ $(799,1966)$,\allowbreak\ $(815,1358)$,\allowbreak\ $(831,750)$,\allowbreak\ $(847,142)$,\allowbreak\ $(863,3630)$,\allowbreak\ $(879,3022)$,\allowbreak\ $(895,2414)$,\allowbreak\ $(911,1806)$,\allowbreak\ $(927,1198)$,\allowbreak\ $(943,590)$,\allowbreak\ $(959,4078)$,\allowbreak\ $(975,3470)$,\allowbreak\ $(991,2862)$,\allowbreak\ $(1007,2254)$,\allowbreak\ $(1023,1646)$,\allowbreak\ $(1039,1038)$,\allowbreak\ $(1055,430)$,\allowbreak\ $(1071,3918)$,\allowbreak\ $(1087,3310)$,\allowbreak\ $(1103,2702)$,\allowbreak\ $(1119,2094)$,\allowbreak\ $(1135,1486)$,\allowbreak\ $(1151,878)$,\allowbreak\ $(1167,270)$,\allowbreak\ $(1183,3758)$,\allowbreak\ $(1199,3150)$,\allowbreak\ $(1215,2542)$,\allowbreak\ $(1231,1934)$,\allowbreak\ $(1247,1326)$,\allowbreak\ $(1263,718)$,\allowbreak\ $(1279,110)$,\allowbreak\ $(1295,3598)$,\allowbreak\ $(1311,2990)$,\allowbreak\ $(1327,2382)$,\allowbreak\ $(1343,1774)$,\allowbreak\ $(1359,1166)$,\allowbreak\ $(1375,558)$,\allowbreak\ $(1391,4046)$,\allowbreak\ $(1407,3438)$,\allowbreak\ $(1423,2830)$,\allowbreak\ $(1439,2222)$,\allowbreak\ $(1455,1614)$,\allowbreak\ $(1471,1006)$,\allowbreak\ $(1487,398)$,\allowbreak\ $(1503,3886)$,\allowbreak\ $(1519,3278)$,\allowbreak\ $(1535,2670)$,\allowbreak\ $(1551,2062)$,\allowbreak\ $(1567,1454)$,\allowbreak\ $(1583,846)$,\allowbreak\ $(1599,238)$,\allowbreak\ $(1615,3726)$,\allowbreak\ $(1631,3118)$,\allowbreak\ $(1647,2510)$,\allowbreak\ $(1663,1902)$,\allowbreak\ $(1679,1294)$,\allowbreak\ $(1695,686)$,\allowbreak\ $(1711,78)$,\allowbreak\ $(1727,3566)$,\allowbreak\ $(1743,2958)$,\allowbreak\ $(1759,2350)$,\allowbreak\ $(1775,1742)$,\allowbreak\ $(1791,1134)$,\allowbreak\ $(1807,526)$,\allowbreak\ $(1823,4014)$,\allowbreak\ $(1839,3406)$,\allowbreak\ $(1855,2798)$,\allowbreak\ $(1871,2190)$,\allowbreak\ $(1887,1582)$,\allowbreak\ $(1903,974)$,\allowbreak\ $(1919,366)$,\allowbreak\ $(1935,3854)$,\allowbreak\ $(1951,3246)$,\allowbreak\ $(1967,2638)$,\allowbreak\ $(1983,2030)$,\allowbreak\ $(1999,1422)$,\allowbreak\ $(2015,814)$,\allowbreak\ $(2031,206)$,\allowbreak\ $(2047,3694)$,\allowbreak\ $(2063,3086)$,\allowbreak\ $(2079,2478)$,\allowbreak\ $(2095,1870)$,\allowbreak\ $(2111,1262)$,\allowbreak\ $(2127,654)$,\allowbreak\ $(2143,46)$,\allowbreak\ $(2159,3534)$,\allowbreak\ $(2175,2926)$,\allowbreak\ $(2191,2318)$,\allowbreak\ $(2207,1710)$,\allowbreak\ $(2223,1102)$,\allowbreak\ $(2239,494)$,\allowbreak\ $(2255,3982)$,\allowbreak\ $(2271,3374)$,\allowbreak\ $(2287,2766)$,\allowbreak\ $(2303,2158)$,\allowbreak\ $(2319,1550)$,\allowbreak\ $(2335,942)$,\allowbreak\ $(2351,334)$,\allowbreak\ $(2367,3822)$,\allowbreak\ $(2383,3214)$,\allowbreak\ $(2399,2606)$,\allowbreak\ $(2415,1998)$,\allowbreak\ $(2431,1390)$,\allowbreak\ $(2447,782)$,\allowbreak\ $(2463,174)$,\allowbreak\ $(2479,3662)$,\allowbreak\ $(2495,3054)$,\allowbreak\ $(2511,2446)$,\allowbreak\ $(2527,1838)$,\allowbreak\ $(2543,1230)$,\allowbreak\ $(2559,622)$,\allowbreak\ $(2575,14)$,\allowbreak\ $(2591,3502)$,\allowbreak\ $(2607,2894)$,\allowbreak\ $(2623,2286)$,\allowbreak\ $(2639,1678)$,\allowbreak\ $(2655,1070)$,\allowbreak\ $(2671,462)$,\allowbreak\ $(2687,3950)$,\allowbreak\ $(2703,3342)$,\allowbreak\ $(2719,2734)$,\allowbreak\ $(2735,2126)$,\allowbreak\ $(2751,1518)$,\allowbreak\ $(2767,910)$,\allowbreak\ $(2783,302)$,\allowbreak\ $(2799,3790)$,\allowbreak\ $(2815,3182)$,\allowbreak\ $(2831,2574)$,\allowbreak\ $(2847,1966)$,\allowbreak\ $(2863,1358)$,\allowbreak\ $(2879,750)$,\allowbreak\ $(2895,142)$,\allowbreak\ $(2911,3630)$,\allowbreak\ $(2927,3022)$,\allowbreak\ $(2943,2414)$,\allowbreak\ $(2959,1806)$,\allowbreak\ $(2975,1198)$,\allowbreak\ $(2991,590)$,\allowbreak\ $(3007,4078)$,\allowbreak\ $(3023,3470)$,\allowbreak\ $(3039,2862)$,\allowbreak\ $(3055,2254)$,\allowbreak\ $(3071,1646)$,\allowbreak\ $(3087,1038)$,\allowbreak\ $(3103,430)$,\allowbreak\ $(3119,3918)$,\allowbreak\ $(3135,3310)$,\allowbreak\ $(3151,2702)$,\allowbreak\ $(3167,2094)$,\allowbreak\ $(3183,1486)$,\allowbreak\ $(3199,878)$,\allowbreak\ $(3215,270)$,\allowbreak\ $(3231,3758)$,\allowbreak\ $(3247,3150)$,\allowbreak\ $(3263,2542)$,\allowbreak\ $(3279,1934)$,\allowbreak\ $(3295,1326)$,\allowbreak\ $(3311,718)$,\allowbreak\ $(3327,110)$,\allowbreak\ $(3343,3598)$,\allowbreak\ $(3359,2990)$,\allowbreak\ $(3375,2382)$,\allowbreak\ $(3391,1774)$,\allowbreak\ $(3407,1166)$,\allowbreak\ $(3423,558)$,\allowbreak\ $(3439,4046)$,\allowbreak\ $(3455,3438)$,\allowbreak\ $(3471,2830)$,\allowbreak\ $(3487,2222)$,\allowbreak\ $(3503,1614)$,\allowbreak\ $(3519,1006)$,\allowbreak\ $(3535,398)$,\allowbreak\ $(3551,3886)$,\allowbreak\ $(3567,3278)$,\allowbreak\ $(3583,2670)$,\allowbreak\ $(3599,2062)$,\allowbreak\ $(3615,1454)$,\allowbreak\ $(3631,846)$,\allowbreak\ $(3647,238)$,\allowbreak\ $(3663,3726)$,\allowbreak\ $(3679,3118)$,\allowbreak\ $(3695,2510)$,\allowbreak\ $(3711,1902)$,\allowbreak\ $(3727,1294)$,\allowbreak\ $(3743,686)$,\allowbreak\ $(3759,78)$,\allowbreak\ $(3775,3566)$,\allowbreak\ $(3791,2958)$,\allowbreak\ $(3807,2350)$,\allowbreak\ $(3823,1742)$,\allowbreak\ $(3839,1134)$,\allowbreak\ $(3855,526)$,\allowbreak\ $(3871,4014)$,\allowbreak\ $(3887,3406)$,\allowbreak\ $(3903,2798)$,\allowbreak\ $(3919,2190)$,\allowbreak\ $(3935,1582)$,\allowbreak\ $(3951,974)$,\allowbreak\ $(3967,366)$,\allowbreak\ $(3983,3854)$,\allowbreak\ $(3999,3246)$,\allowbreak\ $(4015,2638)$,\allowbreak\ $(4031,2030)$,\allowbreak\ $(4047,1422)$,\allowbreak\ $(4063,814)$,\allowbreak\ $(4079,206)$,\allowbreak\ $(4095,3694)$\\
+\addlinespace[3pt]
+3 & 1 & $(-1,-1)$ & $(2,2)$\\
+\addlinespace[3pt]
+5 & 1 & $(1,1)$ & $(1,3)$,\allowbreak\ $(1,4)$\\
+5 & 2 & $(1,1)$ & $(3,2)$,\allowbreak\ $(8,2)$,\allowbreak\ $(13,2)$,\allowbreak\ $(18,2)$\\
+5 & 3 & $(1,1)$ & $(0,4)$,\allowbreak\ $(5,9)$,\allowbreak\ $(10,14)$,\allowbreak\ $(15,19)$,\allowbreak\ $(20,24)$,\allowbreak\ $(23,52)$,\allowbreak\ $(25,29)$,\allowbreak\ $(30,34)$,\allowbreak\ $(35,39)$,\allowbreak\ $(40,44)$,\allowbreak\ $(45,49)$,\allowbreak\ $(48,52)$,\allowbreak\ $(50,54)$,\allowbreak\ $(55,59)$,\allowbreak\ $(60,64)$,\allowbreak\ $(65,69)$,\allowbreak\ $(70,74)$,\allowbreak\ $(73,52)$,\allowbreak\ $(75,79)$,\allowbreak\ $(80,84)$,\allowbreak\ $(85,89)$,\allowbreak\ $(90,94)$,\allowbreak\ $(95,99)$,\allowbreak\ $(98,52)$,\allowbreak\ $(100,104)$,\allowbreak\ $(105,109)$,\allowbreak\ $(110,114)$,\allowbreak\ $(115,119)$,\allowbreak\ $(120,124)$,\allowbreak\ $(123,52)$\\
+\addlinespace[3pt]
+7 & 1 & $(1,1)$ & $(2,5)$,\allowbreak\ $(3,5)$,\allowbreak\ $(4,1)$,\allowbreak\ $(5,4)$\\
+7 & 2 & $(1,1)$ & $(6,17)$,\allowbreak\ $(13,31)$,\allowbreak\ $(20,45)$,\allowbreak\ $(27,10)$,\allowbreak\ $(34,24)$,\allowbreak\ $(41,38)$\\
+7 & 3 & $(1,1)$ & $(48,3)$,\allowbreak\ $(97,101)$,\allowbreak\ $(146,199)$,\allowbreak\ $(195,297)$,\allowbreak\ $(244,52)$,\allowbreak\ $(293,150)$,\allowbreak\ $(342,248)$\\
+\addlinespace[3pt]
+37 & 1 & $(1,1)$ & $(3,30)$,\allowbreak\ $(4,1)$,\allowbreak\ $(4,13)$,\allowbreak\ $(4,23)$,\allowbreak\ $(5,1)$,\allowbreak\ $(6,34)$,\allowbreak\ $(7,8)$,\allowbreak\ $(7,31)$,\allowbreak\ $(7,35)$,\allowbreak\ $(9,30)$,\allowbreak\ $(11,20)$,\allowbreak\ $(11,24)$,\allowbreak\ $(11,30)$,\allowbreak\ $(14,9)$,\allowbreak\ $(14,30)$,\allowbreak\ $(14,35)$,\allowbreak\ $(17,7)$,\allowbreak\ $(17,14)$,\allowbreak\ $(17,16)$,\allowbreak\ $(20,17)$,\allowbreak\ $(21,34)$,\allowbreak\ $(22,4)$,\allowbreak\ $(24,15)$,\allowbreak\ $(29,6)$,\allowbreak\ $(30,32)$,\allowbreak\ $(31,14)$,\allowbreak\ $(31,28)$,\allowbreak\ $(31,32)$,\allowbreak\ $(32,9)$,\allowbreak\ $(32,19)$,\allowbreak\ $(34,21)$,\allowbreak\ $(35,17)$,\allowbreak\ $(35,26)$,\allowbreak\ $(35,31)$,\allowbreak\ $(36,23)$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+\end{document}

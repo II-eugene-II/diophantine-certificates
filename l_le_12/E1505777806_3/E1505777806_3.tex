@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E1505777806\_3: x\textasciicircum 4+xy-x+3y\textasciicircum 3+1=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+% Legendre and Jacobi symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E1505777806\_3}\\[4pt] {\Large The equation $x^{4}+xy-x+3y^{3}+1=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=47$, length $l=11.58$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+xy-x+3y^{3}+1=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses a polynomial identity of the form $HT=U^2+6V^2$ on the curve \eqref{eq:main}, and the fact that an odd prime $p$ with $\leg{-6}{p}=-1$ divides $U^2+6V^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Jacobi symbol and the law of quadratic reciprocity.
+
+\section{\texorpdfstring{Jacobi symbols and the norm form $a^2+6b^2$}{Jacobi symbols and the norm form}}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. For an odd positive integer $n$, the Jacobi symbol is $\leg{a}{n}=\prod_p\leg{a}{p}^{v_p(n)}$, the product over the prime factors $p$ of $n$. It is multiplicative in $a$ and in $n$, it depends only on $a$ modulo $n$, and it is non-zero exactly when $a$ and $n$ are coprime. We use the law of quadratic reciprocity for Jacobi symbols together with its supplements \cite[Chapter~5, \S2]{IR}: for odd positive integers $m$ and $n$,
+\begin{gather*}
+\leg{-1}{n}=(-1)^{(n-1)/2},\qquad\leg{2}{n}=(-1)^{(n^2-1)/8},\\
+\leg{m}{n}\leg{n}{m}=(-1)^{(m-1)(n-1)/4}\quad\text{if }\gcd(m,n)=1.
+\end{gather*}
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be an odd prime with $\leg{-6}{p}=-1$, and let $a,b\in\Z$. If $p\mid a^2+6b^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$. Then $(ac)^2\equiv-6(bc)^2\equiv-6\pmod p$, so $-6$ is a square modulo $p$. As $\leg{-6}{p}\neq0$, it is a non-zero square, so $\leg{-6}{p}=1$, a contradiction. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $a,b\in\Z$ be not both zero. Then $a^2+6b^2\neq0$, and $v_p(a^2+6b^2)$ is even for every odd prime $p$ with $\leg{-6}{p}=-1$.
+\end{lemma}
+
+\begin{proof}
+Clearly $a^2+6b^2>0$. Let $p$ be an odd prime with $\leg{-6}{p}=-1$, let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2+6b'^2$ by Lemma~\ref{lem:divides}. Since $a^2+6b^2=p^{2k}(a'^2+6b'^2)$, we get $v_p(a^2+6b^2)=2k$.
+\end{proof}
+
+\begin{lemma}\label{lem:period}
+Let $n$ and $n'$ be odd positive integers with $n'\equiv n\pmod{24}$. Then $\leg{-6}{n'}=\leg{-6}{n}$.
+\end{lemma}
+
+\begin{proof}
+Write $-6=\varepsilon2^eq$ with $\varepsilon=-1$, $e=1$ and $q=3$. By multiplicativity and the reciprocity laws,
+\[
+\leg{-6}{n}=\leg{\varepsilon}{n}\leg{2}{n}^e(-1)^{(n-1)(q-1)/4}\leg{n}{q}.
+\]
+Here $\leg{\varepsilon}{n}$ and $(-1)^{(n-1)(q-1)/4}$ depend only on $n$ modulo $4$, $\leg{2}{n}$ depends only on $n$ modulo $8$, and $\leg{n}{q}$ depends only on $n$ modulo $q$. Since $24$ is divisible by $4q$, and by $8q$, the claim follows.
+\end{proof}
+
+\begin{lemma}\label{lem:odd}
+Let $n$ be a non-zero integer, and let $s$, $u$ and $m$ be positive integers such that every prime factor of $s$ divides $12$, both $2s$ and $24s$ divide $m$, $u$ is odd, $\leg{-6}{u}=-1$, and $n\equiv su\pmod m$. Suppose also that $n>0$. Then there is an odd prime $p$ with $\leg{-6}{p}=-1$ such that $v_p(n)$ is odd.
+\end{lemma}
+
+\begin{proof}
+Since $s\mid m$, we have $s\mid n$, and $n'=n/s$ satisfies $n'\equiv u\pmod{m/s}$. Since $m/s$ is even and divisible by $24$, $n'$ is odd and $n'\equiv u\pmod{24}$. Since $n>0$, Lemma~\ref{lem:period} gives $\leg{-6}{n'}=\leg{-6}{u}=-1$. By multiplicativity, the product of $\leg{-6}{p}^{v_p(n')}$ over the prime factors $p$ of $n'$ is $-1$, so some prime factor $p$ of $n'$ satisfies $\leg{-6}{p}=-1$ and $v_p(n')$ is odd. Then $p$ is odd, and $p\nmid12$, so $p\nmid s$ and $v_p(n)=v_p(n')$ is odd.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=x^{4}+xy-x+3y^{3}+1$, so that \eqref{eq:main} is the equation $F(x,y)=0$. Define
+\begin{align*}
+H&=2x^{2}-6y-3,\\
+T&=8x^{4}+24x^{2}y-24x^{2}+24x+72y^{2}-36y+18,\\
+U&=-4x^{3}+18x-6,\\
+V&=-6x^{2}+3,\\
+G&=-144,\\
+A&=24x+9,\\
+B&=-16x^{2}-6x+64,\\
+\intertext{and, for the sign of $H$,}
+Q&=12x^{4}+36x^{2}y-36x^{2}+36x+108y^{2}-54y+27,\\
+M&=24x^{6}+108x^{4}+72x^{3}+162x^{2}-324x+135,\\
+E&=3888x^{4}-11664x^{2}+15552x+8748.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+HT-U^2-6V^2&=GF,\label{eq:norm}\\
+AU+BV&=2\cdot 3\cdot 23,\label{eq:bezout}\\
+-216F&=QH-M,\label{eq:sign}\\
+432Q&=(36x^{2}+216y-54)^2+E.\label{eq:sign2}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm} gives
+\begin{equation}\label{eq:HT}
+HT=U^2+6V^2,
+\end{equation}
+where $H$, $T$, $U$, $V$, $Q$, $M$ and $E$ now denote the values of these polynomials at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $24^2$ residue pairs modulo $24$, we find that \eqref{eq:main} has exactly 8 solutions modulo $24$, and that $H\equiv23\pmod{24}$ at each of them. This residue is odd, and $\leg{-6}{23}=-1$.
+
+\paragraph{Step 2: signs.} Since $F(x,y)=0$, \eqref{eq:sign} gives $QH=M$, and $M$ and $E$ depend only on $x$. We show that $M>0$ and $E>0$. If $x\geq1$, write $x=1+z$ with $z\geq0$; if $x\leq-3$, write $x=-3-z$ with $z\geq0$. In both cases, expanding $M$ and $E$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M>0$ and $E>0$. It remains to consider $-2\leq x\leq0$. For $x=0$ we have $M>0$ and $E>0$. For $x=-1$, we have $F(x,y)\not\equiv0\pmod{2}$ for every $y$, as one checks for the 2 residues of $y$ modulo $2$, so \eqref{eq:main} has no solution with this $x$. For $x=-2$, we have $F(x,y)\not\equiv0\pmod{17}$ for every $y$, as one checks for the 17 residues of $y$ modulo $17$, so \eqref{eq:main} has no solution with this $x$. Hence $M>0$ and $E>0$, so \eqref{eq:sign2} gives $432Q\geq E>0$, and $QH=M>0$ gives $H>0$.
+
+\paragraph{\texorpdfstring{Step 3: primes $p$ with $\leg{-6}{p}=-1$.}{Step 3: inert primes.}} Let $p$ be an odd prime with $\leg{-6}{p}=-1$. We show that $v_p(H)$ is even. By \eqref{eq:bezout}, $U$ and $V$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(HT)=v_p(U^2+6V^2)$ is even. Suppose that $p$ divides both $H$ and $T$. Then $p\mid U^2+6V^2$ by \eqref{eq:HT}, so $p\mid U$ and $p\mid V$ by Lemma~\ref{lem:divides}, and $p\mid 2\cdot 3\cdot 23$ by \eqref{eq:bezout}. As $p$ is odd and $p\neq3$ because $\leg{-6}{3}=0$, we get $p=23$. Checking the $23^2$ residue pairs modulo $23$, we find that $F$, $H$ and $T$ have no common zero modulo $23$, a contradiction. Hence $p$ does not divide both $H$ and $T$. If $p\nmid T$, then $v_p(H)=v_p(HT)$ is even, and if $p\nmid H$, then $v_p(H)=0$.
+
+\paragraph{Step 4: contradiction.} By Step~1, $H\equiv su\pmod{24}$ with $s$ and $u$ as in Lemma~\ref{lem:odd}, and $H>0$ by Step~2. Hence Lemma~\ref{lem:odd} applies to $n=H$, so there is an odd prime $p$ with $\leg{-6}{p}=-1$ such that $v_p(H)$ is odd. This contradicts Step~3, and the theorem is proved.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\end{thebibliography}
+
+
+
+\end{document}
