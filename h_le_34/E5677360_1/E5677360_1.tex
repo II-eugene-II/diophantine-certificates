@@ -1,0 +1,677 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{longtable,booktabs,array}
+\emergencystretch=1.5em
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E5677360\_1: x\textasciicircum 4+xy+y\textasciicircum 3+y+4=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+% Legendre symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E5677360\_1}\\[4pt] {\Large The equation $x^{4}+xy+y^{3}+y+4=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=34$, length $l=12$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+xy+y^{3}+y+4=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof combines quadratic Hilbert symbols over $\Q$ and cubic Hilbert symbols over $K=\Q(\omega)$, where $\omega^2+\omega+1=0$. To a hypothetical integer solution we attach the values of auxiliary polynomials $H_i$ with rational coefficients, linked by 3 graphs, and the values of auxiliary polynomials $J_i$ with coefficients in $\Z[\omega]$, linked by a weighted graph. By the product formula and the reciprocity law, the products of the quadratic symbols over all places are $1$, and the sums of the cubic symbols over all places are $0$. We show that the local contributions vanish at the primes outside a finite set $S$, determine the sign contributions at the real place, compute the local contributions jointly at the primes of $S$, and obtain a contradiction. Apart from polynomial identities, which can be checked by expanding both sides, finite computations with residues, and basic properties of the Legendre symbol and of the quadratic Hilbert symbol, the proof uses two standard facts from class field theory: the explicit formula for the cubic Hilbert symbol at the places not above $3$, and the Hilbert reciprocity law.
+
+\section{Legendre symbols and Hilbert symbols}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. It is multiplicative in $a$, and it depends only on $a$ modulo $p$ \cite[Chapter~5]{IR}.
+
+For a prime $p$, let $\Q_p$ be the field of $p$-adic numbers, and put $\Q_\infty=\mathbb R$. For $v$ a prime or $v=\infty$, and non-zero $a,b\in\Q$, the Hilbert symbol $(a,b)_v$ is $1$ if the equation $z^2=ar^2+bs^2$ has a solution $(r,s,z)\neq(0,0,0)$ in $\Q_v$, and $-1$ otherwise. In particular, $(a,b)_v=1$ for every $v$ if this equation has a non-zero solution in $\Q$. For an odd integer $t$, we put $\varepsilon(t)=(t-1)/2$ and $\omega(t)=(t^2-1)/8$. We use the following facts \cite[Chapter~III, Proposition~2 and Theorems~1 and~3]{Se}.
+
+\begin{theorem}\label{thm:hilbert}
+Let $a$, $a'$ and $b$ be non-zero integers, and let $v$ be a prime or $v=\infty$.
+\begin{itemize}
+\item[(i)] $(a,b)_\infty=-1$ if and only if $a<0$ and $b<0$.
+\item[(ii)] Let $p$ be an odd prime, and write $a=p^\alpha u$ and $b=p^\beta w$ with $p\nmid uw$. Then $(a,b)_p=(-1)^{\alpha\beta\varepsilon(p)}\leg{u}{p}^\beta\leg{w}{p}^\alpha$.
+\item[(iii)] Write $a=2^\alpha u$ and $b=2^\beta w$ with $u$ and $w$ odd. Then $(a,b)_2=(-1)^{\varepsilon(u)\varepsilon(w)+\alpha\omega(w)+\beta\omega(u)}$.
+\item[(iv)] $(a,b)_v=1$ for all but finitely many $v$, and $\prod_v(a,b)_v=1$, the product over all primes $v$ and $v=\infty$.
+\item[(v)] $(a,b)_v=(b,a)_v$ and $(aa',b)_v=(a,b)_v(a',b)_v$.
+\end{itemize}
+\end{theorem}
+
+\begin{lemma}\label{lem:square}
+Let $a$ and $b$ be non-zero integers. If $p$ is an odd prime with $p\nmid a$ and $\leg{a}{p}=1$, then $(a,b)_p=1$. If $a\equiv1\pmod8$, then $(a,b)_2=1$.
+\end{lemma}
+
+\begin{proof}
+The first claim is Theorem~\ref{thm:hilbert}(ii) with $\alpha=0$. For the second, $\varepsilon(a)$ and $\omega(a)$ are even, and Theorem~\ref{thm:hilbert}(iii) with $\alpha=0$ gives $(a,b)_2=1$.
+\end{proof}
+
+
+\begin{lemma}\label{lem:classes}
+Let $p$ be a prime. For a non-zero integer $X$, write $X=p^ju$ with $p\nmid u$. If $p$ is odd, put $c_p(X)=(j,e)\in\F_2^2$, where $\leg{u}{p}=(-1)^e$; if $p=2$, put $c_2(X)=(j,e_1,e_2)\in\F_2^3$, where $u\equiv(-1)^{e_1}5^{e_2}\pmod8$; all entries are taken modulo $2$. Then $c_p(XX')=c_p(X)+c_p(X')$ and $(X,X')_p=(-1)^{\beta_p(c_p(X),c_p(X'))}$ for non-zero integers $X,X'$, where $\beta_p$ is the symmetric bilinear form
+\begin{align*}
+\beta_p\bigl((j,e),(j',e')\bigr)&=jj'\varepsilon(p)+je'+j'e&&\text{if $p$ is odd},\\
+\beta_2\bigl((j,e_1,e_2),(j',e_1',e_2')\bigr)&=e_1e_1'+je_2'+j'e_2.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+For odd $p$, this is Theorem~\ref{thm:hilbert}(ii), as the Legendre symbol is multiplicative. For $p=2$, the odd residues $1,3,5,7$ modulo $8$ are $(-1)^{e_1}5^{e_2}$ with $(e_1,e_2)=(0,0),(1,1),(0,1),(1,0)$, respectively; in each case $\varepsilon(u)\equiv e_1$ and $\omega(u)\equiv e_2\pmod2$, so Theorem~\ref{thm:hilbert}(iii) gives the formula, and $c_2$ is additive because $(e_1,e_2)\mapsto(-1)^{e_1}5^{e_2}$ is an isomorphism from $\F_2^2$ to the group of odd residues modulo $8$.
+\end{proof}
+
+\begin{lemma}\label{lem:residue}
+Let $p$ be a prime, $k\geq1$, and let $X$ be a non-zero integer with $X\equiv r\pmod{p^k}$, where $0\leq r<p^k$. Then $c_p(X)\in b+D$ for the vector $b$ and the subspace $D$ given as follows. If $r=0$, then $b=0$ and $D$ is the whole space. Otherwise write $r=p^jr'$ with $p\nmid r'$, so that $j<k$. If $p$ is odd, or if $p=2$ and $k-j\geq3$, then $b=c_p(r)$ and $D=0$. If $p=2$ and $k-j=2$, then $b=(j,e_1,0)$ with $r'\equiv(-1)^{e_1}\pmod4$, and $D$ is spanned by $(0,0,1)$. If $p=2$ and $k-j=1$, then $b=(j,0,0)$, and $D$ is spanned by $(0,1,0)$ and $(0,0,1)$.
+\end{lemma}
+
+\begin{proof}
+If $r\neq0$, then $v_p(X)=j$ and $X/p^j\equiv r'\pmod{p^{k-j}}$. For odd $p$, the Legendre symbol of $X/p^j$ is therefore that of $r'$. For $p=2$, the residue of $X/2^j$ modulo $8$ is that of $r'$ if $k-j\geq3$, and its residue modulo $4$, which determines $e_1$, is that of $r'$ if $k-j=2$.
+\end{proof}
+
+\begin{lemma}\label{lem:envelope}
+Let $p$ be a prime, and let $E$ be a set of edges on a finite set of vertices. For every vertex $i$, let $b_i$ be a vector and $D_i$ a subspace of $\F_2^2$ (of $\F_2^3$ if $p=2$), and put $\sigma_i=\sum_{j\sim i}b_j$, the sum over the edges $\{i,j\}\in E$. Suppose that $\beta_p(d,\sigma_i)=0$ for every vertex $i$ and every $d\in D_i$, and that $\beta_p(d,d')=0$ for every edge $\{i,j\}\in E$ and all $d\in D_i$ and $d'\in D_j$. Then
+\[
+\sum_{\{i,j\}\in E}\beta_p(c_i,c_j)=\sum_{\{i,j\}\in E}\beta_p(b_i,b_j)\qquad\text{whenever $c_i\in b_i+D_i$ for every $i$.}
+\]
+By bilinearity, it suffices to check the hypotheses for $d$ and $d'$ in spanning sets of $D_i$ and $D_j$.
+\end{lemma}
+
+\begin{proof}
+Write $c_i=b_i+d_i$ with $d_i\in D_i$. As $\beta_p$ is bilinear and symmetric, the left side equals the right side plus $\sum_i\beta_p(d_i,\sigma_i)+\sum_{\{i,j\}\in E}\beta_p(d_i,d_j)$, and both sums vanish.
+\end{proof}
+
+\begin{lemma}\label{lem:cubic}
+Let $f(z)=az^3+bz^2+cz+d$ be a real polynomial with $a\neq0$ and discriminant $\Delta<0$. Then $f$ has exactly one real root $\eta$, and $f(z)$ has the sign of $a(z-\eta)$ for every real $z\neq\eta$.
+\end{lemma}
+
+\begin{proof}
+The discriminant is $\Delta=a^4\prod_{i<j}(\rho_i-\rho_j)^2$, where $\rho_1,\rho_2,\rho_3$ are the complex roots of $f$. If all roots were real, then $\Delta\geq0$. Hence $f$ has a non-real root $\rho$; then $\bar\rho\neq\rho$ is also a root, and the third root $\eta$ is real. Thus $f(z)=a(z-\eta)(z-\rho)(z-\bar\rho)=a(z-\eta)|z-\rho|^2$ for real $z$, and $|z-\rho|^2>0$.
+\end{proof}
+
+
+
+\section{\texorpdfstring{Cubic Hilbert symbols over $\Q(\omega)$}{Cubic Hilbert symbols over Q(w)}}\label{sec:csymbols}
+
+\paragraph{The field.} Let $K=\Q(\omega)$, where $\omega^2+\omega+1=0$. Its ring of integers is $\Z[\omega]$, and every element of $K$ can be written uniquely as $A+B\omega$ with $A,B\in\Q$. We write
+\[
+\langle A,B\rangle=A+B\omega,
+\]
+also when $A$ and $B$ are polynomials in $x$ and $y$. Then $\langle A,B\rangle\langle C,D\rangle=\langle AC-BD,\ AD+BC-BD\rangle$, and the norm is $N(\langle A,B\rangle)=A^2-AB+B^2$. In particular, a value $\langle A,B\rangle$ with $A,B\in\Z$ is zero if and only if $A=B=0$.
+
+\paragraph{Places.} The finite places of $K$ correspond to the non-zero prime ideals of $\Z[\omega]$. A prime $p\equiv2\pmod3$ is inert: there is one place above $p$, with uniformizer $p$ and residue field $\Z[\omega]/p\Z[\omega]$ with $p^2$ elements. If $p\equiv1\pmod3$, the polynomial $t^2+t+1$ has two roots $r$ modulo $p$, and for each of them there is a place $v_r$ above $p$, at which $\omega$ is the root of $t^2+t+1$ in $\Z_p$ congruent to $r$ modulo $p$; the completion is $\Q_p$, the uniformizer is $p$, the residue field is $\F_p$, and $\omega$ reduces to $r$. The prime $3$ is ramified: $\pi=1-\omega$ generates the unique prime ideal above $3$, $\pi^2=-3\omega$, and $\Z[\omega]/\pi\Z[\omega]=\F_3$, where $\langle A,B\rangle$ reduces to $A+B$. The only infinite place of $K$ is complex. For a finite place $v$ we write $K_v$ for the completion and $v(a)$ for the normalized valuation, and we call $a$ a \emph{unit} at $v$ if $v(a)=0$.
+
+\paragraph{Hilbert symbols.} For a place $v$ of $K$ and $a,b\in K_v^\times$, the cubic Hilbert symbol $(a,b)_v$ is a cube root of unity, see \cite[Chapter~V, \S3]{N}. We write $(a,b)_v=\omega^{\theta_v(a,b)}$ with $\theta_v(a,b)\in\Z/3\Z$, and we use the following three facts \cite[Chapter~V, \S3 and Chapter~VI, \S8]{N}.
+\begin{itemize}
+\item[(H1)] $\theta_v(a,bc)=\theta_v(a,b)+\theta_v(a,c)$, $\theta_v(a,b)=-\theta_v(b,a)$, and $\theta_v(a,c^3)=0$. In particular, $\theta_v(a,b)$ depends only on the classes of $a$ and $b$ in $K_v^\times/K_v^{\times3}$.
+\item[(H2)] Let $v$ be a finite place not above $3$, let $q$ be the number of elements of its residue field, and let $\varpi$ be a uniformizer at $v$. Write $a=\varpi^eu$ and $b=\varpi^fw$ with units $u$ and $w$, and define $\chi(u)\in\Z/3\Z$ by $\bar u^{(q-1)/3}=\bar\omega^{\chi(u)}$, where the bar denotes the reduction to the residue field. Then $\theta_v(a,b)=e\,\chi(w)-f\,\chi(u)$. In particular, $\theta_v(a,b)=0$ if $a$ and $b$ are both units.
+\item[(H3)] (Hilbert reciprocity.) For $a,b\in K^\times$, $\theta_v(a,b)=0$ for all but finitely many places $v$, and $\sum_v\theta_v(a,b)=0$, where the sum is over all places of $K$. At the complex place, $\theta_v(a,b)=0$.
+\end{itemize}
+The general formula in (H2) contains an additional term $ef\chi(-1)$, which vanishes because $-1=(-1)^3$ is a cube. Formula (H2) fixes the normalization of the symbols; with the opposite sign convention all values $\theta_v$ change sign, and the proof below is the same.
+
+\paragraph{Classes at the places not above $3$.} Let $p\neq3$ be a prime and $v$ a place above $p$. For $a=p^eu\in K_v^\times$ with a unit $u$, put $\mathrm{cl}_v(a)=(e\bmod3,\ \chi(u))\in\F_3^2$. By (H2) and (H1), $\mathrm{cl}_v$ is additive, $\mathrm{cl}_v(a)$ determines the class of $a$ modulo cubes, and $\theta_v(a,b)=e\chi(w)-f\chi(u)$ for $\mathrm{cl}_v(a)=(e,\chi(u))$ and $\mathrm{cl}_v(b)=(f,\chi(w))$. We put $\mathrm{cl}_p(a)=\mathrm{cl}_v(a)\in\F_3^2$ if $p\equiv2\pmod3$, and $\mathrm{cl}_p(a)=(\mathrm{cl}_{v_r}(a),\mathrm{cl}_{v_{r'}}(a))\in\F_3^4$ if $p\equiv1\pmod3$, where $r<r'$ are the roots of $t^2+t+1$ in $\{1,\dots,p-1\}$; accordingly, $\theta_p$ is the sum of the forms $\theta_v$ over the places $v$ above $p$. For $p\equiv2\pmod3$ and a rational integer $u$ prime to $p$, we have $\bar u\in\F_p$, so that $\bar u^{(p^2-1)/3}=(\bar u^{p-1})^{(p+1)/3}=1$ and $\chi(u)=0$.
+
+\paragraph{The place above $3$.}
+\begin{lemma}\label{lem:cM3}
+Let $v$ be the place above $3$. Every non-zero element of $K_v$ is equal to $\pi^a\omega^b2^c(1+3\omega)^d$ times a cube, for unique $a,b,c,d\in\Z/3\Z$, and every unit congruent to $1$ modulo $9$ is a cube. Put $\mathrm{cl}_3(A)=(a,b,c,d)\in\F_3^4$. Then $\mathrm{cl}_3$ is additive, and $\theta_v(A,B)=\mathrm{cl}_3(A)^{\mathsf T}M_3\,\mathrm{cl}_3(B)$, where
+\[
+M_3=\begin{pmatrix}0&0&2&0\\0&0&1&2\\1&2&0&0\\0&1&0&0\end{pmatrix}\pmod3.
+\]
+\end{lemma}
+
+\begin{proof}
+For $\alpha\in\Z[\omega]$, the polynomial $g(s)=s+3s^2+3s^3-\alpha$ satisfies $g'(s)\equiv1\pmod\pi$, so by Hensel's lemma it has a root $s$ in the completion of $\Z[\omega]$, and then $(1+3s)^3=1+9(s+3s^2+3s^3)=1+9\alpha$. Hence every unit congruent to $1$ modulo $9$ is a cube in $K_v$, and the class of a unit modulo cubes depends only on its residue modulo $9$. There are $54$ units in $\Z[\omega]/(9)$, and a direct enumeration shows that the $27$ products $\omega^b2^c(1+3\omega)^d$ with $b,c,d\in\{0,1,2\}$ are pairwise distinct modulo $9$, also after multiplication by $-1=(-1)^3$. Hence they represent all $27$ classes of units modulo cubes. Since $\pi^3$ is a cube times a unit, the exponent of $\pi$ is the valuation modulo $3$, and the first statement follows.
+
+By (H1), it remains to compute $\theta_v$ on the $16$ ordered pairs of the elements $\pi$, $\omega$, $2$ and $1+3\omega$. Their norms are $3$, $1$, $4$ and $7$, hence, for each such pair, all the symbols at the places not above $2$, $3$ and $7$ vanish by (H2), and, by (H3), $\theta_v$ at the place above $3$ is minus the sum of the values at the place above $2$ and at the two places above $7$. These places correspond to $\bar\omega=2$ and $\bar\omega=4$ in $\F_7$. The classes $(e,\chi)$ of the four elements at these places are
+\[
+\begin{array}{c|ccc}
+ & 2 & \bar\omega=2 & \bar\omega=4\\\hline
+\pi & (0,2) & (0,0) & (0,2)\\
+\omega & (0,1) & (0,2) & (0,2)\\
+2 & (1,0) & (0,2) & (0,1)\\
+1+3\omega & (0,2) & (1,0) & (0,0)
+\end{array}
+\]
+where, at the places above $7$, $\chi(u)$ is defined by $\bar u^2=\bar\omega^{\chi(u)}$ in $\F_7$, and $7$ is a uniformizer. Formula (H2) and the sum over these three places give $M_3$.
+\end{proof}
+
+We write $\theta_3$ for the form of Lemma~\ref{lem:cM3}. Since $3=-\omega^2\pi^2$ and $4=2^2$, we have $\mathrm{cl}_3(3)=(2,2,0,0)$ and $\mathrm{cl}_3(4)=(0,0,2,0)$.
+
+\paragraph{Residue classes.} The local computations use the following description of the classes of the values of a polynomial on a residue class.
+
+\begin{lemma}\label{lem:cresidue}
+Let $p$ be a prime, $k\geq1$, and let $z\in\Z[\omega]$ be non-zero with $z\equiv\zeta\pmod{p^k}$, where $\zeta=\langle A,B\rangle$ with $0\leq A,B<p^k$. Then $\mathrm{cl}_p(z)\in b+D$ for the vector $b$ and the subspace $D$ given as follows.
+\begin{itemize}
+\item[(i)] $p\equiv2\pmod3$. If $\zeta\neq0$, then $b=\mathrm{cl}_p(\zeta)$ and $D=0$. If $\zeta=0$, then $b=0$, and $D$ is $\F_3^2$, or the span of $(1,0)$ if $z\in\Z$.
+\item[(ii)] $p\equiv1\pmod3$. For each root $r$, let $\rho$ be the root of $t^2+t+1$ modulo $p^k$ congruent to $r$. If $A+B\rho\not\equiv0\pmod{p^k}$, the two coordinates of $\mathrm{cl}_{v_r}(z)$ are those of $\mathrm{cl}_{v_r}(\zeta)$; otherwise these two coordinates are arbitrary.
+\item[(iii)] $p=3$, $z\notin\Z$. If $\zeta\neq0$, let $a=v(\zeta)<2k$ be its valuation at $\pi$ and $m=2k-a$. Then $b=\mathrm{cl}_3(\zeta)$, and $D=0$ if $m\geq4$, while $D=D_m$ if $m\leq3$, where $D_1$ is spanned by $(0,1,0,0)$, $(0,0,1,0)$ and $(0,0,0,1)$, $D_2$ by $(0,0,1,0)$ and $(0,0,0,1)$, and $D_3$ by $(0,0,1,1)$. If $\zeta=0$, then $b=0$ and $D=\F_3^4$.
+\item[(iv)] $p=3$, $z\in\Z$, so that $B=0$. If $3^k\nmid A$, let $j=v_3(A)$. Then $b=\mathrm{cl}_3(A)$ and $D=0$ if $k-j\geq2$, while $b=j\,\mathrm{cl}_3(3)$ and $D$ is spanned by $\mathrm{cl}_3(4)$ if $k-j=1$. If $3^k\mid A$, then $b=0$ and $D$ is spanned by $\mathrm{cl}_3(3)$ and $\mathrm{cl}_3(4)$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) If $\zeta\neq0$, then $e=v(z)=v(\zeta)<k$ and $z/p^e\equiv\zeta/p^e\pmod p$, so that $\chi$ is determined. If $z\in\Z$, its unit part is a rational integer, and $\chi=0$. (ii) At $v_r$, $z$ and $\zeta$ are the $p$-adic numbers $A'+B'\omega$ and $A+B\omega$ with $\omega\equiv\rho\pmod{p^k}$, and the argument of (i) applies. (iii) If $\zeta\neq0$, then $v(z)=a$, and $z/\pi^a\equiv\zeta/\pi^a\pmod{\pi^m}$. By Lemma~\ref{lem:cM3}, the class of a unit depends only on its residue modulo $9=\omega\pi^4$; the units congruent to $1$ modulo $\pi^m$ form a subgroup, and a direct enumeration of their residues modulo $9$ shows that their classes form $D_m$. (iv) If $3^k\nmid A$, then $z=3^ju$ with a rational unit $u\equiv A/3^j\pmod{3^{k-j}}$. The class of a rational unit depends only on its residue modulo $9$, the units $\pm1$ are cubes, and the rational units congruent to $1$ modulo $3$ are $4^s$ times a unit congruent to $1$ modulo $9$; hence the classes are as stated, and if $3^k\mid A$ the valuation $j$ is also unknown.
+\end{proof}
+
+\begin{lemma}\label{lem:cenvelope}
+Let $p$ be a prime, and consider vertices $i$ with vectors $b_i$, subspaces $D_i$ and vectors $\gamma_i$, and a set of edges $(i,j)$ with $i<j$ and weights $w_{ij}\in\{1,2\}$. Put $\rho_{ij}=w_{ij}$ and $\rho_{ji}=-w_{ij}$ for the edges, and $\sigma_i=\gamma_i+\sum_j\rho_{ij}b_j$. Suppose that $\theta_p(d,\sigma_i)=0$ for every $i$ and every $d\in D_i$, and that $\theta_p(d,d')=0$ for every edge $(i,j)$ and all $d\in D_i$, $d'\in D_j$. Then
+\[
+\sum_{(i,j)}w_{ij}\theta_p(c_i,c_j)+\sum_i\theta_p(c_i,\gamma_i)=\sum_{(i,j)}w_{ij}\theta_p(b_i,b_j)+\sum_i\theta_p(b_i,\gamma_i)
+\]
+whenever $c_i\in b_i+D_i$ for every $i$. By bilinearity, it suffices to check the hypotheses for $d$ and $d'$ in spanning sets of $D_i$ and $D_j$.
+\end{lemma}
+
+\begin{proof}
+Write $c_i=b_i+d_i$ with $d_i\in D_i$. As $\theta_p$ is bilinear and $\theta_p(u,v)=-\theta_p(v,u)$, the left side equals the right side plus $\sum_i\theta_p(d_i,\sigma_i)+\sum_{(i,j)}w_{ij}\theta_p(d_i,d_j)$, and both sums vanish.
+\end{proof}
+
+\section{The quadratic certificate}
+
+Put $F(x,y)=x^{4}+xy+y^{3}+y+4$, so that \eqref{eq:main} is the equation $F(x,y)=0$. The vertices are the polynomials
+\begin{align*}
+H_{0}&=-y,\\
+H_{1}&=-1,\\
+H_{2}&=x+y^{2}+1,\\
+H_{3}&=-2xy+y^{2}+2y+2,\\
+H_{4}&=2.
+\end{align*}
+There are 3 graphs on these vertices. The edges of the first graph are $\{0,1\}$. The edges of the second graph are $\{2,1\}$. The edges of the third graph are $\{3,4\}$. For a vertex $i$, we write $j\sim_g i$ if $\{i,j\}$ is an edge of the $g$-th graph.
+For every non-constant vertex $i$ and every graph $g$ in which $i$ has a neighbour, Table~\ref{tab:star} gives a positive integer $m_{g,i}$ and polynomials $W_{g,i}$, $A_{g,i}$ and $B_{g,i}$ with integer coefficients such that
+\begin{equation}\label{eq:star}
+m_{g,i}^2\prod_{j\sim_g i}H_j-W_{g,i}^2=A_{g,i}F+B_{g,i}H_i.
+\end{equation}
+For every edge $\{i,j\}$ between two non-constant vertices, Table~\ref{tab:sep} gives a positive integer $k_{ij}$ and polynomials $\alpha_{ij}$, $\beta_{ij}$ and $\gamma_{ij}$ with integer coefficients such that
+\begin{equation}\label{eq:sep}
+\alpha_{ij}F+\beta_{ij}H_i+\gamma_{ij}H_j=k_{ij}.
+\end{equation}
+These identities can be checked by expanding both sides.
+For the signs of the other vertices, we regard $F$ as a polynomial in $y$; it has degree $3$ and leading coefficient $1$, and its discriminant is
+\begin{align*}
+\Delta(x)&=-27x^{8}-216x^{4}-4x^{3}-12x^{2}-12x-436.
+\end{align*}
+For $i\in I=\{0\}$, the vertex $H_i$ has the form $k_iy+r_i(x)$ with a non-zero integer $k_i$, and Table~\ref{tab:phi} lists the polynomial $\varphi_i(x)=k_i^3F\bigl(x,-r_i(x)/k_i\bigr)$, which has integer coefficients.
+
+\section{The cubic certificate}
+
+The certificate consists of 37 polynomials $J_i$ with coefficients in $\Z[\omega]$ and constants $c_i\in\Z[\omega]$, listed in Table~\ref{tab:cvert1}, and of 123 \emph{edges} $(i,j)$ with $i<j$ and weights $w_{ij}\in\{1,2\}$, listed below. For an edge $(i,j)$ we put $\rho_{ij}=w_{ij}$ and $\rho_{ji}=-w_{ij}\bmod 3$, and $\rho_{ij}=0$ if $i$ and $j$ are not joined by an edge.
+The edges $(i,j;w_{ij})$ are $(0,17;1)$, $(0,34;2)$, $(0,35;2)$, $(1,13;1)$, $(1,14;1)$, $(1,20;1)$, $(1,27;1)$, $(1,28;2)$, $(1,29;1)$, $(1,34;1)$, $(2,11;2)$, $(2,12;1)$, $(2,14;1)$, $(2,15;1)$, $(2,17;1)$, $(2,19;2)$, $(2,20;2)$, $(2,23;1)$, $(2,24;2)$, $(2,32;2)$, $(2,33;2)$, $(2,34;1)$, $(3,10;1)$, $(3,15;1)$, $(3,32;1)$, $(3,35;2)$, $(4,12;1)$, $(4,20;1)$, $(4,22;1)$, $(4,28;2)$, $(4,30;1)$, $(4,36;2)$, $(5,20;2)$, $(5,24;1)$, $(5,26;2)$, $(5,28;1)$, $(5,33;2)$, $(6,12;2)$, $(6,13;1)$, $(6,25;1)$, $(6,32;1)$, $(7,9;2)$, $(7,10;1)$, $(7,13;2)$, $(7,16;2)$, $(7,25;1)$, $(7,31;2)$, $(7,32;2)$, $(7,33;1)$, $(8,10;2)$, $(8,28;2)$, $(8,32;2)$, $(8,35;2)$, $(9,23;1)$, $(9,24;2)$, $(9,27;1)$, $(10,22;1)$, $(10,26;1)$, $(10,27;2)$, $(10,29;1)$, $(10,31;1)$, $(11,18;2)$, $(11,23;1)$, $(11,30;2)$, $(11,33;1)$, $(12,17;1)$, $(12,22;1)$, $(12,23;1)$, $(12,32;1)$, $(12,34;1)$, $(13,20;2)$, $(13,21;1)$, $(13,25;2)$, $(13,27;1)$, $(13,29;2)$, $(13,35;2)$, $(14,22;2)$, $(14,30;2)$, $(15,17;1)$, $(15,22;1)$, $(15,23;1)$, $(15,24;1)$, $(16,19;1)$, $(16,21;1)$, $(16,23;2)$, $(16,24;1)$, $(16,30;1)$, $(16,31;1)$, $(16,34;2)$, $(17,30;1)$, $(18,19;1)$, $(18,24;2)$, $(18,25;1)$, $(18,29;2)$, $(18,31;1)$, $(19,22;1)$, $(19,28;1)$, $(19,30;2)$, $(19,32;1)$, $(19,33;2)$, $(20,31;1)$, $(20,35;1)$, $(21,25;1)$, $(21,30;2)$, $(21,33;1)$, $(21,35;1)$, $(22,25;2)$, $(23,28;2)$, $(23,32;2)$, $(23,35;1)$, $(24,25;1)$, $(25,32;1)$, $(25,34;1)$, $(25,36;2)$, $(26,31;1)$, $(27,34;2)$, $(27,36;1)$, $(28,29;2)$, $(28,34;2)$, $(29,33;1)$, $(30,32;2)$, $(31,34;1)$, $(32,36;1)$.
+Let $(\xi,\eta)$ denote $(x,y)$ or $(y,x)$. We call a vertex $i$ \emph{linear} if $J_i=\varepsilon_i(\eta-r_i(\xi))$ for a unit $\varepsilon_i$ of $\Z[\omega]$ and a polynomial $r_i$ with coefficients in $\Z[\omega]$; the last column of Table~\ref{tab:cvert1} gives $\eta=r_i(\xi)$ for the linear vertices. For a linear vertex $i$, we put $f_i(t)=F$ and $g_{ij}(t)=J_j$ evaluated at $\xi=t$, $\eta=r_i(t)$; these are polynomials in $t$ with coefficients in $\Z[\omega]$.
+For every linear vertex $i$, Table~\ref{tab:cstar} gives an integer $D_i\geq1$ and a polynomial $w_i(t)$ with coefficients in $\Z[\omega]$ such that
+\begin{equation}\label{eq:cstarlin}
+D_i^3\,c_i\prod_jg_{ij}^{\rho_{ij}}-w_i^3=f_iQ_i
+\end{equation}
+for a polynomial $Q_i(t)$ with coefficients in $\Z[\omega]$, where $\rho_{ij}\in\{0,1,2\}$; $Q_i$ is the quotient of the division of the left side by $f_i$, and the remainder is zero.
+For every other vertex $i$, Table~\ref{tab:cstar} gives an integer $D_i\geq1$ and polynomials $T_i$, $U_i$ and $V_i$ in $x$ and $y$ with coefficients in $\Z[\omega]$ such that
+\begin{equation}\label{eq:cstar}
+D_i^3\,c_i\prod_jJ_j^{\rho_{ij}}-T_i^3=U_iF+V_iJ_i.
+\end{equation}
+For every edge $(i,j)$ with a linear endpoint, Table~\ref{tab:csep} gives the first linear endpoint $k\in\{i,j\}$ and the factorization of the norm of the resultant $R_{ij}=\operatorname{Res}_t(f_k,g_{kl})$, where $\{k,l\}=\{i,j\}$; it is non-zero.
+These identities can be checked by expanding both sides and by polynomial division, using $\omega^2=-1-\omega$.
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}, so that $F(x,y)=0$; from now on the polynomials denote their values at $(x,y)$.
+\paragraph{Step 1: the values are non-zero.} Checking the $3^2$ residue pairs modulo $3$, we find that $F$ and $H_{3}$ have no common zero modulo $3$, so $H_{3}\neq0$. The other non-constant $H_i$ are non-zero by Step~2. For $i\in\{1,\allowbreak 3,\allowbreak 5,\allowbreak 10,\allowbreak 11,\allowbreak 13,\allowbreak 14,\allowbreak 15,\allowbreak 18,\allowbreak 20,\allowbreak 22,\allowbreak 34,\allowbreak 35\}$, there is no residue pair $(a,b)$ modulo $2$ with $F(a,b)\equiv0$ and $J_i(a,b)\equiv0\pmod{2}$, as one checks for the $2^2$ residue pairs; hence $J_i\neq0$. For $i\in\{0,\allowbreak 4,\allowbreak 6,\allowbreak 7,\allowbreak 12,\allowbreak 16,\allowbreak 17,\allowbreak 21,\allowbreak 23,\allowbreak 24,\allowbreak 25,\allowbreak 28,\allowbreak 31,\allowbreak 36\}$, there is no residue pair $(a,b)$ modulo $3$ with $F(a,b)\equiv0$ and $J_i(a,b)\equiv0\pmod{3}$, as one checks for the $3^2$ residue pairs; hence $J_i\neq0$. For $i\in\{8,\allowbreak 19,\allowbreak 27,\allowbreak 29,\allowbreak 33\}$, there is no residue pair $(a,b)$ modulo $4$ with $F(a,b)\equiv0$ and $J_i(a,b)\equiv0\pmod{4}$, as one checks for the $4^2$ residue pairs; hence $J_i\neq0$. For $i\in\{26,\allowbreak 32\}$, there is no residue pair $(a,b)$ modulo $5$ with $F(a,b)\equiv0$ and $J_i(a,b)\equiv0\pmod{5}$, as one checks for the $5^2$ residue pairs; hence $J_i\neq0$. For $i\in\{9\}$, there is no residue pair $(a,b)$ modulo $7$ with $F(a,b)\equiv0$ and $J_i(a,b)\equiv0\pmod{7}$, as one checks for the $7^2$ residue pairs; hence $J_i\neq0$. For $i\in\{30\}$, there is no residue pair $(a,b)$ modulo $9$ with $F(a,b)\equiv0$ and $J_i(a,b)\equiv0\pmod{9}$, as one checks for the $9^2$ residue pairs; hence $J_i\neq0$. For $i\in\{2\}$, there is no residue pair $(a,b)$ modulo $11$ with $F(a,b)\equiv0$ and $J_i(a,b)\equiv0\pmod{11}$, as one checks for the $11^2$ residue pairs; hence $J_i\neq0$. Also, all $c_i$ are non-zero.
+
+\paragraph{Step 2: signs.} \emph{The sign of $H_{2}$.} Suppose that $H_{2}\leq0$, and put $Y=-H_{2}$, so that $Y\geq0$. Since $H_{2}=x+y^{2}+1$, we have $x=-y^{2}-Y-1$. If $y\geq0$, put $X=y$; if $y\leq-1$, put $X=-1-y$. In both cases $X\geq0$, and substituting into $F$ gives $F(x,y)=G_{2,1}(X,Y)$ in the first case and $F(x,y)=G_{2,2}(X,Y)$ in the second, where
+\begin{align*}
+G_{2,1}(X,Y)&=X^{8}+4X^{6}Y+4X^{6}+6X^{4}Y^{2}+12X^{4}Y+6X^{4}+4X^{2}Y^{3}\\
+&\quad+12X^{2}Y^{2}+12X^{2}Y+4X^{2}-XY+Y^{4}+4Y^{3}+6Y^{2}+4Y+5,\\
+G_{2,2}(X,Y)&=X^{8}+8X^{7}+4X^{6}Y+32X^{6}+24X^{5}Y+80X^{5}+6X^{4}Y^{2}\\
+&\quad+72X^{4}Y+136X^{4}+24X^{3}Y^{2}+128X^{3}Y+160X^{3}+4X^{2}Y^{3}\\
+&\quad+48X^{2}Y^{2}+144X^{2}Y+128X^{2}+8XY^{3}+48XY^{2}+97XY+64X\\
+&\quad+Y^{4}+8Y^{3}+24Y^{2}+33Y+20.
+\end{align*}
+Expanding $G_{2,1}(1+X,1+Y)$, and, for $i=0$, $G_{2,1}(i,1+Y)$ and $G_{2,1}(1+X,i)$, gives in each case coefficients of one sign and a non-zero constant term; moreover $G_{2,1}(i,j)\neq0$ for $i=j=0$. Hence $G_{2,1}(X,Y)\neq0$ for all $X,Y\geq0$. All coefficients of $G_{2,2}$ have the same sign and its constant term is non-zero, so $G_{2,2}(X,Y)\neq0$ for all $X,Y\geq0$. In both cases $F(x,y)\neq0$, a contradiction. Hence $H_{2}>0$.
+
+\emph{The signs of $H_i$ for $i\in I$.} If $\Delta(x)<0$, then by Lemma~\ref{lem:cubic}, applied to $F(x,z)$ as a polynomial in $z$, $y$ is its only real root, and $F(x,z)$ has the sign of $(z-y)$ for $z\neq y$. For $i\in I$ and $z=-r_i(x)/k_i$, we have $z-y=-H_i/k_i$, so if moreover $\varphi_i(x)=k_i^3F(x,z)\neq0$, then $H_i\neq0$, and $H_i$ has the sign of $-\varphi_i(x)$. Expanding $\Delta(0+t)$ and the $\varphi_i(0+t)$ as polynomials in $t$ gives in each case coefficients of one sign and a non-zero constant term, and likewise for $\Delta(-1-t)$ and the $\varphi_i(-1-t)$. Hence, for $x\geq0$ and for $x\leq-1$, we have $\Delta(x)<0$, and $\varphi_i(x)$ is non-zero and has the sign of the constant term of the corresponding expansion; the resulting signs of the $H_i$ are listed in Table~\ref{tab:phi}. 
+
+For a place $v$, put $B^{(g)}_v=\prod_{\{i,j\}}(H_i,H_j)_v$, the product over the edges of the $g$-th graph. By Theorem~\ref{thm:hilbert}(i), $(H_i,H_j)_\infty=-1$ exactly when $H_i<0$ and $H_j<0$. Here $H_i>0$ for $i\in\{2,\allowbreak 4\}$ and $H_i<0$ for $i\in\{1\}$. The other signs are given in Table~\ref{tab:phi} for $x\geq0$ and for $x\leq-1$. In both cases and for either sign of $H_{3}$, counting the edges of each graph whose two values are negative gives $(B^{(g)}_\infty)_g=(1,1,1)$.
+
+\paragraph{Step 3: the quadratic graphs at the odd primes outside $S$.} Let $S=\{2,\allowbreak 3,\allowbreak 5,\allowbreak 7,\allowbreak 3313\}$. It contains $2$ and the primes dividing the $m_{g,i}$, the $k_{ij}$ and the constant vertices. Let $p\notin S$ be an odd prime; we show that $B^{(g)}_p=1$ for every $g$. For an edge $\{i,j\}$ of the $g$-th graph such that $p$ divides neither $H_i$ nor $H_j$, $(H_i,H_j)_p=1$ by Theorem~\ref{thm:hilbert}(ii). Now let $i$ be a vertex with $p\mid H_i$. Then $H_i$ is not constant, as $p\notin S$. For every edge $\{i,j\}$ of the $g$-th graph, $p\nmid H_j$: if $H_j$ is constant, because $p\notin S$, and otherwise by \eqref{eq:sep}, because $p\nmid k_{ij}$. In particular, no edge has both values divisible by $p$. By Theorem~\ref{thm:hilbert}(v), the edges at $i$ contribute $\prod_{j\sim_g i}(H_i,H_j)_p=(H_i,\Pi_i)_p$, where $\Pi_i=\prod_{j\sim_g i}H_j$ is not divisible by $p$. By \eqref{eq:star}, $m_{g,i}^2\Pi_i\equiv W_{g,i}^2\pmod p$, and $p\nmid m_{g,i}$, so $\Pi_i$ is a non-zero square modulo $p$, and $(H_i,\Pi_i)_p=(\Pi_i,H_i)_p=1$ by Lemma~\ref{lem:square}. Hence $B^{(g)}_p=1$.
+
+\paragraph{Step 4: cubic reciprocity.} For every place $v$ of $K$, put
+\begin{equation}\label{eq:cB}
+\mathcal B_v=\sum_{(i,j)}w_{ij}\,\theta_v(J_i,J_j)+\sum_i\theta_v(J_i,c_i)\in\Z/3\Z,
+\end{equation}
+the first sum over the edges, and, for a rational prime $p$, put $\mathcal B_p=\sum_{v\mid p}\mathcal B_v$. Applying (H3) to every pair $(J_i,J_j)$ with an edge, multiplied by $w_{ij}$, and to every pair $(J_i,c_i)$, and adding, we find that $\mathcal B_v=0$ for all but finitely many $v$ and $\sum_pB_p=0$, as the complex place contributes $0$. By (H1) and the definition of $\mathrm{cl}_p$, $\mathcal B_p=\sum_{(i,j)}w_{ij}\theta_p(\mathrm{cl}_p(J_i),\mathrm{cl}_p(J_j))+\sum_i\theta_p(\mathrm{cl}_p(J_i),\mathrm{cl}_p(c_i))$, where $\theta_p$ is the form of Lemma~\ref{lem:cM3} if $p=3$.
+
+\paragraph{Step 5: the cubic certificates at the primes outside $S$.} The set $S$ also contains $3$ and the primes dividing the norms of the constants $c_i$, of the $D_i$, of the $R_{ij}$. Let $p\notin S$, and let $v$ be a place above $p$, with residue field $k_v$; then all these numbers are units at $v$. First, no edge $(i,j)$ has both values divisible by $v$. Indeed, suppose that $v$ divides $J_i$ and $J_j$. If $R_{ij}$ is defined, let $k$ be the linear endpoint used for it and $\{k,l\}=\{i,j\}$, and put $t=\xi$. As $J_k=\varepsilon_k(\eta-r_k(\xi))$, we have $\eta\equiv r_k(t)$ modulo $v$, hence $f_k(t)\equiv F(x,y)=0$ and $g_{kl}(t)\equiv J_l\equiv0$ modulo $v$. The resultant can be written as $R_{ij}=Af_k+Cg_{kl}$ with polynomials $A$ and $C$ with coefficients in $\Z[\omega]$, so $v$ divides $R_{ij}$, a contradiction. By (H2), a term of \eqref{eq:cB} in which all arguments are units vanishes. Now let $v$ divide $J_i$. Collecting the terms of \eqref{eq:cB} which contain $J_i$, and using (H1) and $\rho_{ji}=-w_{ij}$ for the edges $(j,i)$ with $j<i$, we obtain $\theta_v(J_i,\Pi_i)$ with $\Pi_i=c_i\prod_jJ_j^{\rho_{ij}}$, which is a unit. We claim that $D_i^3\Pi_i\equiv W^3$ modulo $v$ for some $W\in\Z[\omega]$. If $i$ is linear, put $t=\xi$; then $g_{ij}(t)\equiv J_j$ and $f_i(t)\equiv0$ modulo $v$ as above, and \eqref{eq:cstarlin} gives the claim with $W=w_i(t)$. Otherwise, \eqref{eq:cstar} gives the claim with $W=T_i(x,y)$. Hence the reduction of $\Pi_i$ is a non-zero cube in $k_v$, $\chi(\Pi_i)=0$, and $\theta_v(J_i,\Pi_i)=v(J_i)\chi(\Pi_i)=0$ by (H2). Hence $\mathcal B_v=0$, and $\mathcal B_p=0$.
+
+\paragraph{Step 6: the primes in $S$.} Let $p\in S$, and suppose that $x\equiv a$ and $y\equiv b\pmod{p^k}$. Lemma~\ref{lem:residue} gives, for every vertex $H_i$ of the quadratic graphs, a vector $b_i$ and a subspace $D_i$ with $c_p(H_i)\in b_i+D_i$, and Lemma~\ref{lem:cresidue} gives the analogous data for the values $J_i$ of the cubic certificate. If the hypotheses of Lemma~\ref{lem:envelope} hold for every quadratic graph and those of Lemma~\ref{lem:cenvelope} hold for every cubic certificate, then $(B^{(g)}_p)_g$ and $\mathcal B_p$ are determined by $a$, $b$ and $k$. Starting from the solutions of \eqref{eq:main} modulo $p$, we refine a residue class $x\equiv a$, $y\equiv b\pmod{p^k}$ to the classes modulo $p^{k+1}$ that contain solutions of \eqref{eq:main} modulo $p^{k+1}$, until all these hypotheses hold, or until no solution remains. Table~\ref{tab:local} lists the resulting terminal classes together with the joint value $(\mathcal B_p;(B^{(g)}_p)_g)$; every integer solution lies in one of them. For $p=3313$, every residue class modulo $p$ that contains a solution of \eqref{eq:main} modulo $p$ is already terminal, with joint value $(0;1,1,1)$ for $p=3313$; these classes are not listed in Table~\ref{tab:local}. The possible joint values are: for $p=2$, $(1;-1,-1,-1),\allowbreak (1;-1,-1,1),\allowbreak (1;1,1,-1),\allowbreak (2;-1,-1,-1),\allowbreak (2;1,1,1)$; for $p=3$, $(2;1,1,1)$; for $p=5$, $(0;1,1,1)$; for $p=7$, $(0;1,1,1)$; for $p=3313$, $(0;1,1,1)$.
+
+\paragraph{Step 7: contradiction.} By Steps~4 and~5, $\sum_{p\in S}\mathcal B_p=0$. By Theorem~\ref{thm:hilbert}(iv) and Step~3, $(\prod_{p\in S}B^{(g)}_p)_g=(B^{(g)}_\infty)_g=(1,1,1)$ by Step~2. But by Step~6, the pair $(\textstyle\sum_{p\in S}\mathcal B_p;(\prod_{p\in S}B^{(g)}_p)_g)$ lies in the set consisting of the pairs $(0;-1,-1,-1)$, $(0;-1,-1,1)$, $(0;1,1,-1)$, $(1;-1,-1,-1)$, and $(1;1,1,1)$, which does not contain $(0;1,1,1)$. This contradiction proves the theorem.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\bibitem{Se} J.-P. Serre, \emph{A Course in Arithmetic}, Graduate Texts in Mathematics 7, Springer, New York, 1973.
+\bibitem{N} J.~Neukirch, \emph{Algebraic Number Theory}, Grundlehren der mathematischen Wissenschaften 322, Springer, Berlin, 1999.
+\end{thebibliography}
+
+\clearpage
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:star}.}\label{tab:star}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\multicolumn{2}{@{}l}{$g=1$, $i=0$, $m=2$, neighbours $1$}\\
+$W$ & $x^{2}$\\
+$A$ & $-1$\\
+$B$ & $-x-y^{2}-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=2$, $m=2$, neighbours $1$}\\
+$W$ & $x^{2}$\\
+$A$ & $-1$\\
+$B$ & $y$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=3$, $i=3$, $m=16565$, neighbours $4$}\\
+$W$ & $-454x^{7}-4406x^{6}+3717x^{5}+11689x^{4}-4096x^{3}-22516x^{2}+8960x+30456$\\
+$A$ & $-206116x^{10}-4000648x^{9}-16037800x^{8}+206116x^{7}y+43367816x^{7}$\\
+ & $\quad +206116x^{6}y^{3}+4206764x^{6}y+86292675x^{6}+4000648x^{5}y^{3}+20038448x^{5}y$\\
+ & $\quad -127431914x^{5}+16037800x^{4}y^{3}-206116x^{4}y^{2}-27330016x^{4}y$\\
+ & $\quad -232307169x^{4}+6183480x^{3}y^{4}+90652984x^{3}y^{3}+290042288x^{3}y^{2}$\\
+ & $\quad +18862853x^{3}y+196278536x^{3}-206116x^{2}y^{6}-15009240x^{2}y^{4}$\\
+ & $\quad -227733651x^{2}y^{3}-452721180x^{2}y^{2}-419490793x^{2}y+216852956x^{2}$\\
+ & $\quad -4000648xy^{6}-6595712xy^{5}-187289120xy^{4}-450861330xy^{3}-752450680xy^{2}$\\
+ & $\quad -183105669xy-110600200x-16037800y^{6}+7214060y^{5}+201872256y^{4}+745165301y^{3}$\\
+ & $\quad +1119412883y^{2}+939074641y+171675428$\\
+$B$ & $3297856x^{6}y^{3}+67010400x^{6}y^{2}+147227584x^{6}y+74673904x^{6}$\\
+ & $\quad +1648928x^{5}y^{4}+33505200x^{5}y^{3}+73613792x^{5}y^{2}+37336952x^{5}y$\\
+ & $\quad +824464x^{4}y^{5}+15103672x^{4}y^{4}-1645088x^{4}y^{3}-155460916x^{4}y^{2}$\\
+ & $\quad -268920380x^{4}y-194008528x^{4}+412232x^{3}y^{6}+8376300x^{3}y^{5}$\\
+ & $\quad +21701304x^{3}y^{4}+76344638x^{3}y^{3}+141856558x^{3}y^{2}+33675068x^{3}y$\\
+ & $\quad -66065936x^{3}+206116x^{2}y^{7}+7589064x^{2}y^{6}+64965676x^{2}y^{5}$\\
+ & $\quad +208858187x^{2}y^{4}+122232274x^{2}y^{3}+433144520x^{2}y^{2}+522269264x^{2}y$\\
+ & $\quad +211900584x^{2}+4000648xy^{7}+30670016xy^{6}+59406920xy^{5}+7430230xy^{4}$\\
+ & $\quad -31398646xy^{3}-133115328xy^{2}-145376515xy-51685360x+16037800y^{7}$\\
+ & $\quad -39289660y^{6}-139330736y^{5}-330987369y^{4}-409505169y^{3}-1010743890y^{2}$\\
+ & $\quad -1431251397y-532735599$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:sep}.}\label{tab:sep}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\end{longtable}
+\endgroup
+
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rrlcc@{}}
+\caption{The polynomials $\varphi_i(x)=k_i^3F\bigl(x,-r_i(x)/k_i\bigr)$ of Step~2 and the signs of $H_i$ for $x\geq0$ and for $x\leq-1$.}\label{tab:phi}\\
+\hline $i$ & $k_i$ & $\varphi_i(x)$ & $x\geq0$ & $x\leq-1$\\\hline\endfirsthead\hline $i$ & $k_i$ & $\varphi_i(x)$ & $x\geq0$ & $x\leq-1$\\\hline\endhead\hline\endfoot
+0 & $-1$ & $-x^{4}-4$ & $+$ & $+$\\
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rlll@{}}
+\caption{The polynomials $J_i$, the constants $c_i$ and, for the linear vertices, $\eta=r_i(\xi)$. Here $\langle A,B\rangle=A+B\omega$.}\label{tab:cvert1}\\
+\hline $i$ & $J_i$ & $c_i$ & chart\\\hline\endfirsthead\hline $i$ & $J_i$ & $c_i$ & chart\\\hline\endhead\hline\endfoot
+0 & $\langle -y,0\rangle$ & $\langle -2,-2\rangle$ & $y=\langle 0,0\rangle$\\
+1 & $\langle -y+1,1\rangle$ & $\langle 1,0\rangle$ & $y=\langle 1,1\rangle$\\
+2 & $\langle -y+1,0\rangle$ & $\langle 0,1\rangle$ & $y=\langle 1,0\rangle$\\
+3 & $\langle -y,-1\rangle$ & $\langle 3,-5\rangle$ & $y=\langle 0,-1\rangle$\\
+4 & $\langle -y-1,0\rangle$ & $\langle 0,4\rangle$ & $y=\langle -1,0\rangle$\\
+5 & $\langle -y-1,-1\rangle$ & $\langle 0,-3\rangle$ & $y=\langle -1,-1\rangle$\\
+6 & $\langle -y-1,-2\rangle$ & $\langle -20,12\rangle$ & $y=\langle -1,-2\rangle$\\
+7 & $\langle -y+2,2\rangle$ & $\langle -12,0\rangle$ & $y=\langle 2,2\rangle$\\
+8 & $\langle -y-2,0\rangle$ & $\langle 0,-21\rangle$ & $y=\langle -2,0\rangle$\\
+9 & $\langle x+1,0\rangle$ & $\langle -12,0\rangle$ & $x=\langle -1,0\rangle$\\
+10 & $\langle x,1\rangle$ & $\langle -3,0\rangle$ & $x=\langle 0,-1\rangle$\\
+11 & $\langle x,-1\rangle$ & $\langle -1,-1\rangle$ & $x=\langle 0,1\rangle$\\
+12 & $\langle x-1,0\rangle$ & $\langle -5,3\rangle$ & $x=\langle 1,0\rangle$\\
+13 & $\langle x-1,-1\rangle$ & $\langle 0,1\rangle$ & $x=\langle 1,1\rangle$\\
+14 & $\langle x+2,1\rangle$ & $\langle -1,2\rangle$ & $x=\langle -2,-1\rangle$\\
+15 & $\langle x+1,-1\rangle$ & $\langle -8,-3\rangle$ & $x=\langle -1,1\rangle$\\
+16 & $\langle x+2,2\rangle$ & $\langle 16,20\rangle$ & $x=\langle -2,-2\rangle$\\
+17 & $\langle -y,x\rangle$ & $\langle -2,-2\rangle$ & $y=\langle 0,x\rangle$\\
+18 & $\langle x-y+1,1\rangle$ & $\langle 0,1\rangle$ & $y=\langle x+1,1\rangle$\\
+19 & $\langle x-y+1,x\rangle$ & $\langle 1,2\rangle$ & $y=\langle x+1,x\rangle$\\
+20 & $\langle x-y,1\rangle$ & $\langle -4,-4\rangle$ & $y=\langle x,1\rangle$\\
+21 & $\langle -x-y-1,-x\rangle$ & $\langle 4,0\rangle$ & $y=\langle -x-1,-x\rangle$\\
+22 & $\langle x-y-1,-1\rangle$ & $\langle 1,0\rangle$ & $y=\langle x-1,-1\rangle$\\
+23 & $\langle x-y,-y\rangle$ & $\langle 4,-4\rangle$ & $y=\langle 0,-x\rangle$\\
+24 & $\langle x,-y\rangle$ & $\langle 2,0\rangle$ & $y=\langle -x,-x\rangle$\\
+25 & $\langle x,y\rangle$ & $\langle 6,6\rangle$ & $y=\langle x,x\rangle$\\
+26 & $\langle x+y,0\rangle$ & $\langle -2,-2\rangle$ & $y=\langle -x,0\rangle$\\
+27 & $\langle x+1,-y+1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x,-x-1\rangle$\\
+28 & $\langle x+y+1,y+1\rangle$ & $\langle 4,0\rangle$ & $y=\langle -1,x\rangle$\\
+29 & $\langle x-y+2,-y+1\rangle$ & $\langle 1,0\rangle$ & $y=\langle 1,-x-1\rangle$\\
+30 & $\langle x+y+2,0\rangle$ & $\langle -12,0\rangle$ & $y=\langle -x-2,0\rangle$\\
+31 & $\langle -y,x^{2}\rangle$ & $\langle 0,-6\rangle$ & $y=\langle 0,x^{2}\rangle$\\
+32 & $\langle x^{2}-x-y+1,0\rangle$ & $\langle -1,-1\rangle$ & $y=\langle x^{2}-x+1,0\rangle$\\
+33 & $\langle x-y-1,x^{2}+x\rangle$ & $\langle -1,-1\rangle$ & $y=\langle x-1,x^{2}+x\rangle$\\
+34 & $\langle -x^{2}-y-1,-x^{2}+1\rangle$ & $\langle 1,2\rangle$ & $y=\langle -x^{2}-1,-x^{2}+1\rangle$\\
+35 & $\langle -y-2,x^{2}-1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -2,x^{2}-1\rangle$\\
+36 & $\langle y^{2}+2y+1,-x^{2}+xy+2y+2\rangle$ & $\langle -1,-1\rangle$ & --\\
+\end{longtable}
+\endgroup
+
+\begingroup\scriptsize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:cstarlin} and \eqref{eq:cstar}; the entry $j{:}e$ means $\rho_{ij}=e\neq0$.}\label{tab:cstar}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=0$, $D_i=2$, $\rho_{ij}$: $17{:}1, \allowbreak 34{:}2, \allowbreak 35{:}2$}\\
+$w_i$ & $\langle t^{3},$\\
+ & $\quad 0\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=1$, $D_i=1$, $\rho_{ij}$: $13{:}1, \allowbreak 14{:}1, \allowbreak 20{:}1, \allowbreak 27{:}1, \allowbreak 28{:}2, \allowbreak 29{:}1, \allowbreak 34{:}1$}\\
+$w_i$ & $\langle 2t^{2},$\\
+ & $\quad -t^{3}-3\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=2$, $D_i=1$, $\rho_{ij}$: $11{:}2, \allowbreak 12{:}1, \allowbreak 14{:}1, \allowbreak 15{:}1, \allowbreak 17{:}1, \allowbreak 19{:}2, \allowbreak 20{:}2, \allowbreak 23{:}1, \allowbreak 24{:}2, \allowbreak 32{:}2, \allowbreak 33{:}2, \allowbreak 34{:}1$}\\
+$w_i$ & $\langle -12t-36,$\\
+ & $\quad -4t^{3}+4t^{2}-16t-24\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=3$, $D_i=1$, $\rho_{ij}$: $10{:}1, \allowbreak 15{:}1, \allowbreak 32{:}1, \allowbreak 35{:}2$}\\
+$w_i$ & $\langle 2t^{2}+6,$\\
+ & $\quad -t^{2}+4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=4$, $D_i=1$, $\rho_{ij}$: $12{:}1, \allowbreak 20{:}1, \allowbreak 22{:}1, \allowbreak 28{:}2, \allowbreak 30{:}1, \allowbreak 36{:}2$}\\
+$w_i$ & $\langle 2t^{2}+2t,$\\
+ & $\quad 2t^{2}+2t\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=5$, $D_i=1$, $\rho_{ij}$: $20{:}2, \allowbreak 24{:}1, \allowbreak 26{:}2, \allowbreak 28{:}1, \allowbreak 33{:}2$}\\
+$w_i$ & $\langle 0,$\\
+ & $\quad -3t^{2}+3\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=6$, $D_i=1$, $\rho_{ij}$: $12{:}2, \allowbreak 13{:}1, \allowbreak 25{:}1, \allowbreak 32{:}1$}\\
+$w_i$ & $\langle 4t-4,$\\
+ & $\quad 6t-6\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=7$, $D_i=1$, $\rho_{ij}$: $9{:}2, \allowbreak 10{:}1, \allowbreak 13{:}2, \allowbreak 16{:}2, \allowbreak 25{:}1, \allowbreak 31{:}2, \allowbreak 32{:}2, \allowbreak 33{:}1$}\\
+$w_i$ & $\langle -12t^{3}-6t^{2}+18t+12,$\\
+ & $\quad -6t^{3}-24t^{2}+12t+12\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=8$, $D_i=1$, $\rho_{ij}$: $10{:}2, \allowbreak 28{:}2, \allowbreak 32{:}2, \allowbreak 35{:}2$}\\
+$w_i$ & $\langle 21,$\\
+ & $\quad 21\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=9$, $D_i=1$, $\rho_{ij}$: $7{:}1, \allowbreak 23{:}1, \allowbreak 24{:}2, \allowbreak 27{:}1$}\\
+$w_i$ & $\langle 2t^{2}-2t,$\\
+ & $\quad -2t-4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=10$, $D_i=1$, $\rho_{ij}$: $3{:}2, \allowbreak 7{:}2, \allowbreak 8{:}1, \allowbreak 22{:}1, \allowbreak 26{:}1, \allowbreak 27{:}2, \allowbreak 29{:}1, \allowbreak 31{:}1$}\\
+$w_i$ & $\langle t^{2}-2t+7,$\\
+ & $\quad -t^{2}-4t-1\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=11$, $D_i=1$, $\rho_{ij}$: $2{:}1, \allowbreak 18{:}2, \allowbreak 23{:}1, \allowbreak 30{:}2, \allowbreak 33{:}1$}\\
+$w_i$ & $\langle t^{2}+t,$\\
+ & $\quad -t-3\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=12$, $D_i=1$, $\rho_{ij}$: $2{:}2, \allowbreak 4{:}2, \allowbreak 6{:}1, \allowbreak 17{:}1, \allowbreak 22{:}1, \allowbreak 23{:}1, \allowbreak 32{:}1, \allowbreak 34{:}1$}\\
+$w_i$ & $\langle t^{2}+9t+14,$\\
+ & $\quad -2t^{2}+3t+7\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=13$, $D_i=1$, $\rho_{ij}$: $1{:}2, \allowbreak 6{:}2, \allowbreak 7{:}1, \allowbreak 20{:}2, \allowbreak 21{:}1, \allowbreak 25{:}2, \allowbreak 27{:}1, \allowbreak 29{:}2, \allowbreak 35{:}2$}\\
+$w_i$ & $\langle 7t^{2}-12t+17,$\\
+ & $\quad -t^{2}+13\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=14$, $D_i=1$, $\rho_{ij}$: $1{:}2, \allowbreak 2{:}2, \allowbreak 22{:}2, \allowbreak 30{:}2$}\\
+$w_i$ & $\langle 2t^{2}-t+3,$\\
+ & $\quad t^{2}-t-4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=15$, $D_i=1$, $\rho_{ij}$: $2{:}2, \allowbreak 3{:}2, \allowbreak 17{:}1, \allowbreak 22{:}1, \allowbreak 23{:}1, \allowbreak 24{:}1$}\\
+$w_i$ & $\langle -3t^{2}+5t-2,$\\
+ & $\quad -2t^{2}+t+1\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=16$, $D_i=1$, $\rho_{ij}$: $7{:}1, \allowbreak 19{:}1, \allowbreak 21{:}1, \allowbreak 23{:}2, \allowbreak 24{:}1, \allowbreak 30{:}1, \allowbreak 31{:}1, \allowbreak 34{:}2$}\\
+$w_i$ & $\langle 2t^{2}-36t-8,$\\
+ & $\quad -8t^{2}-24t+32\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=17$, $D_i=1$, $\rho_{ij}$: $0{:}2, \allowbreak 2{:}2, \allowbreak 12{:}2, \allowbreak 15{:}2, \allowbreak 30{:}1$}\\
+$w_i$ & $\langle 2t+4,$\\
+ & $\quad 2t\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=18$, $D_i=1$, $\rho_{ij}$: $11{:}1, \allowbreak 19{:}1, \allowbreak 24{:}2, \allowbreak 25{:}1, \allowbreak 29{:}2, \allowbreak 31{:}1$}\\
+$w_i$ & $\langle -2t^{3}-2t^{2}+t+1,$\\
+ & $\quad -t^{3}-3t^{2}-2t\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=19$, $D_i=1$, $\rho_{ij}$: $2{:}1, \allowbreak 16{:}2, \allowbreak 18{:}2, \allowbreak 22{:}1, \allowbreak 28{:}1, \allowbreak 30{:}2, \allowbreak 32{:}1, \allowbreak 33{:}2$}\\
+$w_i$ & $\langle -t^{3}+15t^{2}+12t+12,$\\
+ & $\quad 13t^{3}+15t^{2}-12\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=20$, $D_i=1$, $\rho_{ij}$: $1{:}2, \allowbreak 2{:}1, \allowbreak 4{:}2, \allowbreak 5{:}1, \allowbreak 13{:}1, \allowbreak 31{:}1, \allowbreak 35{:}1$}\\
+$w_i$ & $\langle -4t^{2}+6t-2,$\\
+ & $\quad 2t^{3}-6t^{2}+2t+2\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=21$, $D_i=1$, $\rho_{ij}$: $13{:}2, \allowbreak 16{:}2, \allowbreak 25{:}1, \allowbreak 30{:}2, \allowbreak 33{:}1, \allowbreak 35{:}1$}\\
+$w_i$ & $\langle 2t^{2}+4,$\\
+ & $\quad -t^{3}-4t^{2}-t+2\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=22$, $D_i=1$, $\rho_{ij}$: $4{:}2, \allowbreak 10{:}2, \allowbreak 12{:}2, \allowbreak 14{:}1, \allowbreak 15{:}2, \allowbreak 19{:}2, \allowbreak 25{:}2$}\\
+$w_i$ & $\langle t^{3}-3t+4,$\\
+ & $\quad 3t^{3}-t^{2}+2t+2\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=23$, $D_i=1$, $\rho_{ij}$: $2{:}2, \allowbreak 9{:}2, \allowbreak 11{:}2, \allowbreak 12{:}2, \allowbreak 15{:}2, \allowbreak 16{:}1, \allowbreak 28{:}2, \allowbreak 32{:}2, \allowbreak 35{:}1$}\\
+$w_i$ & $\langle 12t^{3}+22t^{2}+32t+34,$\\
+ & $\quad -6t^{3}+8t^{2}+46t+56\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=24$, $D_i=1$, $\rho_{ij}$: $2{:}1, \allowbreak 5{:}2, \allowbreak 9{:}1, \allowbreak 15{:}2, \allowbreak 16{:}2, \allowbreak 18{:}1, \allowbreak 25{:}1$}\\
+$w_i$ & $\langle 2t^{3}+2t^{2}-4,$\\
+ & $\quad 2t^{3}+4t^{2}+2t-8\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=25$, $D_i=1$, $\rho_{ij}$: $6{:}2, \allowbreak 7{:}2, \allowbreak 13{:}1, \allowbreak 18{:}2, \allowbreak 21{:}2, \allowbreak 22{:}1, \allowbreak 24{:}2, \allowbreak 32{:}1, \allowbreak 34{:}1, \allowbreak 36{:}2$}\\
+$w_i$ & $\langle 8t^{3}+68t^{2}+100t+64,$\\
+ & $\quad 40t^{3}+52t^{2}+20t-88\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=26$, $D_i=1$, $\rho_{ij}$: $5{:}1, \allowbreak 10{:}2, \allowbreak 31{:}1$}\\
+$w_i$ & $\langle -t^{2}+t+2,$\\
+ & $\quad -t^{2}+t+2\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=27$, $D_i=1$, $\rho_{ij}$: $1{:}2, \allowbreak 9{:}2, \allowbreak 10{:}1, \allowbreak 13{:}2, \allowbreak 34{:}2, \allowbreak 36{:}1$}\\
+$w_i$ & $\langle 2t^{3}-3t+5,$\\
+ & $\quad 2t^{3}+5t^{2}-2t+1\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=28$, $D_i=1$, $\rho_{ij}$: $1{:}1, \allowbreak 4{:}1, \allowbreak 5{:}2, \allowbreak 8{:}1, \allowbreak 19{:}2, \allowbreak 23{:}1, \allowbreak 29{:}2, \allowbreak 34{:}2$}\\
+$w_i$ & $\langle 12t^{3}+34t^{2}+12t+8,$\\
+ & $\quad 24t^{2}+14t-4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=29$, $D_i=1$, $\rho_{ij}$: $1{:}2, \allowbreak 10{:}2, \allowbreak 13{:}1, \allowbreak 18{:}1, \allowbreak 28{:}1, \allowbreak 33{:}1$}\\
+$w_i$ & $\langle -3t^{2}-6t,$\\
+ & $\quad t^{3}+t^{2}-4t-4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=30$, $D_i=1$, $\rho_{ij}$: $4{:}2, \allowbreak 11{:}1, \allowbreak 14{:}1, \allowbreak 16{:}2, \allowbreak 17{:}2, \allowbreak 19{:}1, \allowbreak 21{:}1, \allowbreak 32{:}2$}\\
+$w_i$ & $\langle 20t^{3}+56t^{2}+84t+36,$\\
+ & $\quad -20t^{3}-56t^{2}-84t-36\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=31$, $D_i=1$, $\rho_{ij}$: $7{:}1, \allowbreak 10{:}2, \allowbreak 16{:}2, \allowbreak 18{:}2, \allowbreak 20{:}2, \allowbreak 26{:}2, \allowbreak 34{:}1$}\\
+$w_i$ & $\langle 4t^{5}+10t^{4}-4t^{3}-10t^{2}+24,$\\
+ & $\quad -4t^{5}+8t^{4}+4t^{3}-2t^{2}-12t+12\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=32$, $D_i=81$, $\rho_{ij}$: $2{:}1, \allowbreak 3{:}2, \allowbreak 6{:}2, \allowbreak 7{:}1, \allowbreak 8{:}1, \allowbreak 12{:}2, \allowbreak 19{:}2, \allowbreak 23{:}1, \allowbreak 25{:}2, \allowbreak 30{:}1, \allowbreak 36{:}1$}\\
+$w_i$ & $\langle -324t^{4}+243t^{3}-1134t^{2}+1701t-2430,$\\
+ & $\quad -810t^{5}+2754t^{4}-4212t^{3}+4050t^{2}-2430t+1944\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=33$, $D_i=1$, $\rho_{ij}$: $2{:}1, \allowbreak 5{:}1, \allowbreak 7{:}2, \allowbreak 11{:}2, \allowbreak 19{:}1, \allowbreak 21{:}2, \allowbreak 29{:}2$}\\
+$w_i$ & $\langle t^{5}+3t^{4}-2t^{3}+4t^{2}+4,$\\
+ & $\quad t^{5}-3t^{3}+t^{2}-3t+6\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=34$, $D_i=1$, $\rho_{ij}$: $0{:}1, \allowbreak 1{:}2, \allowbreak 2{:}2, \allowbreak 12{:}2, \allowbreak 16{:}1, \allowbreak 25{:}2, \allowbreak 27{:}1, \allowbreak 28{:}1, \allowbreak 31{:}2$}\\
+$w_i$ & $\langle -2t^{5}-4t^{4}-13t^{3}+19,$\\
+ & $\quad -4t^{5}-2t^{4}-2t^{3}+15t^{2}+9t+5\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=35$, $D_i=1$, $\rho_{ij}$: $0{:}1, \allowbreak 3{:}1, \allowbreak 8{:}1, \allowbreak 13{:}1, \allowbreak 20{:}2, \allowbreak 21{:}2, \allowbreak 23{:}2$}\\
+$w_i$ & $\langle 2t^{5}-3t^{3}+5t^{2}-2t-2,$\\
+ & $\quad 2t^{5}-t^{4}+3t^{3}+3t^{2}-3t+3\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=36$, $D_i=16$, $\rho_{ij}$: $4{:}1, \allowbreak 25{:}1, \allowbreak 27{:}2, \allowbreak 32{:}2$}\\
+$T$ & $\langle -3x^{7}-10x^{6}-12x^{5}-11x^{4}-31x^{3}-13x^{2}-36x-36,$\\
+ & $\quad x^{7}-13x^{6}-14x^{5}-29x^{4}-x^{3}-52x^{2}-52x-44\rangle$\\
+$U$ & $\langle 17x^{17}+477x^{16}+645x^{15}+53x^{14}y^{2}+14x^{14}+297x^{13}y^{2}-10383x^{13}$\\
+ & $\quad -1118x^{12}y^{2}-23693x^{12}+36x^{11}y^{4}-9202x^{11}y^{2}-3344x^{11}y-26080x^{11}$\\
+ & $\quad -231x^{10}y^{4}-22920x^{10}y^{2}-55832x^{10}y+154252x^{10}-3079x^{9}y^{4}+83363x^{9}y^{2}$\\
+ & $\quad -69704x^{9}y-23195x^{9}-2804x^{8}y^{4}+531347x^{8}y^{2}+1175264x^{8}y-5086164x^{8}$\\
+ & $\quad +72981x^{7}y^{4}-1325111x^{7}y^{2}+2768456x^{7}y-10559881x^{7}+194355x^{6}y^{4}$\\
+ & $\quad -14566059x^{6}y^{2}-32311832x^{6}y+109165745x^{6}-1530776x^{5}y^{4}+23586591x^{5}y^{2}$\\
+ & $\quad -135252016x^{5}y+391202534x^{5}-6648052x^{4}y^{4}+460684230x^{4}y^{2}+674912992x^{4}y$\\
+ & $\quad +32977950199x^{4}+35286053x^{3}y^{4}+74187349x^{3}y^{2}-30624414514x^{3}y-55896275313x^{3}$\\
+ & $\quad +243292937x^{2}y^{4}+20097067724x^{2}y^{2}+26681446322x^{2}y+472648414719x^{2}$\\
+ & $\quad -596853847xy^{4}-97105059194xy^{2}-614458005167xy+7058039843x-7773002558y^{4}$\\
+ & $\quad -33013220397y^{3}+275342966558y^{2}-428994927127y-729578150148,$\\
+ & $\quad -36x^{17}+322x^{16}+1592x^{15}+17x^{14}y^{2}+4805x^{14}+564x^{13}y^{2}+4234x^{13}$\\
+ & $\quad +1703x^{12}y^{2}-5128x^{12}+53x^{11}y^{4}-1263x^{11}y^{2}+1912x^{11}y-36932x^{11}$\\
+ & $\quad +350x^{10}y^{4}-25728x^{10}y^{2}-39872x^{10}y+97545x^{10}-1357x^{9}y^{4}-18209x^{9}y^{2}$\\
+ & $\quad -290568x^{9}y+758016x^{9}-12296x^{8}y^{4}+654894x^{8}y^{2}+177792x^{8}y-1955869x^{8}$\\
+ & $\quad +22198x^{7}y^{4}+1852824x^{7}y^{2}+7285952x^{7}y-27094123x^{7}+413441x^{6}y^{4}$\\
+ & $\quad -13247789x^{6}y^{2}+5230120x^{6}y-1769578x^{6}+223537x^{5}y^{4}-68639495x^{5}y^{2}$\\
+ & $\quad -180388392x^{5}y+691969004x^{5}-10299720x^{4}y^{4}+234721476x^{4}y^{2}-332588928x^{4}y$\\
+ & $\quad +3641838730x^{4}-21577996x^{3}y^{4}+2025671243x^{3}y^{2}+2246628195x^{3}y+46886170814x^{3}$\\
+ & $\quad +235869709x^{2}y^{4}+31258101120x^{2}y^{2}+20382546069x^{2}y+246316178802x^{2}$\\
+ & $\quad +861221418xy^{4}-70495306201xy^{2}-434374700971xy-150551515572x-5487980289y^{4}$\\
+ & $\quad -35581733594y^{3}+442322129971y^{2}+541059198368y+68643296084\rangle$\\
+$V$ & $\langle -17x^{18}-17x^{17}y-496x^{17}-477x^{16}y+366x^{16}-53x^{15}y^{2}-645x^{15}y+2707x^{15}$\\
+ & $\quad -53x^{14}y^{3}-191x^{14}y^{2}-14x^{14}y+4906x^{14}-261x^{13}y^{3}+1894x^{13}y^{2}$\\
+ & $\quad +13523x^{13}y-40467x^{13}-53x^{12}y^{4}+995x^{12}y^{3}+1619x^{12}y^{2}+2652x^{12}y$\\
+ & $\quad -79572x^{12}-36x^{11}y^{5}-384x^{11}y^{4}+5536x^{11}y^{3}-72318x^{11}y^{2}-289646x^{11}y$\\
+ & $\quad +678201x^{11}+231x^{10}y^{5}+195x^{10}y^{4}+11579x^{10}y^{3}-182486x^{10}y^{2}-676499x^{10}y$\\
+ & $\quad +2829714x^{10}+3079x^{9}y^{5}+8852x^{9}y^{4}-21508x^{9}y^{3}+1546835x^{9}y^{2}+6762648x^{9}y$\\
+ & $\quad -16155359x^{9}+2804x^{8}y^{5}-3214x^{8}y^{4}-142641x^{8}y^{3}+6350237x^{8}y^{2}$\\
+ & $\quad +29492242x^{8}y-103830480x^{8}-72981x^{7}y^{5}-311875x^{7}y^{4}+421796x^{7}y^{3}$\\
+ & $\quad -36538722x^{7}y^{2}-119833144x^{7}y+296942324x^{7}-194355x^{6}y^{5}-661709x^{6}y^{4}$\\
+ & $\quad +4152561x^{6}y^{3}-237916420x^{6}y^{2}-862158527x^{6}y-29531240618x^{6}+1530776x^{5}y^{5}$\\
+ & $\quad +6791094x^{5}y^{4}-7797620x^{5}y^{3}+638670850x^{5}y^{2}+2479564987x^{5}y+102656370689x^{5}$\\
+ & $\quad +6648052x^{4}y^{5}+28881332x^{4}y^{4}-132132574x^{4}y^{3}+7706347989x^{4}y^{2}$\\
+ & $\quad +28749501043x^{4}y-289368945764x^{4}-35286053x^{3}y^{5}-122141611x^{3}y^{4}$\\
+ & $\quad +15681623x^{3}y^{3}-1109648289x^{3}y^{2}-29736683202x^{3}y+1176967172x^{3}$\\
+ & $\quad -243292937x^{2}y^{5}-846374962x^{2}y^{4}-29188900597x^{2}y^{3}+752369049x^{2}y^{2}$\\
+ & $\quad +69792378718x^{2}y-118169796268x^{2}+596853847xy^{5}+2571829759xy^{4}+111090240238xy^{3}$\\
+ & $\quad +33402398590xy^{2}-175947168591xy+410881410468x+7773002558y^{5}+28443179955y^{4}$\\
+ & $\quad -281181913030y^{3}+59535196075y^{2}-175182184856y-1155819656016,$\\
+ & $\quad 36x^{18}+36x^{17}y-411x^{17}-322x^{16}y-1357x^{16}-17x^{15}y^{2}-1592x^{15}y-70x^{15}$\\
+ & $\quad -17x^{14}y^{3}-530x^{14}y^{2}-4805x^{14}y+6285x^{14}-511x^{13}y^{3}-185x^{13}y^{2}$\\
+ & $\quad +877x^{13}y-18396x^{13}-17x^{12}y^{4}-1194x^{12}y^{3}+8228x^{12}y^{2}+40967x^{12}y$\\
+ & $\quad -204280x^{12}-53x^{11}y^{5}-509x^{11}y^{4}+990x^{11}y^{3}-30673x^{11}y^{2}-68127x^{11}y$\\
+ & $\quad -90127x^{11}-350x^{10}y^{5}-2184x^{10}y^{4}+10523x^{10}y^{3}-420619x^{10}y^{2}$\\
+ & $\quad -1385752x^{10}y+4689778x^{10}+1357x^{9}y^{5}+3334x^{9}y^{4}+6963x^{9}y^{3}-188848x^{9}y^{2}$\\
+ & $\quad +423262x^{9}y+9459876x^{9}+12296x^{8}y^{5}+45175x^{8}y^{4}-193843x^{8}y^{3}$\\
+ & $\quad +10299565x^{8}y^{2}+43489102x^{8}y-103593220x^{8}-22198x^{7}y^{5}-73124x^{7}y^{4}$\\
+ & $\quad -490530x^{7}y^{3}+20015555x^{7}y^{2}+82361317x^{7}y-356682848x^{7}-413441x^{6}y^{5}$\\
+ & $\quad -1365603x^{6}y^{4}+4056852x^{6}y^{3}-238318928x^{6}y^{2}-962690369x^{6}y-33061557678x^{6}$\\
+ & $\quad -223537x^{5}y^{5}+590116x^{5}y^{4}+19670965x^{5}y^{3}-818017468x^{5}y^{2}-3569513322x^{5}y$\\
+ & $\quad +54927396554x^{5}+10299720x^{4}y^{5}+43567945x^{4}y^{4}-70889091x^{4}y^{3}$\\
+ & $\quad +5650706632x^{4}y^{2}+19750968854x^{4}y-509677763604x^{4}+21577996x^{3}y^{5}$\\
+ & $\quad +77995334x^{3}y^{4}-570568796x^{3}y^{3}-807228769x^{3}y^{2}-33124451199x^{3}y$\\
+ & $\quad -1425299244x^{3}-235869709x^{2}y^{5}-971489391x^{2}y^{4}-34177271803x^{2}y^{3}$\\
+ & $\quad -5393702398x^{2}y^{2}+17923122494x^{2}y-132320864384x^{2}-861221418xy^{5}-3478729963xy^{4}$\\
+ & $\quad +59516041349xy^{3}+13112049355xy^{2}-468292114146xy+219556917624x+5487980289y^{5}$\\
+ & $\quad +20035732574y^{4}-503778538515y^{3}+41987646914y^{2}-429123588092y-2037066089680\rangle$\\
+\addlinespace[2pt]
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}lrl@{\qquad}lrl@{}}
+\caption{The edges $(i,j)$ with a linear endpoint, the linear endpoint $k$ used, and the norm of $R_{ij}=\operatorname{Res}_t(f_k,g_{kl})$.}\label{tab:csep}\\
+\hline $(i,j)$ & $k$ & $N(R_{ij})$ & $(i,j)$ & $k$ & $N(R_{ij})$\\\hline\endfirsthead\hline $(i,j)$ & $k$ & $N(R_{ij})$ & $(i,j)$ & $k$ & $N(R_{ij})$\\\hline\endhead\hline\endfoot
+$(0,17)$ & 0 & $2^{4}$ & $(11,23)$ & 11 & $7$\\
+$(0,34)$ & 0 & $1$ & $(11,30)$ & 11 & $7^{2}$\\
+$(0,35)$ & 0 & $1$ & $(11,33)$ & 11 & $2^{2}$\\
+$(1,13)$ & 1 & $7$ & $(12,17)$ & 12 & $2^{2}\cdot 7$\\
+$(1,14)$ & 1 & $7^{2}$ & $(12,22)$ & 12 & $2^{2}\cdot 7$\\
+$(1,20)$ & 1 & $2^{2}\cdot 7$ & $(12,23)$ & 12 & $2^{2}\cdot 7$\\
+$(1,27)$ & 1 & $7^{2}$ & $(12,32)$ & 12 & $2^{6}$\\
+$(1,28)$ & 1 & $2^{2}\cdot 7^{2}$ & $(12,34)$ & 12 & $7^{2}$\\
+$(1,29)$ & 1 & $7^{3}$ & $(13,20)$ & 13 & $2^{4}$\\
+$(1,34)$ & 1 & $7^{2}$ & $(13,21)$ & 13 & $3^{3}$\\
+$(2,11)$ & 2 & $2^{2}\cdot 7$ & $(13,25)$ & 13 & $3^{2}$\\
+$(2,12)$ & 2 & $2^{6}$ & $(13,27)$ & 13 & $3^{2}$\\
+$(2,14)$ & 2 & $2^{4}\cdot 3$ & $(13,29)$ & 13 & $3^{4}\cdot 7$\\
+$(2,15)$ & 2 & $2^{4}\cdot 3$ & $(13,35)$ & 13 & $2^{6}\cdot 3^{2}$\\
+$(2,17)$ & 2 & $2^{2}\cdot 7$ & $(14,22)$ & 14 & $2^{2}\cdot 3^{3}$\\
+$(2,19)$ & 2 & $2^{2}\cdot 3^{2}$ & $(14,30)$ & 14 & $3^{2}\cdot 7$\\
+$(2,20)$ & 2 & $2^{2}\cdot 3\cdot 7$ & $(15,17)$ & 15 & $2^{2}$\\
+$(2,23)$ & 2 & $2^{2}\cdot 3^{2}$ & $(15,22)$ & 15 & $3\cdot 7^{2}$\\
+$(2,24)$ & 2 & $2^{2}\cdot 7$ & $(15,23)$ & 15 & $2^{2}\cdot 7^{2}$\\
+$(2,32)$ & 2 & $2^{8}\cdot 3^{2}$ & $(15,24)$ & 15 & $7$\\
+$(2,33)$ & 2 & $2^{4}\cdot 3^{4}\cdot 7$ & $(16,19)$ & 16 & $2^{2}\cdot 7^{3}$\\
+$(2,34)$ & 2 & $2^{2}\cdot 3^{2}$ & $(16,21)$ & 16 & $2^{2}\cdot 3^{3}$\\
+$(3,10)$ & 3 & $7$ & $(16,23)$ & 16 & $2^{2}\cdot 3^{2}\cdot 7$\\
+$(3,15)$ & 3 & $7^{2}$ & $(16,24)$ & 16 & $2^{2}\cdot 7^{2}$\\
+$(3,32)$ & 3 & $7^{3}$ & $(16,30)$ & 16 & $2^{2}\cdot 7^{2}$\\
+$(3,35)$ & 3 & $7^{2}$ & $(16,31)$ & 16 & $2^{4}\cdot 3^{3}\cdot 7$\\
+$(4,12)$ & 4 & $2^{2}$ & $(16,34)$ & 16 & $3^{2}\cdot 7$\\
+$(4,20)$ & 4 & $2^{2}$ & $(17,30)$ & 17 & $2^{2}\cdot 7^{2}$\\
+$(4,22)$ & 4 & $2^{2}$ & $(18,19)$ & 18 & $2^{4}\cdot 7$\\
+$(4,28)$ & 4 & $2^{2}$ & $(18,24)$ & 18 & $2^{2}\cdot 7^{3}$\\
+$(4,30)$ & 4 & $2^{4}$ & $(18,25)$ & 18 & $2^{2}\cdot 3^{2}$\\
+$(4,36)$ & 4 & $2^{6}$ & $(18,29)$ & 18 & $3^{3}\cdot 7$\\
+$(5,20)$ & 5 & $2^{4}\cdot 3^{2}$ & $(18,31)$ & 18 & $2^{4}\cdot 3^{4}$\\
+$(5,24)$ & 5 & $2^{2}\cdot 7$ & $(19,22)$ & 19 & $2^{4}\cdot 3^{2}$\\
+$(5,26)$ & 5 & $3^{3}$ & $(19,28)$ & 19 & $2^{6}\cdot 7$\\
+$(5,28)$ & 5 & $2^{2}\cdot 3^{2}$ & $(19,30)$ & 19 & $3^{6}\cdot 7$\\
+$(5,33)$ & 5 & $3^{5}\cdot 7$ & $(19,32)$ & 19 & $2^{2}\cdot 3^{4}\cdot 5^{2}$\\
+$(6,12)$ & 6 & $2^{2}\cdot 7$ & $(19,33)$ & 19 & $2^{2}\cdot 5^{2}\cdot 7^{2}$\\
+$(6,13)$ & 6 & $2^{2}\cdot 7$ & $(20,31)$ & 20 & $2^{4}\cdot 7^{2}$\\
+$(6,25)$ & 6 & $2^{2}\cdot 7^{2}$ & $(20,35)$ & 20 & $2^{4}\cdot 7$\\
+$(6,32)$ & 6 & $2^{6}\cdot 7^{2}$ & $(21,25)$ & 21 & $3^{2}\cdot 7^{3}$\\
+$(7,9)$ & 7 & $3^{2}$ & $(21,30)$ & 21 & $7^{2}$\\
+$(7,10)$ & 7 & $3^{2}$ & $(21,33)$ & 21 & $2^{4}\cdot 3^{2}\cdot 7$\\
+$(7,13)$ & 7 & $3^{3}$ & $(21,35)$ & 21 & $3^{2}\cdot 7$\\
+$(7,16)$ & 7 & $2^{2}\cdot 3^{4}$ & $(22,25)$ & 22 & $2^{2}$\\
+$(7,25)$ & 7 & $2^{2}\cdot 3^{2}\cdot 7$ & $(23,28)$ & 23 & $3^{2}\cdot 7^{3}$\\
+$(7,31)$ & 7 & $2^{4}\cdot 3^{3}$ & $(23,32)$ & 23 & $3^{2}\cdot 7^{2}$\\
+$(7,32)$ & 7 & $3^{2}\cdot 5^{2}\cdot 7$ & $(23,35)$ & 23 & $2^{2}\cdot 3^{2}\cdot 7^{2}$\\
+$(7,33)$ & 7 & $3^{5}\cdot 5^{2}$ & $(24,25)$ & 24 & $2^{12}$\\
+$(8,10)$ & 8 & $3^{2}\cdot 7$ & $(25,32)$ & 25 & $3^{2}\cdot 7^{2}$\\
+$(8,28)$ & 8 & $3^{2}\cdot 7$ & $(25,34)$ & 25 & $2^{2}\cdot 3^{2}\cdot 7^{2}$\\
+$(8,32)$ & 8 & $3^{2}\cdot 7^{4}$ & $(25,36)$ & 25 & $2^{6}\cdot 3^{2}\cdot 7$\\
+$(8,35)$ & 8 & $3^{2}\cdot 7^{2}$ & $(26,31)$ & 26 & $2^{4}\cdot 3^{3}$\\
+$(9,23)$ & 9 & $2^{2}\cdot 3^{2}$ & $(27,34)$ & 27 & $3^{6}\cdot 7$\\
+$(9,24)$ & 9 & $2^{4}$ & $(27,36)$ & 27 & $2^{8}\cdot 3^{2}$\\
+$(9,27)$ & 9 & $2^{2}\cdot 3^{2}$ & $(28,29)$ & 28 & $3^{3}\cdot 7$\\
+$(10,22)$ & 10 & $2^{4}$ & $(28,34)$ & 28 & $3^{2}\cdot 7$\\
+$(10,26)$ & 10 & $3^{3}$ & $(29,33)$ & 29 & $3^{2}\cdot 7^{3}$\\
+$(10,27)$ & 10 & $3^{2}$ & $(30,32)$ & 30 & $2^{8}\cdot 3^{4}\cdot 7^{2}$\\
+$(10,29)$ & 10 & $3^{3}$ & $(31,34)$ & 31 & $2^{2}\cdot 3^{6}$\\
+$(10,31)$ & 10 & $2^{2}\cdot 3^{2}$ & $(32,36)$ & 32 & $2^{10}\cdot 7$\\
+$(11,18)$ & 11 & $2^{4}$ & & &\\
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rrl>{\raggedright\arraybackslash}p{0.6\textwidth}@{}}
+\caption{The terminal residue classes $x\equiv a$, $y\equiv b\pmod{p^k}$ of Step~6, grouped by $p$, $k$ and the joint value $(\mathcal B_p;(B^{(g)}_p)_g)$.}\label{tab:local}\\
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endfirsthead
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endhead\hline\endfoot
+2 & 3 & $(2;-1,-1,-1)$ & $(1,1)$,\allowbreak\ $(5,5)$\\
+2 & 3 & $(2;1,1,1)$ & $(3,7)$,\allowbreak\ $(7,3)$\\
+2 & 4 & $(1;-1,-1,-1)$ & $(2,4)$,\allowbreak\ $(6,4)$,\allowbreak\ $(10,4)$,\allowbreak\ $(14,4)$\\
+2 & 4 & $(1;-1,-1,1)$ & $(2,5)$,\allowbreak\ $(2,13)$,\allowbreak\ $(10,1)$,\allowbreak\ $(10,9)$\\
+2 & 4 & $(1;1,1,-1)$ & $(0,12)$,\allowbreak\ $(2,7)$,\allowbreak\ $(2,15)$,\allowbreak\ $(4,12)$,\allowbreak\ $(8,12)$,\allowbreak\ $(10,3)$,\allowbreak\ $(10,11)$,\allowbreak\ $(12,12)$\\
+\addlinespace[3pt]
+3 & 3 & $(2;1,1,1)$ & $(0,13)$,\allowbreak\ $(3,19)$,\allowbreak\ $(6,16)$,\allowbreak\ $(9,4)$,\allowbreak\ $(12,10)$,\allowbreak\ $(15,7)$,\allowbreak\ $(18,22)$,\allowbreak\ $(21,1)$,\allowbreak\ $(24,25)$\\
+\addlinespace[3pt]
+5 & 1 & $(0;1,1,1)$ & $(1,0)$,\allowbreak\ $(2,0)$,\allowbreak\ $(3,0)$,\allowbreak\ $(3,1)$,\allowbreak\ $(3,4)$,\allowbreak\ $(4,0)$\\
+\addlinespace[3pt]
+7 & 1 & $(0;1,1,1)$ & $(0,2)$\\
+7 & 2 & $(0;1,1,1)$ & $(1,25)$,\allowbreak\ $(2,24)$,\allowbreak\ $(4,29)$,\allowbreak\ $(5,5)$,\allowbreak\ $(8,18)$,\allowbreak\ $(11,43)$,\allowbreak\ $(12,40)$,\allowbreak\ $(16,24)$,\allowbreak\ $(18,8)$,\allowbreak\ $(19,26)$,\allowbreak\ $(23,24)$,\allowbreak\ $(25,22)$,\allowbreak\ $(26,12)$,\allowbreak\ $(29,46)$,\allowbreak\ $(30,24)$,\allowbreak\ $(32,36)$,\allowbreak\ $(33,47)$,\allowbreak\ $(37,24)$,\allowbreak\ $(39,1)$,\allowbreak\ $(40,33)$,\allowbreak\ $(43,32)$,\allowbreak\ $(44,24)$\\
+7 & 3 & $(0;1,1,1)$ & $(15,11)$,\allowbreak\ $(22,200)$,\allowbreak\ $(46,113)$,\allowbreak\ $(47,264)$,\allowbreak\ $(58,171)$,\allowbreak\ $(64,305)$,\allowbreak\ $(71,151)$,\allowbreak\ $(78,19)$,\allowbreak\ $(78,33)$,\allowbreak\ $(78,68)$,\allowbreak\ $(78,82)$,\allowbreak\ $(78,117)$,\allowbreak\ $(78,131)$,\allowbreak\ $(78,166)$,\allowbreak\ $(78,180)$,\allowbreak\ $(78,215)$,\allowbreak\ $(78,229)$,\allowbreak\ $(78,264)$,\allowbreak\ $(78,278)$,\allowbreak\ $(78,313)$,\allowbreak\ $(78,327)$,\allowbreak\ $(85,333)$,\allowbreak\ $(95,211)$,\allowbreak\ $(96,166)$,\allowbreak\ $(107,171)$,\allowbreak\ $(113,256)$,\allowbreak\ $(134,284)$,\allowbreak\ $(144,309)$,\allowbreak\ $(145,68)$,\allowbreak\ $(156,171)$,\allowbreak\ $(162,207)$,\allowbreak\ $(169,53)$,\allowbreak\ $(176,12)$,\allowbreak\ $(176,40)$,\allowbreak\ $(176,61)$,\allowbreak\ $(176,89)$,\allowbreak\ $(176,110)$,\allowbreak\ $(176,138)$,\allowbreak\ $(176,159)$,\allowbreak\ $(176,187)$,\allowbreak\ $(176,208)$,\allowbreak\ $(176,236)$,\allowbreak\ $(176,257)$,\allowbreak\ $(176,285)$,\allowbreak\ $(176,306)$,\allowbreak\ $(176,334)$,\allowbreak\ $(183,235)$,\allowbreak\ $(193,64)$,\allowbreak\ $(194,313)$,\allowbreak\ $(205,171)$,\allowbreak\ $(211,158)$,\allowbreak\ $(218,4)$,\allowbreak\ $(225,5)$,\allowbreak\ $(225,47)$,\allowbreak\ $(225,54)$,\allowbreak\ $(225,96)$,\allowbreak\ $(225,103)$,\allowbreak\ $(225,145)$,\allowbreak\ $(225,152)$,\allowbreak\ $(225,194)$,\allowbreak\ $(225,201)$,\allowbreak\ $(225,243)$,\allowbreak\ $(225,250)$,\allowbreak\ $(225,292)$,\allowbreak\ $(225,299)$,\allowbreak\ $(225,341)$,\allowbreak\ $(232,186)$,\allowbreak\ $(242,162)$,\allowbreak\ $(243,215)$,\allowbreak\ $(254,171)$,\allowbreak\ $(260,109)$,\allowbreak\ $(267,298)$,\allowbreak\ $(274,26)$,\allowbreak\ $(274,75)$,\allowbreak\ $(274,124)$,\allowbreak\ $(274,173)$,\allowbreak\ $(274,222)$,\allowbreak\ $(274,271)$,\allowbreak\ $(274,320)$,\allowbreak\ $(281,137)$,\allowbreak\ $(291,260)$,\allowbreak\ $(292,117)$,\allowbreak\ $(303,171)$,\allowbreak\ $(309,60)$,\allowbreak\ $(316,249)$,\allowbreak\ $(330,88)$,\allowbreak\ $(340,15)$\\
+7 & 4 & $(0;1,1,1)$ & $(9,171)$,\allowbreak\ $(36,382)$,\allowbreak\ $(120,2160)$,\allowbreak\ $(341,19)$,\allowbreak\ $(352,171)$,\allowbreak\ $(379,39)$,\allowbreak\ $(463,1817)$,\allowbreak\ $(684,1734)$,\allowbreak\ $(695,171)$,\allowbreak\ $(722,2097)$,\allowbreak\ $(806,1474)$,\allowbreak\ $(1027,1048)$,\allowbreak\ $(1038,171)$,\allowbreak\ $(1065,1754)$,\allowbreak\ $(1149,1131)$,\allowbreak\ $(1370,362)$,\allowbreak\ $(1381,171)$,\allowbreak\ $(1408,1411)$,\allowbreak\ $(1492,788)$,\allowbreak\ $(1713,2077)$,\allowbreak\ $(1724,171)$,\allowbreak\ $(1751,1068)$,\allowbreak\ $(1835,445)$,\allowbreak\ $(2056,1391)$,\allowbreak\ $(2067,171)$,\allowbreak\ $(2094,725)$,\allowbreak\ $(2178,102)$,\allowbreak\ $(2399,705)$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+\end{document}

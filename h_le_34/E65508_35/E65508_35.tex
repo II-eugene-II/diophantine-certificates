@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E65508\_35: x\textasciicircum 4-x\textasciicircum 2+x+y\textasciicircum 3-y+2=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+% Legendre and Jacobi symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E65508\_35}\\[4pt] {\Large The equation $x^{4}-x^{2}+x+y^{3}-y+2=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=34$, length $l=12$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}-x^{2}+x+y^{3}-y+2=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses two polynomial identities of the form $H_kT_k=U_k^2+7V_k^2$ on the curve \eqref{eq:main}, and the fact that an odd prime $p$ with $\leg{-7}{p}=-1$ divides $U_k^2+7V_k^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Jacobi symbol and the law of quadratic reciprocity.
+
+\section{\texorpdfstring{Jacobi symbols and the norm form $a^2+7b^2$}{Jacobi symbols and the norm form}}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. For an odd positive integer $n$, the Jacobi symbol is $\leg{a}{n}=\prod_p\leg{a}{p}^{v_p(n)}$, the product over the prime factors $p$ of $n$. It is multiplicative in $a$ and in $n$, it depends only on $a$ modulo $n$, and it is non-zero exactly when $a$ and $n$ are coprime. We use the law of quadratic reciprocity for Jacobi symbols together with its supplements \cite[Chapter~5, \S2]{IR}: for odd positive integers $m$ and $n$,
+\begin{gather*}
+\leg{-1}{n}=(-1)^{(n-1)/2},\qquad\leg{2}{n}=(-1)^{(n^2-1)/8},\\
+\leg{m}{n}\leg{n}{m}=(-1)^{(m-1)(n-1)/4}\quad\text{if }\gcd(m,n)=1.
+\end{gather*}
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be an odd prime with $\leg{-7}{p}=-1$, and let $a,b\in\Z$. If $p\mid a^2+7b^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$. Then $(ac)^2\equiv-7(bc)^2\equiv-7\pmod p$, so $-7$ is a square modulo $p$. As $\leg{-7}{p}\neq0$, it is a non-zero square, so $\leg{-7}{p}=1$, a contradiction. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $a,b\in\Z$ be not both zero. Then $a^2+7b^2\neq0$, and $v_p(a^2+7b^2)$ is even for every odd prime $p$ with $\leg{-7}{p}=-1$.
+\end{lemma}
+
+\begin{proof}
+Clearly $a^2+7b^2>0$. Let $p$ be an odd prime with $\leg{-7}{p}=-1$, let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2+7b'^2$ by Lemma~\ref{lem:divides}. Since $a^2+7b^2=p^{2k}(a'^2+7b'^2)$, we get $v_p(a^2+7b^2)=2k$.
+\end{proof}
+
+\begin{lemma}\label{lem:odd}
+Let $n$ be a positive integer with $7\nmid n$ and $\leg{n}{7}=-1$. Then there is an odd prime $p$ with $\leg{-7}{p}=-1$ such that $v_p(n)$ is odd.
+\end{lemma}
+
+\begin{proof}
+By multiplicativity, the product of $\leg{p}{7}^{v_p(n)}$ over the prime factors $p$ of $n$ is $-1$, so some prime factor $p$ of $n$ satisfies $\leg{p}{7}=-1$ and $v_p(n)$ is odd. Since $2\equiv3^2\pmod7$, we have $\leg{2}{7}=1$, so $p\neq2$, and $p\neq7$. By the reciprocity laws, $\leg{-7}{p}=\leg{-1}{p}\leg{7}{p}=(-1)^{(p-1)/2}(-1)^{3(p-1)/2}\leg{p}{7}=\leg{p}{7}=-1$.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=x^{4}-x^{2}+x+y^{3}-y+2$, so that \eqref{eq:main} is the equation $F(x,y)=0$.
+For the first identity, we define
+\begin{align*}
+H_{1}&=x^{2}+x-y,\\
+T_{1}&=4x^{4}+8x^{3}+4x^{2}y+4x^{2}+4xy+4y^{2}-4,\\
+U_{1}&=2x^{3}+3x^{2}+1,\\
+V_{1}&=x^{2}-1,\\
+G_{1}&=-4,\\
+A_{1}&=-x+2,\\
+B_{1}&=2x^{2}-x-4,\\
+\intertext{for the second identity, we define}
+H_{2}&=3x-8y+2,\\
+T_{2}&=36x^{2}+96xy+48x+256y^{2}+64y-240,\\
+U_{2}&=5x^{2}-13x-58,\\
+V_{2}&=17x^{2}+x-6,\\
+G_{2}&=-2048,\\
+A_{2}&=1921x-8013,\\
+B_{2}&=-565x+3859,\\
+\intertext{and, for the signs, we also use}
+Q_{1}&=x^{4}+2x^{3}+x^{2}y+x^{2}+xy+y^{2}-1,\\
+M_{1}&=x^{6}+3x^{5}+4x^{4}+x^{3}-2x^{2}+2,\\
+E_{1}&=3x^{4}+6x^{3}+3x^{2}-4,\\
+Q_{2}&=9x^{2}+24xy+12x+64y^{2}+16y-60,\\
+M_{2}&=512x^{4}+27x^{3}-458x^{2}+356x+904,\\
+E_{2}&=1728x^{2}+2304x-15616.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+H_{1}T_{1}-U_{1}^2-7V_{1}^2&=G_{1}F,\label{eq:norm1}\\
+H_{2}T_{2}-U_{2}^2-7V_{2}^2&=G_{2}F,\label{eq:norm2}\\
+A_{1}U_{1}+B_{1}V_{1}&=2\cdot 3,\label{eq:bez1}\\
+A_{2}U_{2}+B_{2}V_{2}&=2^{8}\cdot 3\cdot 5^{2}\cdot 23,\label{eq:bez2}\\
+-F&=Q_{1}H_{1}-M_{1},\label{eq:sign1}\\
+4Q_{1}&=(x^{2}+x+2y)^2+E_{1}.\label{eq:sign1b}\\
+-512F&=Q_{2}H_{2}-M_{2},\label{eq:sign2}\\
+256Q_{2}&=(24x+128y+16)^2+E_{2}.\label{eq:sign2b}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm1} and \eqref{eq:norm2} give
+\begin{equation}\label{eq:HT}
+H_kT_k=U_k^2+7V_k^2\qquad(k=1,2),
+\end{equation}
+where the polynomials now denote their values at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $7^2$ residue pairs modulo $7$, we find that \eqref{eq:main} has exactly 6 solutions modulo $7$, and that at each of them $H_{1}\equiv5\text{ or }6\pmod{7}$ or $H_{2}\equiv3\text{ or }5\pmod{7}$. All these residues are non-squares modulo $7$, since the non-zero squares modulo $7$ are $1$, $2$ and $4$. Hence, at each solution, $7\nmid H_k$ and $\leg{H_k}{7}=-1$ for some $k$.
+
+\paragraph{Step 2: signs.} \emph{The sign of $H_{1}$.} Since $F(x,y)=0$, \eqref{eq:sign1} gives $Q_{1}H_{1}=M_{1}$, and $M_{1}$ and $E_{1}$ depend only on $x$. We show that $M_{1}>0$ and $E_{1}>0$. If $x\geq1$, write $x=1+z$ with $z\geq0$; if $x\leq-2$, write $x=-2-z$ with $z\geq0$. In both cases, expanding $M_{1}$ and $E_{1}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{1}>0$ and $E_{1}>0$. It remains to consider $-1\leq x\leq0$. For $x=-1$, we have $F(x,y)\not\equiv0\pmod{2}$ for every $y$, as one checks for the 2 residues of $y$ modulo $2$, so \eqref{eq:main} has no solution with this $x$. For $x=0$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, as one checks for the 3 residues of $y$ modulo $3$, so \eqref{eq:main} has no solution with this $x$. Hence $M_{1}>0$ and $E_{1}>0$, so \eqref{eq:sign1b} gives $4Q_{1}\geq E_{1}>0$, and $Q_{1}H_{1}=M_{1}>0$ gives $H_{1}>0$.
+
+\emph{The sign of $H_{2}$.} Since $F(x,y)=0$, \eqref{eq:sign2} gives $Q_{2}H_{2}=M_{2}$, and $M_{2}$ and $E_{2}$ depend only on $x$. We show that $M_{2}>0$ and $E_{2}>0$. If $x\geq3$, write $x=3+z$ with $z\geq0$; if $x\leq-4$, write $x=-4-z$ with $z\geq0$. In both cases, expanding $M_{2}$ and $E_{2}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{2}>0$ and $E_{2}>0$. It remains to consider $-3\leq x\leq2$. For $x\in\{-3,-1,1\}$, we have $F(x,y)\not\equiv0\pmod{2}$ for every $y$, as one checks for the 2 residues of $y$ modulo $2$, so \eqref{eq:main} has no solution with such $x$. For $x=0$ and $x=2$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, as one checks for the 3 residues of $y$ modulo $3$, so \eqref{eq:main} has no solution with such $x$. For $x=-2$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$, as one checks for the 5 residues of $y$ modulo $5$, so \eqref{eq:main} has no solution with this $x$. Hence $M_{2}>0$ and $E_{2}>0$, so \eqref{eq:sign2b} gives $256Q_{2}\geq E_{2}>0$, and $Q_{2}H_{2}=M_{2}>0$ gives $H_{2}>0$.
+
+\paragraph{Step 3: primes $p$ with $\leg{-7}{p}=-1$.} Let $k\in\{1,2\}$, and let $p$ be an odd prime with $\leg{-7}{p}=-1$. We show that $v_p(H_k)$ is even. By \eqref{eq:bez1}--\eqref{eq:bez2}, $U_k$ and $V_k$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(H_kT_k)=v_p(U_k^2+7V_k^2)$ is even. Suppose that $p$ divides both $H_k$ and $T_k$. Then $p\mid U_k^2+7V_k^2$ by \eqref{eq:HT}, so $p\mid U_k$ and $p\mid V_k$ by Lemma~\ref{lem:divides}, and $p\mid R_k$, where $R_k$ is the right-hand side of the identity for $A_kU_k+B_kV_k$. For $k=1$, we have $R_{1}=2\cdot 3$. As $p$ is odd, we get $p=3$. Checking the $3^2$ residue pairs modulo $3$, we find that $F$, $H_{1}$ and $T_{1}$ have no common zero modulo $3$, a contradiction. For $k=2$, we have $R_{2}=2^{8}\cdot 3\cdot 5^{2}\cdot 23$. As $p$ is odd and $p\neq23$ because $\leg{-7}{23}=1$, we get $p\in\{3,5\}$. Checking the $3^2$ residue pairs modulo $3$ and the $5^2$ residue pairs modulo $5$, we find that $F$, $H_{2}$ and $T_{2}$ have no common zero modulo $3$ and $5$, a contradiction. Hence $p$ does not divide both $H_k$ and $T_k$. If $p\nmid T_k$, then $v_p(H_k)=v_p(H_kT_k)$ is even, and if $p\nmid H_k$, then $v_p(H_k)=0$.
+
+\paragraph{Step 4: contradiction.} By Step~1, there is $k$ such that $7\nmid H_k$ and $\leg{H_k}{7}=-1$, and $H_k>0$ by Step~2. By Lemma~\ref{lem:odd}, there is an odd prime $p$ with $\leg{-7}{p}=-1$ such that $v_p(H_k)$ is odd. This contradicts Step~3, and the theorem is proved.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\end{thebibliography}
+
+
+\end{document}
