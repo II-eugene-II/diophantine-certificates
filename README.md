@@ -307,11 +307,11 @@ A quadratic norm proof usually compiles in less than a minute. A graph proof tak
 
 If the polynomial $P(x,y)$ consists of monomials with integer coefficients $a_1,\dots,a_k$ and degrees $d_1,\dots,d_k$, then the size and the length of the equation $P(x,y)=0$ are
 
-$$h(P)=\sum_{i=1}^k |a_i|\,2^{d_i},\qquad l(P)=\sum_{i=1}^k \bigl(\log_2|a_i|+d_i\bigr).$$
+$$h(P)=\sum_{i=1}^k |a_i| 2^{d_i},\qquad l(P)=\sum_{i=1}^k \bigl(\log_2|a_i|+d_i\bigr).$$
 
 The name of an equation encodes its polynomial, following Section 8.4 of [Grechuk and Wilcox, *Polynomial Diophantine equations: a systematic approach*, Springer, 2024]. If $P(x,y)=\sum_{i,j} c_{ij}x^iy^j$, put
 
-$$q(P)=\prod_{i,j} p_{2^i3^j}^{\,c_{ij}},$$
+$$q(P)=\prod_{i,j} p_{2^i3^j}^{c_{ij}},$$
 
 where $p_n$ is the $n$-th prime, so that $p_1=2$. This is a rational number, and $P$ can be recovered from it. The equations $\pm P(\pm x,\pm y)=0$ have the same integer solutions up to sign; among them (and the equations with $x$ and $y$ exchanged, if they have the same degree) we take the one with the largest $q$. This is the equation in the tables, in `Challenge.lean` and in the PDF, and its name is `E` followed by the numerator and the denominator of $q$. For example, $x^4+2x+y^3-y-2=0$ has $q = 2^{-2}\cdot3^{2}\cdot5^{-1}\cdot53\cdot103 = 49131/20$, so it is named `E49131_20`.
 
