@@ -1,0 +1,149 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E53972\_45: x\textasciicircum 5-2x+y\textasciicircum 3-y+2=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+% Legendre and Jacobi symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E53972\_45}\\[4pt] {\Large The equation $x^{5}-2x+y^{3}-y+2=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=48$, length $l=12$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{5}-2x+y^{3}-y+2=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses two polynomial identities of the form $H_kT_k=U_k^2+3V_k^2$ on the curve \eqref{eq:main}, and the fact that an odd prime $p$ with $\leg{-3}{p}=-1$ divides $U_k^2+3V_k^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Jacobi symbol and the law of quadratic reciprocity.
+
+\section{\texorpdfstring{Jacobi symbols and the norm form $a^2+3b^2$}{Jacobi symbols and the norm form}}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. For an odd positive integer $n$, the Jacobi symbol is $\leg{a}{n}=\prod_p\leg{a}{p}^{v_p(n)}$, the product over the prime factors $p$ of $n$. It is multiplicative in $a$ and in $n$, it depends only on $a$ modulo $n$, and it is non-zero exactly when $a$ and $n$ are coprime. We use the law of quadratic reciprocity for Jacobi symbols together with its supplements \cite[Chapter~5, \S2]{IR}: for odd positive integers $m$ and $n$,
+\begin{gather*}
+\leg{-1}{n}=(-1)^{(n-1)/2},\qquad\leg{2}{n}=(-1)^{(n^2-1)/8},\\
+\leg{m}{n}\leg{n}{m}=(-1)^{(m-1)(n-1)/4}\quad\text{if }\gcd(m,n)=1.
+\end{gather*}
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be an odd prime with $\leg{-3}{p}=-1$, and let $a,b\in\Z$. If $p\mid a^2+3b^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$. Then $(ac)^2\equiv-3(bc)^2\equiv-3\pmod p$, so $-3$ is a square modulo $p$. As $\leg{-3}{p}\neq0$, it is a non-zero square, so $\leg{-3}{p}=1$, a contradiction. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $a,b\in\Z$ be not both zero. Then $a^2+3b^2\neq0$, and $v_p(a^2+3b^2)$ is even for every odd prime $p$ with $\leg{-3}{p}=-1$.
+\end{lemma}
+
+\begin{proof}
+Clearly $a^2+3b^2>0$. Let $p$ be an odd prime with $\leg{-3}{p}=-1$, let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2+3b'^2$ by Lemma~\ref{lem:divides}. Since $a^2+3b^2=p^{2k}(a'^2+3b'^2)$, we get $v_p(a^2+3b^2)=2k$.
+\end{proof}
+
+\begin{lemma}\label{lem:period}
+Let $n$ and $n'$ be odd positive integers with $n'\equiv n\pmod{12}$. Then $\leg{-3}{n'}=\leg{-3}{n}$.
+\end{lemma}
+
+\begin{proof}
+Write $-3=\varepsilon2^eq$ with $\varepsilon=-1$, $e=0$ and $q=3$. By multiplicativity and the reciprocity laws,
+\[
+\leg{-3}{n}=\leg{\varepsilon}{n}\leg{2}{n}^e(-1)^{(n-1)(q-1)/4}\leg{n}{q}.
+\]
+Here $\leg{\varepsilon}{n}$ and $(-1)^{(n-1)(q-1)/4}$ depend only on $n$ modulo $4$, $\leg{2}{n}$ depends only on $n$ modulo $8$, and $\leg{n}{q}$ depends only on $n$ modulo $q$. Since $12$ is divisible by $4q$, the claim follows.
+\end{proof}
+
+\begin{lemma}\label{lem:odd}
+Let $n$ be a non-zero integer, and let $s$, $u$ and $m$ be positive integers such that every prime factor of $s$ divides $6$, both $2s$ and $12s$ divide $m$, $u$ is odd, $\leg{-3}{u}=-1$, and $n\equiv su\pmod m$. Suppose also that $n>0$. Then there is an odd prime $p$ with $\leg{-3}{p}=-1$ such that $v_p(n)$ is odd.
+\end{lemma}
+
+\begin{proof}
+Since $s\mid m$, we have $s\mid n$, and $n'=n/s$ satisfies $n'\equiv u\pmod{m/s}$. Since $m/s$ is even and divisible by $12$, $n'$ is odd and $n'\equiv u\pmod{12}$. Since $n>0$, Lemma~\ref{lem:period} gives $\leg{-3}{n'}=\leg{-3}{u}=-1$. By multiplicativity, the product of $\leg{-3}{p}^{v_p(n')}$ over the prime factors $p$ of $n'$ is $-1$, so some prime factor $p$ of $n'$ satisfies $\leg{-3}{p}=-1$ and $v_p(n')$ is odd. Then $p$ is odd, and $p\nmid6$, so $p\nmid s$ and $v_p(n)=v_p(n')$ is odd.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=x^{5}-2x+y^{3}-y+2$, so that \eqref{eq:main} is the equation $F(x,y)=0$.
+For the first identity, we define
+\begin{align*}
+H_{1}&=xy-x+y^{2}-y+1,\\
+T_{1}&=4x^{6}-4x^{5}y-4x^{5}+4x^{2}y^{2}+4x^{2}y-8x^{2}-4xy^{2}+8x-4y^{2}-4y\\
+&\quad+4,\\
+U_{1}&=2x^{5}-4x^{3}+2x+1,\\
+V_{1}&=-2x^{4}+2x^{2}-1,\\
+G_{1}&=-4x^{5}+4x^{3}+4x^{2}y-4x^{2}-4xy-4y,\\
+A_{1}&=6x^{3}-2x^{2}-2x+4,\\
+B_{1}&=6x^{4}-2x^{3}-8x^{2}+6x-1,\\
+\intertext{for the second identity, we define}
+H_{2}&=4x^{2}-xy+2x+3y^{2}-5y+1,\\
+T_{2}&=-36x^{6}-108x^{5}y-180x^{5}+192x^{4}+48x^{3}y+192x^{3}-132x^{2}y^{2}\\
+&\quad+264x^{2}y+492x^{2}+48xy^{2}+348xy+360x+156y^{2}-156y-468,\\
+U_{2}&=18x^{5}-12x^{3}-57x^{2}-42x+39,\\
+V_{2}&=-2x^{4}+12x^{3}-x^{2}-14x+13,\\
+G_{2}&=-324x^{5}+276x^{3}-396x^{2}y+1404x^{2}+144xy+648x+468y-1248,\\
+A_{2}&=-270038x^{3}+855152x^{2}+4792059x-4677128,\\
+B_{2}&=-2430342x^{4}-6885684x^{3}+4649826x^{2}+8825211x+35575530.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+H_{1}T_{1}-U_{1}^2-3V_{1}^2&=G_{1}F,\label{eq:norm1}\\
+H_{2}T_{2}-U_{2}^2-3V_{2}^2&=G_{2}F,\label{eq:norm2}\\
+A_{1}U_{1}+B_{1}V_{1}&=5,\label{eq:bez1}\\
+A_{2}U_{2}+B_{2}V_{2}&=2\cdot 3^{2}\cdot 13^{2}\cdot 23\cdot 4003,\label{eq:bez2}\\
+H_{1}&=(x+y)(y-1)+1,\label{eq:sign1}\\
+564H_{2}&=47(x-6y+5)^2+(47x+7)^2-660.\label{eq:sign2}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm1} and \eqref{eq:norm2} give
+\begin{equation}\label{eq:HT}
+H_kT_k=U_k^2+3V_k^2\qquad(k=1,2),
+\end{equation}
+where the polynomials now denote their values at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $12^2$ residue pairs modulo $12$, we find that \eqref{eq:main} has exactly 6 solutions modulo $12$, and that at each of them $H_{1}\equiv5\text{ or }11\pmod{12}$ or $H_{2}\equiv11\pmod{12}$. For $k=1$, these residues are odd, and $\leg{-3}{5}=-1$ and $\leg{-3}{11}=-1$. For $k=2$, this residue is odd, and $\leg{-3}{11}=-1$.
+
+\paragraph{Step 2: signs.} \emph{The sign of $H_{1}$.} Suppose that $H_{1}\leq0$. Then \eqref{eq:sign1} gives $(x+y)(y-1)<0$, so the two factors have opposite signs. As these factors are integers, this means that $x+y\geq1$ and $y\leq0$, or $x+y\leq-1$ and $y\geq2$. In the first case, write $x+y=1+X$ and $y=-Y$ with $X,Y\geq0$, so that $x=X+Y+1$ and $y=-Y$. Then $F(x,y)=W_{1,1}(X,Y)$, where
+\begin{align*}
+W_{1,1}(X,Y)&=X^{5}+5X^{4}Y+5X^{4}+10X^{3}Y^{2}+20X^{3}Y+10X^{3}+10X^{2}Y^{3}\\
+&\quad+30X^{2}Y^{2}+30X^{2}Y+10X^{2}+5XY^{4}+20XY^{3}+30XY^{2}+20XY+3X+Y^{5}\\
+&\quad+5Y^{4}+9Y^{3}+10Y^{2}+4Y+1.
+\end{align*}
+All coefficients of $W_{1,1}$ have the same sign and its constant term is non-zero, so $W_{1,1}(X,Y)\neq0$. In the second case, write $x+y=-1-X$ and $y=2+Y$ with $X,Y\geq0$, so that $x=-X-Y-3$ and $y=Y+2$. Then $F(x,y)=W_{1,2}(X,Y)$, where
+\begin{align*}
+W_{1,2}(X,Y)&=-X^{5}-5X^{4}Y-15X^{4}-10X^{3}Y^{2}-60X^{3}Y-90X^{3}-10X^{2}Y^{3}\\
+&\quad-90X^{2}Y^{2}-270X^{2}Y-270X^{2}-5XY^{4}-60XY^{3}-270XY^{2}-540XY-403X\\
+&\quad-Y^{5}-15Y^{4}-89Y^{3}-264Y^{2}-392Y-229.
+\end{align*}
+All coefficients of $W_{1,2}$ have the same sign and its constant term is non-zero, so $W_{1,2}(X,Y)\neq0$. In both cases $F(x,y)\neq0$, a contradiction. Hence $H_{1}>0$.
+
+\emph{The sign of $H_{2}$.} If $H_{2}\leq0$, then \eqref{eq:sign2} gives $47(x-6y+5)^2\leq 660$ and $(47x+7)^2\leq 660$, so $|x-6y+5|\leq3$ and $|47x+7|\leq25$. Solving these two linear forms for $x$ and $y$, we find that the only integer point satisfying both inequalities is $(0,1)$, and it is not a solution of \eqref{eq:main} with $H_{2}\leq0$. Hence $H_{2}>0$.
+
+\paragraph{Step 3: primes $p$ with $\leg{-3}{p}=-1$.} Let $k\in\{1,2\}$, and let $p$ be an odd prime with $\leg{-3}{p}=-1$. We show that $v_p(H_k)$ is even. By \eqref{eq:bez1}--\eqref{eq:bez2}, $U_k$ and $V_k$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(H_kT_k)=v_p(U_k^2+3V_k^2)$ is even. Suppose that $p$ divides both $H_k$ and $T_k$. Then $p\mid U_k^2+3V_k^2$ by \eqref{eq:HT}, so $p\mid U_k$ and $p\mid V_k$ by Lemma~\ref{lem:divides}, and $p\mid R_k$, where $R_k$ is the right-hand side of the identity for $A_kU_k+B_kV_k$. For $k=1$, we have $R_{1}=5$. As $p$ is odd, we get $p=5$. Checking the $5^2$ residue pairs modulo $5$, we find that $F$, $H_{1}$ and $T_{1}$ have no common zero modulo $5$, a contradiction. For $k=2$, we have $R_{2}=2\cdot 3^{2}\cdot 13^{2}\cdot 23\cdot 4003$. As $p$ is odd and $p\neq3$, $p\neq13$, and $p\neq4003$ because $\leg{-3}{3}=0$, $\leg{-3}{13}=1$, and $\leg{-3}{4003}=1$, we get $p=23$. Checking the $23^2$ residue pairs modulo $23$, we find that $F$, $H_{2}$ and $T_{2}$ have no common zero modulo $23$, a contradiction. Hence $p$ does not divide both $H_k$ and $T_k$. If $p\nmid T_k$, then $v_p(H_k)=v_p(H_kT_k)$ is even, and if $p\nmid H_k$, then $v_p(H_k)=0$.
+
+\paragraph{Step 4: contradiction.} By Step~1, there is $k$ such that $H_k\equiv su\pmod{12}$ with $s$ and $u$ as in Lemma~\ref{lem:odd}, and $H_k>0$ by Step~2. Hence Lemma~\ref{lem:odd} applies to $n=H_k$, so there is an odd prime $p$ with $\leg{-3}{p}=-1$ such that $v_p(H_k)$ is odd. This contradicts Step~3, and the theorem is proved.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\end{thebibliography}
+
+
+\end{document}

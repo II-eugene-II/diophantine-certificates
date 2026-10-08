@@ -1,0 +1,412 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{longtable,booktabs,array}
+\emergencystretch=1.5em
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E8679810\_23: 2x\textasciicircum 4+x+y\textasciicircum 3-y\textasciicircum 2+y+1=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+% Legendre symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E8679810\_23}\\[4pt] {\Large The equation $2x^{4}+x+y^{3}-y^{2}+y+1=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=49$, length $l=12$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+2x^{4}+x+y^{3}-y^{2}+y+1=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses 16 auxiliary polynomials $H_0,\dots,H_{15}$, 3 of which are constants, and 2 graphs on these vertices with 20 and 1 edges, respectively; to each edge $\{i,j\}$ we attach the Hilbert symbol $(H_i,H_j)_v$ of the values at a hypothetical solution. By the product formula, the product of these symbols over all edges and all places is $1$. We show that the product over the edges is $1$ at every odd prime outside a finite set $S$, compute it at the primes of $S$ and at the real place, and obtain a contradiction. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Legendre symbol and of the Hilbert symbol.
+
+\section{Legendre symbols and Hilbert symbols}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. It is multiplicative in $a$, and it depends only on $a$ modulo $p$ \cite[Chapter~5]{IR}.
+
+For a prime $p$, let $\Q_p$ be the field of $p$-adic numbers, and put $\Q_\infty=\mathbb R$. For $v$ a prime or $v=\infty$, and non-zero $a,b\in\Q$, the Hilbert symbol $(a,b)_v$ is $1$ if the equation $z^2=ar^2+bs^2$ has a solution $(r,s,z)\neq(0,0,0)$ in $\Q_v$, and $-1$ otherwise. In particular, $(a,b)_v=1$ for every $v$ if this equation has a non-zero solution in $\Q$. For an odd integer $t$, we put $\varepsilon(t)=(t-1)/2$ and $\omega(t)=(t^2-1)/8$. We use the following facts \cite[Chapter~III, Proposition~2 and Theorems~1 and~3]{Se}.
+
+\begin{theorem}\label{thm:hilbert}
+Let $a$, $a'$ and $b$ be non-zero integers, and let $v$ be a prime or $v=\infty$.
+\begin{itemize}
+\item[(i)] $(a,b)_\infty=-1$ if and only if $a<0$ and $b<0$.
+\item[(ii)] Let $p$ be an odd prime, and write $a=p^\alpha u$ and $b=p^\beta w$ with $p\nmid uw$. Then $(a,b)_p=(-1)^{\alpha\beta\varepsilon(p)}\leg{u}{p}^\beta\leg{w}{p}^\alpha$.
+\item[(iii)] Write $a=2^\alpha u$ and $b=2^\beta w$ with $u$ and $w$ odd. Then $(a,b)_2=(-1)^{\varepsilon(u)\varepsilon(w)+\alpha\omega(w)+\beta\omega(u)}$.
+\item[(iv)] $(a,b)_v=1$ for all but finitely many $v$, and $\prod_v(a,b)_v=1$, the product over all primes $v$ and $v=\infty$.
+\item[(v)] $(a,b)_v=(b,a)_v$ and $(aa',b)_v=(a,b)_v(a',b)_v$.
+\end{itemize}
+\end{theorem}
+
+\begin{lemma}\label{lem:square}
+Let $a$ and $b$ be non-zero integers. If $p$ is an odd prime with $p\nmid a$ and $\leg{a}{p}=1$, then $(a,b)_p=1$. If $a\equiv1\pmod8$, then $(a,b)_2=1$.
+\end{lemma}
+
+\begin{proof}
+The first claim is Theorem~\ref{thm:hilbert}(ii) with $\alpha=0$. For the second, $\varepsilon(a)$ and $\omega(a)$ are even, and Theorem~\ref{thm:hilbert}(iii) with $\alpha=0$ gives $(a,b)_2=1$.
+\end{proof}
+
+
+\begin{lemma}\label{lem:classes}
+Let $p$ be a prime. For a non-zero integer $X$, write $X=p^ju$ with $p\nmid u$. If $p$ is odd, put $c_p(X)=(j,e)\in\F_2^2$, where $\leg{u}{p}=(-1)^e$; if $p=2$, put $c_2(X)=(j,e_1,e_2)\in\F_2^3$, where $u\equiv(-1)^{e_1}5^{e_2}\pmod8$; all entries are taken modulo $2$. Then $c_p(XX')=c_p(X)+c_p(X')$ and $(X,X')_p=(-1)^{\beta_p(c_p(X),c_p(X'))}$ for non-zero integers $X,X'$, where $\beta_p$ is the symmetric bilinear form
+\begin{align*}
+\beta_p\bigl((j,e),(j',e')\bigr)&=jj'\varepsilon(p)+je'+j'e&&\text{if $p$ is odd},\\
+\beta_2\bigl((j,e_1,e_2),(j',e_1',e_2')\bigr)&=e_1e_1'+je_2'+j'e_2.
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+For odd $p$, this is Theorem~\ref{thm:hilbert}(ii), as the Legendre symbol is multiplicative. For $p=2$, the odd residues $1,3,5,7$ modulo $8$ are $(-1)^{e_1}5^{e_2}$ with $(e_1,e_2)=(0,0),(1,1),(0,1),(1,0)$, respectively; in each case $\varepsilon(u)\equiv e_1$ and $\omega(u)\equiv e_2\pmod2$, so Theorem~\ref{thm:hilbert}(iii) gives the formula, and $c_2$ is additive because $(e_1,e_2)\mapsto(-1)^{e_1}5^{e_2}$ is an isomorphism from $\F_2^2$ to the group of odd residues modulo $8$.
+\end{proof}
+
+\begin{lemma}\label{lem:residue}
+Let $p$ be a prime, $k\geq1$, and let $X$ be a non-zero integer with $X\equiv r\pmod{p^k}$, where $0\leq r<p^k$. Then $c_p(X)\in b+D$ for the vector $b$ and the subspace $D$ given as follows. If $r=0$, then $b=0$ and $D$ is the whole space. Otherwise write $r=p^jr'$ with $p\nmid r'$, so that $j<k$. If $p$ is odd, or if $p=2$ and $k-j\geq3$, then $b=c_p(r)$ and $D=0$. If $p=2$ and $k-j=2$, then $b=(j,e_1,0)$ with $r'\equiv(-1)^{e_1}\pmod4$, and $D$ is spanned by $(0,0,1)$. If $p=2$ and $k-j=1$, then $b=(j,0,0)$, and $D$ is spanned by $(0,1,0)$ and $(0,0,1)$.
+\end{lemma}
+
+\begin{proof}
+If $r\neq0$, then $v_p(X)=j$ and $X/p^j\equiv r'\pmod{p^{k-j}}$. For odd $p$, the Legendre symbol of $X/p^j$ is therefore that of $r'$. For $p=2$, the residue of $X/2^j$ modulo $8$ is that of $r'$ if $k-j\geq3$, and its residue modulo $4$, which determines $e_1$, is that of $r'$ if $k-j=2$.
+\end{proof}
+
+\begin{lemma}\label{lem:envelope}
+Let $p$ be a prime, and let $E$ be a set of edges on a finite set of vertices. For every vertex $i$, let $b_i$ be a vector and $D_i$ a subspace of $\F_2^2$ (of $\F_2^3$ if $p=2$), and put $\sigma_i=\sum_{j\sim i}b_j$, the sum over the edges $\{i,j\}\in E$. Suppose that $\beta_p(d,\sigma_i)=0$ for every vertex $i$ and every $d\in D_i$, and that $\beta_p(d,d')=0$ for every edge $\{i,j\}\in E$ and all $d\in D_i$ and $d'\in D_j$. Then
+\[
+\sum_{\{i,j\}\in E}\beta_p(c_i,c_j)=\sum_{\{i,j\}\in E}\beta_p(b_i,b_j)\qquad\text{whenever $c_i\in b_i+D_i$ for every $i$.}
+\]
+By bilinearity, it suffices to check the hypotheses for $d$ and $d'$ in spanning sets of $D_i$ and $D_j$.
+\end{lemma}
+
+\begin{proof}
+Write $c_i=b_i+d_i$ with $d_i\in D_i$. As $\beta_p$ is bilinear and symmetric, the left side equals the right side plus $\sum_i\beta_p(d_i,\sigma_i)+\sum_{\{i,j\}\in E}\beta_p(d_i,d_j)$, and both sums vanish.
+\end{proof}
+
+\begin{lemma}\label{lem:cubic}
+Let $f(z)=az^3+bz^2+cz+d$ be a real polynomial with $a\neq0$ and discriminant $\Delta<0$. Then $f$ has exactly one real root $\eta$, and $f(z)$ has the sign of $a(z-\eta)$ for every real $z\neq\eta$.
+\end{lemma}
+
+\begin{proof}
+The discriminant is $\Delta=a^4\prod_{i<j}(\rho_i-\rho_j)^2$, where $\rho_1,\rho_2,\rho_3$ are the complex roots of $f$. If all roots were real, then $\Delta\geq0$. Hence $f$ has a non-real root $\rho$; then $\bar\rho\neq\rho$ is also a root, and the third root $\eta$ is real. Thus $f(z)=a(z-\eta)(z-\rho)(z-\bar\rho)=a(z-\eta)|z-\rho|^2$ for real $z$, and $|z-\rho|^2>0$.
+\end{proof}
+
+\section{The graph}
+
+Put $F(x,y)=2x^{4}+x+y^{3}-y^{2}+y+1$, so that \eqref{eq:main} is the equation $F(x,y)=0$. The vertices are the polynomials
+\begin{align*}
+H_{0}&=-x-y+1,\\
+H_{1}&=-y-1,\\
+H_{2}&=x-y,\\
+H_{3}&=-x-y-1,\\
+H_{4}&=x-y-1,\\
+H_{5}&=2x-y,\\
+H_{6}&=-2x-y+1,\\
+H_{7}&=2x-y+1,\\
+H_{8}&=x^{2}-x+y,\\
+H_{9}&=x^{2}+x+y,\\
+H_{10}&=x^{2}-y+1,\\
+H_{11}&=x^{2}-x+y-1,\\
+H_{12}&=1,\\
+H_{13}&=-1,\\
+H_{14}&=2,\\
+H_{15}&=4x^{2}-4xy-4x+y^{2}.
+\end{align*}
+There are 2 graphs on these vertices. The edges of the first graph are $\{0,9\}$, $\{0,11\}$, $\{1,7\}$, $\{1,11\}$, $\{2,3\}$, $\{2,4\}$, $\{2,7\}$, $\{2,10\}$, $\{3,7\}$, $\{3,9\}$, $\{4,6\}$, $\{4,10\}$, $\{5,10\}$, $\{7,9\}$, $\{7,11\}$, $\{8,10\}$, $\{1,13\}$, $\{4,14\}$, $\{6,14\}$, $\{9,13\}$. The edges of the second graph are $\{15,14\}$. For a vertex $i$, we write $j\sim_g i$ if $\{i,j\}$ is an edge of the $g$-th graph.
+For every non-constant vertex $i$ and every graph $g$ in which $i$ has a neighbour, Table~\ref{tab:star} gives a positive integer $m_{g,i}$ and polynomials $W_{g,i}$, $A_{g,i}$ and $B_{g,i}$ with integer coefficients such that
+\begin{equation}\label{eq:star}
+m_{g,i}^2\prod_{j\sim_g i}H_j-W_{g,i}^2=A_{g,i}F+B_{g,i}H_i.
+\end{equation}
+For every edge $\{i,j\}$ between two non-constant vertices, Table~\ref{tab:sep} gives a positive integer $k_{ij}$ and polynomials $\alpha_{ij}$, $\beta_{ij}$ and $\gamma_{ij}$ with integer coefficients such that
+\begin{equation}\label{eq:sep}
+\alpha_{ij}F+\beta_{ij}H_i+\gamma_{ij}H_j=k_{ij}.
+\end{equation}
+These identities can be checked by expanding both sides.
+For the signs of the vertices, we regard $F$ as a polynomial in $y$; it has degree $3$ and leading coefficient $1$, and its discriminant is
+\begin{align*}
+\Delta(x)&=-108x^{8}-108x^{5}-136x^{4}-27x^{2}-68x-44.
+\end{align*}
+For $i\in I=\{0,\allowbreak 1,\allowbreak 2,\allowbreak 3,\allowbreak 4,\allowbreak 5,\allowbreak 6,\allowbreak 7,\allowbreak 8,\allowbreak 9,\allowbreak 10,\allowbreak 11\}$, the vertex $H_i$ has the form $k_iy+r_i(x)$ with a non-zero integer $k_i$, and Table~\ref{tab:phi} lists the polynomial $\varphi_i(x)=k_i^3F\bigl(x,-r_i(x)/k_i\bigr)$, which has integer coefficients.
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}, so that $F(x,y)=0$; from now on the polynomials denote their values at $(x,y)$.
+\paragraph{Step 1: the values are non-zero.} Checking the $3^2$ residue pairs modulo $3$, we find that $F$ and $H_{15}$ have no common zero modulo $3$, so $H_{15}\neq0$. The other non-constant $H_i$ are non-zero by Step~2.
+
+\paragraph{Step 2: signs.} \emph{The signs of $H_i$ for $i\in I$.} If $\Delta(x)<0$, then by Lemma~\ref{lem:cubic}, applied to $F(x,z)$ as a polynomial in $z$, $y$ is its only real root, and $F(x,z)$ has the sign of $(z-y)$ for $z\neq y$. For $i\in I$ and $z=-r_i(x)/k_i$, we have $z-y=-H_i/k_i$, so if moreover $\varphi_i(x)=k_i^3F(x,z)\neq0$, then $H_i\neq0$, and $H_i$ has the sign of $-\varphi_i(x)$. Expanding $\Delta(4+t)$ and the $\varphi_i(4+t)$ as polynomials in $t$ gives in each case coefficients of one sign and a non-zero constant term, and likewise for $\Delta(-5-t)$ and the $\varphi_i(-5-t)$. Hence, for $x\geq4$ and for $x\leq-5$, we have $\Delta(x)<0$, and $\varphi_i(x)$ is non-zero and has the sign of the constant term of the corresponding expansion; the resulting signs of the $H_i$ are listed in Table~\ref{tab:phi}. It remains to consider $-4\leq x\leq3$. Checking the residues of $y$, we find that for $x\in\{-3,\allowbreak -2,\allowbreak 0,\allowbreak 1,\allowbreak 3\}$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, for $x=-1$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$, for $x=-4$, we have $F(x,y)\not\equiv0\pmod{7}$ for every $y$, and for $x=2$, we have $F(x,y)\not\equiv0\pmod{11}$ for every $y$. Hence \eqref{eq:main} has no solution with $-4\leq x\leq3$.
+
+For a place $v$, put $B^{(g)}_v=\prod_{\{i,j\}}(H_i,H_j)_v$, the product over the edges of the $g$-th graph. By Theorem~\ref{thm:hilbert}(i), $(H_i,H_j)_\infty=-1$ exactly when $H_i<0$ and $H_j<0$. Here $H_i>0$ for $i\in\{12,\allowbreak 14\}$ and $H_i<0$ for $i\in\{13\}$. The other signs are given in Table~\ref{tab:phi} for $x\geq4$ and for $x\leq-5$. In both cases and for either sign of $H_{15}$, counting the edges of each graph whose two values are negative gives $(B^{(g)}_\infty)_g=(1,1)$.
+
+\paragraph{Step 3: odd primes outside $S$.} Let $S=\{2,5,7,2311\}$ be the set of primes dividing $2$, the $m_{g,i}$, the $k_{ij}$ and the constant vertices. Let $p\notin S$ be an odd prime; we show that $B^{(g)}_p=1$ for every $g$. For an edge $\{i,j\}$ of the $g$-th graph such that $p$ divides neither $H_i$ nor $H_j$, $(H_i,H_j)_p=1$ by Theorem~\ref{thm:hilbert}(ii). Now let $i$ be a vertex with $p\mid H_i$. Then $H_i$ is not constant, as $p\notin S$. For every edge $\{i,j\}$ of the $g$-th graph, $p\nmid H_j$: if $H_j$ is constant, because $p\notin S$, and otherwise by \eqref{eq:sep}, because $p\nmid k_{ij}$. In particular, no edge has both values divisible by $p$. By Theorem~\ref{thm:hilbert}(v), the edges at $i$ contribute $\prod_{j\sim_g i}(H_i,H_j)_p=(H_i,\Pi_i)_p$, where $\Pi_i=\prod_{j\sim_g i}H_j$ is not divisible by $p$. By \eqref{eq:star}, $m_{g,i}^2\Pi_i\equiv W_{g,i}^2\pmod p$, and $p\nmid m_{g,i}$, so $\Pi_i$ is a non-zero square modulo $p$, and $(H_i,\Pi_i)_p=(\Pi_i,H_i)_p=1$ by Lemma~\ref{lem:square}. Hence $B^{(g)}_p=1$.
+
+\paragraph{Step 4: the primes in $S$.} Let $p\in S$. By Lemma~\ref{lem:classes}, $B^{(g)}_p=(-1)^{N_g}$, where $N_g=\sum_{\{i,j\}}\beta_p\bigl(c_p(H_i),c_p(H_j)\bigr)$, the sum over the edges of the $g$-th graph. Suppose that $x\equiv a$ and $y\equiv b\pmod{p^k}$. Then $H_i\equiv H_i(a,b)\pmod{p^k}$, and Lemma~\ref{lem:residue} gives a vector $b_i$ and a subspace $D_i$ with $c_p(H_i)\in b_i+D_i$; for a constant vertex, we take $b_i=c_p(H_i)$ and $D_i=0$. If the hypotheses of Lemma~\ref{lem:envelope} hold for the edges of every graph, then $N_g=\sum_{\{i,j\}}\beta_p(b_i,b_j)$, so $B^{(g)}_p$ is determined by $a$, $b$ and $k$. Starting from the solutions of \eqref{eq:main} modulo $p$, we refine a residue class $x\equiv a$, $y\equiv b\pmod{p^k}$ to the classes modulo $p^{k+1}$ that contain solutions of \eqref{eq:main} modulo $p^{k+1}$, until these hypotheses hold, or until no solution remains. Table~\ref{tab:local} lists the resulting terminal classes together with the value of the vector $(B^{(g)}_p)_g$; every integer solution lies in one of them. For $p=2311$, every residue class modulo $p$ that contains a solution of \eqref{eq:main} modulo $p$ is already terminal, with $(B^{(g)}_{2311})_g=(1,1)$; these classes are not listed in Table~\ref{tab:local}. The result is $(B^{(g)}_{2})_g\in\{(1,-1),\allowbreak (-1,1),\allowbreak (-1,-1)\}$, $(B^{(g)}_{5})_g\in\{(1,1)\}$, $(B^{(g)}_{7})_g\in\{(1,1)\}$, $(B^{(g)}_{2311})_g\in\{(1,1)\}$.
+
+\paragraph{Step 5: contradiction.} By Theorem~\ref{thm:hilbert}(iv), applied to each edge, $\prod_vB^{(g)}_v=1$ for every $g$. By Step~3, the factors with $p\notin S$ are $1$, so the componentwise product of the vectors $(B^{(g)}_p)_g$ with $p\in S$ is $(B^{(g)}_\infty)_g=(1,1)$ by Step~2. But by Step~4, this product is $(1,-1)$, $(-1,1)$, or $(-1,-1)$. This contradiction proves the theorem.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\bibitem{Se} J.-P. Serre, \emph{A Course in Arithmetic}, Graduate Texts in Mathematics 7, Springer, New York, 1973.
+\end{thebibliography}
+
+\clearpage
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:star}.}\label{tab:star}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\multicolumn{2}{@{}l}{$g=1$, $i=0$, $m=2$, neighbours $9,11$}\\
+$W$ & $-2x^{3}+x^{2}-3x+2$\\
+$A$ & $-2x^{2}+2x+y-3$\\
+$B$ & $2x^{3}y+3x^{3}-2x^{2}y^{2}-x^{2}y-13x^{2}+xy^{2}+2xy+8x+y^{3}-3y^{2}-3y-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=1$, $m=1$, neighbours $13,7,11$}\\
+$W$ & $-2x^{3}-2x^{2}$\\
+$A$ & $-2x^{2}-4x-2$\\
+$B$ & $-2x^{2}y^{2}+4x^{2}y-7x^{2}-4xy^{2}+8xy-9x-2y^{2}+3y-3$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=2$, $m=1$, neighbours $3,4,7,10$}\\
+$W$ & $-x$\\
+$A$ & $-x+y+1$\\
+$B$ & $-x^{3}y-3x^{3}+x^{2}y^{2}+3x^{2}y+xy^{2}+3xy+2y+2$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=3$, $m=1$, neighbours $2,7,9$}\\
+$W$ & $-2x^{3}+x^{2}+x$\\
+$A$ & $-2x^{2}+2x+y+2$\\
+$B$ & $2x^{3}y-x^{3}-2x^{2}y^{2}+2x^{2}y-2x^{2}+xy^{2}+2x+y^{3}-y^{2}+y+2$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=4$, $m=1$, neighbours $14,2,6,10$}\\
+$W$ & $-2x^{3}-x^{2}+x-2$\\
+$A$ & $-2x^{2}-2x+y-1$\\
+$B$ & $-2x^{3}y+x^{3}-2x^{2}y^{2}+x^{2}y-x^{2}-xy^{2}+4xy-6x+y^{3}-y^{2}-y+3$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=5$, $m=1$, neighbours $10$}\\
+$W$ & $-x+1$\\
+$A$ & $0$\\
+$B$ & $1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=6$, $m=1$, neighbours $14,4$}\\
+$W$ & $-2x^{2}+4x$\\
+$A$ & $-2$\\
+$B$ & $-8x^{2}+4xy+4x-2y^{2}$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=7$, $m=2$, neighbours $1,2,3,9,11$}\\
+$W$ & $-6x^{2}-10x-4$\\
+$A$ & $2x^{2}y+2x^{2}+2xy+2x-2y^{3}-4y^{2}-2y$\\
+$B$ & $4x^{3}y^{2}-22x^{3}+2x^{2}y^{3}+2x^{2}y^{2}-14x^{2}y-56x^{2}-4xy^{4}-2xy^{3}$\\
+ & $\quad -4xy^{2}-24xy-50x-2y^{5}+4y^{3}-4y^{2}-14y-16$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=8$, $m=16$, neighbours $10$}\\
+$W$ & $-8x^{5}+32x^{4}-32x^{3}+24x^{2}-24x+8$\\
+$A$ & $-32x^{6}+256x^{5}-768x^{4}-112x^{3}y^{2}+188x^{3}y+733x^{3}+16x^{2}y^{3}$\\
+ & $\quad -16x^{2}y^{2}+16x^{2}y-1584x^{2}-128xy^{3}+156xy^{2}-175xy+1331x+16y^{4}$\\
+ & $\quad -160y^{3}+620y^{2}-1587y+192$\\
+$B$ & $224x^{5}y^{2}-376x^{5}y+998x^{5}+224x^{4}y^{2}-376x^{4}y+998x^{4}-224x^{3}y^{3}$\\
+ & $\quad +544x^{3}y^{2}-1280x^{3}y+2048x^{3}-32x^{2}y^{4}+640x^{2}y^{3}-976x^{2}y^{2}$\\
+ & $\quad +1476x^{2}y-925x^{2}+112xy^{5}-108xy^{4}-353xy^{3}+977xy^{2}-1509xy+1590x$\\
+ & $\quad -16y^{6}+176y^{5}-796y^{4}+2351y^{3}-2239y^{2}+1159y+1139$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=9$, $m=8$, neighbours $13,0,3,7$}\\
+$W$ & $-8x^{5}-24x^{4}-16x^{3}-24x^{2}-8x$\\
+$A$ & $-32x^{6}-192x^{5}-416x^{4}+80x^{3}y^{2}-156x^{3}y-279x^{3}+16x^{2}y^{3}$\\
+ & $\quad -16x^{2}y^{2}+16x^{2}y-656x^{2}+96xy^{3}-156xy^{2}+213xy-441x+16y^{4}-128y^{3}$\\
+ & $\quad +364y^{2}-633y+64$\\
+$B$ & $-160x^{5}y^{2}+312x^{5}y-562x^{5}+160x^{4}y^{2}-312x^{4}y+562x^{4}+160x^{3}y^{3}$\\
+ & $\quad -352x^{3}y^{2}+640x^{3}y-224x^{3}-32x^{2}y^{4}+352x^{2}y^{3}-560x^{2}y^{2}$\\
+ & $\quad +636x^{2}y-41x^{2}-80xy^{5}+108xy^{4}+27xy^{3}-267xy^{2}+7xy+464x-16y^{6}$\\
+ & $\quad +144y^{5}-508y^{4}+1109y^{3}-869y^{2}+269y+505$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=10$, $m=2$, neighbours $2,4,5,8$}\\
+$W$ & $-2x^{5}-2x^{4}-8x^{3}-8$\\
+$A$ & $-2x^{6}-4x^{5}-18x^{4}-2x^{3}y^{2}+4x^{3}y-14x^{3}+x^{2}y^{3}-x^{2}y^{2}+x^{2}y$\\
+ & $\quad -29x^{2}+2xy^{3}-2xy^{2}+2xy+34x-y^{4}+4y^{3}+6y^{2}-20y-25$\\
+$B$ & $4x^{5}y^{2}-8x^{5}y-2x^{5}+4x^{3}y^{3}-12x^{3}y^{2}+6x^{3}y-68x^{3}+2x^{2}y^{4}$\\
+ & $\quad +10x^{2}y^{3}-28x^{2}y^{2}+34x^{2}y+34x^{2}+2xy^{5}-2xy^{4}+3xy^{3}+19xy^{2}$\\
+ & $\quad -25xy-9x-y^{6}+4y^{5}+5y^{4}-14y^{3}-5y^{2}+6y-39$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=1$, $i=11$, $m=2$, neighbours $0,1,7$}\\
+$W$ & $-2x^{3}+2x^{2}+4x$\\
+$A$ & $-2x^{2}+2x-2y+2$\\
+$B$ & $4x^{3}+4x^{2}y+12x^{2}+2x+2y^{3}-6y^{2}+2y+6$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$g=2$, $i=15$, $m=9244$, neighbours $14$}\\
+$W$ & $22804x^{7}+181300x^{6}+810540x^{5}-1533768x^{4}+2237428x^{3}-704344x^{2}+137361x$\\
+ & $\quad -20025$\\
+$A$ & $-260011208x^{10}-6214454864x^{9}+1560067248x^{8}y-82033925992x^{8}$\\
+ & $\quad +49767267168x^{7}y-406958821020x^{7}-9360403488x^{6}y^{2}+350688431092x^{6}y$\\
+ & $\quad -847144065116x^{6}-73953919296x^{5}y^{2}+1206441105144x^{5}y+3685654895988x^{5}$\\
+ & $\quad -328456489824x^{4}y^{2}-2442301684916x^{4}y-6444967557242x^{4}$\\
+ & $\quad +650471951520x^{3}y^{2}+3662098405884x^{3}y+4978516538292x^{3}$\\
+ & $\quad -930145352832x^{2}y^{2}-1171088290724x^{2}y-1266436155864x^{2}$\\
+ & $\quad +296692036704xy^{2}+62147372532xy+70158720443x-16567023816y^{2}+230097553y$\\
+ & $\quad -230097553$\\
+$B$ & $1040044832x^{11}+260011208x^{10}y+24597808248x^{10}-25814128x^{9}y$\\
+ & $\quad +172154793296x^{9}-1560067248x^{8}y^{2}-3150233576x^{8}y+546626584616x^{8}$\\
+ & $\quad -12325653216x^{7}y^{2}-58580604628x^{7}y-847340528716x^{7}+9360403488x^{6}y^{3}$\\
+ & $\quad -64233157396x^{6}y^{2}+322906357008x^{6}y+1064800515120x^{6}$\\
+ & $\quad +73953919296x^{5}y^{3}+33430934856x^{5}y^{2}-441716550124x^{5}y$\\
+ & $\quad +878141745140x^{5}+328456489824x^{4}y^{3}-488042610988x^{4}y^{2}$\\
+ & $\quad +844472972598x^{4}y-1043792068758x^{4}-650471951520x^{3}y^{3}$\\
+ & $\quad +708954956964x^{3}y^{2}-842841361480x^{3}y+512371714824x^{3}$\\
+ & $\quad +930145352832x^{2}y^{3}-945825208924x^{2}y^{2}+975708013636x^{2}y$\\
+ & $\quad +586049874900x^{2}-296692036704xy^{3}+300812759436xy^{2}-305623774827xy$\\
+ & $\quad -271193274765x+16567023816y^{3}-16797121369y^{2}+17027218922y+16106828710$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:sep}.}\label{tab:sep}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,9\}$, $k_{ij}=2$}\\
+$\alpha$ & $1$\\
+$\beta$ & $2x^{3}-2x^{2}y+2x^{2}-xy+x-y^{2}+y+1$\\
+$\gamma$ & $-2y^{2}+3y-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{0,11\}$, $k_{ij}=2^{6}$}\\
+$\alpha$ & $-30x^{4}-225y+257$\\
+$\beta$ & $-60x^{7}+60x^{6}y-60x^{6}-90x^{5}y+330x^{5}+30x^{4}y^{2}-210x^{4}y-90x^{4}$\\
+ & $\quad +4x^{3}-4x^{2}y+4x^{2}+225xy^{2}-474xy+458x-225y^{3}+478y^{2}-691y+261$\\
+$\gamma$ & $60x^{4}y^{2}-210x^{4}y+390x^{4}+221y^{2}-466y+454$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,7\}$, $k_{ij}=2$}\\
+$\alpha$ & $-2$\\
+$\beta$ & $-2x^{3}+2x^{2}-2x-2y^{2}+4y-5$\\
+$\gamma$ & $2x^{3}-2x^{2}+2x-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{1,11\}$, $k_{ij}=2^{5}$}\\
+$\alpha$ & $11x-21$\\
+$\beta$ & $-22x^{3}+20x^{2}+11xy^{2}-22xy+9x-21y^{2}+42y-58$\\
+$\gamma$ & $-22x^{3}+20x^{2}-24x+5$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,3\}$, $k_{ij}=1$}\\
+$\alpha$ & $-4$\\
+$\beta$ & $8x^{3}+8x^{2}y+8xy^{2}+4y^{3}+2y-1$\\
+$\gamma$ & $-4y^{3}+2y-5$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,4\}$, $k_{ij}=1$}\\
+$\alpha$ & $0$\\
+$\beta$ & $1$\\
+$\gamma$ & $-1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,7\}$, $k_{ij}=1$}\\
+$\alpha$ & $-1$\\
+$\beta$ & $2x^{3}+2x^{2}y+2xy^{2}-2y^{3}+2y^{2}-3$\\
+$\gamma$ & $2y^{3}-y^{2}+2$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{2,10\}$, $k_{ij}=1$}\\
+$\alpha$ & $-2x^{4}-y$\\
+$\beta$ & $4x^{7}+4x^{6}y-6x^{5}y-6x^{4}y^{2}+2x^{4}+2x^{3}+2x^{2}y-xy^{2}-2xy-x-y^{3}$\\
+ & $\quad -2y^{2}$\\
+$\gamma$ & $4x^{4}y^{2}+6x^{4}y+3y^{2}+2y+1$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{3,7\}$, $k_{ij}=2^{2}\cdot 5$}\\
+$\alpha$ & $81$\\
+$\beta$ & $162x^{3}-162x^{2}y-162x^{2}+162xy^{2}+324xy+162x-54y^{3}-36y^{2}-42y+203$\\
+$\gamma$ & $54y^{3}+225y^{2}+222y+142$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{3,9\}$, $k_{ij}=2\cdot 5$}\\
+$\alpha$ & $-x^{4}+3y+6$\\
+$\beta$ & $-2x^{7}+2x^{6}y+2x^{6}+x^{5}y-x^{5}+x^{4}y^{2}+5x^{4}y+x^{4}+10x^{3}-10x^{2}y$\\
+ & $\quad -10x^{2}-3xy^{2}+3xy-10x+3y^{3}-13y^{2}-7y-4$\\
+$\gamma$ & $2x^{4}y^{2}+5x^{4}y+x^{4}-13y^{2}-17y-20$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{4,6\}$, $k_{ij}=2^{7}$}\\
+$\alpha$ & $81$\\
+$\beta$ & $-162x^{3}-162x^{2}y-162x^{2}-162xy^{2}-324xy-162x-54y^{3}-36y^{2}-42y+149$\\
+$\gamma$ & $54y^{3}+225y^{2}+222y+196$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{4,10\}$, $k_{ij}=2^{4}$}\\
+$\alpha$ & $-x^{4}-2y+1$\\
+$\beta$ & $2x^{7}+2x^{6}y+2x^{6}-3x^{5}y+2x^{5}-3x^{4}y^{2}-x^{4}y+3x^{4}+2x^{3}+2x^{2}y$\\
+ & $\quad +2x^{2}-2xy^{2}+3xy-6x-2y^{3}+y^{2}-y-7$\\
+$\gamma$ & $2x^{4}y^{2}+7x^{4}y+4y^{2}+y+8$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{5,10\}$, $k_{ij}=2^{3}\cdot 5^{2}$}\\
+$\alpha$ & $-54x^{4}+81y-88$\\
+$\beta$ & $-1080x^{7}-162x^{6}y+972x^{5}y+2916x^{5}+108x^{4}y^{2}+1836x^{4}y+27x^{4}$\\
+ & $\quad +8554x^{3}-1218x^{2}y-4374xy^{2}-306xy+4245x-2187y^{3}+5342y^{2}-3413y+44$\\
+$\gamma$ & $2268x^{6}-756x^{5}y-162x^{4}y^{2}+324x^{4}y-8100x^{4}+2268x^{2}y^{2}-8505x^{2}y$\\
+ & $\quad -8778x^{2}+10990xy+2268y^{3}-3243y^{2}+339y+288$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,9\}$, $k_{ij}=2\cdot 5$}\\
+$\alpha$ & $3y+11$\\
+$\beta$ & $-6x^{3}y-22x^{3}+9x+3y^{3}+11y^{2}+3y-1$\\
+$\gamma$ & $6x^{2}y+22x^{2}-6xy^{2}-22xy-18$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{7,11\}$, $k_{ij}=2^{2}\cdot 5$}\\
+$\alpha$ & $-12x^{4}+9y+1$\\
+$\beta$ & $12x^{7}+6x^{6}y-6x^{6}-18x^{5}y+6x^{5}-6x^{4}y^{2}+24x^{4}y+2x^{3}+x^{2}y-x^{2}$\\
+ & $\quad +18xy^{2}-15xy+40x+9y^{3}-34y^{2}+37y-60$\\
+$\gamma$ & $6x^{4}y^{2}+24x^{4}y-6x^{4}-35y^{2}+28y-79$\\
+\addlinespace[3pt]
+\multicolumn{2}{@{}l}{$\{i,j\}=\{8,10\}$, $k_{ij}=2^{2}\cdot 7$}\\
+$\alpha$ & $-8x^{4}-18y+27$\\
+$\beta$ & $4x^{7}-7x^{6}-2x^{5}y-6x^{5}+4x^{4}y^{2}-15x^{4}y-5x^{4}+76x^{3}+19x^{2}y^{2}$\\
+ & $\quad +85x^{2}y-128x^{2}+19xy^{2}-99xy+81x+19y^{3}-131y^{2}+228y-106$\\
+$\gamma$ & $-4x^{7}+27x^{6}-6x^{5}y+3x^{5}-4x^{4}y^{2}+47x^{4}y-28x^{4}-76x^{3}+39x^{2}y^{2}$\\
+ & $\quad -111x^{2}y+186x^{2}+32xy-133x+y^{3}-85y^{2}+98y+1$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+
+\begingroup\footnotesize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rrlcc@{}}
+\caption{The polynomials $\varphi_i(x)=k_i^3F\bigl(x,-r_i(x)/k_i\bigr)$ of Step~2 and the signs of $H_i$ for $x\geq4$ and for $x\leq-5$.}\label{tab:phi}\\
+\hline $i$ & $k_i$ & $\varphi_i(x)$ & $x\geq4$ & $x\leq-5$\\\hline\endfirsthead\hline $i$ & $k_i$ & $\varphi_i(x)$ & $x\geq4$ & $x\leq-5$\\\hline\endhead\hline\endfoot
+0 & $-1$ & $-2x^{4}+x^{3}-2x^{2}+x-2$ & $+$ & $+$\\
+1 & $-1$ & $-2x^{4}-x+2$ & $+$ & $+$\\
+2 & $-1$ & $-2x^{4}-x^{3}+x^{2}-2x-1$ & $+$ & $+$\\
+3 & $-1$ & $-2x^{4}+x^{3}+4x^{2}+5x+2$ & $+$ & $+$\\
+4 & $-1$ & $-2x^{4}-x^{3}+4x^{2}-7x+2$ & $+$ & $+$\\
+5 & $-1$ & $-2x^{4}-8x^{3}+4x^{2}-3x-1$ & $+$ & $+$\\
+6 & $-1$ & $-2x^{4}+8x^{3}-8x^{2}+3x-2$ & $+$ & $+$\\
+7 & $-1$ & $-2x^{4}-8x^{3}-8x^{2}-5x-2$ & $+$ & $+$\\
+8 & $1$ & $-x^{6}+3x^{5}-2x^{4}+3x^{3}-2x^{2}+2x+1$ & $+$ & $+$\\
+9 & $1$ & $-x^{6}-3x^{5}-2x^{4}-3x^{3}-2x^{2}+1$ & $+$ & $+$\\
+10 & $-1$ & $-x^{6}-4x^{4}-2x^{2}-x-2$ & $+$ & $+$\\
+11 & $1$ & $-x^{6}+3x^{5}+x^{4}-3x^{3}+3x+2$ & $+$ & $+$\\
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rrl>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\caption{The terminal residue classes $x\equiv a$, $y\equiv b\pmod{p^k}$ of Step~4, grouped by $p$, $k$ and the value of $(B^{(g)}_p)_g$.}\label{tab:local}\\
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endfirsthead
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endhead\hline\endfoot
+2 & 5 & $(-1,1)$ & $(10,3)$,\allowbreak\ $(10,19)$,\allowbreak\ $(14,9)$,\allowbreak\ $(14,25)$,\allowbreak\ $(26,11)$,\allowbreak\ $(26,27)$,\allowbreak\ $(30,1)$,\allowbreak\ $(30,17)$\\
+2 & 6 & $(1,-1)$ & $(3,38)$,\allowbreak\ $(7,50)$,\allowbreak\ $(11,30)$,\allowbreak\ $(15,42)$,\allowbreak\ $(19,22)$,\allowbreak\ $(23,34)$,\allowbreak\ $(27,14)$,\allowbreak\ $(31,26)$,\allowbreak\ $(35,6)$,\allowbreak\ $(39,18)$,\allowbreak\ $(43,62)$,\allowbreak\ $(47,10)$,\allowbreak\ $(51,54)$,\allowbreak\ $(55,2)$,\allowbreak\ $(59,46)$,\allowbreak\ $(63,58)$\\
+2 & 6 & $(-1,1)$ & $(6,29)$,\allowbreak\ $(6,61)$,\allowbreak\ $(18,23)$,\allowbreak\ $(18,55)$,\allowbreak\ $(38,13)$,\allowbreak\ $(38,45)$,\allowbreak\ $(50,7)$,\allowbreak\ $(50,39)$\\
+2 & 7 & $(-1,1)$ & $(2,15)$,\allowbreak\ $(2,79)$,\allowbreak\ $(22,53)$,\allowbreak\ $(22,117)$,\allowbreak\ $(54,37)$,\allowbreak\ $(54,101)$,\allowbreak\ $(66,47)$,\allowbreak\ $(66,111)$,\allowbreak\ $(118,5)$,\allowbreak\ $(118,69)$\\
+2 & 7 & $(-1,-1)$ & $(5,88)$,\allowbreak\ $(13,80)$,\allowbreak\ $(21,72)$,\allowbreak\ $(29,64)$,\allowbreak\ $(37,56)$,\allowbreak\ $(45,48)$,\allowbreak\ $(53,40)$,\allowbreak\ $(61,32)$,\allowbreak\ $(69,24)$,\allowbreak\ $(77,16)$,\allowbreak\ $(85,8)$,\allowbreak\ $(93,0)$,\allowbreak\ $(101,120)$,\allowbreak\ $(109,112)$,\allowbreak\ $(117,104)$,\allowbreak\ $(125,96)$\\
+2 & 8 & $(-1,1)$ & $(98,63)$,\allowbreak\ $(98,191)$,\allowbreak\ $(226,127)$,\allowbreak\ $(226,255)$\\
+2 & 8 & $(-1,-1)$ & $(1,204)$,\allowbreak\ $(9,132)$,\allowbreak\ $(17,188)$,\allowbreak\ $(25,116)$,\allowbreak\ $(33,172)$,\allowbreak\ $(41,100)$,\allowbreak\ $(49,156)$,\allowbreak\ $(57,84)$,\allowbreak\ $(65,140)$,\allowbreak\ $(73,68)$,\allowbreak\ $(81,124)$,\allowbreak\ $(89,52)$,\allowbreak\ $(97,108)$,\allowbreak\ $(105,36)$,\allowbreak\ $(113,92)$,\allowbreak\ $(121,20)$,\allowbreak\ $(129,76)$,\allowbreak\ $(137,4)$,\allowbreak\ $(145,60)$,\allowbreak\ $(153,244)$,\allowbreak\ $(161,44)$,\allowbreak\ $(169,228)$,\allowbreak\ $(177,28)$,\allowbreak\ $(185,212)$,\allowbreak\ $(193,12)$,\allowbreak\ $(201,196)$,\allowbreak\ $(209,252)$,\allowbreak\ $(217,180)$,\allowbreak\ $(225,236)$,\allowbreak\ $(233,164)$,\allowbreak\ $(241,220)$,\allowbreak\ $(249,148)$\\
+2 & 9 & $(-1,1)$ & $(34,159)$,\allowbreak\ $(34,415)$,\allowbreak\ $(86,149)$,\allowbreak\ $(86,405)$,\allowbreak\ $(162,223)$,\allowbreak\ $(162,479)$,\allowbreak\ $(290,31)$,\allowbreak\ $(290,287)$,\allowbreak\ $(342,21)$,\allowbreak\ $(342,277)$,\allowbreak\ $(418,95)$,\allowbreak\ $(418,351)$\\
+2 & 10 & $(-1,1)$ & $(214,341)$,\allowbreak\ $(214,853)$,\allowbreak\ $(470,213)$,\allowbreak\ $(470,725)$,\allowbreak\ $(726,85)$,\allowbreak\ $(726,597)$,\allowbreak\ $(982,469)$,\allowbreak\ $(982,981)$\\
+\addlinespace[3pt]
+5 & 1 & $(1,1)$ & $(1,1)$,\allowbreak\ $(2,0)$\\
+5 & 2 & $(1,1)$ & $(1,3)$,\allowbreak\ $(1,12)$,\allowbreak\ $(6,7)$,\allowbreak\ $(6,18)$,\allowbreak\ $(11,2)$,\allowbreak\ $(11,8)$,\allowbreak\ $(16,22)$,\allowbreak\ $(16,23)$,\allowbreak\ $(21,13)$\\
+5 & 3 & $(1,1)$ & $(21,17)$,\allowbreak\ $(46,117)$,\allowbreak\ $(71,92)$,\allowbreak\ $(96,67)$,\allowbreak\ $(121,42)$\\
+\addlinespace[3pt]
+7 & 1 & $(1,1)$ & $(0,2)$,\allowbreak\ $(1,4)$,\allowbreak\ $(2,0)$,\allowbreak\ $(2,3)$,\allowbreak\ $(4,1)$,\allowbreak\ $(5,6)$\\
+7 & 2 & $(1,1)$ & $(2,40)$,\allowbreak\ $(9,19)$,\allowbreak\ $(16,47)$,\allowbreak\ $(23,26)$,\allowbreak\ $(30,5)$,\allowbreak\ $(37,33)$,\allowbreak\ $(44,12)$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+\end{document}
