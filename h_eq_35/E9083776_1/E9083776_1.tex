@@ -1,0 +1,621 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{longtable}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E9083776\_1: x\textasciicircum 4+xy+y\textasciicircum 3+7=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+% Legendre symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E9083776\_1}\\[4pt] {\Large The equation $x^{4}+xy+y^{3}+7=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=35$, length $l=11.81$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+xy+y^{3}+7=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses eight polynomial identities of the form $H_kT_k=U_k^2+d_kV_k^2$ on the curve \eqref{eq:main}, where $d_{1}=-H_{2}$, $d_{2}=-H_{1}$, $d_{3}=-H_{4}$, $d_{4}=-H_{3}$, $d_{5}=-H_{6}$, $d_{6}=-H_{5}$, $d_{7}=-H_{8}$, and $d_{8}=-H_{7}$, and the product formula for four Hilbert symbols. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Legendre symbol and of the Hilbert symbol.
+
+\section{Legendre symbols and Hilbert symbols}
+
+For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. It is multiplicative in $a$, and it depends only on $a$ modulo $p$ \cite[Chapter~5]{IR}.
+
+For a prime $p$, let $\Q_p$ be the field of $p$-adic numbers, and put $\Q_\infty=\mathbb R$. For $v$ a prime or $v=\infty$, and non-zero $a,b\in\Q$, the Hilbert symbol $(a,b)_v$ is $1$ if the equation $z^2=ar^2+bs^2$ has a solution $(r,s,z)\neq(0,0,0)$ in $\Q_v$, and $-1$ otherwise. In particular, $(a,b)_v=1$ for every $v$ if this equation has a non-zero solution in $\Q$. For an odd integer $t$, we put $\varepsilon(t)=(t-1)/2$ and $\omega(t)=(t^2-1)/8$. We use the following facts \cite[Chapter~III, Proposition~2 and Theorems~1 and~3]{Se}.
+
+\begin{theorem}\label{thm:hilbert}
+Let $a$, $a'$ and $b$ be non-zero integers, and let $v$ be a prime or $v=\infty$.
+\begin{itemize}
+\item[(i)] $(a,b)_\infty=-1$ if and only if $a<0$ and $b<0$.
+\item[(ii)] Let $p$ be an odd prime, and write $a=p^\alpha u$ and $b=p^\beta w$ with $p\nmid uw$. Then $(a,b)_p=(-1)^{\alpha\beta\varepsilon(p)}\leg{u}{p}^\beta\leg{w}{p}^\alpha$.
+\item[(iii)] Write $a=2^\alpha u$ and $b=2^\beta w$ with $u$ and $w$ odd. Then $(a,b)_2=(-1)^{\varepsilon(u)\varepsilon(w)+\alpha\omega(w)+\beta\omega(u)}$.
+\item[(iv)] $(a,b)_v=1$ for all but finitely many $v$, and $\prod_v(a,b)_v=1$, the product over all primes $v$ and $v=\infty$.
+\item[(v)] $(a,b)_v=(b,a)_v$ and $(aa',b)_v=(a,b)_v(a',b)_v$.
+\end{itemize}
+\end{theorem}
+
+\begin{lemma}\label{lem:good}
+Let $p$ be an odd prime, and let $a,b,r,c,t$ be integers with $a\neq0$, $b\neq0$ and $at=r^2-bc^2$. If $p\nmid b$, and $p$ does not divide both $r$ and $c$, then $(a,b)_p=1$.
+\end{lemma}
+
+\begin{proof}
+If $p\nmid a$, this is Theorem~\ref{thm:hilbert}(ii) with $\alpha=\beta=0$. If $p\mid a$, then $r^2\equiv bc^2\pmod p$. If $p\mid c$, then $p\mid r$, which is excluded. Hence $p\nmid c$, so $b\equiv(rc')^2\pmod p$, where $cc'\equiv1\pmod p$, and $\leg{b}{p}=1$ as $p\nmid b$. Theorem~\ref{thm:hilbert}(ii) with $\beta=0$ gives $(a,b)_p=\leg{b}{p}^{v_p(a)}=1$.
+\end{proof}
+
+\begin{lemma}\label{lem:cofactor}
+Let $a,b,r,c,t$ be integers with $at=r^2-bc^2\neq0$ and $b\neq0$. Then $(a,b)_v=(t,b)_v$ for every $v$.
+\end{lemma}
+
+\begin{proof}
+The triple $(r,s,z)=(1,c,r)$ is a non-zero rational solution of $z^2=(at)r^2+bs^2$, so $(at,b)_v=1$. By Theorem~\ref{thm:hilbert}(v), $(a,b)_v(t,b)_v=(at,b)_v=1$, and both symbols are $\pm1$.
+\end{proof}
+
+\begin{lemma}\label{lem:square}
+Let $a$ and $b$ be non-zero integers. If $p$ is an odd prime with $p\nmid a$ and $\leg{a}{p}=1$, then $(a,b)_p=1$. If $a\equiv1\pmod8$, then $(a,b)_2=1$.
+\end{lemma}
+
+\begin{proof}
+The first claim is Theorem~\ref{thm:hilbert}(ii) with $\alpha=0$. For the second, $\varepsilon(a)$ and $\omega(a)$ are even, and Theorem~\ref{thm:hilbert}(iii) with $\alpha=0$ gives $(a,b)_2=1$.
+\end{proof}
+
+
+\begin{lemma}\label{lem:amgm}
+Let $a,b,c$ be real numbers with $a>0$, $c>0$ and $256ac^3>27b^4$. Then $at^4+bt+c>0$ for every real number $t$.
+\end{lemma}
+
+\begin{proof}
+For $t=0$ this is clear. For $t\neq0$, the inequality between the arithmetic and geometric means of $at^4$, $c/3$, $c/3$ and $c/3$ gives $at^4+c\geq4\,(at^4c^3/27)^{1/4}=(256ac^3/27)^{1/4}|t|>|b|\,|t|\geq-bt$.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=x^{4}+xy+y^{3}+7$, so that \eqref{eq:main} is the equation $F(x,y)=0$. For the first identity, we define
+\begin{align*}
+H_{1}&=-798x-266y-931,\\
+T_{1}&=2154600x^{4}-718200x^{3}y-60233040x^{3}+239400x^{2}y^{2}\\
+&\quad+20995380x^{2}y-168403536x^{2}-7277760xy^{2}+29213982xy-116592588x\\
+&\quad-1247274y^{2}+4365459y-41625864,\\
+U_{1}&=7980x^{3}-229026x^{2}-421344x-158802,\\
+V_{1}&=8589,\\
+G_{1}&=-63680400x^{2}+1935884160x+331774884,\\
+\intertext{for the second identity, we define}
+H_{2}&=76x-95y-152,\\
+T_{2}&=608000x^{4}+760000x^{3}y+7341296x^{3}+950000x^{2}y^{2}+9509120x^{2}y\\
+&\quad+12477984x^{2}+13786400xy^{2}+17382720xy-41616688x+49301200y^{2}\\
+&\quad-78881920y+56211072,\\
+U_{2}&=9500x^{3}+71364x^{2}+2964x-31084,\\
+V_{2}&=5000,\\
+G_{2}&=-90250000x^{2}-1309708000x-4683614000,\\
+\intertext{for the third identity, we define}
+H_{3}&=80x^{2}-8x-10y-16,\\
+T_{3}&=8356659200000x^{8}-3681894400000x^{7}+1044582400000x^{6}y\\
+&\quad+4003449920000x^{6}-355778560000x^{5}y-935632832000x^{5}\\
+&\quad+130572800000x^{4}y^{2}+673769864000x^{4}y-601964310400x^{4}\\
+&\quad-31415040000x^{3}y^{2}-137054429600x^{3}y+280330837608x^{3}\\
+&\quad+107194289000x^{2}y^{2}+49729871040x^{2}y-429361595792x^{2}\\
+&\quad-12695382800xy^{2}-795830240xy+61432390136x+26385553400y^{2}\\
+&\quad-42216885440y-111982837296,\\
+U_{3}&=25856000x^{5}-6988800x^{4}+3258180x^{3}-52996x^{2}-2224084x+219356,\\
+V_{3}&=358100,\\
+G_{3}&=-1305728000000x^{4}+314150400000x^{3}-1071942890000x^{2}+126953828000x\\
+&\quad-263855534000,\\
+\intertext{for the fourth identity, we define}
+H_{4}&=-14y-28,\\
+T_{4}&=56x^{3}+56x^{2}y^{2}-112x^{2}y+168x^{2}-56xy^{2}+112xy-434x-210y^{2}\\
+&\quad+420y-875,\\
+U_{4}&=28x^{3}-14x^{2}-56x-56,\\
+V_{4}&=7,\\
+G_{4}&=-784x^{2}+784x+2940,\\
+\intertext{for the fifth identity, we define}
+H_{5}&=28x^{2}+56x-84y+21,\\
+T_{5}&=280000x^{8}+2195200x^{7}+840000x^{6}y+14206192x^{6}+4905600x^{5}y\\
+&\quad+20515712x^{5}+2520000x^{4}y^{2}+32177376x^{4}y-24790780x^{4}\\
+&\quad+9676800x^{3}y^{2}-14046816x^{3}y-1147552x^{3}+75288528x^{2}y^{2}\\
+&\quad-99442140x^{2}y-234331755x^{2}-199975104xy^{2}-19888848xy+47711412x\\
+&\quad+45157392y^{2}+11289348y-1077668172,\\
+U_{5}&=2800x^{5}+13776x^{4}+97944x^{3}-83860x^{2}-36645x-62622,\\
+V_{5}&=301266,\\
+G_{5}&=-211680000x^{4}-812851200x^{3}-6324236352x^{2}+16797908736x-3793220928,\\
+\intertext{for the sixth identity, we define}
+H_{6}&=2x-y,\\
+T_{6}&=16x^{2}+8xy+4x+4y^{2}-84,\\
+U_{6}&=2x^{2}+8x-7,\\
+V_{6}&=1,\\
+G_{6}&=-4,\\
+\intertext{for the seventh identity, we define}
+H_{7}&=28x^{2}-21xy-98x-77y-175,\\
+T_{7}&=2721600x^{5}+2041200x^{4}y+50008140x^{4}+1530900x^{3}y^{2}\\
+&\quad+53282880x^{3}y+276693144x^{3}+12916260x^{2}y^{2}+119241108x^{2}y\\
+&\quad-567490364x^{2}+15600816xy^{2}+247697436xy+1105390384x+193767840y^{2}\\
+&\quad-591622472y+1980738452,\\
+U_{7}&=41034x^{3}+68068x^{2}+87304x-5670y^{3}-93870y^{2}-279188y+313460,\\
+V_{7}&=458136,\\
+G_{7}&=76204800x^{3}-550278036x^{2}+32148900xy-3215874312x-32148900y^{3}\\
+&\quad-1064485800y^{2}-11977568820y-63555200100,\\
+\intertext{for the eighth identity, we define}
+H_{8}&=2x-y,\\
+T_{8}&=16x^{4}+8x^{3}y+148x^{3}+4x^{2}y^{2}+72x^{2}y+136x^{2}+36xy^{2}+50xy\\
+&\quad+4x+25y^{2}-77,\\
+U_{8}&=2x^{3}+17x^{2}+8x,\\
+V_{8}&=1,\\
+G_{8}&=-4x^{2}-36x-25,\\
+\intertext{for the auxiliary polynomials $H_{1}$ and $H_{2}$ together, we define}
+\lambda_{1}&=40x^{3}+268x^{2}-456xy-6x+152y^{2}-532y-1013,\\
+\mu_{1}&=-112x^{3}+3080x^{2}+9380x+8050,\\
+\nu_{1}&=40432,\\
+\intertext{for the auxiliary polynomials $H_{3}$ and $H_{4}$ together, we define}
+\lambda_{2}&=180006400x^{3}y+357200200x^{3}-125422080x^{2}y-249446960x^{2}\\
+&\quad+22500800xy^{2}-25259136xy-140241122x-13427680y^{2}+21484288y\\
+&\quad+102262671,\\
+\mu_{2}&=1028608000x^{5}-819558400x^{4}-533532760x^{3}+474789072x^{2}\\
+&\quad+107171878x-97598237,\\
+\nu_{2}&=225008000x-134276800,\\
+\intertext{for the auxiliary polynomials $H_{5}$ and $H_{6}$ together, we define}
+\lambda_{3}&=24064x^{4}-12032x^{3}y+208376x^{3}+22148x^{2}y+162204x^{2}-36096xy^{2}\\
+&\quad+83400xy+272970x+138636y^{2}+34659y-125325,\\
+\mu_{3}&=-336896x^{5}-2075024x^{4}-14180768x^{3}-10551240x^{2}-7591752x\\
+&\quad+11255139,\\
+\nu_{3}&=-3032064x+11645424,\\
+\intertext{for the auxiliary polynomials $H_{7}$ and $H_{8}$ together, we define}
+\lambda_{4}&=23408x^{3}+170370x^{2}-76844x+62467,\\
+\mu_{4}&=-491568x^{4}-4069338x^{3}+655424x^{2}y+11472146x^{2}+327712xy^{2}\\
+&\quad+11324600xy+10267481x+5662300y^{2}-4809959,\\
+\nu_{4}&=327712x+5662300,\\
+\intertext{and, for the signs, we also use}
+Q_{1}&=636804x^{2}-212268xy+1556632x+70756y^{2}-247646y+866761,\\
+M_{1}&=18821096x^{4}-508169592x^{3}-1835056860x^{2}-2140899670x-675206819,\\
+E_{1}&=135173111472x^{2}+335429572912x+183985623948,\\
+Q_{2}&=5776x^{2}+7220xy-14079x+9025y^{2}-14440y+23104,\\
+M_{2}&=857375x^{4}+438976x^{3}-1947956x^{2}+3895912x+2489817,\\
+E_{2}&=156385200x^{2}-299738300x+625540800,\\
+Q_{3}&=6400x^{4}-1280x^{3}+800x^{2}y-2496x^{2}-80xy+356x+100y^{2}-160y+256,\\
+M_{3}&=512000x^{6}-153600x^{5}-290840x^{4}+68928x^{3}+57568x^{2}-7744x+2904,\\
+E_{3}&=1920000x^{4}-384000x^{3}-748800x^{2}+116800x+76800,\\
+L_{4}&=y,\\
+Q_{4}&=y^{3}+7,\\
+\Delta_{4}&=256y^{9}+5376y^{6}-27y^{4}+37632y^{3}+87808,\\
+Q_{5}&=784x^{4}+3136x^{3}+2352x^{2}y+4312x^{2}+4704xy+9408x+7056y^{2}+1764y\\
+&\quad+441,\\
+M_{5}&=21952x^{6}+131712x^{5}+905520x^{4}+570752x^{3}+629748x^{2}+222264x\\
+&\quad+4158189,\\
+E_{5}&=16595712x^{4}+66382848x^{3}+91276416x^{2}+248935680x+9335088,\\
+Q_{6}&=4x^{2}+2xy+x+y^{2},\\
+M_{6}&=x^{4}+8x^{3}+2x^{2}+7,\\
+E_{6}&=12x^{2}+4x,\\
+Q_{8}&=4x^{2}+2xy+x+y^{2},\\
+M_{8}&=x^{4}+8x^{3}+2x^{2}+7,\\
+E_{8}&=12x^{2}+4x.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+H_{1}T_{1}-U_{1}^2+H_{2}V_{1}^2&=G_{1}F,\label{eq:norm1}\\
+H_{2}T_{2}-U_{2}^2+H_{1}V_{2}^2&=G_{2}F,\label{eq:norm2}\\
+H_{3}T_{3}-U_{3}^2+H_{4}V_{3}^2&=G_{3}F,\label{eq:norm3}\\
+H_{4}T_{4}-U_{4}^2+H_{3}V_{4}^2&=G_{4}F,\label{eq:norm4}\\
+H_{5}T_{5}-U_{5}^2+H_{6}V_{5}^2&=G_{5}F,\label{eq:norm5}\\
+H_{6}T_{6}-U_{6}^2+H_{5}V_{6}^2&=G_{6}F,\label{eq:norm6}\\
+H_{7}T_{7}-U_{7}^2+H_{8}V_{7}^2&=G_{7}F,\label{eq:norm7}\\
+H_{8}T_{8}-U_{8}^2+H_{7}V_{8}^2&=G_{8}F,\label{eq:norm8}\\
+\lambda_{1}H_{1}+\mu_{1}H_{2}+\nu_{1}F&=7\cdot 19^{2},\label{eq:cross1}\\
+\lambda_{2}H_{3}+\mu_{2}H_{4}+\nu_{2}F&=2^{2}\cdot 5^{2}\cdot 7\cdot 11^{2}\cdot 43^{2},\label{eq:cross2}\\
+\lambda_{3}H_{5}+\mu_{3}H_{6}+\nu_{3}F&=3^{4}\cdot 7\cdot 373^{2},\label{eq:cross3}\\
+\lambda_{4}H_{7}+\mu_{4}H_{8}+\nu_{4}F&=3^{8}\cdot 5^{4}\cdot 7,\label{eq:cross4}\\
+-18821096F&=Q_{1}H_{1}-M_{1},\label{eq:sign1}\\
+283024Q_{1}&=(-212268x+141512y-247646)^2+E_{1}.\label{eq:sign1b}\\
+-857375F&=Q_{2}H_{2}-M_{2},\label{eq:sign2}\\
+36100Q_{2}&=(7220x+18050y-14440)^2+E_{2}.\label{eq:sign2b}\\
+-1000F&=Q_{3}H_{3}-M_{3},\label{eq:sign3}\\
+400Q_{3}&=(800x^{2}-80x+200y-160)^2+E_{3}.\label{eq:sign3b}\\
+F&=x^4+L_{4}x+Q_{4},\label{eq:sign4}\\
+\Delta_{4}&=256Q_{4}^3-27L_{4}^4,\label{eq:sign4b}\\
+-592704F&=Q_{5}H_{5}-M_{5},\label{eq:sign5}\\
+28224Q_{5}&=(2352x^{2}+4704x+14112y+1764)^2+E_{5}.\label{eq:sign5b}\\
+-F&=Q_{6}H_{6}-M_{6},\label{eq:sign6}\\
+4Q_{6}&=(2x+2y)^2+E_{6}.\label{eq:sign6b}\\
+-F&=Q_{8}H_{8}-M_{8},\label{eq:sign8}\\
+4Q_{8}&=(2x+2y)^2+E_{8}.\label{eq:sign8b}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}, so that $F(x,y)=0$; from now on the polynomials denote their values at $(x,y)$. Put
+\begin{gather*}
+A_{1}=-d_{2}=H_{1},\quad B_{1}=-d_{1}=H_{2},\quad T_{A_{1}}=T_{1},\quad T_{B_{1}}=T_{2},\\
+A_{2}=-d_{4}=H_{3},\quad B_{2}=-d_{3}=H_{4},\quad T_{A_{2}}=T_{3},\quad T_{B_{2}}=T_{4},\\
+A_{3}=-d_{6}=H_{5},\quad B_{3}=-d_{5}=H_{6},\quad T_{A_{3}}=T_{5},\quad T_{B_{3}}=T_{6},\\
+A_{4}=-d_{8}=H_{7},\quad B_{4}=-d_{7}=H_{8},\quad T_{A_{4}}=T_{7},\quad T_{B_{4}}=T_{8}.
+\end{gather*}
+By \eqref{eq:norm1}--\eqref{eq:norm8}, after multiplying by squares of the constants $c$ in $d_k=cH_{k'}$ if necessary, we obtain
+\begin{align}
+A_{1}T_{A_{1}}=U_{1}^2-B_{1}V_{1}^2,\qquad B_{1}T_{B_{1}}=U_{2}^2-A_{1}V_{2}^2.\label{eq:AB1}\\
+A_{2}T_{A_{2}}=U_{3}^2-B_{2}V_{3}^2,\qquad B_{2}T_{B_{2}}=U_{4}^2-A_{2}V_{4}^2.\label{eq:AB2}\\
+A_{3}T_{A_{3}}=U_{5}^2-B_{3}V_{5}^2,\qquad B_{3}T_{B_{3}}=U_{6}^2-A_{3}V_{6}^2.\label{eq:AB3}\\
+A_{4}T_{A_{4}}=U_{7}^2-B_{4}V_{7}^2,\qquad B_{4}T_{B_{4}}=U_{8}^2-A_{4}V_{8}^2.\label{eq:AB4}
+\end{align}
+
+\paragraph{Step 1: signs.} \emph{The sign of $H_{1}$.} Since $F(x,y)=0$, \eqref{eq:sign1} gives $Q_{1}H_{1}=M_{1}$, and $M_{1}$ and $E_{1}$ depend only on $x$. We show that $M_{1}>0$ and $E_{1}>0$. If $x\geq31$, write $x=31+z$ with $z\geq0$; if $x\leq-2$, write $x=-2-z$ with $z\geq0$. In both cases, expanding $M_{1}$ and $E_{1}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{1}>0$ and $E_{1}>0$. It remains to consider $-1\leq x\leq30$. For $x\in\{-1,\allowbreak 2,\allowbreak 5,\allowbreak 8,\allowbreak 11,\allowbreak 14,\allowbreak 17,\allowbreak 20,\allowbreak 23,\allowbreak 26,\allowbreak 29\}$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, as one checks for the 3 residues of $y$ modulo $3$, so \eqref{eq:main} has no solution with such $x$. For $x\in\{3,\allowbreak 4,\allowbreak 9,\allowbreak 13,\allowbreak 18,\allowbreak 19,\allowbreak 24,\allowbreak 28\}$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$, as one checks for the 5 residues of $y$ modulo $5$, so \eqref{eq:main} has no solution with such $x$. For $x\in\{1,\allowbreak 12,\allowbreak 15,\allowbreak 22\}$, we have $F(x,y)\not\equiv0\pmod{7}$ for every $y$, as one checks for the 7 residues of $y$ modulo $7$, so \eqref{eq:main} has no solution with such $x$. For $x\in\{6,\allowbreak 7,\allowbreak 10,\allowbreak 21\}$, we have $F(x,y)\not\equiv0\pmod{11}$ for every $y$, as one checks for the 11 residues of $y$ modulo $11$, so \eqref{eq:main} has no solution with such $x$. For $x=0$ and $x=27$, we have $F(x,y)\not\equiv0\pmod{13}$ for every $y$, as one checks for the 13 residues of $y$ modulo $13$, so \eqref{eq:main} has no solution with such $x$. For $x\in\{16,\allowbreak 25,\allowbreak 30\}$, we have $F(x,y)\not\equiv0\pmod{19}$ for every $y$, as one checks for the 19 residues of $y$ modulo $19$, so \eqref{eq:main} has no solution with such $x$. Hence $M_{1}>0$ and $E_{1}>0$, so \eqref{eq:sign1b} gives $283024Q_{1}\geq E_{1}>0$, and $Q_{1}H_{1}=M_{1}>0$ gives $H_{1}>0$.
+
+\emph{The sign of $H_{2}$.} Since $F(x,y)=0$, \eqref{eq:sign2} gives $Q_{2}H_{2}=M_{2}$, and $M_{2}$ and $E_{2}$ depend only on $x$. We show that $M_{2}>0$ and $E_{2}>0$. If $x\geq1$, write $x=1+z$ with $z\geq0$; if $x\leq-3$, write $x=-3-z$ with $z\geq0$. In both cases, expanding $M_{2}$ and $E_{2}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{2}>0$ and $E_{2}>0$. It remains to consider $-2\leq x\leq0$. For $x=0$ we have $M_{2}>0$ and $E_{2}>0$. For $x=-1$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, as one checks for the 3 residues of $y$ modulo $3$, so \eqref{eq:main} has no solution with this $x$. For $x=-2$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$, as one checks for the 5 residues of $y$ modulo $5$, so \eqref{eq:main} has no solution with this $x$. Hence $M_{2}>0$ and $E_{2}>0$, so \eqref{eq:sign2b} gives $36100Q_{2}\geq E_{2}>0$, and $Q_{2}H_{2}=M_{2}>0$ gives $H_{2}>0$.
+
+\emph{The sign of $H_{3}$.} Since $F(x,y)=0$, \eqref{eq:sign3} gives $Q_{3}H_{3}=M_{3}$, and $M_{3}$ and $E_{3}$ depend only on $x$. We show that $M_{3}>0$ and $E_{3}>0$. If $x\geq1$, write $x=1+z$ with $z\geq0$; if $x\leq-1$, write $x=-1-z$ with $z\geq0$. In both cases, expanding $M_{3}$ and $E_{3}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{3}>0$ and $E_{3}>0$. It remains to consider $x=0$. For $x=0$ we have $M_{3}>0$ and $E_{3}>0$. Hence $M_{3}>0$ and $E_{3}>0$, so \eqref{eq:sign3b} gives $400Q_{3}\geq E_{3}>0$, and $Q_{3}H_{3}=M_{3}>0$ gives $H_{3}>0$.
+
+\emph{The sign of $H_{4}$.} Suppose that $H_{4}\leq0$. Since $H_{4}=-14y-28$, this means $y\geq-2$. By \eqref{eq:sign4}, $F$ is $x^4+L_{4}x+Q_{4}$, where $L_{4}$ and $Q_{4}$ depend only on $y$. If $y\geq1$, write $y=1+z$ with $z\geq0$; expanding $Q_{4}$ and $\Delta_{4}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $Q_{4}>0$ and $\Delta_{4}>0$. For $y=-1$ and $y=0$ we also have $Q_{4}>0$ and $\Delta_{4}>0$. For $y=-2$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $x$, so \eqref{eq:main} has no solution with this $y$. Hence $Q_{4}>0$ and $\Delta_{4}>0$, so Lemma~\ref{lem:amgm} with $a=1$, $b=L_{4}$, $c=Q_{4}$ and $t=x$ gives $F(x,y)>0$, a contradiction. Hence $H_{4}>0$.
+
+\emph{The sign of $H_{5}$.} Since $F(x,y)=0$, \eqref{eq:sign5} gives $Q_{5}H_{5}=M_{5}$, and $M_{5}$ and $E_{5}$ depend only on $x$. We show that $M_{5}>0$ and $E_{5}>0$. If $x\geq1$, write $x=1+z$ with $z\geq0$; if $x\leq-4$, write $x=-4-z$ with $z\geq0$. In both cases, expanding $M_{5}$ and $E_{5}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{5}>0$ and $E_{5}>0$. It remains to consider $-3\leq x\leq0$. For $x=0$ we have $M_{5}>0$ and $E_{5}>0$. For $x=-1$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, as one checks for the 3 residues of $y$ modulo $3$, so \eqref{eq:main} has no solution with this $x$. For $x=-2$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$, as one checks for the 5 residues of $y$ modulo $5$, so \eqref{eq:main} has no solution with this $x$. For $x=-3$, we have $F(x,y)\not\equiv0\pmod{17}$ for every $y$, as one checks for the 17 residues of $y$ modulo $17$, so \eqref{eq:main} has no solution with this $x$. Hence $M_{5}>0$ and $E_{5}>0$, so \eqref{eq:sign5b} gives $28224Q_{5}\geq E_{5}>0$, and $Q_{5}H_{5}=M_{5}>0$ gives $H_{5}>0$.
+
+\emph{The sign of $H_{6}$.} Since $F(x,y)=0$, \eqref{eq:sign6} gives $Q_{6}H_{6}=M_{6}$, and $M_{6}$ and $E_{6}$ depend only on $x$. We show that $M_{6}>0$ and $E_{6}>0$. If $x\geq1$, write $x=1+z$ with $z\geq0$; if $x\leq-8$, write $x=-8-z$ with $z\geq0$. In both cases, expanding $M_{6}$ and $E_{6}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{6}>0$ and $E_{6}>0$. It remains to consider $-7\leq x\leq0$. For $x=-1$ we have $M_{6}>0$ and $E_{6}>0$. For $x=-7$ and $x=-4$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, as one checks for the 3 residues of $y$ modulo $3$, so \eqref{eq:main} has no solution with such $x$. For $x=-6$ and $x=-2$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$, as one checks for the 5 residues of $y$ modulo $5$, so \eqref{eq:main} has no solution with such $x$. For $x=-5$, we have $F(x,y)\not\equiv0\pmod{11}$ for every $y$, as one checks for the 11 residues of $y$ modulo $11$, so \eqref{eq:main} has no solution with this $x$. For $x=0$, we have $F(x,y)\not\equiv0\pmod{13}$ for every $y$, as one checks for the 13 residues of $y$ modulo $13$, so \eqref{eq:main} has no solution with this $x$. For $x=-3$, we have $F(x,y)\not\equiv0\pmod{17}$ for every $y$, as one checks for the 17 residues of $y$ modulo $17$, so \eqref{eq:main} has no solution with this $x$. Hence $M_{6}>0$ and $E_{6}>0$, so \eqref{eq:sign6b} gives $4Q_{6}\geq E_{6}>0$, and $Q_{6}H_{6}=M_{6}>0$ gives $H_{6}>0$.
+
+\emph{The sign of $H_{8}$.} Since $F(x,y)=0$, \eqref{eq:sign8} gives $Q_{8}H_{8}=M_{8}$, and $M_{8}$ and $E_{8}$ depend only on $x$. We show that $M_{8}>0$ and $E_{8}>0$. If $x\geq1$, write $x=1+z$ with $z\geq0$; if $x\leq-8$, write $x=-8-z$ with $z\geq0$. In both cases, expanding $M_{8}$ and $E_{8}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{8}>0$ and $E_{8}>0$. It remains to consider $-7\leq x\leq0$. For $x=-1$ we have $M_{8}>0$ and $E_{8}>0$. For $x=-7$ and $x=-4$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, as one checks for the 3 residues of $y$ modulo $3$, so \eqref{eq:main} has no solution with such $x$. For $x=-6$ and $x=-2$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$, as one checks for the 5 residues of $y$ modulo $5$, so \eqref{eq:main} has no solution with such $x$. For $x=-5$, we have $F(x,y)\not\equiv0\pmod{11}$ for every $y$, as one checks for the 11 residues of $y$ modulo $11$, so \eqref{eq:main} has no solution with this $x$. For $x=0$, we have $F(x,y)\not\equiv0\pmod{13}$ for every $y$, as one checks for the 13 residues of $y$ modulo $13$, so \eqref{eq:main} has no solution with this $x$. For $x=-3$, we have $F(x,y)\not\equiv0\pmod{17}$ for every $y$, as one checks for the 17 residues of $y$ modulo $17$, so \eqref{eq:main} has no solution with this $x$. Hence $M_{8}>0$ and $E_{8}>0$, so \eqref{eq:sign8b} gives $4Q_{8}\geq E_{8}>0$, and $Q_{8}H_{8}=M_{8}>0$ gives $H_{8}>0$.
+
+By these signs, $A_{1}>0$, $B_{1}>0$, $A_{2}>0$, $B_{2}>0$, $A_{3}>0$, $B_{3}>0$, and $B_{4}>0$.
+
+Hence Theorem~\ref{thm:hilbert}(i) gives $(A_{1},B_{1})_\infty=1$ (as $A_{1}>0$), $(A_{2},B_{2})_\infty=1$ (as $A_{2}>0$), $(A_{3},B_{3})_\infty=1$ (as $A_{3}>0$), and $(A_{4},B_{4})_\infty=1$ (as $B_{4}>0$).
+
+\paragraph{Step 2: primes outside $S$.} Let $S=\{2,3,5,7,11,19,43,101,373,409,797,3581\}$ be the set of primes dividing $2$, the constant $1$ in the $d_k=cH_{k'}$, $V_{1}=8589$, $V_{2}=5000$, $V_{3}=358100$, $V_{4}=7$, $V_{5}=301266$, $V_{6}=1$, $V_{7}=458136$, and $V_{8}=1$, and the right-hand sides of \eqref{eq:cross1}, \eqref{eq:cross2}, \eqref{eq:cross3}, and \eqref{eq:cross4}. Let $p\notin S$ be an odd prime and $j\in\{1,2,3,4\}$; we show that $(A_j,B_j)_p=1$. If $p\nmid A_jB_j$, this follows from Theorem~\ref{thm:hilbert}(ii) with $\alpha=\beta=0$. For $j=1$: If $p\mid A_{1}$, then $p\mid H_{1}$, so $p\nmid H_{2}$ by \eqref{eq:cross1} and $p\nmid B_{1}$; as $p\nmid V_{1}$, Lemma~\ref{lem:good} with $(a,b,r,c,t)=(A_{1},B_{1},U_{1},V_{1},T_{A_{1}})$ and \eqref{eq:AB1} gives $(A_{1},B_{1})_p=1$; if $p\mid B_{1}$, then $p\mid H_{2}$, so $p\nmid H_{1}$ by \eqref{eq:cross1} and $p\nmid A_{1}$; as $p\nmid V_{2}$, Lemma~\ref{lem:good} with $(a,b,r,c,t)=(B_{1},A_{1},U_{2},V_{2},T_{B_{1}})$ and \eqref{eq:AB1} gives $(B_{1},A_{1})_p=1$, which equals $(A_{1},B_{1})_p$ by Theorem~\ref{thm:hilbert}(v). For $j=2$: If $p\mid A_{2}$, then $p\mid H_{3}$, so $p\nmid H_{4}$ by \eqref{eq:cross2} and $p\nmid B_{2}$; as $p\nmid V_{3}$, Lemma~\ref{lem:good} with $(a,b,r,c,t)=(A_{2},B_{2},U_{3},V_{3},T_{A_{2}})$ and \eqref{eq:AB2} gives $(A_{2},B_{2})_p=1$; if $p\mid B_{2}$, then $p\mid H_{4}$, so $p\nmid H_{3}$ by \eqref{eq:cross2} and $p\nmid A_{2}$; as $p\nmid V_{4}$, Lemma~\ref{lem:good} with $(a,b,r,c,t)=(B_{2},A_{2},U_{4},V_{4},T_{B_{2}})$ and \eqref{eq:AB2} gives $(B_{2},A_{2})_p=1$, which equals $(A_{2},B_{2})_p$ by Theorem~\ref{thm:hilbert}(v). For $j=3$: If $p\mid A_{3}$, then $p\mid H_{5}$, so $p\nmid H_{6}$ by \eqref{eq:cross3} and $p\nmid B_{3}$; as $p\nmid V_{5}$, Lemma~\ref{lem:good} with $(a,b,r,c,t)=(A_{3},B_{3},U_{5},V_{5},T_{A_{3}})$ and \eqref{eq:AB3} gives $(A_{3},B_{3})_p=1$; if $p\mid B_{3}$, then $p\mid H_{6}$, so $p\nmid H_{5}$ by \eqref{eq:cross3} and $p\nmid A_{3}$; as $p\nmid V_{6}$, Lemma~\ref{lem:good} with $(a,b,r,c,t)=(B_{3},A_{3},U_{6},V_{6},T_{B_{3}})$ and \eqref{eq:AB3} gives $(B_{3},A_{3})_p=1$, which equals $(A_{3},B_{3})_p$ by Theorem~\ref{thm:hilbert}(v). For $j=4$: If $p\mid A_{4}$, then $p\mid H_{7}$, so $p\nmid H_{8}$ by \eqref{eq:cross4} and $p\nmid B_{4}$; as $p\nmid V_{7}$, Lemma~\ref{lem:good} with $(a,b,r,c,t)=(A_{4},B_{4},U_{7},V_{7},T_{A_{4}})$ and \eqref{eq:AB4} gives $(A_{4},B_{4})_p=1$; if $p\mid B_{4}$, then $p\mid H_{8}$, so $p\nmid H_{7}$ by \eqref{eq:cross4} and $p\nmid A_{4}$; as $p\nmid V_{8}$, Lemma~\ref{lem:good} with $(a,b,r,c,t)=(B_{4},A_{4},U_{8},V_{8},T_{B_{4}})$ and \eqref{eq:AB4} gives $(B_{4},A_{4})_p=1$, which equals $(A_{4},B_{4})_p$ by Theorem~\ref{thm:hilbert}(v).
+
+\paragraph{Step 3: the primes in $S$.} By Step~1, the $A_j$ and $B_j$ are non-zero. If $T_{A_j}\neq0$, then \eqref{eq:AB1}--\eqref{eq:AB4} and Lemma~\ref{lem:cofactor} give $(A_j,B_j)_v=(T_{A_j},B_j)_v$, and if $T_{B_j}\neq0$, they give $(A_j,B_j)_v=(B_j,A_j)_v=(T_{B_j},A_j)_v=(A_j,T_{B_j})_v$, using Theorem~\ref{thm:hilbert}(v). For a non-zero integer $X$ and a prime $p$, we write $X\in p^{2i}(\pm)$ or $X\in p^{2i+1}(\pm)$, when $p$ is odd, if $X=p^ju$ with $p\nmid u$, $\leg{u}{p}=\pm1$, and $j$ even or odd, respectively; and we write $X\in2^{2i}\cdot u$ or $X\in2^{2i+1}\cdot u$ if $X=2^ju'$ with $u'\equiv u\pmod 8$ and $j$ even or odd. If $X\not\equiv0\pmod{p^e}$ and $v_p(X)\leq e-1$, or $v_p(X)\leq e-3$ if $p=2$, then this class is determined by $X$ modulo $p^e$. By Theorem~\ref{thm:hilbert}(ii) and~(iii), the classes of $X$ and $Y$ determine $(X,Y)_p$.
+
+\emph{The prime $2$.} Checking the $64^2$ residue pairs modulo $64$, we find that \eqref{eq:main} has exactly 96 solutions modulo $64$, and that at each of them, for each $j$, one of the cases listed for $p=2$ and $j$ in Table~\ref{tab:local} holds; moreover, the combination of these cases is one of the combinations listed there. Each case gives the stated value of $(A_j,B_j)_{2}$. Hence $\sigma_{2}\in V_{2}$, with $V_{2}$ as in Step~4.
+
+\emph{The prime $3$.} Lifting the solutions modulo $3$ step by step to solutions modulo $19683=3^{9}$, we find that \eqref{eq:main} has exactly 13122 solutions modulo $19683$, and that at each of them, for each $j$, one of the cases listed for $p=3$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{3}$. Hence $\sigma_{3}\in V_{3}$, with $V_{3}$ as in Step~4.
+
+\emph{The prime $5$.} Checking the $5^2$ residue pairs modulo $5$, we find that \eqref{eq:main} has exactly 4 solutions modulo $5$, and that at each of them, for each $j$, one of the cases listed for $p=5$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{5}$. Hence $\sigma_{5}\in V_{5}$, with $V_{5}$ as in Step~4.
+
+\emph{The prime $7$.} Checking the $49^2$ residue pairs modulo $49$, we find that \eqref{eq:main} has exactly 35 solutions modulo $49$, and that at each of them, for each $j$, one of the cases listed for $p=7$ and $j$ in Table~\ref{tab:local} holds; moreover, the combination of these cases is one of the combinations listed there. Each case gives the stated value of $(A_j,B_j)_{7}$. Hence $\sigma_{7}\in V_{7}$, with $V_{7}$ as in Step~4.
+
+\emph{The prime $11$.} Checking the $11^2$ residue pairs modulo $11$, we find that \eqref{eq:main} has exactly 11 solutions modulo $11$, and that at each of them, for each $j$, one of the cases listed for $p=11$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{11}$. Hence $\sigma_{11}\in V_{11}$, with $V_{11}$ as in Step~4.
+
+\emph{The prime $19$.} Checking the $19^2$ residue pairs modulo $19$, we find that \eqref{eq:main} has exactly 18 solutions modulo $19$, and that at each of them, for each $j$, one of the cases listed for $p=19$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{19}$. Hence $\sigma_{19}\in V_{19}$, with $V_{19}$ as in Step~4.
+
+\emph{The prime $43$.} Checking the $43^2$ residue pairs modulo $43$, we find that \eqref{eq:main} has exactly 56 solutions modulo $43$, and that at each of them, for each $j$, one of the cases listed for $p=43$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{43}$. Hence $\sigma_{43}\in V_{43}$, with $V_{43}$ as in Step~4.
+
+\emph{The prime $101$.} Checking the $101^2$ residue pairs modulo $101$, we find that \eqref{eq:main} has exactly 112 solutions modulo $101$, and that at each of them, for each $j$, one of the cases listed for $p=101$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{101}$. Hence $\sigma_{101}\in V_{101}$, with $V_{101}$ as in Step~4.
+
+\emph{The prime $373$.} Checking the $373^2$ residue pairs modulo $373$, we find that \eqref{eq:main} has exactly 392 solutions modulo $373$, and that at each of them, for each $j$, one of the cases listed for $p=373$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{373}$. Hence $\sigma_{373}\in V_{373}$, with $V_{373}$ as in Step~4.
+
+\emph{The prime $409$.} Checking the $409^2$ residue pairs modulo $409$, we find that \eqref{eq:main} has exactly 379 solutions modulo $409$, and that at each of them, for each $j$, one of the cases listed for $p=409$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{409}$. Hence $\sigma_{409}\in V_{409}$, with $V_{409}$ as in Step~4.
+
+\emph{The prime $797$.} Checking the $797^2$ residue pairs modulo $797$, we find that \eqref{eq:main} has exactly 822 solutions modulo $797$, and that at each of them, for each $j$, one of the cases listed for $p=797$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{797}$. Hence $\sigma_{797}\in V_{797}$, with $V_{797}$ as in Step~4.
+
+\emph{The prime $3581$.} Checking the $3581^2$ residue pairs modulo $3581$, we find that \eqref{eq:main} has exactly 3611 solutions modulo $3581$, and that at each of them, for each $j$, one of the cases listed for $p=3581$ and $j$ in Table~\ref{tab:local} holds. Each case gives the stated value of $(A_j,B_j)_{3581}$. Hence $\sigma_{3581}\in V_{3581}$, with $V_{3581}$ as in Step~4.
+
+\paragraph{Step 4: contradiction.} For $p\in S$ and $p=\infty$, put \[\sigma_p=((A_{1},B_{1})_p,(A_{2},B_{2})_p,(A_{3},B_{3})_p,(A_{4},B_{4})_p).\] By Theorem~\ref{thm:hilbert}(iv), applied to each $j$, and by Step~2, the componentwise product of the $\sigma_p$ with $p\in S$ is $\sigma_\infty$, which is $(1,1,1,1)$ by Step~1. By Step~3, $\sigma_p\in V_p$, where
+\begin{align*}
+V_{2}&=\{(1,1,1,1),(1,1,1,-1),\\
+&\qquad(1,-1,1,-1),(-1,-1,1,1),\\
+&\qquad(-1,-1,1,-1)\},\\
+V_{3}&=\{(1,1,1,1)\},\\
+V_{5}&=\{(1,1,1,1)\},\\
+V_{7}&=\{(1,-1,1,1),(1,-1,-1,-1),\\
+&\qquad(-1,1,1,1),(-1,1,-1,-1)\},\\
+V_{11}&=\{(1,1,1,1)\},\\
+V_{19}&=\{(1,1,1,1)\},\\
+V_{43}&=\{(1,1,1,1)\},\\
+V_{101}&=\{(1,1,1,1)\},\\
+V_{373}&=\{(1,1,1,1)\},\\
+V_{409}&=\{(1,1,1,1)\},\\
+V_{797}&=\{(1,1,1,1)\},\\
+V_{3581}&=\{(1,1,1,1)\}.
+\end{align*}The componentwise products of one vector from each of $V_{3}$, $V_{5}$, $V_{7}$, $V_{11}$, $V_{19}$, $V_{43}$, $V_{101}$, $V_{373}$, $V_{409}$, $V_{797}$, and $V_{3581}$ are $(1,-1,1,1)$, $(1,-1,-1,-1)$, $(-1,1,1,1)$, and $(-1,1,-1,-1)$, so $\sigma_{2}$ would have to be one of $(1,-1,1,1)$, $(1,-1,-1,-1)$, $(-1,1,1,1)$, and $(-1,1,-1,-1)$, but none of them is in $V_{2}$. This contradiction proves the theorem.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\bibitem{Se} J.-P. Serre, \emph{A Course in Arithmetic}, Graduate Texts in Mathematics 7, Springer, New York, 1973.
+\end{thebibliography}
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rllll@{}}
+\caption{The cases in Step~3. In each case, the symbol $(A_j,B_j)_p$ is computed as the stated symbol, whose entries lie in the stated classes; an entry ``any'' means that the other entry is a unit square, so that Lemma~\ref{lem:square} applies.}\label{tab:local}\\
+\hline
+ & symbol & first entry & second entry & value\\
+\hline\endfirsthead
+\hline
+ & symbol & first entry & second entry & value\\
+\hline\endhead
+\hline\endfoot
+\multicolumn{5}{@{}l}{$p=2$, solutions modulo $64$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & $(A_{1},B_{1})$ & $2^{2i}\cdot1$ & $2^{2i}\cdot1$ & $1$\\
+2 & $(A_{1},B_{1})$ & $2^{2i}\cdot1$ & $2^{2i}\cdot5$ & $1$\\
+3 & $(A_{1},B_{1})$ & $2^{2i}\cdot3$ & $2^{2i}\cdot1$ & $1$\\
+4 & $(A_{1},B_{1})$ & $2^{2i}\cdot3$ & $2^{2i}\cdot3$ & $-1$\\
+5 & $(A_{1},B_{1})$ & $2^{2i}\cdot3$ & $2^{2i}\cdot5$ & $1$\\
+6 & $(A_{1},B_{1})$ & $2^{2i}\cdot3$ & $2^{2i}\cdot7$ & $-1$\\
+7 & $(A_{1},B_{1})$ & $2^{2i}\cdot5$ & $2^{2i}\cdot3$ & $1$\\
+8 & $(A_{1},B_{1})$ & $2^{2i}\cdot5$ & $2^{2i}\cdot7$ & $1$\\
+9 & $(A_{1},B_{1})$ & $2^{2i}\cdot7$ & $2^{2i}\cdot3$ & $-1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot1$ & $2^{2i}\cdot5$ & $-1$\\
+2 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot1$ & $2^{2i+1}\cdot1$ & $1$\\
+3 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot1$ & $2^{2i+1}\cdot5$ & $-1$\\
+4 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot3$ & $2^{2i+1}\cdot3$ & $-1$\\
+5 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot3$ & $2^{2i+1}\cdot7$ & $1$\\
+6 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot5$ & $2^{2i+1}\cdot1$ & $-1$\\
+7 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot5$ & $2^{2i+1}\cdot5$ & $1$\\
+8 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot7$ & $2^{2i}\cdot5$ & $-1$\\
+9 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot7$ & $2^{2i+1}\cdot3$ & $1$\\
+10 & $(A_{2},B_{2})$ & $2^{2i+1}\cdot7$ & $2^{2i+1}\cdot7$ & $-1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & $(A_{3},B_{3})$ & $2^{2i}\cdot1$ & $2^{2i}\cdot1$ & $1$\\
+2 & $(A_{3},B_{3})$ & $2^{2i}\cdot1$ & $2^{2i}\cdot3$ & $1$\\
+3 & $(A_{3},B_{3})$ & $2^{2i}\cdot1$ & $2^{2i}\cdot5$ & $1$\\
+4 & $(A_{3},B_{3})$ & $2^{2i}\cdot1$ & $2^{2i}\cdot7$ & $1$\\
+5 & $(A_{3},B_{3})$ & $2^{2i}\cdot1$ & $2^{2i+1}\cdot1$ & $1$\\
+6 & $(A_{3},B_{3})$ & $2^{2i}\cdot1$ & $2^{2i+1}\cdot3$ & $1$\\
+7 & $(A_{3},B_{3})$ & $2^{2i}\cdot1$ & $2^{2i+1}\cdot5$ & $1$\\
+8 & $(A_{3},B_{3})$ & $2^{2i}\cdot1$ & $2^{2i+1}\cdot7$ & $1$\\
+9 & $(A_{3},B_{3})$ & $2^{2i}\cdot5$ & $2^{2i}\cdot1$ & $1$\\
+10 & $(A_{3},B_{3})$ & $2^{2i}\cdot5$ & $2^{2i}\cdot3$ & $1$\\
+11 & $(A_{3},B_{3})$ & $2^{2i}\cdot5$ & $2^{2i}\cdot5$ & $1$\\
+12 & $(A_{3},B_{3})$ & $2^{2i}\cdot5$ & $2^{2i}\cdot7$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & $(A_{4},B_{4})$ & $2^{2i}\cdot3$ & $2^{2i}\cdot3$ & $-1$\\
+2 & $(A_{4},B_{4})$ & $2^{2i}\cdot3$ & $2^{2i+1}\cdot1$ & $-1$\\
+3 & $(A_{4},B_{4})$ & $2^{2i}\cdot3$ & $2^{2i+1}\cdot5$ & $-1$\\
+4 & $(A_{4},B_{4})$ & $2^{2i}\cdot7$ & $2^{2i}\cdot1$ & $1$\\
+5 & $(A_{4},B_{4})$ & $2^{2i}\cdot7$ & $2^{2i}\cdot3$ & $-1$\\
+6 & $(A_{4},B_{4})$ & $2^{2i}\cdot7$ & $2^{2i}\cdot5$ & $1$\\
+7 & $(A_{4},B_{4})$ & $2^{2i}\cdot7$ & $2^{2i}\cdot7$ & $-1$\\
+8 & $(A_{4},B_{4})$ & $2^{2i}\cdot7$ & $2^{2i+1}\cdot3$ & $-1$\\
+9 & $(A_{4},B_{4})$ & $2^{2i}\cdot7$ & $2^{2i+1}\cdot7$ & $-1$\\
+10 & $(T_{A_{4}},B_{4})$ & $2^{2i}\cdot1$ & $2^{2i}\cdot5$ & $1$\\
+11 & $(T_{A_{4}},B_{4})$ & $2^{2i}\cdot5$ & $2^{2i}\cdot1$ & $1$\\
+\multicolumn{5}{@{}l}{\quad combinations of cases $(j=1,j=2,j=3,j=4)$ and the vector $\sigma_{2}$}\\
+\multicolumn{5}{@{}l}{\quad $(1,5,9,4)\mapsto(1,1,1,1)$\qquad $(2,9,11,6)\mapsto(1,1,1,1)$}\\
+\multicolumn{5}{@{}l}{\quad $(3,4,4,7)\mapsto(1,-1,1,-1)$\qquad $(3,8,6,8)\mapsto(1,-1,1,-1)$}\\
+\multicolumn{5}{@{}l}{\quad $(3,8,8,9)\mapsto(1,-1,1,-1)$\qquad $(4,3,1,11)\mapsto(-1,-1,1,1)$}\\
+\multicolumn{5}{@{}l}{\quad $(5,10,2,1)\mapsto(1,-1,1,-1)$\qquad $(6,6,3,10)\mapsto(-1,-1,1,1)$}\\
+\multicolumn{5}{@{}l}{\quad $(7,2,12,7)\mapsto(1,1,1,-1)$\qquad $(8,7,10,5)\mapsto(1,1,1,-1)$}\\
+\multicolumn{5}{@{}l}{\quad $(9,1,5,2)\mapsto(-1,-1,1,-1)$\qquad $(9,1,7,3)\mapsto(-1,-1,1,-1)$}\\
+\hline
+\multicolumn{5}{@{}l}{$p=3$, solutions modulo $19683$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & \multicolumn{3}{l}{$3\nmid A_{1}B_{1}$} & $1$\\
+2 & $(A_{1},B_{1})$ & $3^{2i}(+)$ & $3^{2i}(-)$ & $1$\\
+3 & $(A_{1},B_{1})$ & $3^{2i}(+)$ & $3^{2i}(+)$ & $1$\\
+4 & $(A_{1},B_{1})$ & $3^{2i}(+)$ & $3^{2i+1}(-)$ & $1$\\
+5 & $(A_{1},B_{1})$ & $3^{2i}(+)$ & $3^{2i+1}(+)$ & $1$\\
+6 & $(A_{1},T_{B_{1}})$ & $3^{2i}(+)$ & $3^{2i}(-)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & $(A_{2},B_{2})$ & $3^{2i}(-)$ & $3^{2i}(+)$ & $1$\\
+2 & $(A_{2},B_{2})$ & $3^{2i}(+)$ & $3^{2i}(+)$ & $1$\\
+3 & $(A_{2},B_{2})$ & $3^{2i+1}(-)$ & $3^{2i}(+)$ & $1$\\
+4 & $(A_{2},B_{2})$ & $3^{2i+1}(+)$ & $3^{2i}(+)$ & $1$\\
+5 & $(T_{A_{2}},B_{2})$ & $3^{2i}(-)$ & $3^{2i}(+)$ & $1$\\
+6 & $(T_{A_{2}},B_{2})$ & $3^{2i}(+)$ & $3^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & $(A_{3},B_{3})$ & $3^{2i}(-)$ & $3^{2i}(-)$ & $1$\\
+2 & $(A_{3},B_{3})$ & $3^{2i}(-)$ & $3^{2i}(+)$ & $1$\\
+3 & $(A_{3},B_{3})$ & $3^{2i}(+)$ & $3^{2i}(-)$ & $1$\\
+4 & $(A_{3},B_{3})$ & $3^{2i}(+)$ & $3^{2i}(+)$ & $1$\\
+5 & $(A_{3},B_{3})$ & $3^{2i}(+)$ & $3^{2i+1}(-)$ & $1$\\
+6 & $(A_{3},B_{3})$ & $3^{2i}(+)$ & $3^{2i+1}(+)$ & $1$\\
+7 & $(A_{3},B_{3})$ & $3^{2i+1}(-)$ & $3^{2i}(+)$ & $1$\\
+8 & $(A_{3},B_{3})$ & $3^{2i+1}(-)$ & $3^{2i+1}(+)$ & $1$\\
+9 & $(A_{3},B_{3})$ & $3^{2i+1}(+)$ & $3^{2i}(+)$ & $1$\\
+10 & $(A_{3},B_{3})$ & $3^{2i+1}(+)$ & $3^{2i+1}(-)$ & $1$\\
+11 & $(A_{3},T_{B_{3}})$ & $3^{2i}(+)$ & $3^{2i}(+)$ & $1$\\
+12 & $(T_{A_{3}},B_{3})$ & $3^{2i}(+)$ & $3^{2i}(+)$ & $1$\\
+13 & $(T_{A_{3}},B_{3})$ & $3^{2i+1}(-)$ & $3^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$3\nmid A_{4}B_{4}$} & $1$\\
+2 & $(A_{4},B_{4})$ & $3^{2i}(-)$ & $3^{2i}(-)$ & $1$\\
+3 & $(A_{4},B_{4})$ & $3^{2i}(-)$ & $3^{2i}(+)$ & $1$\\
+4 & $(A_{4},B_{4})$ & $3^{2i}(+)$ & $3^{2i}(-)$ & $1$\\
+5 & $(A_{4},B_{4})$ & $3^{2i}(+)$ & $3^{2i}(+)$ & $1$\\
+6 & $(A_{4},B_{4})$ & $3^{2i}(+)$ & $3^{2i+1}(-)$ & $1$\\
+7 & $(A_{4},B_{4})$ & $3^{2i}(+)$ & $3^{2i+1}(+)$ & $1$\\
+8 & $(A_{4},B_{4})$ & $3^{2i+1}(-)$ & $3^{2i}(+)$ & $1$\\
+9 & $(A_{4},B_{4})$ & $3^{2i+1}(-)$ & $3^{2i+1}(+)$ & $1$\\
+10 & $(A_{4},B_{4})$ & $3^{2i+1}(+)$ & $3^{2i}(+)$ & $1$\\
+11 & $(A_{4},B_{4})$ & $3^{2i+1}(+)$ & $3^{2i+1}(-)$ & $1$\\
+12 & $(A_{4},T_{B_{4}})$ & $3^{2i}(+)$ & $3^{2i}(+)$ & $1$\\
+13 & $(T_{A_{4}},B_{4})$ & $3^{2i}(+)$ & $3^{2i}(+)$ & $1$\\
+14 & $(T_{A_{4}},B_{4})$ & $3^{2i+1}(+)$ & $3^{2i}(+)$ & $1$\\
+\hline
+\multicolumn{5}{@{}l}{$p=5$, solutions modulo $5$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & \multicolumn{3}{l}{$5\nmid A_{1}B_{1}$} & $1$\\
+2 & $(A_{1},B_{1})$ & $5^{2i}(+)$ & $\text{any}$ & $1$\\
+3 & $(T_{A_{1}},B_{1})$ & $5^{2i}(+)$ & $5^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & \multicolumn{3}{l}{$5\nmid A_{2}B_{2}$} & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & \multicolumn{3}{l}{$5\nmid A_{3}B_{3}$} & $1$\\
+2 & $(A_{3},T_{B_{3}})$ & $5^{2i}(+)$ & $5^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$5\nmid A_{4}B_{4}$} & $1$\\
+2 & $(T_{A_{4}},B_{4})$ & $5^{2i}(+)$ & $\text{any}$ & $1$\\
+\hline
+\multicolumn{5}{@{}l}{$p=7$, solutions modulo $49$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & $(A_{1},B_{1})$ & $7^{2i+1}(-)$ & $7^{2i}(+)$ & $1$\\
+2 & $(A_{1},B_{1})$ & $7^{2i+1}(+)$ & $7^{2i}(-)$ & $-1$\\
+3 & $(A_{1},B_{1})$ & $7^{2i+1}(+)$ & $7^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & $(A_{2},B_{2})$ & $7^{2i}(-)$ & $7^{2i+1}(-)$ & $-1$\\
+2 & $(A_{2},B_{2})$ & $7^{2i}(-)$ & $7^{2i+1}(+)$ & $-1$\\
+3 & $(A_{2},B_{2})$ & $7^{2i}(+)$ & $7^{2i+1}(-)$ & $1$\\
+4 & $(A_{2},B_{2})$ & $7^{2i}(+)$ & $7^{2i+1}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & $(A_{3},B_{3})$ & $7^{2i+1}(-)$ & $7^{2i}(-)$ & $-1$\\
+2 & $(A_{3},B_{3})$ & $7^{2i+1}(-)$ & $7^{2i}(+)$ & $1$\\
+3 & $(A_{3},B_{3})$ & $7^{2i+1}(-)$ & $7^{2i+1}(-)$ & $-1$\\
+4 & $(A_{3},B_{3})$ & $7^{2i+1}(+)$ & $7^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & $(A_{4},B_{4})$ & $7^{2i+1}(-)$ & $7^{2i}(-)$ & $-1$\\
+2 & $(A_{4},B_{4})$ & $7^{2i+1}(-)$ & $7^{2i}(+)$ & $1$\\
+3 & $(A_{4},B_{4})$ & $7^{2i+1}(-)$ & $7^{2i+1}(-)$ & $-1$\\
+\multicolumn{5}{@{}l}{\quad combinations of cases $(j=1,j=2,j=3,j=4)$ and the vector $\sigma_{7}$}\\
+\multicolumn{5}{@{}l}{\quad $(1,1,1,1)\mapsto(1,-1,-1,-1)$\qquad $(2,3,3,3)\mapsto(-1,1,-1,-1)$}\\
+\multicolumn{5}{@{}l}{\quad $(2,3,4,2)\mapsto(-1,1,1,1)$\qquad $(2,4,4,2)\mapsto(-1,1,1,1)$}\\
+\multicolumn{5}{@{}l}{\quad $(3,2,2,2)\mapsto(1,-1,1,1)$}\\
+\hline
+\multicolumn{5}{@{}l}{$p=11$, solutions modulo $11$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & \multicolumn{3}{l}{$11\nmid A_{1}B_{1}$} & $1$\\
+2 & $(A_{1},T_{B_{1}})$ & $11^{2i}(+)$ & $11^{2i}(-)$ & $1$\\
+3 & $(A_{1},T_{B_{1}})$ & $11^{2i}(+)$ & $11^{2i}(+)$ & $1$\\
+4 & $(T_{A_{1}},B_{1})$ & $11^{2i}(+)$ & $11^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & \multicolumn{3}{l}{$11\nmid A_{2}B_{2}$} & $1$\\
+2 & $(T_{A_{2}},B_{2})$ & $11^{2i}(+)$ & $\text{any}$ & $1$\\
+3 & $(T_{A_{2}},B_{2})$ & $11^{2i}(+)$ & $11^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & \multicolumn{3}{l}{$11\nmid A_{3}B_{3}$} & $1$\\
+2 & $(A_{3},B_{3})$ & $\text{any}$ & $11^{2i}(+)$ & $1$\\
+3 & $(A_{3},T_{B_{3}})$ & $11^{2i}(+)$ & $11^{2i}(-)$ & $1$\\
+4 & $(A_{3},T_{B_{3}})$ & $11^{2i}(+)$ & $11^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$11\nmid A_{4}B_{4}$} & $1$\\
+2 & $(A_{4},T_{B_{4}})$ & $11^{2i}(+)$ & $11^{2i}(-)$ & $1$\\
+3 & $(A_{4},T_{B_{4}})$ & $11^{2i}(+)$ & $11^{2i}(+)$ & $1$\\
+\hline
+\multicolumn{5}{@{}l}{$p=19$, solutions modulo $19$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & $(T_{A_{1}},B_{1})$ & $19^{2i}(+)$ & $\text{any}$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & \multicolumn{3}{l}{$19\nmid A_{2}B_{2}$} & $1$\\
+2 & $(A_{2},T_{B_{2}})$ & $19^{2i}(+)$ & $19^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & \multicolumn{3}{l}{$19\nmid A_{3}B_{3}$} & $1$\\
+2 & $(A_{3},T_{B_{3}})$ & $19^{2i}(+)$ & $19^{2i}(-)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$19\nmid A_{4}B_{4}$} & $1$\\
+2 & $(A_{4},T_{B_{4}})$ & $19^{2i}(+)$ & $19^{2i}(-)$ & $1$\\
+3 & $(T_{A_{4}},B_{4})$ & $19^{2i}(+)$ & $19^{2i}(+)$ & $1$\\
+\hline
+\multicolumn{5}{@{}l}{$p=43$, solutions modulo $43$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & \multicolumn{3}{l}{$43\nmid A_{1}B_{1}$} & $1$\\
+2 & $(A_{1},T_{B_{1}})$ & $43^{2i}(+)$ & $43^{2i}(-)$ & $1$\\
+3 & $(A_{1},T_{B_{1}})$ & $43^{2i}(+)$ & $43^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & \multicolumn{3}{l}{$43\nmid A_{2}B_{2}$} & $1$\\
+2 & $(A_{2},T_{B_{2}})$ & $43^{2i}(+)$ & $43^{2i}(-)$ & $1$\\
+3 & $(A_{2},T_{B_{2}})$ & $43^{2i}(+)$ & $43^{2i}(+)$ & $1$\\
+4 & $(T_{A_{2}},B_{2})$ & $43^{2i}(-)$ & $43^{2i}(+)$ & $1$\\
+5 & $(T_{A_{2}},B_{2})$ & $43^{2i}(+)$ & $\text{any}$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & \multicolumn{3}{l}{$43\nmid A_{3}B_{3}$} & $1$\\
+2 & $(A_{3},T_{B_{3}})$ & $43^{2i}(+)$ & $43^{2i}(+)$ & $1$\\
+3 & $(T_{A_{3}},B_{3})$ & $43^{2i}(+)$ & $43^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$43\nmid A_{4}B_{4}$} & $1$\\
+2 & $(A_{4},T_{B_{4}})$ & $43^{2i}(+)$ & $43^{2i}(+)$ & $1$\\
+3 & $(T_{A_{4}},B_{4})$ & $43^{2i}(-)$ & $43^{2i}(+)$ & $1$\\
+\hline
+\multicolumn{5}{@{}l}{$p=101$, solutions modulo $101$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & \multicolumn{3}{l}{$101\nmid A_{1}B_{1}$} & $1$\\
+2 & $(T_{A_{1}},B_{1})$ & $101^{2i}(+)$ & $101^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & \multicolumn{3}{l}{$101\nmid A_{2}B_{2}$} & $1$\\
+2 & $(A_{2},T_{B_{2}})$ & $101^{2i}(+)$ & $101^{2i}(-)$ & $1$\\
+3 & $(T_{A_{2}},B_{2})$ & $101^{2i}(-)$ & $101^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & \multicolumn{3}{l}{$101\nmid A_{3}B_{3}$} & $1$\\
+2 & $(A_{3},T_{B_{3}})$ & $101^{2i}(+)$ & $101^{2i}(-)$ & $1$\\
+3 & $(A_{3},T_{B_{3}})$ & $101^{2i}(+)$ & $101^{2i}(+)$ & $1$\\
+4 & $(T_{A_{3}},B_{3})$ & $101^{2i}(-)$ & $101^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$101\nmid A_{4}B_{4}$} & $1$\\
+2 & $(A_{4},B_{4})$ & $\text{any}$ & $101^{2i}(+)$ & $1$\\
+3 & $(A_{4},T_{B_{4}})$ & $101^{2i}(+)$ & $101^{2i}(-)$ & $1$\\
+4 & $(T_{A_{4}},B_{4})$ & $101^{2i}(+)$ & $101^{2i}(+)$ & $1$\\
+\hline
+\multicolumn{5}{@{}l}{$p=373$, solutions modulo $373$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & \multicolumn{3}{l}{$373\nmid A_{1}B_{1}$} & $1$\\
+2 & $(A_{1},T_{B_{1}})$ & $373^{2i}(+)$ & $373^{2i}(-)$ & $1$\\
+3 & $(T_{A_{1}},B_{1})$ & $373^{2i}(-)$ & $373^{2i}(+)$ & $1$\\
+4 & $(T_{A_{1}},B_{1})$ & $373^{2i}(+)$ & $373^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & \multicolumn{3}{l}{$373\nmid A_{2}B_{2}$} & $1$\\
+2 & $(A_{2},T_{B_{2}})$ & $373^{2i}(+)$ & $373^{2i}(-)$ & $1$\\
+3 & $(A_{2},T_{B_{2}})$ & $373^{2i}(+)$ & $373^{2i}(+)$ & $1$\\
+4 & $(T_{A_{2}},B_{2})$ & $373^{2i}(-)$ & $373^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & \multicolumn{3}{l}{$373\nmid A_{3}B_{3}$} & $1$\\
+2 & $(T_{A_{3}},B_{3})$ & $373^{2i}(+)$ & $\text{any}$ & $1$\\
+3 & $(T_{A_{3}},B_{3})$ & $373^{2i}(+)$ & $373^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$373\nmid A_{4}B_{4}$} & $1$\\
+2 & $(A_{4},T_{B_{4}})$ & $373^{2i}(+)$ & $373^{2i}(+)$ & $1$\\
+3 & $(T_{A_{4}},B_{4})$ & $373^{2i}(+)$ & $373^{2i}(+)$ & $1$\\
+\hline
+\multicolumn{5}{@{}l}{$p=409$, solutions modulo $409$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & \multicolumn{3}{l}{$409\nmid A_{1}B_{1}$} & $1$\\
+2 & $(T_{A_{1}},B_{1})$ & $409^{2i}(+)$ & $409^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & \multicolumn{3}{l}{$409\nmid A_{2}B_{2}$} & $1$\\
+2 & $(T_{A_{2}},B_{2})$ & $409^{2i}(-)$ & $409^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & \multicolumn{3}{l}{$409\nmid A_{3}B_{3}$} & $1$\\
+2 & $(T_{A_{3}},B_{3})$ & $409^{2i}(-)$ & $409^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$409\nmid A_{4}B_{4}$} & $1$\\
+\hline
+\multicolumn{5}{@{}l}{$p=797$, solutions modulo $797$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & \multicolumn{3}{l}{$797\nmid A_{1}B_{1}$} & $1$\\
+2 & $(A_{1},T_{B_{1}})$ & $797^{2i}(+)$ & $797^{2i}(+)$ & $1$\\
+3 & $(T_{A_{1}},B_{1})$ & $797^{2i}(-)$ & $797^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & \multicolumn{3}{l}{$797\nmid A_{2}B_{2}$} & $1$\\
+2 & $(T_{A_{2}},B_{2})$ & $797^{2i}(+)$ & $797^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & \multicolumn{3}{l}{$797\nmid A_{3}B_{3}$} & $1$\\
+2 & $(A_{3},B_{3})$ & $\text{any}$ & $797^{2i}(+)$ & $1$\\
+3 & $(A_{3},T_{B_{3}})$ & $797^{2i}(+)$ & $797^{2i}(-)$ & $1$\\
+4 & $(A_{3},T_{B_{3}})$ & $797^{2i}(+)$ & $797^{2i}(+)$ & $1$\\
+5 & $(T_{A_{3}},B_{3})$ & $797^{2i}(+)$ & $797^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$797\nmid A_{4}B_{4}$} & $1$\\
+2 & $(A_{4},T_{B_{4}})$ & $797^{2i}(+)$ & $797^{2i}(-)$ & $1$\\
+3 & $(A_{4},T_{B_{4}})$ & $797^{2i}(+)$ & $797^{2i}(+)$ & $1$\\
+4 & $(T_{A_{4}},B_{4})$ & $797^{2i}(-)$ & $797^{2i}(+)$ & $1$\\
+5 & $(T_{A_{4}},B_{4})$ & $797^{2i}(+)$ & $797^{2i}(+)$ & $1$\\
+\hline
+\multicolumn{5}{@{}l}{$p=3581$, solutions modulo $3581$}\\[2pt]
+\multicolumn{5}{@{}l}{\quad $j=1$}\\
+1 & \multicolumn{3}{l}{$3581\nmid A_{1}B_{1}$} & $1$\\
+2 & $(A_{1},T_{B_{1}})$ & $3581^{2i}(+)$ & $3581^{2i}(+)$ & $1$\\
+3 & $(T_{A_{1}},B_{1})$ & $3581^{2i}(+)$ & $3581^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=2$}\\
+1 & \multicolumn{3}{l}{$3581\nmid A_{2}B_{2}$} & $1$\\
+2 & $(A_{2},T_{B_{2}})$ & $3581^{2i}(+)$ & $3581^{2i}(-)$ & $1$\\
+3 & $(A_{2},T_{B_{2}})$ & $3581^{2i}(+)$ & $3581^{2i}(+)$ & $1$\\
+4 & $(T_{A_{2}},B_{2})$ & $3581^{2i}(+)$ & $3581^{2i}(-)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=3$}\\
+1 & \multicolumn{3}{l}{$3581\nmid A_{3}B_{3}$} & $1$\\
+2 & $(A_{3},T_{B_{3}})$ & $3581^{2i}(+)$ & $3581^{2i}(-)$ & $1$\\
+3 & $(T_{A_{3}},B_{3})$ & $3581^{2i}(+)$ & $3581^{2i}(+)$ & $1$\\
+\multicolumn{5}{@{}l}{\quad $j=4$}\\
+1 & \multicolumn{3}{l}{$3581\nmid A_{4}B_{4}$} & $1$\\
+2 & $(A_{4},T_{B_{4}})$ & $3581^{2i}(+)$ & $3581^{2i}(-)$ & $1$\\
+3 & $(T_{A_{4}},B_{4})$ & $3581^{2i}(-)$ & $3581^{2i}(+)$ & $1$\\
+\end{longtable}
+\endgroup
+\end{document}
