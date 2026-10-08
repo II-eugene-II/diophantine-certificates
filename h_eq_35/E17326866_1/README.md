@@ -10,17 +10,9 @@ This equation has **no integer solutions**.
 | Length | $l = 11$ |
 | Method | Quadratic norm |
 
-## Certificate
+## Outline of the proof
 
-One quadratic norm identity. Put $F=x^4+x+y^3+2y^2+1$ and
-
-$$H=x-2y,\qquad U=16x^2+x+2,\qquad V=3x+6,\qquad T=32x^2+64xy+128x+128y^2+256y.$$
-
-Then
-
-$$HT-U^2-7V^2=-256 F,$$
-
-so $HT=U^2+7V^2$ at every integer solution. The proof shows that $H>0$, that $\left(\frac{H}{7}\right)=-1$, and that every odd prime $p$ with $\left(\frac{-7}{p}\right)=-1$ divides $H$ to an even power. By quadratic reciprocity, these three facts cannot hold together.
+The proof uses a polynomial identity of the form $HT=U^2+7V^2$ on the curve, and the fact that an odd prime $p$ with $\left(\frac{-7}{p}\right)=-1$ divides $U^2+7V^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Jacobi symbol and the law of quadratic reciprocity.
 
 The complete proof, with all the identities and tables that it uses, is in [E17326866_1.pdf](E17326866_1.pdf) (3 pages).
 
