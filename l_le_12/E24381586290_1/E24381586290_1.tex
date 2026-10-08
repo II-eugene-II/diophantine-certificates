@@ -1,0 +1,1393 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{longtable,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E24381586290\_1: 4x\textasciicircum 4+x+y\textasciicircum 3+y+1=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+% Legendre and Jacobi symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E24381586290\_1}\\[4pt] {\Large The equation $4x^{4}+x+y^{3}+y+1=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=77$, length $l=11$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+4x^{4}+x+y^{3}+y+1=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses the cubic Hilbert reciprocity law over the field $K=\Q(\omega)$, where $\omega^2+\omega+1=0$. It uses 2 graphs. For the $g$-th graph, we attach to a hypothetical integer solution the values of auxiliary polynomials $H^{(g)}_i$ with coefficients in $\Z[\omega]$, constants $c^{(g)}_i\in\Z[\omega]$, and a sum $B^{(g)}$ of cubic Hilbert symbols of these values, recorded by weighted edges. By the reciprocity law, the local contributions $B^{(g)}_p$ of all primes $p$ add up to $0$ modulo $3$, for every $g$. We show that $B^{(g)}_p=0$ for $p\notin S$, compute the vectors $(B^{(g)}_p)_g$ for the primes $p\in S$, and obtain a contradiction. Two standard facts from class field theory are quoted without proof: the explicit formula for the cubic Hilbert symbol at the places not above $3$, and the Hilbert reciprocity law. Apart from these, the proof uses polynomial identities, which can be checked by expanding both sides, and finite computations with residues.
+
+
+\section{\texorpdfstring{Cubic Hilbert symbols over $\Q(\omega)$}{Cubic Hilbert symbols over Q(w)}}\label{sec:symbols}
+
+\paragraph{The field.} Let $K=\Q(\omega)$, where $\omega^2+\omega+1=0$. Its ring of integers is $\Z[\omega]$, and every element of $K$ can be written uniquely as $A+B\omega$ with $A,B\in\Q$. We write
+\[
+\langle A,B\rangle=A+B\omega,
+\]
+also when $A$ and $B$ are polynomials in $x$ and $y$. Then $\langle A,B\rangle\langle C,D\rangle=\langle AC-BD,\ AD+BC-BD\rangle$, and the norm is $N(\langle A,B\rangle)=A^2-AB+B^2$. In particular, a value $\langle A,B\rangle$ with $A,B\in\Z$ is zero if and only if $A=B=0$.
+
+\paragraph{Places.} The finite places of $K$ correspond to the non-zero prime ideals of $\Z[\omega]$. A prime $p\equiv2\pmod3$ is inert: there is one place above $p$, with uniformizer $p$ and residue field $\Z[\omega]/p\Z[\omega]$ with $p^2$ elements. If $p\equiv1\pmod3$, the polynomial $t^2+t+1$ has two roots $r$ modulo $p$, and for each of them there is a place $v_r$ above $p$, at which $\omega$ is the root of $t^2+t+1$ in $\Z_p$ congruent to $r$ modulo $p$; the completion is $\Q_p$, the uniformizer is $p$, the residue field is $\F_p$, and $\omega$ reduces to $r$. The prime $3$ is ramified: $\pi=1-\omega$ generates the unique prime ideal above $3$, $\pi^2=-3\omega$, and $\Z[\omega]/\pi\Z[\omega]=\F_3$, where $\langle A,B\rangle$ reduces to $A+B$. The only infinite place of $K$ is complex. For a finite place $v$ we write $K_v$ for the completion and $v(a)$ for the normalized valuation, and we call $a$ a \emph{unit} at $v$ if $v(a)=0$.
+
+\paragraph{Hilbert symbols.} For a place $v$ of $K$ and $a,b\in K_v^\times$, the cubic Hilbert symbol $(a,b)_v$ is a cube root of unity, see \cite[Chapter~V, \S3]{N}. We write $(a,b)_v=\omega^{\beta_v(a,b)}$ with $\beta_v(a,b)\in\Z/3\Z$, and we use the following three facts \cite[Chapter~V, \S3 and Chapter~VI, \S8]{N}.
+\begin{itemize}
+\item[(H1)] $\beta_v(a,bc)=\beta_v(a,b)+\beta_v(a,c)$, $\beta_v(a,b)=-\beta_v(b,a)$, and $\beta_v(a,c^3)=0$. In particular, $\beta_v(a,b)$ depends only on the classes of $a$ and $b$ in $K_v^\times/K_v^{\times3}$.
+\item[(H2)] Let $v$ be a finite place not above $3$, let $q$ be the number of elements of its residue field, and let $\varpi$ be a uniformizer at $v$. Write $a=\varpi^eu$ and $b=\varpi^fw$ with units $u$ and $w$, and define $\chi(u)\in\Z/3\Z$ by $\bar u^{(q-1)/3}=\bar\omega^{\chi(u)}$, where the bar denotes the reduction to the residue field. Then $\beta_v(a,b)=e\,\chi(w)-f\,\chi(u)$. In particular, $\beta_v(a,b)=0$ if $a$ and $b$ are both units.
+\item[(H3)] (Hilbert reciprocity.) For $a,b\in K^\times$, $\beta_v(a,b)=0$ for all but finitely many places $v$, and $\sum_v\beta_v(a,b)=0$, where the sum is over all places of $K$. At the complex place, $\beta_v(a,b)=0$.
+\end{itemize}
+The general formula in (H2) contains an additional term $ef\chi(-1)$, which vanishes because $-1=(-1)^3$ is a cube. Formula (H2) fixes the normalization of the symbols; with the opposite sign convention all values $\beta_v$ change sign, and the proof below is the same.
+
+\paragraph{Classes at the places not above $3$.} Let $p\neq3$ be a prime and $v$ a place above $p$. For $a=p^eu\in K_v^\times$ with a unit $u$, put $c_v(a)=(e\bmod3,\ \chi(u))\in\F_3^2$. By (H2) and (H1), $c_v$ is additive, $c_v(a)$ determines the class of $a$ modulo cubes, and $\beta_v(a,b)=e\chi(w)-f\chi(u)$ for $c_v(a)=(e,\chi(u))$ and $c_v(b)=(f,\chi(w))$. We put $c_p(a)=c_v(a)\in\F_3^2$ if $p\equiv2\pmod3$, and $c_p(a)=(c_{v_r}(a),c_{v_{r'}}(a))\in\F_3^4$ if $p\equiv1\pmod3$, where $r<r'$ are the roots of $t^2+t+1$ in $\{1,\dots,p-1\}$; accordingly, $\beta_p$ is the sum of the forms $\beta_v$ over the places $v$ above $p$. For $p\equiv2\pmod3$ and a rational integer $u$ prime to $p$, we have $\bar u\in\F_p$, so that $\bar u^{(p^2-1)/3}=(\bar u^{p-1})^{(p+1)/3}=1$ and $\chi(u)=0$.
+
+\paragraph{The place above $3$.}
+\begin{lemma}\label{lem:M3}
+Let $v$ be the place above $3$. Every non-zero element of $K_v$ is equal to $\pi^a\omega^b2^c(1+3\omega)^d$ times a cube, for unique $a,b,c,d\in\Z/3\Z$, and every unit congruent to $1$ modulo $9$ is a cube. Put $c_3(A)=(a,b,c,d)\in\F_3^4$. Then $c_3$ is additive, and $\beta_v(A,B)=c_3(A)^{\mathsf T}M_3\,c_3(B)$, where
+\[
+M_3=\begin{pmatrix}0&0&2&0\\0&0&1&2\\1&2&0&0\\0&1&0&0\end{pmatrix}\pmod3.
+\]
+\end{lemma}
+
+\begin{proof}
+For $\alpha\in\Z[\omega]$, the polynomial $g(s)=s+3s^2+3s^3-\alpha$ satisfies $g'(s)\equiv1\pmod\pi$, so by Hensel's lemma it has a root $s$ in the completion of $\Z[\omega]$, and then $(1+3s)^3=1+9(s+3s^2+3s^3)=1+9\alpha$. Hence every unit congruent to $1$ modulo $9$ is a cube in $K_v$, and the class of a unit modulo cubes depends only on its residue modulo $9$. There are $54$ units in $\Z[\omega]/(9)$, and a direct enumeration shows that the $27$ products $\omega^b2^c(1+3\omega)^d$ with $b,c,d\in\{0,1,2\}$ are pairwise distinct modulo $9$, also after multiplication by $-1=(-1)^3$. Hence they represent all $27$ classes of units modulo cubes. Since $\pi^3$ is a cube times a unit, the exponent of $\pi$ is the valuation modulo $3$, and the first statement follows.
+
+By (H1), it remains to compute $\beta_v$ on the $16$ ordered pairs of the elements $\pi$, $\omega$, $2$ and $1+3\omega$. Their norms are $3$, $1$, $4$ and $7$, hence, for each such pair, all the symbols at the places not above $2$, $3$ and $7$ vanish by (H2), and, by (H3), $\beta_v$ at the place above $3$ is minus the sum of the values at the place above $2$ and at the two places above $7$. These places correspond to $\bar\omega=2$ and $\bar\omega=4$ in $\F_7$. The classes $(e,\chi)$ of the four elements at these places are
+\[
+\begin{array}{c|ccc}
+ & 2 & \bar\omega=2 & \bar\omega=4\\\hline
+\pi & (0,2) & (0,0) & (0,2)\\
+\omega & (0,1) & (0,2) & (0,2)\\
+2 & (1,0) & (0,2) & (0,1)\\
+1+3\omega & (0,2) & (1,0) & (0,0)
+\end{array}
+\]
+where, at the places above $7$, $\chi(u)$ is defined by $\bar u^2=\bar\omega^{\chi(u)}$ in $\F_7$, and $7$ is a uniformizer. Formula (H2) and the sum over these three places give $M_3$.
+\end{proof}
+
+We write $\beta_3$ for the form of Lemma~\ref{lem:M3}. Since $3=-\omega^2\pi^2$ and $4=2^2$, we have $c_3(3)=(2,2,0,0)$ and $c_3(4)=(0,0,2,0)$.
+
+\paragraph{Residue classes.} The local computations use the following description of the classes of the values of a polynomial on a residue class.
+
+\begin{lemma}\label{lem:residue}
+Let $p$ be a prime, $k\geq1$, and let $z\in\Z[\omega]$ be non-zero with $z\equiv\zeta\pmod{p^k}$, where $\zeta=\langle A,B\rangle$ with $0\leq A,B<p^k$. Then $c_p(z)\in b+D$ for the vector $b$ and the subspace $D$ given as follows.
+\begin{itemize}
+\item[(i)] $p\equiv2\pmod3$. If $\zeta\neq0$, then $b=c_p(\zeta)$ and $D=0$. If $\zeta=0$, then $b=0$, and $D$ is $\F_3^2$, or the span of $(1,0)$ if $z\in\Z$.
+\item[(ii)] $p\equiv1\pmod3$. For each root $r$, let $\rho$ be the root of $t^2+t+1$ modulo $p^k$ congruent to $r$. If $A+B\rho\not\equiv0\pmod{p^k}$, the two coordinates of $c_{v_r}(z)$ are those of $c_{v_r}(\zeta)$; otherwise these two coordinates are arbitrary.
+\item[(iii)] $p=3$, $z\notin\Z$. If $\zeta\neq0$, let $a=v(\zeta)<2k$ be its valuation at $\pi$ and $m=2k-a$. Then $b=c_3(\zeta)$, and $D=0$ if $m\geq4$, while $D=D_m$ if $m\leq3$, where $D_1$ is spanned by $(0,1,0,0)$, $(0,0,1,0)$ and $(0,0,0,1)$, $D_2$ by $(0,0,1,0)$ and $(0,0,0,1)$, and $D_3$ by $(0,0,1,1)$. If $\zeta=0$, then $b=0$ and $D=\F_3^4$.
+\item[(iv)] $p=3$, $z\in\Z$, so that $B=0$. If $3^k\nmid A$, let $j=v_3(A)$. Then $b=c_3(A)$ and $D=0$ if $k-j\geq2$, while $b=j\,c_3(3)$ and $D$ is spanned by $c_3(4)$ if $k-j=1$. If $3^k\mid A$, then $b=0$ and $D$ is spanned by $c_3(3)$ and $c_3(4)$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) If $\zeta\neq0$, then $e=v(z)=v(\zeta)<k$ and $z/p^e\equiv\zeta/p^e\pmod p$, so that $\chi$ is determined. If $z\in\Z$, its unit part is a rational integer, and $\chi=0$. (ii) At $v_r$, $z$ and $\zeta$ are the $p$-adic numbers $A'+B'\omega$ and $A+B\omega$ with $\omega\equiv\rho\pmod{p^k}$, and the argument of (i) applies. (iii) If $\zeta\neq0$, then $v(z)=a$, and $z/\pi^a\equiv\zeta/\pi^a\pmod{\pi^m}$. By Lemma~\ref{lem:M3}, the class of a unit depends only on its residue modulo $9=\omega\pi^4$; the units congruent to $1$ modulo $\pi^m$ form a subgroup, and a direct enumeration of their residues modulo $9$ shows that their classes form $D_m$. (iv) If $3^k\nmid A$, then $z=3^ju$ with a rational unit $u\equiv A/3^j\pmod{3^{k-j}}$. The class of a rational unit depends only on its residue modulo $9$, the units $\pm1$ are cubes, and the rational units congruent to $1$ modulo $3$ are $4^s$ times a unit congruent to $1$ modulo $9$; hence the classes are as stated, and if $3^k\mid A$ the valuation $j$ is also unknown.
+\end{proof}
+
+\begin{lemma}\label{lem:envelope}
+Let $p$ be a prime, and consider vertices $i$ with vectors $b_i$, subspaces $D_i$ and vectors $\gamma_i$, and a set of edges $(i,j)$ with $i<j$ and weights $w_{ij}\in\{1,2\}$. Put $\rho_{ij}=w_{ij}$ and $\rho_{ji}=-w_{ij}$ for the edges, and $\sigma_i=\gamma_i+\sum_j\rho_{ij}b_j$. Suppose that $\beta_p(d,\sigma_i)=0$ for every $i$ and every $d\in D_i$, and that $\beta_p(d,d')=0$ for every edge $(i,j)$ and all $d\in D_i$, $d'\in D_j$. Then
+\[
+\sum_{(i,j)}w_{ij}\beta_p(c_i,c_j)+\sum_i\beta_p(c_i,\gamma_i)=\sum_{(i,j)}w_{ij}\beta_p(b_i,b_j)+\sum_i\beta_p(b_i,\gamma_i)
+\]
+whenever $c_i\in b_i+D_i$ for every $i$. By bilinearity, it suffices to check the hypotheses for $d$ and $d'$ in spanning sets of $D_i$ and $D_j$.
+\end{lemma}
+
+\begin{proof}
+Write $c_i=b_i+d_i$ with $d_i\in D_i$. As $\beta_p$ is bilinear and $\beta_p(u,v)=-\beta_p(v,u)$, the left side equals the right side plus $\sum_i\beta_p(d_i,\sigma_i)+\sum_{(i,j)}w_{ij}\beta_p(d_i,d_j)$, and both sums vanish.
+\end{proof}
+\section{The graphs}
+
+Put $F(x,y)=4x^{4}+x+y^{3}+y+1$, so that \eqref{eq:main} is the equation $F(x,y)=0$. There are 2 certificates. The $g$-th certificate consists of polynomials $H^{(g)}_i$ with coefficients in $\Z[\omega]$ and constants $c^{(g)}_i\in\Z[\omega]$, listed in Table~\ref{tab:vert1} and Table~\ref{tab:vert2}, and of \emph{edges} $(i,j)$ with $i<j$ and weights $w^{(g)}_{ij}\in\{1,2\}$. For an edge we put $\rho^{(g)}_{ij}=w^{(g)}_{ij}$ and $\rho^{(g)}_{ji}=-w^{(g)}_{ij}\bmod3$, and $\rho^{(g)}_{ij}=0$ otherwise. In the rest of the proof we usually suppress the index $g$.
+The edges $(i,j;w_{ij})$ of the first certificate are $(0,2;2)$, $(0,10;2)$, $(0,11;1)$, $(0,14;1)$, $(0,17;1)$, $(0,22;1)$, $(0,27;2)$, $(0,35;2)$, $(0,40;2)$, $(0,42;1)$, $(0,59;2)$, $(0,60;1)$, $(0,61;1)$, $(0,62;2)$, $(0,63;1)$, $(1,6;1)$, $(1,12;1)$, $(1,20;1)$, $(1,37;1)$, $(1,46;2)$, $(1,54;1)$, $(1,60;1)$, $(1,61;2)$, $(1,64;2)$, $(2,7;1)$, $(2,8;2)$, $(2,11;1)$, $(2,24;1)$, $(2,32;1)$, $(2,40;1)$, $(2,45;2)$, $(2,46;2)$, $(2,53;1)$, $(2,54;2)$, $(2,55;2)$, $(2,57;2)$, $(2,59;1)$, $(2,62;1)$, $(2,67;1)$, $(2,71;1)$, $(3,15;2)$, $(3,42;2)$, $(3,47;1)$, $(3,56;1)$, $(4,15;1)$, $(4,26;1)$, $(4,27;1)$, $(4,28;1)$, $(4,30;2)$, $(4,35;2)$, $(4,38;2)$, $(4,49;2)$, $(4,51;1)$, $(4,62;2)$, $(4,64;2)$, $(4,66;2)$, $(4,70;2)$, $(5,13;2)$, $(5,19;2)$, $(5,20;2)$, $(5,24;1)$, $(5,29;2)$, $(5,33;2)$, $(5,36;1)$, $(5,46;1)$, $(5,51;1)$, $(5,54;1)$, $(5,57;2)$, $(5,60;2)$, $(5,65;2)$, $(5,69;1)$, $(6,12;2)$, $(6,14;1)$, $(6,16;2)$, $(6,19;2)$, $(6,25;1)$, $(6,34;2)$, $(6,35;1)$, $(6,39;2)$, $(6,44;2)$, $(6,45;2)$, $(6,46;2)$, $(6,51;1)$, $(6,55;1)$, $(6,59;1)$, $(6,71;1)$, $(7,11;2)$, $(7,16;1)$, $(7,19;2)$, $(7,23;2)$, $(7,32;2)$, $(7,38;2)$, $(7,44;2)$, $(7,53;1)$, $(7,59;2)$, $(8,11;2)$, $(8,24;2)$, $(8,27;1)$, $(8,29;2)$, $(8,33;1)$, $(8,35;2)$, $(8,36;1)$, $(8,45;2)$, $(8,46;1)$, $(8,57;1)$, $(8,59;1)$, $(8,61;1)$, $(8,65;2)$, $(8,66;1)$, $(9,12;2)$, $(9,13;2)$, $(9,14;2)$, $(9,24;2)$, $(9,25;1)$, $(9,39;2)$, $(9,41;1)$, $(9,43;2)$, $(9,54;1)$, $(9,58;2)$, $(9,62;2)$, $(9,71;2)$, $(10,11;1)$, $(10,17;1)$, $(10,22;1)$, $(10,28;2)$, $(10,34;1)$, $(10,41;1)$, $(10,43;1)$, $(10,46;1)$, $(10,52;2)$, $(10,61;2)$, $(11,12;2)$, $(11,18;2)$, $(11,28;2)$, $(11,31;2)$, $(11,37;2)$, $(11,41;1)$, $(11,42;1)$, $(11,47;2)$, $(11,53;1)$, $(11,69;1)$, $(12,17;2)$, $(12,28;1)$, $(12,31;2)$, $(12,33;1)$, $(12,34;1)$, $(12,44;1)$, $(12,53;2)$, $(12,58;1)$, $(12,70;1)$, $(13,16;2)$, $(13,21;2)$, $(13,33;1)$, $(13,50;1)$, $(13,52;1)$, $(13,59;2)$, $(14,20;1)$, $(14,22;1)$, $(14,39;1)$, $(14,45;1)$, $(14,50;1)$, $(14,54;2)$, $(14,55;2)$, $(14,62;1)$, $(15,17;2)$, $(15,18;2)$, $(15,19;1)$, $(15,22;1)$, $(15,27;2)$, $(15,28;2)$, $(15,34;1)$, $(15,35;2)$, $(15,38;1)$, $(15,39;2)$, $(15,41;2)$, $(15,44;1)$, $(15,48;1)$, $(15,52;2)$, $(15,54;2)$, $(15,55;1)$, $(15,70;2)$, $(15,71;1)$, $(16,17;1)$, $(16,18;1)$, $(16,31;1)$, $(16,41;1)$, $(16,48;2)$, $(16,58;2)$, $(17,39;2)$, $(17,64;2)$, $(17,66;2)$, $(17,68;1)$, $(18,19;2)$, $(18,38;2)$, $(18,39;1)$, $(18,45;2)$, $(18,47;1)$, $(18,49;2)$, $(18,57;2)$, $(19,28;1)$, $(19,38;1)$, $(19,53;1)$, $(20,26;1)$, $(20,32;1)$, $(20,46;2)$, $(20,54;2)$, $(20,65;2)$, $(21,23;1)$, $(21,43;2)$, $(21,61;2)$, $(21,63;1)$, $(21,65;2)$, $(22,26;1)$, $(22,44;2)$, $(22,54;1)$, $(22,56;1)$, $(22,59;1)$, $(22,60;1)$, $(22,66;1)$, $(23,25;2)$, $(23,32;1)$, $(23,48;1)$, $(23,59;1)$, $(23,65;1)$, $(24,25;2)$, $(24,26;2)$, $(24,39;1)$, $(24,58;1)$, $(25,32;1)$, $(25,45;1)$, $(25,54;1)$, $(25,58;2)$, $(25,67;1)$, $(26,35;1)$, $(26,38;1)$, $(26,39;2)$, $(26,44;2)$, $(26,49;2)$, $(26,59;1)$, $(26,65;2)$, $(27,29;2)$, $(27,32;1)$, $(27,35;1)$, $(27,36;1)$, $(27,42;1)$, $(27,44;2)$, $(27,57;2)$, $(28,30;1)$, $(28,42;2)$, $(28,45;2)$, $(28,46;2)$, $(28,47;1)$, $(28,51;2)$, $(28,54;1)$, $(28,57;2)$, $(28,58;2)$, $(28,60;1)$, $(29,35;1)$, $(29,36;2)$, $(29,44;2)$, $(29,65;2)$, $(29,67;2)$, $(29,69;2)$, $(29,71;2)$, $(30,33;2)$, $(30,38;2)$, $(30,45;2)$, $(30,62;2)$, $(30,63;1)$, $(31,44;1)$, $(31,57;1)$, $(31,58;1)$, $(31,59;1)$, $(31,63;2)$, $(31,64;2)$, $(32,42;1)$, $(32,66;1)$, $(32,69;1)$, $(33,41;1)$, $(33,43;1)$, $(33,54;2)$, $(33,64;2)$, $(33,68;2)$, $(33,69;2)$, $(34,36;1)$, $(34,44;1)$, $(34,45;2)$, $(34,46;1)$, $(34,54;1)$, $(34,65;1)$, $(34,66;2)$, $(34,68;2)$, $(35,62;2)$, $(35,67;1)$, $(36,47;1)$, $(36,52;1)$, $(36,57;1)$, $(36,67;2)$, $(37,40;1)$, $(37,44;2)$, $(37,45;2)$, $(37,53;2)$, $(37,58;1)$, $(37,64;1)$, $(37,65;1)$, $(38,57;1)$, $(39,41;2)$, $(39,54;2)$, $(39,56;2)$, $(39,59;1)$, $(39,60;1)$, $(39,64;2)$, $(39,70;2)$, $(40,47;2)$, $(40,58;2)$, $(40,60;2)$, $(41,44;2)$, $(41,59;2)$, $(41,64;1)$, $(41,71;2)$, $(42,47;2)$, $(42,50;2)$, $(42,62;2)$, $(42,63;2)$, $(43,46;1)$, $(43,51;2)$, $(43,53;2)$, $(43,62;1)$, $(44,51;2)$, $(44,56;2)$, $(44,65;1)$, $(45,56;2)$, $(45,61;2)$, $(46,48;2)$, $(46,52;2)$, $(46,54;1)$, $(46,55;1)$, $(47,56;1)$, $(47,64;2)$, $(47,65;2)$, $(48,60;2)$, $(49,63;2)$, $(50,52;1)$, $(50,55;1)$, $(50,56;1)$, $(50,59;1)$, $(53,54;2)$, $(54,61;1)$, $(57,67;1)$, $(57,68;2)$, $(59,64;1)$, $(59,66;2)$, $(59,71;2)$, $(60,61;2)$, $(60,63;2)$, $(60,64;1)$, $(60,65;2)$, $(61,63;1)$, $(61,64;1)$, $(62,67;2)$, $(62,70;1)$, $(63,67;1)$, $(63,71;1)$, $(64,65;1)$, $(64,66;1)$, $(64,71;1)$, $(70,71;1)$.
+The edges $(i,j;w_{ij})$ of the second certificate are $(0,4;1)$, $(0,6;2)$, $(0,15;1)$, $(0,49;1)$, $(0,71;2)$, $(0,75;2)$, $(1,11;1)$, $(1,16;1)$, $(1,29;1)$, $(1,44;1)$, $(1,51;1)$, $(1,63;2)$, $(1,75;2)$, $(2,3;2)$, $(2,4;2)$, $(2,5;1)$, $(2,8;2)$, $(2,11;1)$, $(2,17;2)$, $(2,23;1)$, $(2,30;1)$, $(2,40;1)$, $(2,43;2)$, $(2,47;1)$, $(2,69;1)$, $(3,11;2)$, $(3,34;1)$, $(3,42;2)$, $(3,51;2)$, $(3,56;2)$, $(3,59;2)$, $(3,61;1)$, $(3,64;2)$, $(3,65;1)$, $(4,8;2)$, $(4,9;2)$, $(4,17;2)$, $(4,23;2)$, $(4,24;2)$, $(4,25;1)$, $(4,27;2)$, $(4,28;1)$, $(4,32;2)$, $(4,36;1)$, $(4,43;1)$, $(4,58;1)$, $(4,59;1)$, $(4,65;2)$, $(4,66;2)$, $(4,75;2)$, $(5,16;2)$, $(5,18;2)$, $(5,22;1)$, $(5,36;1)$, $(5,60;2)$, $(5,62;1)$, $(5,72;2)$, $(5,74;1)$, $(6,14;1)$, $(6,15;2)$, $(6,20;1)$, $(6,21;1)$, $(6,22;2)$, $(6,25;2)$, $(6,29;1)$, $(6,30;2)$, $(6,35;1)$, $(6,44;1)$, $(6,45;1)$, $(6,48;2)$, $(6,53;1)$, $(6,57;2)$, $(6,66;2)$, $(6,77;2)$, $(7,12;1)$, $(7,18;1)$, $(7,25;1)$, $(7,29;1)$, $(7,31;2)$, $(7,34;1)$, $(7,35;1)$, $(7,46;2)$, $(7,48;2)$, $(7,49;2)$, $(7,57;2)$, $(7,61;1)$, $(7,75;1)$, $(7,76;1)$, $(8,23;2)$, $(8,60;1)$, $(8,70;1)$, $(8,72;2)$, $(8,73;2)$, $(8,76;2)$, $(9,22;1)$, $(9,25;1)$, $(9,28;1)$, $(9,30;1)$, $(9,33;1)$, $(9,36;2)$, $(9,37;2)$, $(9,49;2)$, $(9,69;2)$, $(9,75;1)$, $(10,11;1)$, $(10,12;1)$, $(10,19;2)$, $(10,21;1)$, $(10,22;2)$, $(10,23;1)$, $(10,24;2)$, $(10,25;1)$, $(10,29;1)$, $(10,40;2)$, $(10,43;2)$, $(10,45;2)$, $(10,46;1)$, $(10,52;2)$, $(10,58;1)$, $(10,60;1)$, $(10,65;2)$, $(10,70;1)$, $(10,71;1)$, $(11,33;1)$, $(11,38;2)$, $(11,43;1)$, $(11,48;1)$, $(11,49;2)$, $(11,52;1)$, $(11,55;2)$, $(11,57;2)$, $(11,58;2)$, $(11,69;2)$, $(11,73;1)$, $(11,75;1)$, $(12,28;1)$, $(12,35;1)$, $(12,46;2)$, $(12,52;1)$, $(12,63;2)$, $(12,65;1)$, $(12,75;2)$, $(13,15;2)$, $(13,16;1)$, $(13,34;2)$, $(13,39;1)$, $(13,41;1)$, $(13,45;2)$, $(13,48;2)$, $(13,49;2)$, $(13,51;1)$, $(13,60;1)$, $(13,65;1)$, $(13,66;1)$, $(13,72;1)$, $(14,17;2)$, $(14,19;2)$, $(14,20;1)$, $(14,22;2)$, $(14,33;2)$, $(14,58;2)$, $(14,59;1)$, $(15,21;1)$, $(15,25;2)$, $(15,35;1)$, $(15,39;1)$, $(15,41;1)$, $(15,45;2)$, $(15,46;1)$, $(15,47;2)$, $(15,60;2)$, $(15,64;2)$, $(15,70;2)$, $(15,72;2)$, $(15,74;2)$, $(16,33;2)$, $(16,37;2)$, $(16,40;1)$, $(16,53;2)$, $(16,74;2)$, $(17,33;1)$, $(17,39;2)$, $(17,48;2)$, $(17,56;1)$, $(18,31;1)$, $(18,32;1)$, $(18,34;2)$, $(18,35;1)$, $(18,41;1)$, $(18,42;2)$, $(18,46;1)$, $(18,49;2)$, $(18,60;2)$, $(18,75;1)$, $(19,20;2)$, $(19,22;2)$, $(19,24;2)$, $(19,35;1)$, $(19,39;1)$, $(19,47;2)$, $(19,54;1)$, $(19,61;1)$, $(19,66;1)$, $(19,75;2)$, $(20,25;1)$, $(20,36;2)$, $(20,57;2)$, $(20,61;2)$, $(20,66;1)$, $(20,77;1)$, $(21,30;2)$, $(21,31;2)$, $(21,35;1)$, $(21,39;2)$, $(21,45;1)$, $(21,47;1)$, $(21,51;1)$, $(21,52;1)$, $(21,75;2)$, $(22,28;1)$, $(22,33;2)$, $(22,34;2)$, $(22,36;2)$, $(22,37;1)$, $(22,62;1)$, $(22,75;1)$, $(23,36;1)$, $(23,46;2)$, $(23,52;1)$, $(23,53;2)$, $(23,55;1)$, $(23,57;2)$, $(23,58;1)$, $(23,60;1)$, $(23,70;2)$, $(23,75;1)$, $(24,25;1)$, $(24,29;1)$, $(24,33;2)$, $(24,34;2)$, $(24,36;1)$, $(24,42;2)$, $(24,51;2)$, $(24,53;1)$, $(24,56;2)$, $(24,58;2)$, $(24,66;2)$, $(24,69;1)$, $(25,29;1)$, $(25,31;1)$, $(25,32;1)$, $(25,42;2)$, $(25,48;1)$, $(25,58;2)$, $(25,59;2)$, $(25,64;1)$, $(25,73;2)$, $(26,32;2)$, $(26,42;1)$, $(26,44;2)$, $(26,52;1)$, $(26,54;2)$, $(26,57;2)$, $(26,75;1)$, $(27,36;2)$, $(27,41;2)$, $(27,43;2)$, $(27,46;2)$, $(27,66;1)$, $(28,35;1)$, $(28,36;1)$, $(28,39;1)$, $(28,46;2)$, $(28,54;2)$, $(28,74;1)$, $(29,34;1)$, $(29,38;1)$, $(29,39;2)$, $(29,42;2)$, $(29,43;1)$, $(29,45;1)$, $(29,48;2)$, $(29,58;2)$, $(29,65;2)$, $(29,68;1)$, $(29,71;1)$, $(30,34;2)$, $(30,37;1)$, $(30,39;2)$, $(30,41;1)$, $(30,46;2)$, $(30,54;2)$, $(30,55;1)$, $(30,59;2)$, $(30,66;1)$, $(30,68;1)$, $(31,37;2)$, $(31,44;2)$, $(31,47;2)$, $(31,50;2)$, $(31,64;1)$, $(32,41;1)$, $(32,42;2)$, $(32,46;2)$, $(32,48;1)$, $(32,50;1)$, $(32,75;1)$, $(33,46;2)$, $(34,49;1)$, $(34,65;2)$, $(35,41;2)$, $(35,67;2)$, $(35,72;1)$, $(35,76;2)$, $(36,45;1)$, $(36,48;1)$, $(36,49;1)$, $(36,56;1)$, $(36,60;1)$, $(36,62;1)$, $(36,66;2)$, $(37,41;1)$, $(38,40;2)$, $(38,46;1)$, $(38,48;2)$, $(38,55;1)$, $(38,59;1)$, $(38,66;2)$, $(39,46;2)$, $(39,56;1)$, $(39,58;2)$, $(39,63;1)$, $(39,75;2)$, $(40,52;2)$, $(40,53;1)$, $(40,67;2)$, $(40,75;1)$, $(41,44;1)$, $(41,75;2)$, $(42,43;2)$, $(42,56;1)$, $(42,58;1)$, $(42,60;1)$, $(42,72;1)$, $(42,73;1)$, $(43,46;1)$, $(43,54;1)$, $(43,56;1)$, $(43,64;2)$, $(44,56;1)$, $(44,59;2)$, $(44,62;2)$, $(44,69;2)$, $(44,71;2)$, $(46,53;1)$, $(46,60;1)$, $(46,64;1)$, $(46,65;1)$, $(46,68;2)$, $(46,71;1)$, $(47,57;1)$, $(47,58;1)$, $(47,64;2)$, $(47,75;1)$, $(47,77;1)$, $(48,53;1)$, $(48,56;1)$, $(48,64;2)$, $(48,68;2)$, $(48,70;1)$, $(48,73;2)$, $(48,76;2)$, $(48,77;2)$, $(49,59;2)$, $(49,62;2)$, $(49,63;1)$, $(49,72;1)$, $(49,75;2)$, $(51,55;1)$, $(51,61;1)$, $(53,60;1)$, $(53,66;1)$, $(53,77;2)$, $(54,56;2)$, $(54,67;1)$, $(55,74;2)$, $(56,63;2)$, $(56,65;1)$, $(56,68;1)$, $(56,76;2)$, $(57,75;1)$, $(59,62;1)$, $(59,76;1)$, $(60,65;1)$, $(61,65;2)$, $(61,75;2)$, $(61,77;2)$, $(62,75;2)$, $(63,65;2)$, $(65,70;2)$, $(65,75;2)$, $(66,67;1)$, $(69,75;2)$, $(70,73;1)$, $(74,75;2)$.
+Let $(\xi,\eta)$ denote $(x,y)$ or $(y,x)$. We call a vertex $i$ \emph{linear} if $H_i=\varepsilon_i(\eta-r_i(\xi))$ for a unit $\varepsilon_i$ of $\Z[\omega]$ and a polynomial $r_i$ with coefficients in $\Z[\omega]$; the last column of Table~\ref{tab:vert1} and its analogues gives $\eta=r_i(\xi)$ for the linear vertices. For a linear vertex $i$, we put $f_i(t)=F$ and $g_{ij}(t)=H_j$ evaluated at $\xi=t$, $\eta=r_i(t)$; these are polynomials in $t$ with coefficients in $\Z[\omega]$.
+For every linear vertex $i$, Table~\ref{tab:star} gives an integer $D_i\geq1$ and a polynomial $w_i(t)$ with coefficients in $\Z[\omega]$ such that
+\begin{equation}\label{eq:starlin}
+D_i^3\,c_i\prod_jg_{ij}^{\rho_{ij}}-w_i^3=f_iQ_i
+\end{equation}
+for a polynomial $Q_i(t)$ with coefficients in $\Z[\omega]$, where $\rho_{ij}\in\{0,1,2\}$; $Q_i$ is the quotient of the division of the left side by $f_i$, and the remainder is zero.
+For every edge $(i,j)$ with a linear endpoint, Table~\ref{tab:sep} gives the first linear endpoint $k\in\{i,j\}$ and the factorization of the norm of the resultant $R_{ij}=\operatorname{Res}_t(f_k,g_{kl})$, where $\{k,l\}=\{i,j\}$; it is non-zero.
+These identities can be checked by expanding both sides and by polynomial division, using $\omega^2=-1-\omega$. They hold for each certificate, with its own data.
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}, so that $F(x,y)=0$; from now on the polynomials denote their values at $(x,y)$, which lie in $\Z[\omega]$.
+\paragraph{Step 1: the values are non-zero.} For $i\in\{3,\allowbreak 11,\allowbreak 12,\allowbreak 13,\allowbreak 14,\allowbreak 16,\allowbreak 18,\allowbreak 22,\allowbreak 23,\allowbreak 25,\allowbreak 31,\allowbreak 33,\allowbreak 35,\allowbreak 38,\allowbreak 40,\allowbreak 43,\allowbreak 49,\allowbreak 52,\allowbreak 53,\allowbreak 54,\allowbreak 55,\allowbreak 58,\allowbreak 62,\allowbreak 67,\allowbreak 70\}$ in the first certificate, there is no residue pair $(a,b)$ modulo $2$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{2}$, as one checks for the $2^2$ residue pairs; hence $H_i\neq0$. For $i\in\{5,\allowbreak 7,\allowbreak 17,\allowbreak 19,\allowbreak 20,\allowbreak 24,\allowbreak 26,\allowbreak 27,\allowbreak 28,\allowbreak 36,\allowbreak 41,\allowbreak 44,\allowbreak 48,\allowbreak 50,\allowbreak 51,\allowbreak 57,\allowbreak 59,\allowbreak 61,\allowbreak 64,\allowbreak 65,\allowbreak 66\}$ in the first certificate, there is no residue pair $(a,b)$ modulo $3$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{3}$, as one checks for the $3^2$ residue pairs; hence $H_i\neq0$. For $i\in\{0,\allowbreak 4,\allowbreak 6,\allowbreak 8,\allowbreak 9,\allowbreak 10,\allowbreak 15,\allowbreak 29,\allowbreak 30,\allowbreak 37,\allowbreak 39,\allowbreak 42,\allowbreak 45,\allowbreak 47,\allowbreak 56,\allowbreak 60,\allowbreak 63\}$ in the first certificate, there is no residue pair $(a,b)$ modulo $4$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{4}$, as one checks for the $4^2$ residue pairs; hence $H_i\neq0$. For $i\in\{2,\allowbreak 21,\allowbreak 32,\allowbreak 34,\allowbreak 46,\allowbreak 68,\allowbreak 69,\allowbreak 71\}$ in the first certificate, there is no residue pair $(a,b)$ modulo $5$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{5}$, as one checks for the $5^2$ residue pairs; hence $H_i\neq0$. For $i\in\{1\}$ in the first certificate, there is no residue pair $(a,b)$ modulo $7$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{7}$, as one checks for the $7^2$ residue pairs; hence $H_i\neq0$. For $i\in\{5,\allowbreak 11,\allowbreak 12,\allowbreak 13,\allowbreak 17,\allowbreak 18,\allowbreak 20,\allowbreak 21,\allowbreak 23,\allowbreak 24,\allowbreak 25,\allowbreak 29,\allowbreak 31,\allowbreak 33,\allowbreak 34,\allowbreak 36,\allowbreak 39,\allowbreak 41,\allowbreak 45,\allowbreak 50,\allowbreak 57,\allowbreak 58,\allowbreak 59,\allowbreak 60,\allowbreak 64,\allowbreak 65,\allowbreak 69,\allowbreak 70,\allowbreak 71,\allowbreak 73,\allowbreak 74,\allowbreak 77\}$ in the second certificate, there is no residue pair $(a,b)$ modulo $2$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{2}$, as one checks for the $2^2$ residue pairs; hence $H_i\neq0$. For $i\in\{0,\allowbreak 3,\allowbreak 6,\allowbreak 8,\allowbreak 14,\allowbreak 22,\allowbreak 27,\allowbreak 28,\allowbreak 37,\allowbreak 40,\allowbreak 43,\allowbreak 46,\allowbreak 54,\allowbreak 56,\allowbreak 61,\allowbreak 62,\allowbreak 66,\allowbreak 67,\allowbreak 72,\allowbreak 75\}$ in the second certificate, there is no residue pair $(a,b)$ modulo $3$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{3}$, as one checks for the $3^2$ residue pairs; hence $H_i\neq0$. For $i\in\{1,\allowbreak 4,\allowbreak 7,\allowbreak 9,\allowbreak 10,\allowbreak 15,\allowbreak 16,\allowbreak 30,\allowbreak 32,\allowbreak 38,\allowbreak 42,\allowbreak 44,\allowbreak 48,\allowbreak 49,\allowbreak 53,\allowbreak 55,\allowbreak 63,\allowbreak 68,\allowbreak 76\}$ in the second certificate, there is no residue pair $(a,b)$ modulo $4$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{4}$, as one checks for the $4^2$ residue pairs; hence $H_i\neq0$. For $i\in\{2,\allowbreak 19,\allowbreak 35,\allowbreak 47,\allowbreak 51\}$ in the second certificate, there is no residue pair $(a,b)$ modulo $5$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{5}$, as one checks for the $5^2$ residue pairs; hence $H_i\neq0$. For $i\in\{26,\allowbreak 52\}$ in the second certificate, there is no residue pair $(a,b)$ modulo $7$ with $F(a,b)\equiv0$ and $H_i(a,b)\equiv0\pmod{7}$, as one checks for the $7^2$ residue pairs; hence $H_i\neq0$. Also, all $c_i$ are non-zero.
+
+\paragraph{Step 2: reciprocity.} For every place $v$ of $K$, put
+\begin{equation}\label{eq:B}
+B^{(g)}_v=\sum_{(i,j)}w_{ij}\,\beta_v(H_i,H_j)+\sum_i\beta_v(H_i,c_i)\in\Z/3\Z,
+\end{equation}
+the first sum over the edges of the $g$-th certificate, and, for a rational prime $p$, put $B^{(g)}_p=\sum_{v\mid p}B^{(g)}_v$. Applying (H3) to every pair $(H_i,H_j)$ with an edge, multiplied by $w_{ij}$, and to every pair $(H_i,c_i)$, and adding, we find that $B^{(g)}_v=0$ for all but finitely many $v$ and $\sum_pB^{(g)}_p=0$ for every $g$, as the complex place contributes $0$. By (H1) and the definition of $c_p$, $B^{(g)}_p=\sum_{(i,j)}w_{ij}\beta_p(c_p(H_i),c_p(H_j))+\sum_i\beta_p(c_p(H_i),c_p(c_i))$, where $\beta_p$ is the form of Lemma~\ref{lem:M3} if $p=3$.
+
+\paragraph{Step 3: the primes outside $S$.} Let $S=\{2,3,5,7,11,13,19,31,37\}$. It contains $3$ and the primes dividing the norms of the constants $c_i$, of the $D_i$, of the $R_{ij}$. Let $p\notin S$, and let $v$ be a place above $p$, with residue field $k_v$; then all these numbers are units at $v$. First, no edge $(i,j)$ has both values divisible by $v$. Indeed, suppose that $v$ divides $H_i$ and $H_j$. If $R_{ij}$ is defined, let $k$ be the linear endpoint used for it and $\{k,l\}=\{i,j\}$, and put $t=\xi$. As $H_k=\varepsilon_k(\eta-r_k(\xi))$, we have $\eta\equiv r_k(t)$ modulo $v$, hence $f_k(t)\equiv F(x,y)=0$ and $g_{kl}(t)\equiv H_l\equiv0$ modulo $v$. The resultant can be written as $R_{ij}=Af_k+Cg_{kl}$ with polynomials $A$ and $C$ with coefficients in $\Z[\omega]$, so $v$ divides $R_{ij}$, a contradiction. By (H2), a term of \eqref{eq:B} in which all arguments are units vanishes. Now let $v$ divide $H_i$. Collecting the terms of \eqref{eq:B} which contain $H_i$, and using (H1) and $\rho_{ji}=-w_{ij}$ for the edges $(j,i)$ with $j<i$, we obtain $\beta_v(H_i,\Pi_i)$ with $\Pi_i=c_i\prod_jH_j^{\rho_{ij}}$, which is a unit. We claim that $D_i^3\Pi_i\equiv W^3$ modulo $v$ for some $W\in\Z[\omega]$. If $i$ is linear, put $t=\xi$; then $g_{ij}(t)\equiv H_j$ and $f_i(t)\equiv0$ modulo $v$ as above, and \eqref{eq:starlin} gives the claim with $W=w_i(t)$. Hence the reduction of $\Pi_i$ is a non-zero cube in $k_v$, $\chi(\Pi_i)=0$, and $\beta_v(H_i,\Pi_i)=v(H_i)\chi(\Pi_i)=0$ by (H2). Hence $B^{(g)}_v=0$, and $B^{(g)}_p=0$.
+
+\paragraph{Step 4: the primes in $S$.} Let $p\in S$. Here $2$ is inert, $5$ is inert, the places above $7$ are $v_{2}$ and $v_{4}$, $11$ is inert, the places above $13$ are $v_{3}$ and $v_{9}$, the places above $19$ are $v_{7}$ and $v_{11}$, the places above $31$ are $v_{5}$ and $v_{25}$, and the places above $37$ are $v_{10}$ and $v_{26}$. Suppose that $x\equiv a$ and $y\equiv b\pmod{p^k}$. Then $H_i\equiv H_i(a,b)\pmod{p^k}$, and Lemma~\ref{lem:residue}, applied with $\zeta$ the residue of $H_i(a,b)$, gives a vector $b_i$ and a subspace $D_i$ with $c_p(H_i)\in b_i+D_i$; when $H_i$ has rational coefficients, $H_i\in\Z$, and we use this in (i) and (iv). With $\gamma_i=c_p(c_i)$, if the hypotheses of Lemma~\ref{lem:envelope} hold, then $B^{(g)}_p$ is determined by $a$, $b$ and $k$. Starting from the solutions of \eqref{eq:main} modulo $p$, we refine a residue class $x\equiv a$, $y\equiv b\pmod{p^k}$ to the classes modulo $p^{k+1}$ that contain solutions of \eqref{eq:main} modulo $p^{k+1}$, until these hypotheses hold for every certificate, or until no solution remains. Table~\ref{tab:local} lists the resulting terminal classes and the value of the vector $(B^{(g)}_p)_g$ in each; every integer solution lies in one of them. The result is $(B^{(g)}_{2})_g=(0,1)$, $(B^{(g)}_{3})_g\in\{(0,0),\allowbreak (1,0),\allowbreak (1,1),\allowbreak (1,2),\allowbreak (2,0),\allowbreak (2,2)\}$, $(B^{(g)}_{5})_g=(0,0)$, $(B^{(g)}_{7})_g=(0,0)$, $(B^{(g)}_{11})_g=(0,0)$, $(B^{(g)}_{13})_g=(0,0)$, $(B^{(g)}_{19})_g=(0,0)$, $(B^{(g)}_{31})_g=(0,0)$, $(B^{(g)}_{37})_g=(0,0)$.
+
+\paragraph{Step 5: contradiction.} By Steps~2 and~3, $\sum_{p\in S}B^{(g)}_p=0$ for every $g$. But by Step~4, the vector $(\sum_{p\in S}B^{(g)}_p)_g$ lies in $\{(0,1),\allowbreak (1,0),\allowbreak (1,1),\allowbreak (1,2),\allowbreak (2,0),\allowbreak (2,1)\}$, which does not contain $(0,0)$. This contradiction proves the theorem.
+\qed
+
+
+\begin{thebibliography}{9}
+\bibitem{N} J.~Neukirch, \emph{Algebraic Number Theory}, Grundlehren der mathematischen Wissenschaften 322, Springer, Berlin, 1999.
+\end{thebibliography}
+
+\clearpage
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rlll@{}}
+\caption{The polynomials $H_i$, the constants $c_i$ and, for the linear vertices, $\eta=r_i(\xi)$ of the first certificate. Here $\langle A,B\rangle=A+B\omega$.}\label{tab:vert1}\\
+\hline $i$ & $H_i$ & $c_i$ & chart\\\hline\endfirsthead\hline $i$ & $H_i$ & $c_i$ & chart\\\hline\endhead\hline\endfoot
+0 & $\langle x-y-1,-x-1\rangle$ & $\langle 0,-4\rangle$ & $y=\langle x-1,-x-1\rangle$\\
+1 & $\langle -y+1,0\rangle$ & $\langle 0,-3\rangle$ & $y=\langle 1,0\rangle$\\
+2 & $\langle -y,0\rangle$ & $\langle -4,-4\rangle$ & $y=\langle 0,0\rangle$\\
+3 & $\langle -y-1,-1\rangle$ & $\langle 0,-12\rangle$ & $y=\langle -1,-1\rangle$\\
+4 & $\langle -x-y,x+1\rangle$ & $\langle 2,-2\rangle$ & $y=\langle -x,x+1\rangle$\\
+5 & $\langle -x-y-1,x-1\rangle$ & $\langle 2,-2\rangle$ & $y=\langle -x-1,x-1\rangle$\\
+6 & $\langle x^{2}+x-y+1,x^{2}+x\rangle$ & $\langle 1,0\rangle$ & $y=\langle x^{2}+x+1,x^{2}+x\rangle$\\
+7 & $\langle x^{2}-x-y-1,x^{2}-x\rangle$ & $\langle 1,0\rangle$ & $y=\langle x^{2}-x-1,x^{2}-x\rangle$\\
+8 & $\langle x^{2}-y,x+1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle x^{2},x+1\rangle$\\
+9 & $\langle x^{2}-x-y,0\rangle$ & $\langle -2,-2\rangle$ & $y=\langle x^{2}-x,0\rangle$\\
+10 & $\langle x^{2}-x-y-1,-x-1\rangle$ & $\langle 0,-3\rangle$ & $y=\langle x^{2}-x-1,-x-1\rangle$\\
+11 & $\langle x-y,x^{2}+x-1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle x,x^{2}+x-1\rangle$\\
+12 & $\langle -x-y-1,x^{2}-x-1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x-1,x^{2}-x-1\rangle$\\
+13 & $\langle -y-1,x^{2}\rangle$ & $\langle 1,0\rangle$ & $y=\langle -1,x^{2}\rangle$\\
+14 & $\langle x-y,-x^{2}+x+1\rangle$ & $\langle -8,-4\rangle$ & $y=\langle x,-x^{2}+x+1\rangle$\\
+15 & $\langle -y+1,-x^{2}-x\rangle$ & $\langle -1,-1\rangle$ & $y=\langle 1,-x^{2}-x\rangle$\\
+16 & $\langle -x-y-1,-x^{2}\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -x-1,-x^{2}\rangle$\\
+17 & $\langle -y,-x^{2}-1\rangle$ & $\langle 1,-1\rangle$ & $y=\langle 0,-x^{2}-1\rangle$\\
+18 & $\langle -x^{2}-y,x\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -x^{2},x\rangle$\\
+19 & $\langle -x^{2}-y,-x+1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x^{2},-x+1\rangle$\\
+20 & $\langle -x^{2}-y,0\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x^{2},0\rangle$\\
+21 & $\langle -x^{2}-y-1,0\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -x^{2}-1,0\rangle$\\
+22 & $\langle -x^{2}-y+1,-x^{2}-x+1\rangle$ & $\langle 4,0\rangle$ & $y=\langle -x^{2}+1,-x^{2}-x+1\rangle$\\
+23 & $\langle -x^{2}-y-1,-x^{2}-x+1\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -x^{2}-1,-x^{2}-x+1\rangle$\\
+24 & $\langle -x^{2}-x-y,-x^{2}+1\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -x^{2}-x,-x^{2}+1\rangle$\\
+25 & $\langle -x^{2}-y,-x^{2}\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x^{2},-x^{2}\rangle$\\
+26 & $\langle x-y,-y+1\rangle$ & $\langle -2,-2\rangle$ & $y=\langle 1,-x+1\rangle$\\
+27 & $\langle x-y,-y-1\rangle$ & $\langle 1,-1\rangle$ & $y=\langle -1,-x-1\rangle$\\
+28 & $\langle x-y,0\rangle$ & $\langle 0,-4\rangle$ & $y=\langle x,0\rangle$\\
+29 & $\langle x-y-1,0\rangle$ & $\langle -6,-4\rangle$ & $y=\langle x-1,0\rangle$\\
+30 & $\langle x-1,-y\rangle$ & $\langle -2,-2\rangle$ & $y=\langle -x+1,-x+1\rangle$\\
+31 & $\langle x+1,1\rangle$ & $\langle 0,-1\rangle$ & $x=\langle -1,-1\rangle$\\
+32 & $\langle x+1,0\rangle$ & $\langle 1,0\rangle$ & $x=\langle -1,0\rangle$\\
+33 & $\langle x,-1\rangle$ & $\langle 1,0\rangle$ & $x=\langle 0,1\rangle$\\
+34 & $\langle x-1,0\rangle$ & $\langle 1,0\rangle$ & $x=\langle 1,0\rangle$\\
+35 & $\langle x-1,-1\rangle$ & $\langle -1,-1\rangle$ & $x=\langle 1,1\rangle$\\
+36 & $\langle x+1,y+1\rangle$ & $\langle 1,-1\rangle$ & $y=\langle x,x+1\rangle$\\
+37 & $\langle x-1,y\rangle$ & $\langle -1,-2\rangle$ & $y=\langle x-1,x-1\rangle$\\
+38 & $\langle x+y,-1\rangle$ & $\langle 0,-3\rangle$ & $y=\langle -x,1\rangle$\\
+39 & $\langle x+y-1,0\rangle$ & $\langle -4,-4\rangle$ & $y=\langle -x+1,0\rangle$\\
+40 & $\langle x+y+1,y+1\rangle$ & $\langle 0,-3\rangle$ & $y=\langle -1,x\rangle$\\
+41 & $\langle x+y,y+1\rangle$ & $\langle 4,-4\rangle$ & $y=\langle -1,x-1\rangle$\\
+42 & $\langle x+y-1,y\rangle$ & $\langle 0,-12\rangle$ & $y=\langle 0,x-1\rangle$\\
+43 & $\langle -x-y,x^{2}-x+1\rangle$ & $\langle 1,-1\rangle$ & $y=\langle -x,x^{2}-x+1\rangle$\\
+44 & $\langle -2x-y,-x+1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -2x,-x+1\rangle$\\
+45 & $\langle 2x-y,x+1\rangle$ & $\langle -4,-8\rangle$ & $y=\langle 2x,x+1\rangle$\\
+46 & $\langle x+y+2,0\rangle$ & $\langle 0,-3\rangle$ & $y=\langle -x-2,0\rangle$\\
+47 & $\langle -2x-y-1,-x-1\rangle$ & $\langle -4,-4\rangle$ & $y=\langle -2x-1,-x-1\rangle$\\
+48 & $\langle -x^{2}-y,-x^{2}+1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle -x^{2},-x^{2}+1\rangle$\\
+49 & $\langle -2x-y-1,-x\rangle$ & $\langle 0,-1\rangle$ & $y=\langle -2x-1,-x\rangle$\\
+50 & $\langle -2x-y,-x-1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -2x,-x-1\rangle$\\
+51 & $\langle 2x-y-1,x-1\rangle$ & $\langle 0,-12\rangle$ & $y=\langle 2x-1,x-1\rangle$\\
+52 & $\langle x,0\rangle$ & $\langle -1,-1\rangle$ & $x=\langle 0,0\rangle$\\
+53 & $\langle x,1\rangle$ & $\langle 1,0\rangle$ & $x=\langle 0,-1\rangle$\\
+54 & $\langle -x^{2}-y,-x^{2}+x+1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x^{2},-x^{2}+x+1\rangle$\\
+55 & $\langle x,y-1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle x+1,x\rangle$\\
+56 & $\langle x^{2}-x-y,x^{2}-x\rangle$ & $\langle 1,0\rangle$ & $y=\langle x^{2}-x,x^{2}-x\rangle$\\
+57 & $\langle -x^{2}-y,-x^{2}+x\rangle$ & $\langle 0,-1\rangle$ & $y=\langle -x^{2},-x^{2}+x\rangle$\\
+58 & $\langle -x-y-1,-x\rangle$ & $\langle -12,0\rangle$ & $y=\langle -x-1,-x\rangle$\\
+59 & $\langle x-1,-y-1\rangle$ & $\langle -6,-6\rangle$ & $y=\langle -x,-x+1\rangle$\\
+60 & $\langle x-y-1,-y\rangle$ & $\langle 0,-3\rangle$ & $y=\langle 0,-x+1\rangle$\\
+61 & $\langle x+y+1,0\rangle$ & $\langle 4,0\rangle$ & $y=\langle -x-1,0\rangle$\\
+62 & $\langle x-y+1,1\rangle$ & $\langle -1,-1\rangle$ & $y=\langle x+1,1\rangle$\\
+63 & $\langle -x^{2}+x-y,0\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x^{2}+x,0\rangle$\\
+64 & $\langle 2x^{2}-y,0\rangle$ & $\langle 4,0\rangle$ & $y=\langle 2x^{2},0\rangle$\\
+65 & $\langle x^{2}+x-y,0\rangle$ & $\langle 4,0\rangle$ & $y=\langle x^{2}+x,0\rangle$\\
+66 & $\langle x^{2}-y+1,x^{2}+1\rangle$ & $\langle -3,-3\rangle$ & $y=\langle x^{2}+1,x^{2}+1\rangle$\\
+67 & $\langle -x-y-1,x\rangle$ & $\langle 10,16\rangle$ & $y=\langle -x-1,x\rangle$\\
+68 & $\langle -x^{2}-y+1,-x^{2}+1\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -x^{2}+1,-x^{2}+1\rangle$\\
+69 & $\langle -x-y,0\rangle$ & $\langle -2,-2\rangle$ & $y=\langle -x,0\rangle$\\
+70 & $\langle x^{2}-y-1,x^{2}-x-1\rangle$ & $\langle -12,-12\rangle$ & $y=\langle x^{2}-1,x^{2}-x-1\rangle$\\
+71 & $\langle x^{2}-y-1,0\rangle$ & $\langle 0,-1\rangle$ & $y=\langle x^{2}-1,0\rangle$\\
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rlll@{}}
+\caption{The polynomials $H_i$, the constants $c_i$ and, for the linear vertices, $\eta=r_i(\xi)$ of the second certificate. Here $\langle A,B\rangle=A+B\omega$.}\label{tab:vert2}\\
+\hline $i$ & $H_i$ & $c_i$ & chart\\\hline\endfirsthead\hline $i$ & $H_i$ & $c_i$ & chart\\\hline\endhead\hline\endfoot
+0 & $\langle x-y,-x+1\rangle$ & $\langle -3,-3\rangle$ & $y=\langle x,-x+1\rangle$\\
+1 & $\langle x-y-1,-x-1\rangle$ & $\langle 0,-4\rangle$ & $y=\langle x-1,-x-1\rangle$\\
+2 & $\langle -y,0\rangle$ & $\langle 0,-4\rangle$ & $y=\langle 0,0\rangle$\\
+3 & $\langle -x-y+1,x+1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x+1,x+1\rangle$\\
+4 & $\langle -x-y,x+1\rangle$ & $\langle -12,-12\rangle$ & $y=\langle -x,x+1\rangle$\\
+5 & $\langle -x-y-1,x\rangle$ & $\langle 3,1\rangle$ & $y=\langle -x-1,x\rangle$\\
+6 & $\langle -x-y-1,x-1\rangle$ & $\langle 4,-4\rangle$ & $y=\langle -x-1,x-1\rangle$\\
+7 & $\langle x^{2}+x-y+1,x^{2}+x\rangle$ & $\langle 1,0\rangle$ & $y=\langle x^{2}+x+1,x^{2}+x\rangle$\\
+8 & $\langle x^{2}-y+1,x^{2}+1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle x^{2}+1,x^{2}+1\rangle$\\
+9 & $\langle x^{2}-y,x+1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle x^{2},x+1\rangle$\\
+10 & $\langle x^{2}-x-y,0\rangle$ & $\langle 1,0\rangle$ & $y=\langle x^{2}-x,0\rangle$\\
+11 & $\langle x-y,x^{2}+x-1\rangle$ & $\langle 0,-2\rangle$ & $y=\langle x,x^{2}+x-1\rangle$\\
+12 & $\langle -x-y-1,x^{2}-x-1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x-1,x^{2}-x-1\rangle$\\
+13 & $\langle -y,x^{2}\rangle$ & $\langle 1,0\rangle$ & $y=\langle 0,x^{2}\rangle$\\
+14 & $\langle -y-1,-x^{2}+x\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -1,-x^{2}+x\rangle$\\
+15 & $\langle -y+1,-x^{2}-x\rangle$ & $\langle 1,0\rangle$ & $y=\langle 1,-x^{2}-x\rangle$\\
+16 & $\langle -x^{2}+x-y,0\rangle$ & $\langle 2,0\rangle$ & $y=\langle -x^{2}+x,0\rangle$\\
+17 & $\langle -x^{2}-y,x\rangle$ & $\langle 0,-1\rangle$ & $y=\langle -x^{2},x\rangle$\\
+18 & $\langle -x^{2}-x-y,-x\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -x^{2}-x,-x\rangle$\\
+19 & $\langle -x^{2}-y-1,0\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -x^{2}-1,0\rangle$\\
+20 & $\langle -x^{2}+x-y,-x^{2}+x+1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle -x^{2}+x,-x^{2}+x+1\rangle$\\
+21 & $\langle -x^{2}-y,-x^{2}+x+1\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x^{2},-x^{2}+x+1\rangle$\\
+22 & $\langle -x^{2}-y,-x^{2}+x\rangle$ & $\langle 0,-1\rangle$ & $y=\langle -x^{2},-x^{2}+x\rangle$\\
+23 & $\langle -x^{2}-y+1,-x^{2}-x+1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle -x^{2}+1,-x^{2}-x+1\rangle$\\
+24 & $\langle -x^{2}-y-1,-x^{2}-x+1\rangle$ & $\langle -1,-2\rangle$ & $y=\langle -x^{2}-1,-x^{2}-x+1\rangle$\\
+25 & $\langle -x^{2}-y,-x^{2}\rangle$ & $\langle 1,0\rangle$ & $y=\langle -x^{2},-x^{2}\rangle$\\
+26 & $\langle x+y^{2}-y+1,0\rangle$ & $\langle 2,0\rangle$ & $x=\langle -y^{2}+y-1,0\rangle$\\
+27 & $\langle x-y,-y+1\rangle$ & $\langle -1,-1\rangle$ & $y=\langle 1,-x+1\rangle$\\
+28 & $\langle x-y,-y-1\rangle$ & $\langle 0,-12\rangle$ & $y=\langle -1,-x-1\rangle$\\
+29 & $\langle x-y,-1\rangle$ & $\langle -1,-1\rangle$ & $y=\langle x,-1\rangle$\\
+30 & $\langle x-y-1,0\rangle$ & $\langle 1,0\rangle$ & $y=\langle x-1,0\rangle$\\
+31 & $\langle x,-y+1\rangle$ & $\langle 0,-2\rangle$ & $y=\langle -x+1,-x\rangle$\\
+32 & $\langle x-1,-y\rangle$ & $\langle -6,0\rangle$ & $y=\langle -x+1,-x+1\rangle$\\
+33 & $\langle x+1,1\rangle$ & $\langle 1,0\rangle$ & $x=\langle -1,-1\rangle$\\
+34 & $\langle x,1\rangle$ & $\langle -1,-1\rangle$ & $x=\langle 0,-1\rangle$\\
+35 & $\langle x-1,0\rangle$ & $\langle -2,-2\rangle$ & $x=\langle 1,0\rangle$\\
+36 & $\langle x-1,-1\rangle$ & $\langle 0,-1\rangle$ & $x=\langle 1,1\rangle$\\
+37 & $\langle x+1,y+1\rangle$ & $\langle -12,-12\rangle$ & $y=\langle x,x+1\rangle$\\
+38 & $\langle x-1,y\rangle$ & $\langle 2,0\rangle$ & $y=\langle x-1,x-1\rangle$\\
+39 & $\langle x+y+1,1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle -x-1,-1\rangle$\\
+40 & $\langle x+y+1,0\rangle$ & $\langle 2,0\rangle$ & $y=\langle -x-1,0\rangle$\\
+41 & $\langle x+y,-1\rangle$ & $\langle 0,-3\rangle$ & $y=\langle -x,1\rangle$\\
+42 & $\langle x+y-1,0\rangle$ & $\langle 0,-6\rangle$ & $y=\langle -x+1,0\rangle$\\
+43 & $\langle x+y,y+1\rangle$ & $\langle 2,0\rangle$ & $y=\langle -1,x-1\rangle$\\
+44 & $\langle x+y-1,y\rangle$ & $\langle 2,0\rangle$ & $y=\langle 0,x-1\rangle$\\
+45 & $\langle -x-y,-x^{2}\rangle$ & $\langle -1,-1\rangle$ & $y=\langle -x,-x^{2}\rangle$\\
+46 & $\langle -2x-y,-x+1\rangle$ & $\langle -2,-1\rangle$ & $y=\langle -2x,-x+1\rangle$\\
+47 & $\langle x+y+2,0\rangle$ & $\langle 1,-1\rangle$ & $y=\langle -x-2,0\rangle$\\
+48 & $\langle 2x-y,x+1\rangle$ & $\langle -4,-4\rangle$ & $y=\langle 2x,x+1\rangle$\\
+49 & $\langle -2x-y-1,-x-1\rangle$ & $\langle 4,-4\rangle$ & $y=\langle -2x-1,-x-1\rangle$\\
+50 & $\langle -y+1,1\rangle$ & $\langle 2,0\rangle$ & $y=\langle 1,1\rangle$\\
+51 & $\langle x+1,0\rangle$ & $\langle 1,0\rangle$ & $x=\langle -1,0\rangle$\\
+52 & $\langle -y+1,0\rangle$ & $\langle -6,0\rangle$ & $y=\langle 1,0\rangle$\\
+53 & $\langle x-y-1,-y\rangle$ & $\langle 4,-4\rangle$ & $y=\langle 0,-x+1\rangle$\\
+54 & $\langle -y-1,0\rangle$ & $\langle 2,0\rangle$ & $y=\langle -1,0\rangle$\\
+55 & $\langle -y,-x^{2}+x\rangle$ & $\langle -1,-1\rangle$ & $y=\langle 0,-x^{2}+x\rangle$\\
+56 & $\langle -x^{2}-x-y,0\rangle$ & $\langle -4,-4\rangle$ & $y=\langle -x^{2}-x,0\rangle$\\
+57 & $\langle x,0\rangle$ & $\langle 1,0\rangle$ & $x=\langle 0,0\rangle$\\
+58 & $\langle x,-1\rangle$ & $\langle -1,-1\rangle$ & $x=\langle 0,1\rangle$\\
+59 & $\langle x,-y-1\rangle$ & $\langle -12,-12\rangle$ & $y=\langle -x-1,-x\rangle$\\
+60 & $\langle x-y+1,1\rangle$ & $\langle -2,-1\rangle$ & $y=\langle x+1,1\rangle$\\
+61 & $\langle x+1,-y\rangle$ & $\langle 2,0\rangle$ & $y=\langle -x-1,-x-1\rangle$\\
+62 & $\langle x-1,y-1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle x,x-1\rangle$\\
+63 & $\langle x+1,-y+1\rangle$ & $\langle -2,-2\rangle$ & $y=\langle -x,-x-1\rangle$\\
+64 & $\langle x-y+1,-y+1\rangle$ & $\langle 0,-3\rangle$ & $y=\langle 1,-x\rangle$\\
+65 & $\langle x^{2}-y-1,x^{2}-x-1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle x^{2}-1,x^{2}-x-1\rangle$\\
+66 & $\langle x^{2}+x-y,0\rangle$ & $\langle 0,-2\rangle$ & $y=\langle x^{2}+x,0\rangle$\\
+67 & $\langle 2x^{2}-y,0\rangle$ & $\langle 2,0\rangle$ & $y=\langle 2x^{2},0\rangle$\\
+68 & $\langle -y,x^{2}-x\rangle$ & $\langle -1,-1\rangle$ & $y=\langle 0,x^{2}-x\rangle$\\
+69 & $\langle x^{2}+x-y,x\rangle$ & $\langle -1,-2\rangle$ & $y=\langle x^{2}+x,x\rangle$\\
+70 & $\langle x^{2}-y,-x\rangle$ & $\langle -2,-1\rangle$ & $y=\langle x^{2},-x\rangle$\\
+71 & $\langle -x^{2}-y-1,-x^{2}+x-1\rangle$ & $\langle 0,-1\rangle$ & $y=\langle -x^{2}-1,-x^{2}+x-1\rangle$\\
+72 & $\langle -y+2,-x+1\rangle$ & $\langle -6,-16\rangle$ & $y=\langle 2,-x+1\rangle$\\
+73 & $\langle x+2,1\rangle$ & $\langle -1,-1\rangle$ & $x=\langle -2,-1\rangle$\\
+74 & $\langle x-y,-x^{2}+x-1\rangle$ & $\langle 1,0\rangle$ & $y=\langle x,-x^{2}+x-1\rangle$\\
+75 & $\langle x-y,0\rangle$ & $\langle 2,0\rangle$ & $y=\langle x,0\rangle$\\
+76 & $\langle -y+1,x+1\rangle$ & $\langle -8,-4\rangle$ & $y=\langle 1,x+1\rangle$\\
+77 & $\langle x-y+1,x\rangle$ & $\langle 0,-1\rangle$ & $y=\langle x+1,x\rangle$\\
+\end{longtable}
+\endgroup
+
+\begingroup\scriptsize
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}ll@{}}
+\caption{The data of the identities \eqref{eq:starlin}; the entry $j{:}e$ means $\rho_{ij}=e\neq0$.}\label{tab:star}\\
+\hline\endfirsthead\hline\endhead\hline\endfoot
+\multicolumn{2}{@{}l}{\emph{The first certificate.}}\\
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=0$, $D_i=16384$, $\rho_{ij}$: $2{:}2, \allowbreak 10{:}2, \allowbreak 11{:}1, \allowbreak 14{:}1, \allowbreak 17{:}1, \allowbreak 22{:}1, \allowbreak 27{:}2, \allowbreak 35{:}2, \allowbreak 40{:}2, \allowbreak 42{:}1, \allowbreak 59{:}2, \allowbreak 60{:}1, \allowbreak 61{:}1, \allowbreak 62{:}2, \allowbreak 63{:}1$}\\
+$w_i$ & $\langle -2612592t^{3}+3726936t^{2}+406356t-805764,$\\
+ & $\quad -700788t^{3}+4194876t^{2}-2105640t-448080\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=1$, $D_i=8$, $\rho_{ij}$: $6{:}1, \allowbreak 12{:}1, \allowbreak 20{:}1, \allowbreak 37{:}1, \allowbreak 46{:}2, \allowbreak 54{:}1, \allowbreak 60{:}1, \allowbreak 61{:}2, \allowbreak 64{:}2$}\\
+$w_i$ & $\langle 40t^{3}+146t^{2}+100t+66,$\\
+ & $\quad 0\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=2$, $D_i=64$, $\rho_{ij}$: $0{:}1, \allowbreak 7{:}1, \allowbreak 8{:}2, \allowbreak 11{:}1, \allowbreak 24{:}1, \allowbreak 32{:}1, \allowbreak 40{:}1, \allowbreak 45{:}2, \allowbreak 46{:}2, \allowbreak 53{:}1, \allowbreak 54{:}2, \allowbreak 55{:}2, \allowbreak 57{:}2, \allowbreak 59{:}1, \allowbreak 62{:}1, \allowbreak 67{:}1, \allowbreak 71{:}1$}\\
+$w_i$ & $\langle -700t^{3}-620t^{2}-55t+109,$\\
+ & $\quad -844t^{3}-144t^{2}+476t+320\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=3$, $D_i=2$, $\rho_{ij}$: $15{:}2, \allowbreak 42{:}2, \allowbreak 47{:}1, \allowbreak 56{:}1$}\\
+$w_i$ & $\langle 16t^{3}-4t^{2}-2t+6,$\\
+ & $\quad 8t^{3}-2t^{2}+2t\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=4$, $D_i=8192$, $\rho_{ij}$: $15{:}1, \allowbreak 26{:}1, \allowbreak 27{:}1, \allowbreak 28{:}1, \allowbreak 30{:}2, \allowbreak 35{:}2, \allowbreak 38{:}2, \allowbreak 49{:}2, \allowbreak 51{:}1, \allowbreak 62{:}2, \allowbreak 64{:}2, \allowbreak 66{:}2, \allowbreak 70{:}2$}\\
+$w_i$ & $\langle 226438776t^{3}+273354660t^{2}+113825184t+23235732,$\\
+ & $\quad 194762844t^{3}+54362928t^{2}-35269176t-23689764\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=5$, $D_i=262144$, $\rho_{ij}$: $13{:}2, \allowbreak 19{:}2, \allowbreak 20{:}2, \allowbreak 24{:}1, \allowbreak 29{:}2, \allowbreak 33{:}2, \allowbreak 36{:}1, \allowbreak 46{:}1, \allowbreak 51{:}1, \allowbreak 54{:}1, \allowbreak 57{:}2, \allowbreak 60{:}2, \allowbreak 65{:}2, \allowbreak 69{:}1$}\\
+$w_i$ & $\langle 154043564t^{3}-196262108t^{2}-69180832t+40804896,$\\
+ & $\quad 94173004t^{3}-6462868t^{2}-107745140t-13985172\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=6$, $D_i=268435456$, $\rho_{ij}$: $1{:}2, \allowbreak 12{:}2, \allowbreak 14{:}1, \allowbreak 16{:}2, \allowbreak 19{:}2, \allowbreak 25{:}1, \allowbreak 34{:}2, \allowbreak 35{:}1, \allowbreak 39{:}2, \allowbreak 44{:}2, \allowbreak 45{:}2, \allowbreak 46{:}2, \allowbreak 51{:}1, \allowbreak 55{:}1, \allowbreak 59{:}1, \allowbreak 71{:}1$}\\
+$w_i$ & $\langle -27073594785792t^{5}+16365167575040t^{4}+2117955747840t^{3}+42904575803392t^{2}$\\
+ & $\quad +47221554806784t+22068615708672,$\\
+ & $\quad 8969502326784t^{5}+11758546714624t^{4}+55909199904768t^{3}+55768002854912t^{2}$\\
+ & $\quad +30352802316288t-12107781242880\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=7$, $D_i=524288$, $\rho_{ij}$: $2{:}2, \allowbreak 11{:}2, \allowbreak 16{:}1, \allowbreak 19{:}2, \allowbreak 23{:}2, \allowbreak 32{:}2, \allowbreak 38{:}2, \allowbreak 44{:}2, \allowbreak 53{:}1, \allowbreak 59{:}2$}\\
+$w_i$ & $\langle 797442048t^{5}+65536000t^{4}+1832386560t^{3}+764936192t^{2}-1727528960t-254279680,$\\
+ & $\quad -903872512t^{5}-936378368t^{4}+2443182080t^{3}-774897664t^{2}-1185939456t+221249536\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=8$, $D_i=8388608$, $\rho_{ij}$: $2{:}1, \allowbreak 11{:}2, \allowbreak 24{:}2, \allowbreak 27{:}1, \allowbreak 29{:}2, \allowbreak 33{:}1, \allowbreak 35{:}2, \allowbreak 36{:}1, \allowbreak 45{:}2, \allowbreak 46{:}1, \allowbreak 57{:}1, \allowbreak 59{:}1, \allowbreak 61{:}1, \allowbreak 65{:}2, \allowbreak 66{:}1$}\\
+$w_i$ & $\langle -58644758528t^{5}-8598323200t^{4}+122549174272t^{3}+3766484992t^{2}-73786195968t-38470156288,$\\
+ & $\quad -84020297728t^{5}+48435822592t^{4}+85035319296t^{3}+66043510784t^{2}+15334375424t+1073741824\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=9$, $D_i=268435456$, $\rho_{ij}$: $12{:}2, \allowbreak 13{:}2, \allowbreak 14{:}2, \allowbreak 24{:}2, \allowbreak 25{:}1, \allowbreak 39{:}2, \allowbreak 41{:}1, \allowbreak 43{:}2, \allowbreak 54{:}1, \allowbreak 58{:}2, \allowbreak 62{:}2, \allowbreak 71{:}2$}\\
+$w_i$ & $\langle -3622804914176t^{5}+2843805220864t^{4}-805843238912t^{3}+155155693568t^{2}-382788960256t$\\
+ & $\quad +382252089344,$\\
+ & $\quad -702764023808t^{5}-2327872274432t^{4}+107911053312t^{3}-426275504128t^{2}-268435456000t$\\
+ & $\quad -363998478336\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=10$, $D_i=4096$, $\rho_{ij}$: $0{:}1, \allowbreak 11{:}1, \allowbreak 17{:}1, \allowbreak 22{:}1, \allowbreak 28{:}2, \allowbreak 34{:}1, \allowbreak 41{:}1, \allowbreak 43{:}1, \allowbreak 46{:}1, \allowbreak 52{:}2, \allowbreak 61{:}2$}\\
+$w_i$ & $\langle 77824t^{5}+69632t^{4}-290816t^{3}+16384t^{2}+212992t+110592,$\\
+ & $\quad -151552t^{5}+176128t^{4}-16384t^{3}+155648t^{2}+192512t+86016\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=11$, $D_i=67108864$, $\rho_{ij}$: $0{:}2, \allowbreak 2{:}2, \allowbreak 7{:}1, \allowbreak 8{:}1, \allowbreak 10{:}2, \allowbreak 12{:}2, \allowbreak 18{:}2, \allowbreak 28{:}2, \allowbreak 31{:}2, \allowbreak 37{:}2, \allowbreak 41{:}1, \allowbreak 42{:}1, \allowbreak 47{:}2, \allowbreak 53{:}1, \allowbreak 69{:}1$}\\
+$w_i$ & $\langle -578881060864t^{5}-477815111680t^{4}+1206617374720t^{3}-242531434496t^{2}-779268128768t$\\
+ & $\quad -218774896640,$\\
+ & $\quad 83886080000t^{5}-47781511168t^{4}+349905616896t^{3}-964354375680t^{2}-399431958528t$\\
+ & $\quad -22145925120\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=12$, $D_i=131072$, $\rho_{ij}$: $1{:}2, \allowbreak 6{:}1, \allowbreak 9{:}1, \allowbreak 11{:}1, \allowbreak 17{:}2, \allowbreak 28{:}1, \allowbreak 31{:}2, \allowbreak 33{:}1, \allowbreak 34{:}1, \allowbreak 44{:}1, \allowbreak 53{:}2, \allowbreak 58{:}1, \allowbreak 70{:}1$}\\
+$w_i$ & $\langle 9961472t^{5}+393216t^{4}-22544384t^{3}-786432t^{2}+4849664t-524288,$\\
+ & $\quad 14680064t^{5}-7208960t^{4}-12845056t^{3}-6160384t^{2}-11010048t-6553600\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=13$, $D_i=8$, $\rho_{ij}$: $5{:}1, \allowbreak 9{:}1, \allowbreak 16{:}2, \allowbreak 21{:}2, \allowbreak 33{:}1, \allowbreak 50{:}1, \allowbreak 52{:}1, \allowbreak 59{:}2$}\\
+$w_i$ & $\langle -72t^{5}-24t^{4}-24t^{3}-128t^{2}+16t-8,$\\
+ & $\quad -24t^{5}+160t^{4}-72t^{3}-80t^{2}+24t-32\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=14$, $D_i=16384$, $\rho_{ij}$: $0{:}2, \allowbreak 6{:}2, \allowbreak 9{:}1, \allowbreak 20{:}1, \allowbreak 22{:}1, \allowbreak 39{:}1, \allowbreak 45{:}1, \allowbreak 50{:}1, \allowbreak 54{:}2, \allowbreak 55{:}2, \allowbreak 62{:}1$}\\
+$w_i$ & $\langle -5865472t^{5}-983040t^{4}+12288000t^{3}-3801088t^{2}-5996544t+196608,$\\
+ & $\quad -5537792t^{5}-14745600t^{4}+9535488t^{3}+6160384t^{2}-6979584t-2949120\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=15$, $D_i=68719476736$, $\rho_{ij}$: $3{:}1, \allowbreak 4{:}2, \allowbreak 17{:}2, \allowbreak 18{:}2, \allowbreak 19{:}1, \allowbreak 22{:}1, \allowbreak 27{:}2, \allowbreak 28{:}2, \allowbreak 34{:}1, \allowbreak 35{:}2, \allowbreak 38{:}1, \allowbreak 39{:}2, \allowbreak 41{:}2, \allowbreak 44{:}1, \allowbreak 48{:}1, \allowbreak 52{:}2, \allowbreak 54{:}2, \allowbreak 55{:}1, \allowbreak 70{:}2, \allowbreak 71{:}1$}\\
+$w_i$ & $\langle -94273638794002432t^{5}-23525150787895296t^{4}-255362331465220096t^{3}$\\
+ & $\quad -174482737162354688t^{2}-48272821066924032t+99153752434409472,$\\
+ & $\quad 55865704770961408t^{5}-67554819044278272t^{4}-115520395330715648t^{3}$\\
+ & $\quad -224273640189853696t^{2}-185707926248226816t-35678396407087104\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=16$, $D_i=16384$, $\rho_{ij}$: $6{:}1, \allowbreak 7{:}2, \allowbreak 13{:}1, \allowbreak 17{:}1, \allowbreak 18{:}1, \allowbreak 31{:}1, \allowbreak 41{:}1, \allowbreak 48{:}2, \allowbreak 58{:}2$}\\
+$w_i$ & $\langle -65536t^{5}-557056t^{4}-638976t^{3}-114688t^{2}+196608t+49152,$\\
+ & $\quad -409600t^{5}-655360t^{4}-114688t^{3}+229376t^{2}+360448t+98304\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=17$, $D_i=16$, $\rho_{ij}$: $0{:}2, \allowbreak 10{:}2, \allowbreak 12{:}1, \allowbreak 15{:}1, \allowbreak 16{:}2, \allowbreak 39{:}2, \allowbreak 64{:}2, \allowbreak 66{:}2, \allowbreak 68{:}1$}\\
+$w_i$ & $\langle -96t^{5}-32t^{4}+32t^{3}-48t^{2}-16t+96,$\\
+ & $\quad -240t^{5}+128t^{4}+64t^{3}-288t^{2}+64t+48\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=18$, $D_i=262144$, $\rho_{ij}$: $11{:}1, \allowbreak 15{:}1, \allowbreak 16{:}2, \allowbreak 19{:}2, \allowbreak 38{:}2, \allowbreak 39{:}1, \allowbreak 45{:}2, \allowbreak 47{:}1, \allowbreak 49{:}2, \allowbreak 57{:}2$}\\
+$w_i$ & $\langle -5242880t^{5}+122159104t^{4}+21757952t^{3}-18874368t^{2}+19922944t+12582912,$\\
+ & $\quad 67895296t^{5}-22806528t^{4}-13893632t^{3}+7602176t^{2}+14155776t-14942208\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=19$, $D_i=256$, $\rho_{ij}$: $5{:}1, \allowbreak 6{:}1, \allowbreak 7{:}1, \allowbreak 15{:}2, \allowbreak 18{:}1, \allowbreak 28{:}1, \allowbreak 38{:}1, \allowbreak 53{:}1$}\\
+$w_i$ & $\langle -1536t^{4}+1792t^{3}-256t,$\\
+ & $\quad -1536t^{4}+1280t^{3}+768t^{2}-512t\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=20$, $D_i=16$, $\rho_{ij}$: $1{:}2, \allowbreak 5{:}1, \allowbreak 14{:}2, \allowbreak 26{:}1, \allowbreak 32{:}1, \allowbreak 46{:}2, \allowbreak 54{:}2, \allowbreak 65{:}2$}\\
+$w_i$ & $\langle -208t^{5}+336t^{4}+80t^{3}-16t^{2}+128t+128,$\\
+ & $\quad -32t^{5}+96t^{4}-96t^{3}-48t^{2}+80t+64\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=21$, $D_i=8$, $\rho_{ij}$: $13{:}1, \allowbreak 23{:}1, \allowbreak 43{:}2, \allowbreak 61{:}2, \allowbreak 63{:}1, \allowbreak 65{:}2$}\\
+$w_i$ & $\langle 0,$\\
+ & $\quad -16t^{5}+8t^{4}-16t^{3}-8t\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=22$, $D_i=262144$, $\rho_{ij}$: $0{:}2, \allowbreak 10{:}2, \allowbreak 14{:}2, \allowbreak 15{:}2, \allowbreak 26{:}1, \allowbreak 44{:}2, \allowbreak 54{:}1, \allowbreak 56{:}1, \allowbreak 59{:}1, \allowbreak 60{:}1, \allowbreak 66{:}1$}\\
+$w_i$ & $\langle 37224448t^{5}+14680064t^{4}+73924608t^{3}-316145664t^{2}-109051904t-524288,$\\
+ & $\quad -169345024t^{5}-132120576t^{4}+377487360t^{3}-103284736t^{2}-243269632t-65011712\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=23$, $D_i=512$, $\rho_{ij}$: $7{:}1, \allowbreak 21{:}2, \allowbreak 25{:}2, \allowbreak 32{:}1, \allowbreak 48{:}1, \allowbreak 59{:}1, \allowbreak 65{:}1$}\\
+$w_i$ & $\langle 512t^{5}-512t^{4}+1536t^{2}-2560t+1024,$\\
+ & $\quad 512t^{5}-512t^{4}-1024t^{3}+1024t^{2}-1024t+512\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=24$, $D_i=2048$, $\rho_{ij}$: $2{:}2, \allowbreak 5{:}2, \allowbreak 8{:}1, \allowbreak 9{:}1, \allowbreak 25{:}2, \allowbreak 26{:}2, \allowbreak 39{:}1, \allowbreak 58{:}1$}\\
+$w_i$ & $\langle -14336t^{5}-22528t^{4}-10240t^{3}+14336t^{2}+16384t+8192,$\\
+ & $\quad -18432t^{5}-26624t^{4}+24576t^{3}+28672t^{2}+2048t-2048\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=25$, $D_i=16$, $\rho_{ij}$: $6{:}2, \allowbreak 9{:}2, \allowbreak 23{:}1, \allowbreak 24{:}1, \allowbreak 32{:}1, \allowbreak 45{:}1, \allowbreak 54{:}1, \allowbreak 58{:}2, \allowbreak 67{:}1$}\\
+$w_i$ & $\langle -16t^{5}+144t^{4}-16t^{3}-80t^{2}+48t+48,$\\
+ & $\quad -16t^{5}-208t^{4}-64t^{3}-48t^{2}-16t-32\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=26$, $D_i=512$, $\rho_{ij}$: $4{:}2, \allowbreak 20{:}2, \allowbreak 22{:}2, \allowbreak 24{:}1, \allowbreak 35{:}1, \allowbreak 38{:}1, \allowbreak 39{:}2, \allowbreak 44{:}2, \allowbreak 49{:}2, \allowbreak 59{:}1, \allowbreak 65{:}2$}\\
+$w_i$ & $\langle 19839t^{3}+27377t^{2}-3866t-3726,$\\
+ & $\quad -2075t^{3}+30106t^{2}+17748t+1445\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=27$, $D_i=128$, $\rho_{ij}$: $0{:}1, \allowbreak 4{:}2, \allowbreak 8{:}2, \allowbreak 15{:}1, \allowbreak 29{:}2, \allowbreak 32{:}1, \allowbreak 35{:}1, \allowbreak 36{:}1, \allowbreak 42{:}1, \allowbreak 44{:}2, \allowbreak 57{:}2$}\\
+$w_i$ & $\langle 778t^{3}+3551t^{2}+2358t-75,$\\
+ & $\quad 4097t^{3}+2773t^{2}-1110t-1308\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=28$, $D_i=262144$, $\rho_{ij}$: $4{:}2, \allowbreak 10{:}1, \allowbreak 11{:}1, \allowbreak 12{:}2, \allowbreak 15{:}1, \allowbreak 19{:}2, \allowbreak 30{:}1, \allowbreak 42{:}2, \allowbreak 45{:}2, \allowbreak 46{:}2, \allowbreak 47{:}1, \allowbreak 51{:}2, \allowbreak 54{:}1, \allowbreak 57{:}2, \allowbreak 58{:}2, \allowbreak 60{:}1$}\\
+$w_i$ & $\langle -7341072t^{3}-155776t^{2}+7050272t+3029488,$\\
+ & $\quad -2582004t^{3}+9601120t^{2}+13427432t+4246412\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=29$, $D_i=128$, $\rho_{ij}$: $5{:}1, \allowbreak 8{:}1, \allowbreak 27{:}1, \allowbreak 35{:}1, \allowbreak 36{:}2, \allowbreak 44{:}2, \allowbreak 65{:}2, \allowbreak 67{:}2, \allowbreak 69{:}2, \allowbreak 71{:}2$}\\
+$w_i$ & $\langle -11596t^{3}+12452t^{2}-9500t+1660,$\\
+ & $\quad 1661t^{3}-2439t^{2}+3721t-753\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=30$, $D_i=4$, $\rho_{ij}$: $4{:}1, \allowbreak 28{:}2, \allowbreak 33{:}2, \allowbreak 38{:}2, \allowbreak 45{:}2, \allowbreak 62{:}2, \allowbreak 63{:}1$}\\
+$w_i$ & $\langle 13t^{3}-15t^{2}+29t+3,$\\
+ & $\quad 38t^{3}-30t^{2}+19t+9\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=31$, $D_i=16$, $\rho_{ij}$: $11{:}1, \allowbreak 12{:}1, \allowbreak 16{:}2, \allowbreak 44{:}1, \allowbreak 57{:}1, \allowbreak 58{:}1, \allowbreak 59{:}1, \allowbreak 63{:}2, \allowbreak 64{:}2$}\\
+$w_i$ & $\langle -64t^{2}+32t+48,$\\
+ & $\quad -64t^{2}-80t-192\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=32$, $D_i=16$, $\rho_{ij}$: $2{:}2, \allowbreak 7{:}1, \allowbreak 20{:}2, \allowbreak 23{:}2, \allowbreak 25{:}2, \allowbreak 27{:}2, \allowbreak 42{:}1, \allowbreak 66{:}1, \allowbreak 69{:}1$}\\
+$w_i$ & $\langle 32t^{2}+128t+128,$\\
+ & $\quad -32t-64\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=33$, $D_i=64$, $\rho_{ij}$: $5{:}1, \allowbreak 8{:}2, \allowbreak 12{:}2, \allowbreak 13{:}2, \allowbreak 30{:}1, \allowbreak 41{:}1, \allowbreak 43{:}1, \allowbreak 54{:}2, \allowbreak 64{:}2, \allowbreak 68{:}2, \allowbreak 69{:}2$}\\
+$w_i$ & $\langle 704t^{2}-384,$\\
+ & $\quad 320t^{2}+768t-576\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=34$, $D_i=64$, $\rho_{ij}$: $6{:}1, \allowbreak 10{:}2, \allowbreak 12{:}2, \allowbreak 15{:}2, \allowbreak 36{:}1, \allowbreak 44{:}1, \allowbreak 45{:}2, \allowbreak 46{:}1, \allowbreak 54{:}1, \allowbreak 65{:}1, \allowbreak 66{:}2, \allowbreak 68{:}2$}\\
+$w_i$ & $\langle -640t^{2}-1664t+3840,$\\
+ & $\quad -256t^{2}+768t+4608\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=35$, $D_i=16$, $\rho_{ij}$: $0{:}1, \allowbreak 4{:}1, \allowbreak 6{:}2, \allowbreak 8{:}1, \allowbreak 15{:}1, \allowbreak 26{:}2, \allowbreak 27{:}2, \allowbreak 29{:}2, \allowbreak 62{:}2, \allowbreak 67{:}1$}\\
+$w_i$ & $\langle -48t^{2}-384t+96,$\\
+ & $\quad -224t^{2}-192t+368\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=36$, $D_i=16$, $\rho_{ij}$: $5{:}2, \allowbreak 8{:}2, \allowbreak 27{:}2, \allowbreak 29{:}1, \allowbreak 34{:}2, \allowbreak 47{:}1, \allowbreak 52{:}1, \allowbreak 57{:}1, \allowbreak 67{:}2$}\\
+$w_i$ & $\langle -41t^{3}-115t^{2}-150t+6,$\\
+ & $\quad 128t^{3}+49t^{2}-150t-63\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=37$, $D_i=16$, $\rho_{ij}$: $1{:}2, \allowbreak 11{:}1, \allowbreak 40{:}1, \allowbreak 44{:}2, \allowbreak 45{:}2, \allowbreak 53{:}2, \allowbreak 58{:}1, \allowbreak 64{:}1, \allowbreak 65{:}1$}\\
+$w_i$ & $\langle 69t^{3}-3t^{2}+24t+8,$\\
+ & $\quad 3t^{3}-81t^{2}+105t-77\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=38$, $D_i=64$, $\rho_{ij}$: $4{:}1, \allowbreak 7{:}1, \allowbreak 15{:}2, \allowbreak 18{:}1, \allowbreak 19{:}2, \allowbreak 26{:}2, \allowbreak 30{:}1, \allowbreak 57{:}1$}\\
+$w_i$ & $\langle -44t^{3}-151t^{2}-15t-9,$\\
+ & $\quad 203t^{3}-59t^{2}-156t-87\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=39$, $D_i=1048576$, $\rho_{ij}$: $6{:}1, \allowbreak 9{:}1, \allowbreak 14{:}2, \allowbreak 15{:}1, \allowbreak 17{:}1, \allowbreak 18{:}2, \allowbreak 24{:}2, \allowbreak 26{:}1, \allowbreak 41{:}2, \allowbreak 54{:}2, \allowbreak 56{:}2, \allowbreak 59{:}1, \allowbreak 60{:}1, \allowbreak 64{:}2, \allowbreak 70{:}2$}\\
+$w_i$ & $\langle -55686876t^{3}-37539660t^{2}+86934924t-53106876,$\\
+ & $\quad 3757029t^{3}-56270535t^{2}+71352855t-41872563\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=40$, $D_i=4$, $\rho_{ij}$: $0{:}1, \allowbreak 2{:}2, \allowbreak 37{:}2, \allowbreak 47{:}2, \allowbreak 58{:}2, \allowbreak 60{:}2$}\\
+$w_i$ & $\langle -24t^{3}-12t^{2},$\\
+ & $\quad -36t^{3}-12t^{2}\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=41$, $D_i=8192$, $\rho_{ij}$: $9{:}2, \allowbreak 10{:}2, \allowbreak 11{:}2, \allowbreak 15{:}1, \allowbreak 16{:}2, \allowbreak 33{:}2, \allowbreak 39{:}1, \allowbreak 44{:}2, \allowbreak 59{:}2, \allowbreak 64{:}1, \allowbreak 71{:}2$}\\
+$w_i$ & $\langle 61559t^{3}-14309t^{2}-111344t+160698,$\\
+ & $\quad 230935t^{3}-66484t^{2}+4286t+32139\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=42$, $D_i=64$, $\rho_{ij}$: $0{:}2, \allowbreak 3{:}1, \allowbreak 11{:}2, \allowbreak 27{:}2, \allowbreak 28{:}1, \allowbreak 32{:}2, \allowbreak 47{:}2, \allowbreak 50{:}2, \allowbreak 62{:}2, \allowbreak 63{:}2$}\\
+$w_i$ & $\langle -2495t^{3}+2093t^{2}+125t-1349,$\\
+ & $\quad -6865t^{3}+7735t^{2}-4226t-778\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=43$, $D_i=1024$, $\rho_{ij}$: $9{:}1, \allowbreak 10{:}2, \allowbreak 21{:}1, \allowbreak 33{:}2, \allowbreak 46{:}1, \allowbreak 51{:}2, \allowbreak 53{:}2, \allowbreak 62{:}1$}\\
+$w_i$ & $\langle 4096t^{4}-11264t^{3}+5120t^{2}-7168t,$\\
+ & $\quad 3072t^{5}+8192t^{4}-7168t^{3}+1024t^{2}-2048t+3072\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=44$, $D_i=32768$, $\rho_{ij}$: $6{:}1, \allowbreak 7{:}1, \allowbreak 12{:}2, \allowbreak 15{:}2, \allowbreak 22{:}1, \allowbreak 26{:}1, \allowbreak 27{:}1, \allowbreak 29{:}1, \allowbreak 31{:}2, \allowbreak 34{:}2, \allowbreak 37{:}1, \allowbreak 41{:}1, \allowbreak 51{:}2, \allowbreak 56{:}2, \allowbreak 65{:}1$}\\
+$w_i$ & $\langle -1014588t^{3}-1979628t^{2}+1382604t+784428,$\\
+ & $\quad -694548t^{3}+1569876t^{2}+1976424t+140520\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=45$, $D_i=4096$, $\rho_{ij}$: $2{:}1, \allowbreak 6{:}1, \allowbreak 8{:}1, \allowbreak 14{:}2, \allowbreak 18{:}1, \allowbreak 25{:}2, \allowbreak 28{:}1, \allowbreak 30{:}1, \allowbreak 34{:}1, \allowbreak 37{:}1, \allowbreak 56{:}2, \allowbreak 61{:}2$}\\
+$w_i$ & $\langle -265320t^{3}+540960t^{2}-263436t+36684,$\\
+ & $\quad -408396t^{3}+644700t^{2}-100188t-85212\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=46$, $D_i=32768$, $\rho_{ij}$: $1{:}1, \allowbreak 2{:}1, \allowbreak 5{:}2, \allowbreak 6{:}1, \allowbreak 8{:}2, \allowbreak 10{:}2, \allowbreak 20{:}1, \allowbreak 28{:}1, \allowbreak 34{:}2, \allowbreak 43{:}2, \allowbreak 48{:}2, \allowbreak 52{:}2, \allowbreak 54{:}1, \allowbreak 55{:}1$}\\
+$w_i$ & $\langle 1083321t^{3}+1395846t^{2}+3479760t+2884329,$\\
+ & $\quad 1741743t^{3}+1443690t^{2}+3166128t+2805759\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=47$, $D_i=1024$, $\rho_{ij}$: $3{:}2, \allowbreak 11{:}1, \allowbreak 18{:}2, \allowbreak 28{:}2, \allowbreak 36{:}2, \allowbreak 40{:}1, \allowbreak 42{:}1, \allowbreak 56{:}1, \allowbreak 64{:}2, \allowbreak 65{:}2$}\\
+$w_i$ & $\langle -811428t^{3}-860700t^{2}-321768t-55032,$\\
+ & $\quad -247308t^{3}-842400t^{2}-526632t-157788\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=48$, $D_i=8$, $\rho_{ij}$: $15{:}2, \allowbreak 16{:}1, \allowbreak 23{:}2, \allowbreak 46{:}1, \allowbreak 60{:}2$}\\
+$w_i$ & $\langle -8t^{5}-8t^{4}-8t^{3}+8t^{2},$\\
+ & $\quad -8t^{5}+8t^{4}+16t^{2}\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=49$, $D_i=4$, $\rho_{ij}$: $4{:}1, \allowbreak 18{:}1, \allowbreak 26{:}1, \allowbreak 63{:}2$}\\
+$w_i$ & $\langle -8t^{3}-4t^{2}+4t+4,$\\
+ & $\quad -8t^{3}+8t^{2}+12t+4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=50$, $D_i=32$, $\rho_{ij}$: $13{:}2, \allowbreak 14{:}2, \allowbreak 42{:}1, \allowbreak 52{:}1, \allowbreak 55{:}1, \allowbreak 56{:}1, \allowbreak 59{:}1$}\\
+$w_i$ & $\langle 28t^{3}+76t^{2}+80t+40,$\\
+ & $\quad -80t^{3}-72t^{2}+52t+28\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=51$, $D_i=8$, $\rho_{ij}$: $4{:}2, \allowbreak 5{:}2, \allowbreak 6{:}2, \allowbreak 28{:}1, \allowbreak 43{:}1, \allowbreak 44{:}1$}\\
+$w_i$ & $\langle 156t^{3}-240t^{2}+144t+36,$\\
+ & $\quad 168t^{3}-228t^{2}+288t-36\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=52$, $D_i=4$, $\rho_{ij}$: $10{:}1, \allowbreak 13{:}2, \allowbreak 15{:}1, \allowbreak 36{:}2, \allowbreak 46{:}1, \allowbreak 50{:}2$}\\
+$w_i$ & $\langle 4t^{2}+4t+4,$\\
+ & $\quad -4t^{2}+4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=53$, $D_i=16$, $\rho_{ij}$: $2{:}2, \allowbreak 7{:}2, \allowbreak 11{:}2, \allowbreak 12{:}1, \allowbreak 19{:}2, \allowbreak 37{:}1, \allowbreak 43{:}1, \allowbreak 54{:}2$}\\
+$w_i$ & $\langle -16t^{2}+48t+160,$\\
+ & $\quad 48t+144\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=54$, $D_i=67108864$, $\rho_{ij}$: $1{:}2, \allowbreak 2{:}1, \allowbreak 5{:}2, \allowbreak 9{:}2, \allowbreak 14{:}1, \allowbreak 15{:}1, \allowbreak 20{:}1, \allowbreak 22{:}2, \allowbreak 25{:}2, \allowbreak 28{:}2, \allowbreak 33{:}1, \allowbreak 34{:}2, \allowbreak 39{:}1, \allowbreak 46{:}2, \allowbreak 53{:}1, \allowbreak 61{:}1$}\\
+$w_i$ & $\langle 444864659456t^{5}-1070386380800t^{4}+894359830528t^{3}-723165118464t^{2}-1883477377024t$\\
+ & $\quad -715313381376,$\\
+ & $\quad 1566455103488t^{5}-960059408384t^{4}-1562831224832t^{3}-663907991552t^{2}-1216348160000t$\\
+ & $\quad -744707063808\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=55$, $D_i=16$, $\rho_{ij}$: $2{:}1, \allowbreak 6{:}2, \allowbreak 14{:}1, \allowbreak 15{:}2, \allowbreak 46{:}2, \allowbreak 50{:}2$}\\
+$w_i$ & $\langle -97t^{3}+105t^{2}+273t+111,$\\
+ & $\quad 55t^{3}+216t^{2}+153t-21\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=56$, $D_i=256$, $\rho_{ij}$: $3{:}2, \allowbreak 22{:}2, \allowbreak 39{:}1, \allowbreak 44{:}1, \allowbreak 45{:}1, \allowbreak 47{:}2, \allowbreak 50{:}2$}\\
+$w_i$ & $\langle 2560t^{5}+2048t^{4}+768t^{3}+1280t^{2}-512t+1024,$\\
+ & $\quad -2048t^{5}-512t^{4}-512t^{3}-1792t-768\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=57$, $D_i=32768$, $\rho_{ij}$: $2{:}1, \allowbreak 5{:}1, \allowbreak 8{:}2, \allowbreak 18{:}1, \allowbreak 27{:}1, \allowbreak 28{:}1, \allowbreak 31{:}2, \allowbreak 36{:}2, \allowbreak 38{:}2, \allowbreak 67{:}1, \allowbreak 68{:}2$}\\
+$w_i$ & $\langle 6389760t^{5}-4521984t^{4}+32768t^{3}+2064384t^{2}-1081344t+131072,$\\
+ & $\quad 1769472t^{5}+2392064t^{4}+1212416t^{3}+393216t^{2}+524288t+1835008\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=58$, $D_i=256$, $\rho_{ij}$: $9{:}1, \allowbreak 12{:}2, \allowbreak 16{:}1, \allowbreak 24{:}2, \allowbreak 25{:}1, \allowbreak 28{:}1, \allowbreak 31{:}2, \allowbreak 37{:}2, \allowbreak 40{:}1$}\\
+$w_i$ & $\langle 420t^{3}-2340t^{2}-156t+492,$\\
+ & $\quad -2268t^{3}-1440t^{2}+1188t+156\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=59$, $D_i=2097152$, $\rho_{ij}$: $0{:}1, \allowbreak 2{:}2, \allowbreak 6{:}2, \allowbreak 7{:}1, \allowbreak 8{:}2, \allowbreak 13{:}1, \allowbreak 22{:}2, \allowbreak 23{:}2, \allowbreak 26{:}2, \allowbreak 31{:}2, \allowbreak 39{:}2, \allowbreak 41{:}1, \allowbreak 50{:}2, \allowbreak 64{:}1, \allowbreak 66{:}2, \allowbreak 71{:}2$}\\
+$w_i$ & $\langle -48431641t^{3}+21202603t^{2}-23071152t-21798342,$\\
+ & $\quad -36354944t^{3}-25889473t^{2}-9292878t-16532289\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=60$, $D_i=4096$, $\rho_{ij}$: $0{:}2, \allowbreak 1{:}2, \allowbreak 5{:}1, \allowbreak 22{:}2, \allowbreak 28{:}2, \allowbreak 39{:}2, \allowbreak 40{:}1, \allowbreak 48{:}1, \allowbreak 61{:}2, \allowbreak 63{:}2, \allowbreak 64{:}1, \allowbreak 65{:}2$}\\
+$w_i$ & $\langle -110958t^{3}+109854t^{2}-32625t-14475,$\\
+ & $\quad 13725t^{3}+83121t^{2}-54777t+20445\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=61$, $D_i=128$, $\rho_{ij}$: $0{:}2, \allowbreak 1{:}1, \allowbreak 8{:}2, \allowbreak 10{:}1, \allowbreak 21{:}1, \allowbreak 45{:}1, \allowbreak 54{:}2, \allowbreak 60{:}1, \allowbreak 63{:}1, \allowbreak 64{:}1$}\\
+$w_i$ & $\langle -1235t^{3}-1329t^{2}-1257t-383,$\\
+ & $\quad -1235t^{3}-1329t^{2}-1257t-383\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=62$, $D_i=1024$, $\rho_{ij}$: $0{:}1, \allowbreak 2{:}2, \allowbreak 4{:}1, \allowbreak 9{:}1, \allowbreak 14{:}2, \allowbreak 30{:}1, \allowbreak 35{:}1, \allowbreak 42{:}1, \allowbreak 43{:}2, \allowbreak 67{:}2, \allowbreak 70{:}1$}\\
+$w_i$ & $\langle 24644t^{3}-14716t^{2}-15680t-7700,$\\
+ & $\quad 35704t^{3}+1132t^{2}-15868t-8236\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=63$, $D_i=4096$, $\rho_{ij}$: $0{:}2, \allowbreak 21{:}2, \allowbreak 30{:}2, \allowbreak 31{:}1, \allowbreak 42{:}1, \allowbreak 49{:}1, \allowbreak 60{:}1, \allowbreak 61{:}2, \allowbreak 67{:}1, \allowbreak 71{:}1$}\\
+$w_i$ & $\langle -16384t^{5}+12288t^{3}-20480t^{2}-20480t-4096,$\\
+ & $\quad -49152t^{5}-4096t^{4}-36864t^{3}-4096t^{2}-36864t-16384\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=64$, $D_i=16$, $\rho_{ij}$: $1{:}1, \allowbreak 4{:}1, \allowbreak 17{:}1, \allowbreak 31{:}1, \allowbreak 33{:}1, \allowbreak 37{:}2, \allowbreak 39{:}1, \allowbreak 41{:}2, \allowbreak 47{:}1, \allowbreak 59{:}2, \allowbreak 60{:}2, \allowbreak 61{:}2, \allowbreak 65{:}1, \allowbreak 66{:}1, \allowbreak 71{:}1$}\\
+$w_i$ & $\langle 8t^{5}-128t^{4}-92t^{3}-68t^{2}-48t+8,$\\
+ & $\quad 0\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=65$, $D_i=131072$, $\rho_{ij}$: $5{:}1, \allowbreak 8{:}1, \allowbreak 20{:}1, \allowbreak 21{:}1, \allowbreak 23{:}2, \allowbreak 26{:}1, \allowbreak 29{:}1, \allowbreak 34{:}2, \allowbreak 37{:}2, \allowbreak 44{:}2, \allowbreak 47{:}1, \allowbreak 60{:}1, \allowbreak 64{:}2$}\\
+$w_i$ & $\langle -30408704t^{5}-189792256t^{4}-18874368t^{3}-12058624t^{2}-48234496t-27787264,$\\
+ & $\quad 108003328t^{5}+169869312t^{4}+19398656t^{3}+28835840t^{2}+52953088t+23592960\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=66$, $D_i=8$, $\rho_{ij}$: $4{:}1, \allowbreak 8{:}2, \allowbreak 17{:}1, \allowbreak 22{:}2, \allowbreak 32{:}2, \allowbreak 34{:}1, \allowbreak 59{:}1, \allowbreak 64{:}2$}\\
+$w_i$ & $\langle 16t^{4}+40t^{3}-168t^{2}-8t-8,$\\
+ & $\quad 24t^{5}-64t^{4}-64t^{3}-96t^{2}+8t+32\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=67$, $D_i=256$, $\rho_{ij}$: $2{:}2, \allowbreak 25{:}2, \allowbreak 29{:}1, \allowbreak 35{:}2, \allowbreak 36{:}1, \allowbreak 57{:}2, \allowbreak 62{:}1, \allowbreak 63{:}2$}\\
+$w_i$ & $\langle 1060t^{3}+9948t^{2}+6292t+732,$\\
+ & $\quad -3428t^{3}+640t^{2}+4372t+908\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=68$, $D_i=4$, $\rho_{ij}$: $17{:}2, \allowbreak 33{:}1, \allowbreak 34{:}1, \allowbreak 57{:}1$}\\
+$w_i$ & $\langle 4t^{4}+4t^{2}+8,$\\
+ & $\quad 4t^{4}+4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=69$, $D_i=4$, $\rho_{ij}$: $5{:}2, \allowbreak 11{:}2, \allowbreak 29{:}1, \allowbreak 32{:}2, \allowbreak 33{:}1$}\\
+$w_i$ & $\langle -12t^{3}+8t^{2}+4,$\\
+ & $\quad 4t^{3}+4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=70$, $D_i=128$, $\rho_{ij}$: $4{:}1, \allowbreak 12{:}2, \allowbreak 15{:}1, \allowbreak 39{:}1, \allowbreak 62{:}2, \allowbreak 71{:}1$}\\
+$w_i$ & $\langle -256t^{5}+768t^{3}+512t^{2},$\\
+ & $\quad 256t^{5}-768t^{3}-512t^{2}\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=71$, $D_i=16$, $\rho_{ij}$: $2{:}2, \allowbreak 6{:}2, \allowbreak 9{:}1, \allowbreak 15{:}2, \allowbreak 29{:}1, \allowbreak 41{:}1, \allowbreak 59{:}1, \allowbreak 63{:}2, \allowbreak 64{:}2, \allowbreak 70{:}2$}\\
+$w_i$ & $\langle 144t^{5}+256t^{4}-400t^{3}+720t^{2}+256t-208,$\\
+ & $\quad 0\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}l}{\emph{The second certificate.}}\\
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=0$, $D_i=8$, $\rho_{ij}$: $4{:}1, \allowbreak 6{:}2, \allowbreak 15{:}1, \allowbreak 49{:}1, \allowbreak 71{:}2, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 48t^{3}-84t^{2}+36,$\\
+ & $\quad -60t^{3}+72t^{2}-144t+36\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=1$, $D_i=4$, $\rho_{ij}$: $11{:}1, \allowbreak 16{:}1, \allowbreak 29{:}1, \allowbreak 44{:}1, \allowbreak 51{:}1, \allowbreak 63{:}2, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 12t^{3}+20t^{2}-16t,$\\
+ & $\quad 4t^{3}+4t^{2}-20t+4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=2$, $D_i=16$, $\rho_{ij}$: $3{:}2, \allowbreak 4{:}2, \allowbreak 5{:}1, \allowbreak 8{:}2, \allowbreak 11{:}1, \allowbreak 17{:}2, \allowbreak 23{:}1, \allowbreak 30{:}1, \allowbreak 40{:}1, \allowbreak 43{:}2, \allowbreak 47{:}1, \allowbreak 69{:}1$}\\
+$w_i$ & $\langle 8t^{3}+52t^{2}+66t+30,$\\
+ & $\quad -16t^{3}+32t^{2}+65t+21\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=3$, $D_i=512$, $\rho_{ij}$: $2{:}1, \allowbreak 11{:}2, \allowbreak 34{:}1, \allowbreak 42{:}2, \allowbreak 51{:}2, \allowbreak 56{:}2, \allowbreak 59{:}2, \allowbreak 61{:}1, \allowbreak 64{:}2, \allowbreak 65{:}1$}\\
+$w_i$ & $\langle -124312t^{3}-81696t^{2}+65500t-12732,$\\
+ & $\quad -124116t^{3}+87244t^{2}+56456t-8464\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=4$, $D_i=8388608$, $\rho_{ij}$: $0{:}2, \allowbreak 2{:}1, \allowbreak 8{:}2, \allowbreak 9{:}2, \allowbreak 17{:}2, \allowbreak 23{:}2, \allowbreak 24{:}2, \allowbreak 25{:}1, \allowbreak 27{:}2, \allowbreak 28{:}1, \allowbreak 32{:}2, \allowbreak 36{:}1, \allowbreak 43{:}1, \allowbreak 58{:}1, \allowbreak 59{:}1, \allowbreak 65{:}2, \allowbreak 66{:}2, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle -9120085161984t^{3}-19178289305316t^{2}-10602733306896t-2909474695548,$\\
+ & $\quad -16847162327412t^{3}-14201741634840t^{2}-3948121161144t-246071287980\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=5$, $D_i=512$, $\rho_{ij}$: $2{:}2, \allowbreak 16{:}2, \allowbreak 18{:}2, \allowbreak 22{:}1, \allowbreak 36{:}1, \allowbreak 60{:}2, \allowbreak 62{:}1, \allowbreak 72{:}2, \allowbreak 74{:}1$}\\
+$w_i$ & $\langle -764t^{3}-11984t^{2}-5908t+692,$\\
+ & $\quad -40t^{3}-6132t^{2}-9072t-768\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=6$, $D_i=524288$, $\rho_{ij}$: $0{:}1, \allowbreak 14{:}1, \allowbreak 15{:}2, \allowbreak 20{:}1, \allowbreak 21{:}1, \allowbreak 22{:}2, \allowbreak 25{:}2, \allowbreak 29{:}1, \allowbreak 30{:}2, \allowbreak 35{:}1, \allowbreak 44{:}1, \allowbreak 45{:}1, \allowbreak 48{:}2, \allowbreak 53{:}1, \allowbreak 57{:}2, \allowbreak 66{:}2, \allowbreak 77{:}2$}\\
+$w_i$ & $\langle 108451740t^{3}+205822572t^{2}-42721020t-50355420,$\\
+ & $\quad 33488184t^{3}+208539696t^{2}+92453628t-13153764\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=7$, $D_i=65536$, $\rho_{ij}$: $12{:}1, \allowbreak 18{:}1, \allowbreak 25{:}1, \allowbreak 29{:}1, \allowbreak 31{:}2, \allowbreak 34{:}1, \allowbreak 35{:}1, \allowbreak 46{:}2, \allowbreak 48{:}2, \allowbreak 49{:}2, \allowbreak 57{:}2, \allowbreak 61{:}1, \allowbreak 75{:}1, \allowbreak 76{:}1$}\\
+$w_i$ & $\langle -16908288t^{5}+15269888t^{4}-7012352t^{3}+13697024t^{2}+19464192t+16908288,$\\
+ & $\quad -7340032t^{5}+12058624t^{4}+19267584t^{3}+26017792t^{2}+17891328t+786432\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=8$, $D_i=8$, $\rho_{ij}$: $2{:}1, \allowbreak 4{:}1, \allowbreak 23{:}2, \allowbreak 60{:}1, \allowbreak 70{:}1, \allowbreak 72{:}2, \allowbreak 73{:}2, \allowbreak 76{:}2$}\\
+$w_i$ & $\langle -24t^{5}-56t^{4}-8t^{3}+80t^{2}-56t-16,$\\
+ & $\quad -16t^{5}-24t^{4}-40t^{3}+16t^{2}-40t-40\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=9$, $D_i=8192$, $\rho_{ij}$: $4{:}1, \allowbreak 22{:}1, \allowbreak 25{:}1, \allowbreak 28{:}1, \allowbreak 30{:}1, \allowbreak 33{:}1, \allowbreak 36{:}2, \allowbreak 37{:}2, \allowbreak 49{:}2, \allowbreak 69{:}2, \allowbreak 75{:}1$}\\
+$w_i$ & $\langle 155648t^{5}-303104t^{4}-98304t^{3}-270336t^{2}-221184t-81920,$\\
+ & $\quad -114688t^{5}-172032t^{4}+311296t^{3}-163840t^{2}-352256t-163840\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=10$, $D_i=68719476736$, $\rho_{ij}$: $11{:}1, \allowbreak 12{:}1, \allowbreak 19{:}2, \allowbreak 21{:}1, \allowbreak 22{:}2, \allowbreak 23{:}1, \allowbreak 24{:}2, \allowbreak 25{:}1, \allowbreak 29{:}1, \allowbreak 40{:}2, \allowbreak 43{:}2, \allowbreak 45{:}2, \allowbreak 46{:}1, \allowbreak 52{:}2, \allowbreak 58{:}1, \allowbreak 60{:}1, \allowbreak 65{:}2, \allowbreak 70{:}1, \allowbreak 71{:}1$}\\
+$w_i$ & $\langle 59641084103360512t^{5}-161970019960356864t^{4}+23885653162852352t^{3}-20827773887053824t^{2}$\\
+ & $\quad -1457265223663616t-23804564180303872,$\\
+ & $\quad 15886706070781952t^{5}-86448414539120640t^{4}+10352314292371456t^{3}-12422694687473664t^{2}$\\
+ & $\quad -3302520612978688t-12928744914157568\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=11$, $D_i=16777216$, $\rho_{ij}$: $1{:}2, \allowbreak 2{:}2, \allowbreak 3{:}1, \allowbreak 10{:}2, \allowbreak 33{:}1, \allowbreak 38{:}2, \allowbreak 43{:}1, \allowbreak 48{:}1, \allowbreak 49{:}2, \allowbreak 52{:}1, \allowbreak 55{:}2, \allowbreak 57{:}2, \allowbreak 58{:}2, \allowbreak 69{:}2, \allowbreak 73{:}1, \allowbreak 75{:}1$}\\
+$w_i$ & $\langle 168845901824t^{5}+33889976320t^{4}+82543902720t^{3}-734238081024t^{2}-196092100608t$\\
+ & $\quad +17045651456,$\\
+ & $\quad 501370322944t^{5}+340510375936t^{4}-743499104256t^{3}-427550572544t^{2}+363662934016t$\\
+ & $\quad +159987531776\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=12$, $D_i=8192$, $\rho_{ij}$: $7{:}2, \allowbreak 10{:}2, \allowbreak 28{:}1, \allowbreak 35{:}1, \allowbreak 46{:}2, \allowbreak 52{:}1, \allowbreak 63{:}2, \allowbreak 65{:}1, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 557056t^{5}-253952t^{4}-532480t^{3}-196608t^{2}-352256t-229376,$\\
+ & $\quad 204800t^{5}-327680t^{4}+278528t^{3}-204800t^{2}-598016t-237568\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=13$, $D_i=32$, $\rho_{ij}$: $15{:}2, \allowbreak 16{:}1, \allowbreak 34{:}2, \allowbreak 39{:}1, \allowbreak 41{:}1, \allowbreak 45{:}2, \allowbreak 48{:}2, \allowbreak 49{:}2, \allowbreak 51{:}1, \allowbreak 60{:}1, \allowbreak 65{:}1, \allowbreak 66{:}1, \allowbreak 72{:}1$}\\
+$w_i$ & $\langle -2304t^{5}+2272t^{4}-736t^{3}-352t^{2}-64t+576,$\\
+ & $\quad 2816t^{5}-2528t^{4}-1280t^{3}+1696t^{2}-544\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=14$, $D_i=32768$, $\rho_{ij}$: $6{:}2, \allowbreak 17{:}2, \allowbreak 19{:}2, \allowbreak 20{:}1, \allowbreak 22{:}2, \allowbreak 33{:}2, \allowbreak 58{:}2, \allowbreak 59{:}1$}\\
+$w_i$ & $\langle -2129920t^{5}-1933312t^{4}+2850816t^{3}-1671168t^{2}-819200t+557056,$\\
+ & $\quad 360448t^{5}-622592t^{4}+3244032t^{3}+294912t^{2}-2523136t-98304\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=15$, $D_i=536870912$, $\rho_{ij}$: $0{:}2, \allowbreak 6{:}1, \allowbreak 13{:}1, \allowbreak 21{:}1, \allowbreak 25{:}2, \allowbreak 35{:}1, \allowbreak 39{:}1, \allowbreak 41{:}1, \allowbreak 45{:}2, \allowbreak 46{:}1, \allowbreak 47{:}2, \allowbreak 60{:}2, \allowbreak 64{:}2, \allowbreak 70{:}2, \allowbreak 72{:}2, \allowbreak 74{:}2$}\\
+$w_i$ & $\langle -71692667846656t^{5}+29482266132480t^{4}-39838506024960t^{3}+56836375969792t^{2}$\\
+ & $\quad +87261924294656t+62143881805824,$\\
+ & $\quad -63425929543680t^{5}-2630667468800t^{4}-129071283437568t^{3}-64860985491456t^{2}$\\
+ & $\quad +1916092284928t+63132798025728\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=16$, $D_i=4096$, $\rho_{ij}$: $1{:}2, \allowbreak 5{:}1, \allowbreak 13{:}2, \allowbreak 33{:}2, \allowbreak 37{:}2, \allowbreak 40{:}1, \allowbreak 53{:}2, \allowbreak 74{:}2$}\\
+$w_i$ & $\langle 212992t^{5}+81920t^{4}+57344t^{3}-24576t^{2}+147456t+65536,$\\
+ & $\quad -16384t^{5}-8192t^{4}-16384t^{2}-8192t\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=17$, $D_i=256$, $\rho_{ij}$: $2{:}1, \allowbreak 4{:}1, \allowbreak 14{:}1, \allowbreak 33{:}1, \allowbreak 39{:}2, \allowbreak 48{:}2, \allowbreak 56{:}1$}\\
+$w_i$ & $\langle 256t^{5}-256t^{4}-256t^{3}-256t^{2},$\\
+ & $\quad -1024t^{4}+256t^{3}+256t^{2}-256t-256\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=18$, $D_i=16384$, $\rho_{ij}$: $5{:}1, \allowbreak 7{:}2, \allowbreak 31{:}1, \allowbreak 32{:}1, \allowbreak 34{:}2, \allowbreak 35{:}1, \allowbreak 41{:}1, \allowbreak 42{:}2, \allowbreak 46{:}1, \allowbreak 49{:}2, \allowbreak 60{:}2, \allowbreak 75{:}1$}\\
+$w_i$ & $\langle 2473984t^{5}+3014656t^{4}-16384t^{3}-311296t^{2}+1179648t-163840,$\\
+ & $\quad -2637824t^{5}+9256960t^{4}+1802240t^{3}-1638400t^{2}+933888t+1343488\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=19$, $D_i=32$, $\rho_{ij}$: $10{:}1, \allowbreak 14{:}1, \allowbreak 20{:}2, \allowbreak 22{:}2, \allowbreak 24{:}2, \allowbreak 35{:}1, \allowbreak 39{:}1, \allowbreak 47{:}2, \allowbreak 54{:}1, \allowbreak 61{:}1, \allowbreak 66{:}1, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 608t^{5}-288t^{4}-640t^{3}+2016t^{2}-608t+448,$\\
+ & $\quad -288t^{5}+160t^{4}+608t^{3}-480t^{2}+224t-96\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=20$, $D_i=8192$, $\rho_{ij}$: $6{:}2, \allowbreak 14{:}2, \allowbreak 19{:}1, \allowbreak 25{:}1, \allowbreak 36{:}2, \allowbreak 57{:}2, \allowbreak 61{:}2, \allowbreak 66{:}1, \allowbreak 77{:}1$}\\
+$w_i$ & $\langle 40960t^{5}+114688t^{4}-245760t^{3}+49152t^{2}+81920t-40960,$\\
+ & $\quad -49152t^{5}+311296t^{4}-73728t^{3}-131072t^{2}+163840t+40960\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=21$, $D_i=262144$, $\rho_{ij}$: $6{:}2, \allowbreak 10{:}2, \allowbreak 15{:}2, \allowbreak 30{:}2, \allowbreak 31{:}2, \allowbreak 35{:}1, \allowbreak 39{:}2, \allowbreak 45{:}1, \allowbreak 47{:}1, \allowbreak 51{:}1, \allowbreak 52{:}1, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 225181696t^{5}-271319040t^{4}-7340032t^{3}-187170816t^{2}-432013312t-191627264,$\\
+ & $\quad 365166592t^{5}-150470656t^{4}-500695040t^{3}-105119744t^{2}-136314880t-126091264\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=22$, $D_i=65536$, $\rho_{ij}$: $5{:}2, \allowbreak 6{:}1, \allowbreak 9{:}2, \allowbreak 10{:}1, \allowbreak 14{:}1, \allowbreak 19{:}1, \allowbreak 28{:}1, \allowbreak 33{:}2, \allowbreak 34{:}2, \allowbreak 36{:}2, \allowbreak 37{:}1, \allowbreak 62{:}1, \allowbreak 75{:}1$}\\
+$w_i$ & $\langle 18808832t^{5}-33882112t^{4}-6815744t^{3}+6815744t^{2}-7602176t-9568256,$\\
+ & $\quad 34144256t^{5}-28180480t^{4}-1310720t^{3}+10682368t^{2}-6619136t-1376256\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=23$, $D_i=1048576$, $\rho_{ij}$: $2{:}2, \allowbreak 4{:}1, \allowbreak 8{:}1, \allowbreak 10{:}2, \allowbreak 36{:}1, \allowbreak 46{:}2, \allowbreak 52{:}1, \allowbreak 53{:}2, \allowbreak 55{:}1, \allowbreak 57{:}2, \allowbreak 58{:}1, \allowbreak 60{:}1, \allowbreak 70{:}2, \allowbreak 75{:}1$}\\
+$w_i$ & $\langle 754974720t^{5}+878706688t^{4}-2598371328t^{3}+1918894080t^{2}+1887436800t+381681664,$\\
+ & $\quad 1765801984t^{5}+1589641216t^{4}-3347054592t^{3}-853540864t^{2}+1822425088t+660602880\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=24$, $D_i=8388608$, $\rho_{ij}$: $4{:}1, \allowbreak 10{:}1, \allowbreak 19{:}1, \allowbreak 25{:}1, \allowbreak 29{:}1, \allowbreak 33{:}2, \allowbreak 34{:}2, \allowbreak 36{:}1, \allowbreak 42{:}2, \allowbreak 51{:}2, \allowbreak 53{:}1, \allowbreak 56{:}2, \allowbreak 58{:}2, \allowbreak 66{:}2, \allowbreak 69{:}1$}\\
+$w_i$ & $\langle 8522825728t^{5}-7281311744t^{4}-35022438400t^{3}+7725907968t^{2}-20711473152t+21021851648,$\\
+ & $\quad -5578424320t^{5}-14008975360t^{4}-28621930496t^{3}+7650410496t^{2}+19050528768t+1300234240\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=25$, $D_i=256$, $\rho_{ij}$: $4{:}2, \allowbreak 6{:}1, \allowbreak 7{:}2, \allowbreak 9{:}2, \allowbreak 10{:}2, \allowbreak 15{:}1, \allowbreak 20{:}2, \allowbreak 24{:}2, \allowbreak 29{:}1, \allowbreak 31{:}1, \allowbreak 32{:}1, \allowbreak 42{:}2, \allowbreak 48{:}1, \allowbreak 58{:}2, \allowbreak 59{:}2, \allowbreak 64{:}1, \allowbreak 73{:}2$}\\
+$w_i$ & $\langle 1585920t^{5}+290560t^{4}-425472t^{3}+1038080t^{2}+498944t+130048,$\\
+ & $\quad 416768t^{5}+3456512t^{4}-580352t^{3}-262656t^{2}+913920t+843008\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=26$, $D_i=2$, $\rho_{ij}$: $32{:}2, \allowbreak 42{:}1, \allowbreak 44{:}2, \allowbreak 52{:}1, \allowbreak 54{:}2, \allowbreak 57{:}2, \allowbreak 75{:}1$}\\
+$w_i$ & $\langle 0,$\\
+ & $\quad -t^{3}+t^{2}-2t-4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=27$, $D_i=4$, $\rho_{ij}$: $4{:}1, \allowbreak 36{:}2, \allowbreak 41{:}2, \allowbreak 43{:}2, \allowbreak 46{:}2, \allowbreak 66{:}1$}\\
+$w_i$ & $\langle -4t^{3}-16t^{2}+8t+4,$\\
+ & $\quad 8t^{3}-4t^{2}+4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=28$, $D_i=256$, $\rho_{ij}$: $4{:}2, \allowbreak 9{:}2, \allowbreak 12{:}2, \allowbreak 22{:}2, \allowbreak 35{:}1, \allowbreak 36{:}1, \allowbreak 39{:}1, \allowbreak 46{:}2, \allowbreak 54{:}2, \allowbreak 74{:}1$}\\
+$w_i$ & $\langle 207t^{3}-16206t^{2}-19764t-2541,$\\
+ & $\quad -14982t^{3}-21723t^{2}-4782t+4875\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=29$, $D_i=1048576$, $\rho_{ij}$: $1{:}2, \allowbreak 6{:}2, \allowbreak 7{:}2, \allowbreak 10{:}2, \allowbreak 24{:}2, \allowbreak 25{:}2, \allowbreak 34{:}1, \allowbreak 38{:}1, \allowbreak 39{:}2, \allowbreak 42{:}2, \allowbreak 43{:}1, \allowbreak 45{:}1, \allowbreak 48{:}2, \allowbreak 58{:}2, \allowbreak 65{:}2, \allowbreak 68{:}1, \allowbreak 71{:}1$}\\
+$w_i$ & $\langle -7274538t^{3}+129438507t^{2}+68232825t+31389381,$\\
+ & $\quad 142463169t^{3}+58754697t^{2}-28257720t-15445869\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=30$, $D_i=2048$, $\rho_{ij}$: $2{:}2, \allowbreak 6{:}1, \allowbreak 9{:}2, \allowbreak 21{:}1, \allowbreak 34{:}2, \allowbreak 37{:}1, \allowbreak 39{:}2, \allowbreak 41{:}1, \allowbreak 46{:}2, \allowbreak 54{:}2, \allowbreak 55{:}1, \allowbreak 59{:}2, \allowbreak 66{:}1, \allowbreak 68{:}1$}\\
+$w_i$ & $\langle 548991t^{3}-662829t^{2}+541827t-94971,$\\
+ & $\quad 501603t^{3}-600345t^{2}+493527t-86895\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=31$, $D_i=128$, $\rho_{ij}$: $7{:}1, \allowbreak 18{:}2, \allowbreak 21{:}1, \allowbreak 25{:}2, \allowbreak 37{:}2, \allowbreak 44{:}2, \allowbreak 47{:}2, \allowbreak 50{:}2, \allowbreak 64{:}1$}\\
+$w_i$ & $\langle -1909t^{3}-32t^{2}+5339t-2991,$\\
+ & $\quad 2936t^{3}-5747t^{2}+6096t-12\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=32$, $D_i=64$, $\rho_{ij}$: $4{:}1, \allowbreak 18{:}2, \allowbreak 25{:}2, \allowbreak 26{:}1, \allowbreak 41{:}1, \allowbreak 42{:}2, \allowbreak 46{:}2, \allowbreak 48{:}1, \allowbreak 50{:}1, \allowbreak 75{:}1$}\\
+$w_i$ & $\langle -441t^{3}+299t^{2}-177t+73,$\\
+ & $\quad -702t^{3}+574t^{2}-375t+35\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=33$, $D_i=16$, $\rho_{ij}$: $9{:}2, \allowbreak 11{:}2, \allowbreak 14{:}1, \allowbreak 16{:}1, \allowbreak 17{:}2, \allowbreak 22{:}1, \allowbreak 24{:}1, \allowbreak 46{:}2$}\\
+$w_i$ & $\langle 96t-80,$\\
+ & $\quad -48t^{2}-64t-16\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=34$, $D_i=16$, $\rho_{ij}$: $3{:}2, \allowbreak 7{:}2, \allowbreak 13{:}1, \allowbreak 18{:}1, \allowbreak 22{:}1, \allowbreak 24{:}1, \allowbreak 29{:}2, \allowbreak 30{:}1, \allowbreak 49{:}1, \allowbreak 65{:}2$}\\
+$w_i$ & $\langle -32t^{2}+176,$\\
+ & $\quad 32t^{2}+208t-144\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=35$, $D_i=128$, $\rho_{ij}$: $6{:}2, \allowbreak 7{:}2, \allowbreak 12{:}2, \allowbreak 15{:}2, \allowbreak 18{:}2, \allowbreak 19{:}2, \allowbreak 21{:}2, \allowbreak 28{:}2, \allowbreak 41{:}2, \allowbreak 67{:}2, \allowbreak 72{:}1, \allowbreak 76{:}2$}\\
+$w_i$ & $\langle 22528t^{2}+54272t+30720,$\\
+ & $\quad 0\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=36$, $D_i=128$, $\rho_{ij}$: $4{:}2, \allowbreak 5{:}2, \allowbreak 9{:}1, \allowbreak 20{:}1, \allowbreak 22{:}1, \allowbreak 23{:}2, \allowbreak 24{:}2, \allowbreak 27{:}1, \allowbreak 28{:}2, \allowbreak 45{:}1, \allowbreak 48{:}1, \allowbreak 49{:}1, \allowbreak 56{:}1, \allowbreak 60{:}1, \allowbreak 62{:}1, \allowbreak 66{:}2$}\\
+$w_i$ & $\langle -2944t^{2}-2944t+896,$\\
+ & $\quad -8192t^{2}+1280t+5376\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=37$, $D_i=4$, $\rho_{ij}$: $9{:}1, \allowbreak 16{:}1, \allowbreak 22{:}2, \allowbreak 30{:}2, \allowbreak 31{:}1, \allowbreak 41{:}1$}\\
+$w_i$ & $\langle -20t^{3}-6t^{2}-4t+6,$\\
+ & $\quad 14t^{3}-12t^{2}-8t+6\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=38$, $D_i=16$, $\rho_{ij}$: $11{:}1, \allowbreak 29{:}2, \allowbreak 40{:}2, \allowbreak 46{:}1, \allowbreak 48{:}2, \allowbreak 55{:}1, \allowbreak 59{:}1, \allowbreak 66{:}2$}\\
+$w_i$ & $\langle 5t^{3}+17t^{2}+13t+31,$\\
+ & $\quad 64t^{3}+12t^{2}+3t+17\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=39$, $D_i=4096$, $\rho_{ij}$: $13{:}2, \allowbreak 15{:}2, \allowbreak 17{:}1, \allowbreak 19{:}2, \allowbreak 21{:}1, \allowbreak 28{:}2, \allowbreak 29{:}1, \allowbreak 30{:}1, \allowbreak 46{:}2, \allowbreak 56{:}1, \allowbreak 58{:}2, \allowbreak 63{:}1, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle -13009t^{3}+6151t^{2}-16398t-33,$\\
+ & $\quad -38222t^{3}+19685t^{2}+2907t-9129\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=40$, $D_i=16$, $\rho_{ij}$: $2{:}2, \allowbreak 10{:}1, \allowbreak 16{:}2, \allowbreak 38{:}1, \allowbreak 52{:}2, \allowbreak 53{:}1, \allowbreak 67{:}2, \allowbreak 75{:}1$}\\
+$w_i$ & $\langle 261t^{3}+343t^{2}+223t+57,$\\
+ & $\quad 0\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=41$, $D_i=256$, $\rho_{ij}$: $13{:}2, \allowbreak 15{:}2, \allowbreak 18{:}2, \allowbreak 27{:}1, \allowbreak 30{:}2, \allowbreak 32{:}2, \allowbreak 35{:}1, \allowbreak 37{:}2, \allowbreak 44{:}1, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 81t^{3}-4314t^{2}-5121t-1524,$\\
+ & $\quad -4038t^{3}-7677t^{2}-4263t-423\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=42$, $D_i=128$, $\rho_{ij}$: $3{:}1, \allowbreak 18{:}1, \allowbreak 24{:}1, \allowbreak 25{:}1, \allowbreak 26{:}2, \allowbreak 29{:}1, \allowbreak 32{:}1, \allowbreak 43{:}2, \allowbreak 56{:}1, \allowbreak 58{:}1, \allowbreak 60{:}1, \allowbreak 72{:}1, \allowbreak 73{:}1$}\\
+$w_i$ & $\langle 9t^{3}-275t^{2}+1187t-111,$\\
+ & $\quad 343t^{3}-1037t^{2}+1405t-561\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=43$, $D_i=32$, $\rho_{ij}$: $2{:}1, \allowbreak 4{:}2, \allowbreak 10{:}1, \allowbreak 11{:}2, \allowbreak 27{:}1, \allowbreak 29{:}2, \allowbreak 42{:}1, \allowbreak 46{:}1, \allowbreak 54{:}1, \allowbreak 56{:}1, \allowbreak 64{:}2$}\\
+$w_i$ & $\langle 861t^{3}-234t^{2}-410t+299,$\\
+ & $\quad 98t^{3}+757t^{2}-486t+7\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=44$, $D_i=512$, $\rho_{ij}$: $1{:}2, \allowbreak 6{:}2, \allowbreak 26{:}1, \allowbreak 31{:}1, \allowbreak 41{:}2, \allowbreak 56{:}1, \allowbreak 59{:}2, \allowbreak 62{:}2, \allowbreak 69{:}2, \allowbreak 71{:}2$}\\
+$w_i$ & $\langle -2795t^{3}+4877t^{2}+578t+346,$\\
+ & $\quad 7778t^{3}+118t^{2}+211t+641\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=45$, $D_i=1024$, $\rho_{ij}$: $6{:}2, \allowbreak 10{:}1, \allowbreak 13{:}1, \allowbreak 15{:}1, \allowbreak 21{:}2, \allowbreak 29{:}2, \allowbreak 36{:}2$}\\
+$w_i$ & $\langle -2048t^{5}-1024t^{4}-1024t^{3},$\\
+ & $\quad -4096t^{5}-1024t^{4}\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=46$, $D_i=1048576$, $\rho_{ij}$: $7{:}1, \allowbreak 10{:}2, \allowbreak 12{:}1, \allowbreak 15{:}2, \allowbreak 18{:}2, \allowbreak 23{:}1, \allowbreak 27{:}1, \allowbreak 28{:}1, \allowbreak 30{:}1, \allowbreak 32{:}1, \allowbreak 33{:}1, \allowbreak 38{:}2, \allowbreak 39{:}1, \allowbreak 43{:}2, \allowbreak 53{:}1, \allowbreak 60{:}1, \allowbreak 64{:}1, \allowbreak 65{:}1, \allowbreak 68{:}2, \allowbreak 71{:}1$}\\
+$w_i$ & $\langle -337182348t^{3}+417555252t^{2}+546307908t+40135908,$\\
+ & $\quad -75771228t^{3}+1046998572t^{2}+164204208t-175342224\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=47$, $D_i=32$, $\rho_{ij}$: $2{:}2, \allowbreak 15{:}1, \allowbreak 19{:}1, \allowbreak 21{:}2, \allowbreak 31{:}1, \allowbreak 57{:}1, \allowbreak 58{:}1, \allowbreak 64{:}2, \allowbreak 75{:}1, \allowbreak 77{:}1$}\\
+$w_i$ & $\langle -336t^{3}-672t^{2}-576t-144,$\\
+ & $\quad -159t^{3}-138t^{2}+720t+657\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=48$, $D_i=524288$, $\rho_{ij}$: $6{:}1, \allowbreak 7{:}1, \allowbreak 11{:}2, \allowbreak 13{:}1, \allowbreak 17{:}1, \allowbreak 25{:}2, \allowbreak 29{:}1, \allowbreak 32{:}2, \allowbreak 36{:}2, \allowbreak 38{:}1, \allowbreak 53{:}1, \allowbreak 56{:}1, \allowbreak 64{:}2, \allowbreak 68{:}2, \allowbreak 70{:}1, \allowbreak 73{:}2, \allowbreak 76{:}2, \allowbreak 77{:}2$}\\
+$w_i$ & $\langle 33476952t^{3}-365895312t^{2}+285982236t+11596932,$\\
+ & $\quad 186209916t^{3}-449071212t^{2}+104928444t+101029788\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=49$, $D_i=2048$, $\rho_{ij}$: $0{:}2, \allowbreak 7{:}1, \allowbreak 9{:}1, \allowbreak 11{:}1, \allowbreak 13{:}1, \allowbreak 18{:}1, \allowbreak 34{:}2, \allowbreak 36{:}2, \allowbreak 59{:}2, \allowbreak 62{:}2, \allowbreak 63{:}1, \allowbreak 72{:}1, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle -1807548t^{3}-1738536t^{2}-588264t-79620,$\\
+ & $\quad -744672t^{3}-1966188t^{2}-1173360t-338196\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=50$, $D_i=1$, $\rho_{ij}$: $31{:}1, \allowbreak 32{:}2$}\\
+$w_i$ & $\langle 2t^{2},$\\
+ & $\quad 2t^{2}\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=51$, $D_i=8$, $\rho_{ij}$: $1{:}2, \allowbreak 3{:}1, \allowbreak 13{:}2, \allowbreak 21{:}2, \allowbreak 24{:}1, \allowbreak 55{:}1, \allowbreak 61{:}1$}\\
+$w_i$ & $\langle 8t^{2}-40t-64,$\\
+ & $\quad 8t^{2}-32\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=52$, $D_i=16$, $\rho_{ij}$: $10{:}1, \allowbreak 11{:}2, \allowbreak 12{:}2, \allowbreak 21{:}2, \allowbreak 23{:}2, \allowbreak 26{:}2, \allowbreak 40{:}1$}\\
+$w_i$ & $\langle 0,$\\
+ & $\quad 174t^{2}+204t+102\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=53$, $D_i=64$, $\rho_{ij}$: $6{:}2, \allowbreak 16{:}1, \allowbreak 23{:}1, \allowbreak 24{:}2, \allowbreak 40{:}2, \allowbreak 46{:}2, \allowbreak 48{:}2, \allowbreak 60{:}1, \allowbreak 66{:}1, \allowbreak 77{:}2$}\\
+$w_i$ & $\langle -139t^{3}+541t^{2}-12t-132,$\\
+ & $\quad 838t^{3}+2t^{2}+99t+81\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=54$, $D_i=8$, $\rho_{ij}$: $19{:}2, \allowbreak 26{:}1, \allowbreak 28{:}1, \allowbreak 30{:}1, \allowbreak 43{:}2, \allowbreak 56{:}2, \allowbreak 67{:}1$}\\
+$w_i$ & $\langle -4t^{2}-10t+6,$\\
+ & $\quad -4t^{2}-10t+6\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=55$, $D_i=1024$, $\rho_{ij}$: $11{:}1, \allowbreak 23{:}2, \allowbreak 30{:}2, \allowbreak 38{:}2, \allowbreak 51{:}2, \allowbreak 74{:}2$}\\
+$w_i$ & $\langle 1024t^{5}+5120t^{4}+3072t^{3}-1024t^{2}+2048t+2048,$\\
+ & $\quad -1024t^{5}+2048t^{4}-1024t^{3}-2048t^{2}+2048t\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=56$, $D_i=4194304$, $\rho_{ij}$: $3{:}1, \allowbreak 17{:}2, \allowbreak 24{:}1, \allowbreak 36{:}2, \allowbreak 39{:}2, \allowbreak 42{:}2, \allowbreak 43{:}2, \allowbreak 44{:}2, \allowbreak 48{:}2, \allowbreak 54{:}1, \allowbreak 63{:}2, \allowbreak 65{:}1, \allowbreak 68{:}1, \allowbreak 76{:}2$}\\
+$w_i$ & $\langle -107072192512t^{5}+38654705664t^{4}-23236444160t^{3}-28991029248t^{2}-9445572608t$\\
+ & $\quad +31843155968,$\\
+ & $\quad 3271557120t^{5}-1258291200t^{4}+771751936t^{3}+956301312t^{2}+285212672t-1006632960\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=57$, $D_i=4$, $\rho_{ij}$: $6{:}1, \allowbreak 7{:}1, \allowbreak 11{:}1, \allowbreak 20{:}1, \allowbreak 23{:}1, \allowbreak 26{:}1, \allowbreak 47{:}2, \allowbreak 75{:}1$}\\
+$w_i$ & $\langle 8t^{2}+4,$\\
+ & $\quad 0\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=58$, $D_i=32$, $\rho_{ij}$: $4{:}2, \allowbreak 10{:}2, \allowbreak 11{:}1, \allowbreak 14{:}1, \allowbreak 23{:}2, \allowbreak 24{:}1, \allowbreak 25{:}1, \allowbreak 29{:}1, \allowbreak 39{:}1, \allowbreak 42{:}2, \allowbreak 47{:}2$}\\
+$w_i$ & $\langle 384t^{2}+480t-832,$\\
+ & $\quad -32t^{2}+608t-128\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=59$, $D_i=4$, $\rho_{ij}$: $3{:}1, \allowbreak 4{:}2, \allowbreak 14{:}2, \allowbreak 25{:}1, \allowbreak 30{:}1, \allowbreak 38{:}2, \allowbreak 44{:}1, \allowbreak 49{:}1, \allowbreak 62{:}1, \allowbreak 76{:}1$}\\
+$w_i$ & $\langle -6t^{3}+249t^{2}+66t-54,$\\
+ & $\quad 159t^{3}+123t^{2}-177t-51\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=60$, $D_i=16384$, $\rho_{ij}$: $5{:}1, \allowbreak 8{:}2, \allowbreak 10{:}2, \allowbreak 13{:}2, \allowbreak 15{:}1, \allowbreak 18{:}1, \allowbreak 23{:}2, \allowbreak 36{:}2, \allowbreak 42{:}2, \allowbreak 46{:}2, \allowbreak 53{:}2, \allowbreak 65{:}1$}\\
+$w_i$ & $\langle -39088t^{3}-222823t^{2}-125891t-47537,$\\
+ & $\quad 256933t^{3}+24928t^{2}-65161t-49948\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=61$, $D_i=128$, $\rho_{ij}$: $3{:}2, \allowbreak 7{:}2, \allowbreak 19{:}2, \allowbreak 20{:}1, \allowbreak 51{:}2, \allowbreak 65{:}2, \allowbreak 75{:}2, \allowbreak 77{:}2$}\\
+$w_i$ & $\langle -7311t^{3}-1081t^{2}+4180t+2370,$\\
+ & $\quad -311t^{3}+6227t^{2}+5651t+1389\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=62$, $D_i=8$, $\rho_{ij}$: $5{:}2, \allowbreak 22{:}2, \allowbreak 36{:}2, \allowbreak 44{:}1, \allowbreak 49{:}1, \allowbreak 59{:}2, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 90t^{3}+68t^{2}-32t-14,$\\
+ & $\quad 78t^{3}-38t^{2}-68t-20\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=63$, $D_i=4$, $\rho_{ij}$: $1{:}1, \allowbreak 12{:}1, \allowbreak 39{:}2, \allowbreak 49{:}2, \allowbreak 56{:}1, \allowbreak 65{:}2$}\\
+$w_i$ & $\langle -7t^{3}-5t^{2}+4,$\\
+ & $\quad -t^{2}-2t-1\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=64$, $D_i=8$, $\rho_{ij}$: $3{:}1, \allowbreak 15{:}1, \allowbreak 25{:}2, \allowbreak 31{:}2, \allowbreak 43{:}1, \allowbreak 46{:}2, \allowbreak 47{:}1, \allowbreak 48{:}1$}\\
+$w_i$ & $\langle 88t^{3}+54t^{2}-24,$\\
+ & $\quad 14t^{3}+24t^{2}+42t+6\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=65$, $D_i=16777216$, $\rho_{ij}$: $3{:}2, \allowbreak 4{:}1, \allowbreak 10{:}1, \allowbreak 12{:}2, \allowbreak 13{:}2, \allowbreak 29{:}1, \allowbreak 34{:}1, \allowbreak 46{:}2, \allowbreak 56{:}2, \allowbreak 60{:}2, \allowbreak 61{:}1, \allowbreak 63{:}1, \allowbreak 70{:}2, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 659780796416t^{5}+867684057088t^{4}-1194068017152t^{3}-150458073088t^{2}+726856105984t$\\
+ & $\quad +174785036288,$\\
+ & $\quad 209446764544t^{5}-677195546624t^{4}-794703167488t^{3}+723332890624t^{2}+271824453632t$\\
+ & $\quad -177402281984\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=66$, $D_i=524288$, $\rho_{ij}$: $4{:}1, \allowbreak 6{:}1, \allowbreak 13{:}2, \allowbreak 19{:}2, \allowbreak 20{:}2, \allowbreak 24{:}1, \allowbreak 27{:}2, \allowbreak 30{:}2, \allowbreak 36{:}1, \allowbreak 38{:}1, \allowbreak 53{:}2, \allowbreak 67{:}1$}\\
+$w_i$ & $\langle 305135616t^{5}+1018167296t^{4}+103809024t^{3}+94371840t^{2}+276824064t+147849216,$\\
+ & $\quad 135266304t^{5}+2551185408t^{4}+262144000t^{3}+96468992t^{2}+617611264t+380633088\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=67$, $D_i=2$, $\rho_{ij}$: $35{:}1, \allowbreak 40{:}1, \allowbreak 54{:}2, \allowbreak 66{:}2$}\\
+$w_i$ & $\langle 0,$\\
+ & $\quad -8t^{5}+8t^{4}-4t^{3}+4t^{2}\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=68$, $D_i=256$, $\rho_{ij}$: $29{:}2, \allowbreak 30{:}2, \allowbreak 46{:}1, \allowbreak 48{:}1, \allowbreak 56{:}2$}\\
+$w_i$ & $\langle -256t^{5}-768t^{3}-256t^{2}-256t,$\\
+ & $\quad -256t^{2}+256t\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=69$, $D_i=256$, $\rho_{ij}$: $2{:}2, \allowbreak 9{:}1, \allowbreak 11{:}1, \allowbreak 24{:}2, \allowbreak 44{:}1, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 512t^{5}+1280t^{4}-1024t^{3}+256t^{2}+256t+256,$\\
+ & $\quad 256t^{5}+256t^{4}-512t^{3}-256t^{2}-256t-256\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=70$, $D_i=2048$, $\rho_{ij}$: $8{:}2, \allowbreak 10{:}2, \allowbreak 15{:}1, \allowbreak 23{:}1, \allowbreak 48{:}2, \allowbreak 65{:}1, \allowbreak 73{:}1$}\\
+$w_i$ & $\langle 6144t^{5}+6144t^{4}-2048t^{3},$\\
+ & $\quad 6144t^{5}+12288t^{4}-4096t^{3}-6144t^{2}\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=71$, $D_i=256$, $\rho_{ij}$: $0{:}1, \allowbreak 10{:}2, \allowbreak 29{:}2, \allowbreak 44{:}1, \allowbreak 46{:}2$}\\
+$w_i$ & $\langle -768t^{4}+1280t^{3}-768t^{2}+512t+256,$\\
+ & $\quad -256t^{5}+512t^{4}+768t^{3}-512t^{2}+512\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=72$, $D_i=32$, $\rho_{ij}$: $5{:}1, \allowbreak 8{:}1, \allowbreak 13{:}2, \allowbreak 15{:}1, \allowbreak 35{:}2, \allowbreak 42{:}2, \allowbreak 49{:}2$}\\
+$w_i$ & $\langle -20t^{3}+1740t^{2}+1252t-604,$\\
+ & $\quad -828t^{3}+300t^{2}+2144t+368\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=73$, $D_i=8$, $\rho_{ij}$: $8{:}1, \allowbreak 11{:}2, \allowbreak 25{:}1, \allowbreak 42{:}2, \allowbreak 48{:}1, \allowbreak 70{:}2$}\\
+$w_i$ & $\langle 8t^{2}+48t-16,$\\
+ & $\quad -8t^{2}-32t-168\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=74$, $D_i=64$, $\rho_{ij}$: $5{:}2, \allowbreak 15{:}1, \allowbreak 16{:}1, \allowbreak 28{:}2, \allowbreak 55{:}1, \allowbreak 75{:}2$}\\
+$w_i$ & $\langle 192t^{4}-128t^{3}+192t^{2}-128t+64,$\\
+ & $\quad -64t^{3}+128t^{2}-128t+64\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=75$, $D_i=2147483648$, $\rho_{ij}$: $0{:}1, \allowbreak 1{:}1, \allowbreak 4{:}1, \allowbreak 7{:}2, \allowbreak 9{:}2, \allowbreak 11{:}2, \allowbreak 12{:}1, \allowbreak 18{:}2, \allowbreak 19{:}1, \allowbreak 21{:}1, \allowbreak 22{:}2, \allowbreak 23{:}2, \allowbreak 26{:}2, \allowbreak 32{:}2, \allowbreak 39{:}1, \allowbreak 40{:}2, \allowbreak 41{:}1, \allowbreak 47{:}2, \allowbreak 49{:}1, \allowbreak 57{:}2, \allowbreak 61{:}1, \allowbreak 62{:}1, \allowbreak 65{:}1, \allowbreak 69{:}1, \allowbreak 74{:}1$}\\
+$w_i$ & $\langle -48555882984t^{3}-188233838400t^{2}-170211237424t-46348457704,$\\
+ & $\quad -183019927852t^{3}-267336677728t^{2}-127534156968t-19248254636\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=76$, $D_i=8$, $\rho_{ij}$: $7{:}2, \allowbreak 8{:}1, \allowbreak 35{:}1, \allowbreak 48{:}1, \allowbreak 56{:}1, \allowbreak 59{:}2$}\\
+$w_i$ & $\langle 36t^{3}+52t^{2}+8,$\\
+ & $\quad 60t^{3}+8t^{2}-24t+4\rangle$\\
+\addlinespace[2pt]
+\multicolumn{2}{@{}p{0.97\textwidth}@{}}{$i=77$, $D_i=4$, $\rho_{ij}$: $6{:}1, \allowbreak 20{:}2, \allowbreak 47{:}2, \allowbreak 48{:}1, \allowbreak 53{:}1, \allowbreak 61{:}1$}\\
+$w_i$ & $\langle -4t^{3}+12t+24,$\\
+ & $\quad 4t^{3}+12t^{2}+12t+12\rangle$\\
+\addlinespace[2pt]
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}lrl@{\qquad}lrl@{}}
+\caption{The edges $(i,j)$ with a linear endpoint, the linear endpoint $k$ used, and the norm of $R_{ij}=\operatorname{Res}_t(f_k,g_{kl})$.}\label{tab:sep}\\
+\hline $(i,j)$ & $k$ & $N(R_{ij})$ & $(i,j)$ & $k$ & $N(R_{ij})$\\\hline\endfirsthead\hline $(i,j)$ & $k$ & $N(R_{ij})$ & $(i,j)$ & $k$ & $N(R_{ij})$\\\hline\endhead\hline\endfoot
+\multicolumn{4}{@{}l}{\emph{The first certificate.}}\\
+$(0,2)$ & 0 & $2^{2}\cdot 7^{2}$ & $(16,31)$ & 16 & $3^{2}\cdot 7$\\
+$(0,10)$ & 0 & $3^{3}\cdot 7\cdot 37$ & $(16,41)$ & 16 & $7$\\
+$(0,11)$ & 0 & $2^{6}\cdot 3^{3}\cdot 7$ & $(16,48)$ & 16 & $19$\\
+$(0,14)$ & 0 & $2^{4}\cdot 3^{3}\cdot 13\cdot 31$ & $(16,58)$ & 16 & $3\cdot 19$\\
+$(0,17)$ & 0 & $2^{2}\cdot 3^{2}$ & $(17,39)$ & 17 & $2^{2}\cdot 19^{2}$\\
+$(0,22)$ & 0 & $2^{2}\cdot 3^{4}$ & $(17,64)$ & 17 & $2^{2}\cdot 19$\\
+$(0,27)$ & 0 & $3$ & $(17,66)$ & 17 & $2^{2}\cdot 3^{6}\cdot 13^{2}$\\
+$(0,35)$ & 0 & $3^{2}$ & $(17,68)$ & 17 & $2^{2}$\\
+$(0,40)$ & 0 & $2^{2}\cdot 3^{2}\cdot 7\cdot 19$ & $(18,19)$ & 18 & $3\cdot 5^{2}\cdot 7\cdot 19$\\
+$(0,42)$ & 0 & $2^{4}\cdot 3^{3}\cdot 7$ & $(18,38)$ & 18 & $3^{2}\cdot 7\cdot 19$\\
+$(0,59)$ & 0 & $2^{2}\cdot 3^{3}\cdot 31$ & $(18,39)$ & 18 & $3\cdot 7^{2}\cdot 19$\\
+$(0,60)$ & 0 & $2^{4}\cdot 3\cdot 19$ & $(18,45)$ & 18 & $2^{6}\cdot 3^{3}\cdot 7$\\
+$(0,61)$ & 0 & $2^{4}\cdot 37$ & $(18,47)$ & 18 & $3^{4}\cdot 19$\\
+$(0,62)$ & 0 & $3^{3}\cdot 7\cdot 13$ & $(18,49)$ & 18 & $1$\\
+$(0,63)$ & 0 & $2^{2}\cdot 3^{4}$ & $(18,57)$ & 18 & $1$\\
+$(1,6)$ & 1 & $2^{2}\cdot 3^{4}$ & $(19,28)$ & 19 & $2^{6}\cdot 19$\\
+$(1,12)$ & 1 & $3^{3}\cdot 5^{2}$ & $(19,38)$ & 19 & $3^{2}\cdot 7\cdot 13$\\
+$(1,20)$ & 1 & $2^{2}\cdot 5^{4}$ & $(19,53)$ & 19 & $2^{2}\cdot 3$\\
+$(1,37)$ & 1 & $3\cdot 13\cdot 31$ & $(20,26)$ & 20 & $2^{2}\cdot 19\cdot 31$\\
+$(1,46)$ & 1 & $2^{4}\cdot 3^{8}$ & $(20,32)$ & 20 & $2^{2}$\\
+$(1,54)$ & 1 & $3^{3}\cdot 5^{2}$ & $(20,46)$ & 20 & $2^{2}$\\
+$(1,60)$ & 1 & $3\cdot 13\cdot 31$ & $(20,54)$ & 20 & $5^{2}$\\
+$(1,61)$ & 1 & $5^{2}\cdot 13^{2}$ & $(20,65)$ & 20 & $31^{2}$\\
+$(1,64)$ & 1 & $2^{6}\cdot 31^{2}$ & $(21,23)$ & 21 & $2^{4}\cdot 11^{2}$\\
+$(2,7)$ & 2 & $7\cdot 13$ & $(21,43)$ & 21 & $2^{4}\cdot 3^{2}$\\
+$(2,8)$ & 2 & $3\cdot 7\cdot 13$ & $(21,61)$ & 21 & $2^{4}$\\
+$(2,11)$ & 2 & $7^{2}\cdot 13$ & $(21,63)$ & 21 & $2^{2}\cdot 3^{2}$\\
+$(2,24)$ & 2 & $2^{4}\cdot 7$ & $(21,65)$ & 21 & $2^{10}\cdot 11^{2}$\\
+$(2,32)$ & 2 & $2^{4}$ & $(22,26)$ & 22 & $1$\\
+$(2,40)$ & 2 & $3\cdot 7$ & $(22,44)$ & 22 & $2^{8}\cdot 3^{2}$\\
+$(2,45)$ & 2 & $2^{2}\cdot 7^{2}$ & $(22,54)$ & 22 & $3\cdot 13\cdot 19$\\
+$(2,46)$ & 2 & $3^{4}\cdot 7^{2}$ & $(22,56)$ & 22 & $2^{8}\cdot 3^{4}$\\
+$(2,53)$ & 2 & $7$ & $(22,59)$ & 22 & $2^{4}\cdot 7\cdot 19$\\
+$(2,54)$ & 2 & $3\cdot 7\cdot 13$ & $(22,60)$ & 22 & $2^{6}\cdot 13$\\
+$(2,55)$ & 2 & $3\cdot 7$ & $(22,66)$ & 22 & $3\cdot 13\cdot 19$\\
+$(2,57)$ & 2 & $7$ & $(23,25)$ & 23 & $2^{2}\cdot 7^{2}\cdot 13$\\
+$(2,59)$ & 2 & $7$ & $(23,32)$ & 23 & $7^{3}$\\
+$(2,62)$ & 2 & $3\cdot 7$ & $(23,48)$ & 23 & $2^{2}$\\
+$(2,67)$ & 2 & $7$ & $(23,59)$ & 23 & $2^{4}\cdot 7^{2}$\\
+$(2,71)$ & 2 & $2^{6}\cdot 3^{2}$ & $(23,65)$ & 23 & $2^{8}\cdot 11^{2}\cdot 13$\\
+$(3,15)$ & 3 & $2^{4}\cdot 3^{5}$ & $(24,25)$ & 24 & $2^{2}\cdot 7$\\
+$(3,42)$ & 3 & $2^{2}\cdot 3$ & $(24,26)$ & 24 & $19\cdot 37$\\
+$(3,47)$ & 3 & $3^{5}$ & $(24,39)$ & 24 & $2^{4}\cdot 3^{3}\cdot 37$\\
+$(3,56)$ & 3 & $2^{2}\cdot 3^{2}$ & $(24,58)$ & 24 & $19$\\
+$(4,15)$ & 4 & $2^{2}\cdot 3^{4}\cdot 13\cdot 19$ & $(25,32)$ & 25 & $3\cdot 7$\\
+$(4,26)$ & 4 & $2^{2}\cdot 7\cdot 13$ & $(25,45)$ & 25 & $3^{3}\cdot 7^{2}\cdot 19$\\
+$(4,27)$ & 4 & $2^{8}\cdot 3$ & $(25,54)$ & 25 & $3\cdot 7$\\
+$(4,28)$ & 4 & $2^{2}\cdot 13\cdot 19$ & $(25,58)$ & 25 & $2^{4}\cdot 3\cdot 19$\\
+$(4,30)$ & 4 & $2^{2}\cdot 3^{2}\cdot 13$ & $(25,67)$ & 25 & $2^{4}\cdot 19$\\
+$(4,35)$ & 4 & $3^{2}\cdot 13$ & $(26,35)$ & 26 & $13$\\
+$(4,38)$ & 4 & $3$ & $(26,38)$ & 26 & $13$\\
+$(4,49)$ & 4 & $7$ & $(26,39)$ & 26 & $7\cdot 37$\\
+$(4,51)$ & 4 & $2^{2}\cdot 3^{4}\cdot 13$ & $(26,44)$ & 26 & $2^{2}\cdot 31$\\
+$(4,62)$ & 4 & $3^{4}\cdot 13$ & $(26,49)$ & 26 & $2^{2}\cdot 7^{2}$\\
+$(4,64)$ & 4 & $2^{2}\cdot 19$ & $(26,59)$ & 26 & $2^{2}\cdot 7$\\
+$(4,66)$ & 4 & $3^{3}\cdot 19$ & $(26,65)$ & 26 & $2^{4}\cdot 13\cdot 31$\\
+$(4,70)$ & 4 & $2^{4}\cdot 3^{4}\cdot 13$ & $(27,29)$ & 27 & $3^{2}\cdot 13$\\
+$(5,13)$ & 5 & $7$ & $(27,32)$ & 27 & $2^{2}$\\
+$(5,19)$ & 5 & $2^{2}\cdot 3^{2}\cdot 7\cdot 13$ & $(27,35)$ & 27 & $13$\\
+$(5,20)$ & 5 & $19\cdot 31$ & $(27,36)$ & 27 & $2^{2}\cdot 3^{4}$\\
+$(5,24)$ & 5 & $2^{6}\cdot 3\cdot 19$ & $(27,42)$ & 27 & $2^{2}\cdot 3^{4}$\\
+$(5,29)$ & 5 & $2^{2}\cdot 3\cdot 13^{2}$ & $(27,44)$ & 27 & $2^{2}\cdot 3\cdot 13\cdot 19$\\
+$(5,33)$ & 5 & $2^{2}\cdot 7\cdot 13$ & $(27,57)$ & 27 & $2^{2}\cdot 13$\\
+$(5,36)$ & 5 & $2^{2}\cdot 3\cdot 13\cdot 19$ & $(28,30)$ & 28 & $2^{2}\cdot 7\cdot 13$\\
+$(5,46)$ & 5 & $2^{2}\cdot 3^{6}$ & $(28,42)$ & 28 & $2^{2}\cdot 7\cdot 13$\\
+$(5,51)$ & 5 & $3^{9}$ & $(28,45)$ & 28 & $2^{2}\cdot 7$\\
+$(5,54)$ & 5 & $3^{3}\cdot 13$ & $(28,46)$ & 28 & $2^{10}$\\
+$(5,57)$ & 5 & $19$ & $(28,47)$ & 28 & $2^{2}\cdot 13\cdot 19$\\
+$(5,60)$ & 5 & $2^{2}\cdot 3\cdot 31$ & $(28,51)$ & 28 & $2^{6}$\\
+$(5,65)$ & 5 & $2^{8}\cdot 13\cdot 31$ & $(28,54)$ & 28 & $1$\\
+$(5,69)$ & 5 & $2^{2}\cdot 3$ & $(28,57)$ & 28 & $2^{2}\cdot 7^{3}$\\
+$(6,12)$ & 6 & $3^{5}\cdot 19$ & $(28,58)$ & 28 & $2^{4}$\\
+$(6,14)$ & 6 & $2^{4}\cdot 3^{6}\cdot 13$ & $(28,60)$ & 28 & $2^{2}$\\
+$(6,16)$ & 6 & $2^{4}\cdot 7^{2}\cdot 19^{2}$ & $(29,35)$ & 29 & $3$\\
+$(6,19)$ & 6 & $2^{6}\cdot 3^{6}\cdot 19$ & $(29,36)$ & 29 & $3^{2}\cdot 13$\\
+$(6,25)$ & 6 & $2^{4}\cdot 3\cdot 7^{2}\cdot 13$ & $(29,44)$ & 29 & $2^{2}\cdot 3\cdot 13^{2}$\\
+$(6,34)$ & 6 & $2^{4}\cdot 19$ & $(29,65)$ & 29 & $2^{4}\cdot 13^{2}$\\
+$(6,35)$ & 6 & $3$ & $(29,67)$ & 29 & $7^{4}$\\
+$(6,39)$ & 6 & $3^{4}\cdot 13\cdot 19$ & $(29,69)$ & 29 & $2^{2}\cdot 3^{4}$\\
+$(6,44)$ & 6 & $3^{5}\cdot 13\cdot 19$ & $(29,71)$ & 29 & $2^{2}\cdot 3^{2}$\\
+$(6,45)$ & 6 & $3^{6}\cdot 7^{2}$ & $(30,33)$ & 30 & $2^{2}\cdot 3^{3}$\\
+$(6,46)$ & 6 & $2^{6}\cdot 3^{8}\cdot 7$ & $(30,38)$ & 30 & $3^{2}\cdot 7$\\
+$(6,51)$ & 6 & $2^{2}\cdot 3^{3}\cdot 19$ & $(30,45)$ & 30 & $2^{4}\cdot 3^{3}\cdot 7$\\
+$(6,55)$ & 6 & $3^{4}$ & $(30,62)$ & 30 & $3^{4}$\\
+$(6,59)$ & 6 & $2^{2}\cdot 3^{2}\cdot 5^{4}$ & $(30,63)$ & 30 & $2^{2}\cdot 3^{4}$\\
+$(6,71)$ & 6 & $2^{4}\cdot 5^{2}$ & $(31,44)$ & 31 & $2^{2}\cdot 7\cdot 13$\\
+$(7,11)$ & 7 & $2^{10}\cdot 7^{2}$ & $(31,57)$ & 31 & $7\cdot 13$\\
+$(7,16)$ & 7 & $2^{4}\cdot 7\cdot 13$ & $(31,58)$ & 31 & $2^{2}\cdot 3$\\
+$(7,19)$ & 7 & $2^{10}\cdot 13^{2}$ & $(31,59)$ & 31 & $37$\\
+$(7,23)$ & 7 & $2^{4}\cdot 7^{3}$ & $(31,63)$ & 31 & $3$\\
+$(7,32)$ & 7 & $2^{2}\cdot 7$ & $(31,64)$ & 31 & $37$\\
+$(7,38)$ & 7 & $7\cdot 13$ & $(32,42)$ & 32 & $2^{2}\cdot 3$\\
+$(7,44)$ & 7 & $7$ & $(32,66)$ & 32 & $2^{2}\cdot 3$\\
+$(7,53)$ & 7 & $2^{4}$ & $(32,69)$ & 32 & $2^{2}\cdot 3^{2}$\\
+$(7,59)$ & 7 & $2^{6}\cdot 7$ & $(33,41)$ & 33 & $37$\\
+$(8,11)$ & 8 & $2^{6}\cdot 3\cdot 13^{3}$ & $(33,43)$ & 33 & $2^{2}\cdot 3^{3}$\\
+$(8,24)$ & 8 & $2^{4}\cdot 3\cdot 7$ & $(33,54)$ & 33 & $3^{2}\cdot 13$\\
+$(8,27)$ & 8 & $2^{2}\cdot 3^{5}\cdot 13$ & $(33,64)$ & 33 & $37$\\
+$(8,29)$ & 8 & $3^{5}\cdot 13^{2}$ & $(33,68)$ & 33 & $3$\\
+$(8,33)$ & 8 & $2^{2}\cdot 3$ & $(33,69)$ & 33 & $2^{4}$\\
+$(8,35)$ & 8 & $3\cdot 7\cdot 13$ & $(34,36)$ & 34 & $2^{4}\cdot 3$\\
+$(8,36)$ & 8 & $2^{4}\cdot 3^{2}$ & $(34,44)$ & 34 & $2^{4}$\\
+$(8,45)$ & 8 & $3^{3}\cdot 7\cdot 37$ & $(34,45)$ & 34 & $2^{2}$\\
+$(8,46)$ & 8 & $2^{4}\cdot 3^{5}\cdot 7$ & $(34,46)$ & 34 & $2^{6}\cdot 3^{2}$\\
+$(8,57)$ & 8 & $2^{2}\cdot 7^{3}$ & $(34,54)$ & 34 & $3\cdot 19$\\
+$(8,59)$ & 8 & $2^{2}\cdot 3^{5}\cdot 7$ & $(34,65)$ & 34 & $2^{8}$\\
+$(8,61)$ & 8 & $13\cdot 37$ & $(34,66)$ & 34 & $2^{2}$\\
+$(8,65)$ & 8 & $13$ & $(34,68)$ & 34 & $2^{2}\cdot 3^{2}$\\
+$(8,66)$ & 8 & $3\cdot 13$ & $(35,62)$ & 35 & $3\cdot 19$\\
+$(9,12)$ & 9 & $3^{2}\cdot 5^{2}\cdot 7$ & $(35,67)$ & 35 & $2^{2}\cdot 7\cdot 19$\\
+$(9,13)$ & 9 & $2^{4}\cdot 3^{2}$ & $(36,47)$ & 36 & $2^{8}\cdot 3$\\
+$(9,14)$ & 9 & $2^{4}\cdot 7\cdot 19$ & $(36,52)$ & 36 & $3$\\
+$(9,24)$ & 9 & $2^{4}\cdot 7\cdot 19$ & $(36,57)$ & 36 & $2^{2}\cdot 19^{2}$\\
+$(9,25)$ & 9 & $7^{2}\cdot 19$ & $(36,67)$ & 36 & $2^{2}\cdot 19$\\
+$(9,39)$ & 9 & $2^{4}\cdot 3^{2}\cdot 7^{2}$ & $(37,40)$ & 37 & $2^{2}\cdot 3$\\
+$(9,41)$ & 9 & $2^{4}\cdot 7^{2}$ & $(37,44)$ & 37 & $2^{2}\cdot 3\cdot 31$\\
+$(9,43)$ & 9 & $2^{4}\cdot 3^{2}$ & $(37,45)$ & 37 & $2^{4}\cdot 3\cdot 19$\\
+$(9,54)$ & 9 & $3^{2}\cdot 5^{2}\cdot 7$ & $(37,53)$ & 37 & $2^{2}$\\
+$(9,58)$ & 9 & $3^{2}\cdot 7\cdot 19$ & $(37,58)$ & 37 & $2^{2}\cdot 3\cdot 19$\\
+$(9,62)$ & 9 & $3^{2}\cdot 7^{2}\cdot 19$ & $(37,64)$ & 37 & $2^{4}\cdot 31$\\
+$(9,71)$ & 9 & $2^{2}\cdot 3^{2}$ & $(37,65)$ & 37 & $2^{4}\cdot 31$\\
+$(10,11)$ & 10 & $2^{6}\cdot 3\cdot 7$ & $(38,57)$ & 38 & $7$\\
+$(10,17)$ & 10 & $3\cdot 13$ & $(39,41)$ & 39 & $3^{2}\cdot 7\cdot 19$\\
+$(10,22)$ & 10 & $2^{6}\cdot 3\cdot 13^{3}$ & $(39,54)$ & 39 & $3^{3}\cdot 7\cdot 19$\\
+$(10,28)$ & 10 & $2^{8}\cdot 7$ & $(39,56)$ & 39 & $2^{2}\cdot 3^{3}$\\
+$(10,34)$ & 10 & $2^{4}\cdot 3$ & $(39,59)$ & 39 & $3^{2}\cdot 7\cdot 19$\\
+$(10,41)$ & 10 & $2^{2}\cdot 3^{5}\cdot 7$ & $(39,60)$ & 39 & $2^{2}\cdot 3^{6}$\\
+$(10,43)$ & 10 & $2^{4}\cdot 3^{8}$ & $(39,64)$ & 39 & $2^{4}\cdot 7^{2}\cdot 19^{2}$\\
+$(10,46)$ & 10 & $2^{4}\cdot 3^{5}\cdot 7$ & $(39,70)$ & 39 & $3^{3}\cdot 7^{2}\cdot 13$\\
+$(10,52)$ & 10 & $3$ & $(40,47)$ & 40 & $2^{2}\cdot 3^{3}$\\
+$(10,61)$ & 10 & $13\cdot 37$ & $(40,58)$ & 40 & $3^{4}$\\
+$(11,12)$ & 11 & $3\cdot 13\cdot 19$ & $(40,60)$ & 40 & $2^{2}\cdot 3\cdot 19$\\
+$(11,18)$ & 11 & $2^{2}\cdot 3^{2}\cdot 7$ & $(41,44)$ & 41 & $2^{2}\cdot 3^{2}\cdot 5^{2}$\\
+$(11,28)$ & 11 & $2^{12}$ & $(41,59)$ & 41 & $2^{4}\cdot 3^{4}$\\
+$(11,31)$ & 11 & $2^{2}\cdot 7^{2}$ & $(41,64)$ & 41 & $2^{2}\cdot 7\cdot 13\cdot 37$\\
+$(11,37)$ & 11 & $2^{6}\cdot 13$ & $(41,71)$ & 41 & $5^{2}\cdot 13$\\
+$(11,41)$ & 11 & $2^{4}\cdot 7\cdot 19$ & $(42,47)$ & 42 & $2^{2}\cdot 3^{2}\cdot 13$\\
+$(11,42)$ & 11 & $2^{2}\cdot 3$ & $(42,50)$ & 42 & $2^{8}$\\
+$(11,47)$ & 11 & $2^{4}\cdot 3^{3}$ & $(42,62)$ & 42 & $3^{6}$\\
+$(11,53)$ & 11 & $2^{4}\cdot 3\cdot 7$ & $(42,63)$ & 42 & $2^{2}\cdot 3^{4}$\\
+$(11,69)$ & 11 & $2^{6}\cdot 3$ & $(43,46)$ & 43 & $2^{4}\cdot 3^{7}$\\
+$(12,17)$ & 12 & $3^{2}\cdot 13\cdot 19$ & $(43,51)$ & 43 & $2^{4}\cdot 3^{4}\cdot 13$\\
+$(12,28)$ & 12 & $1$ & $(43,53)$ & 43 & $2^{2}\cdot 3$\\
+$(12,31)$ & 12 & $3^{2}\cdot 13$ & $(43,62)$ & 43 & $3^{2}\cdot 13$\\
+$(12,33)$ & 12 & $3$ & $(44,51)$ & 44 & $2^{2}\cdot 3^{4}\cdot 19$\\
+$(12,34)$ & 12 & $3\cdot 19$ & $(44,56)$ & 44 & $2^{4}\cdot 3^{2}$\\
+$(12,44)$ & 12 & $3^{3}\cdot 13$ & $(44,65)$ & 44 & $2^{8}\cdot 13\cdot 31$\\
+$(12,53)$ & 12 & $3$ & $(45,56)$ & 45 & $2^{8}\cdot 3^{3}$\\
+$(12,58)$ & 12 & $3^{2}\cdot 7\cdot 19$ & $(45,61)$ & 45 & $2^{4}\cdot 37$\\
+$(12,70)$ & 12 & $3^{2}\cdot 7$ & $(46,48)$ & 46 & $2^{4}\cdot 3^{6}$\\
+$(13,16)$ & 13 & $3^{3}\cdot 7^{3}$ & $(46,52)$ & 46 & $3^{4}$\\
+$(13,21)$ & 13 & $1$ & $(46,54)$ & 46 & $3^{5}\cdot 7^{2}$\\
+$(13,33)$ & 13 & $3\cdot 7$ & $(46,55)$ & 46 & $2^{4}\cdot 3^{8}$\\
+$(13,50)$ & 13 & $7\cdot 31$ & $(47,56)$ & 47 & $3^{5}$\\
+$(13,52)$ & 13 & $1$ & $(47,64)$ & 47 & $2^{2}\cdot 19$\\
+$(13,59)$ & 13 & $2^{4}\cdot 31$ & $(47,65)$ & 47 & $2^{12}$\\
+$(14,20)$ & 14 & $19^{2}$ & $(48,60)$ & 48 & $2^{2}\cdot 3$\\
+$(14,22)$ & 14 & $2^{6}\cdot 3$ & $(49,63)$ & 49 & $19^{3}$\\
+$(14,39)$ & 14 & $3^{3}\cdot 7^{2}\cdot 13$ & $(50,52)$ & 50 & $1$\\
+$(14,45)$ & 14 & $2^{2}\cdot 3^{5}$ & $(50,55)$ & 50 & $2^{6}\cdot 7\cdot 31$\\
+$(14,50)$ & 14 & $2^{4}\cdot 7\cdot 31^{2}$ & $(50,56)$ & 50 & $2^{10}$\\
+$(14,54)$ & 14 & $3^{2}\cdot 7$ & $(50,59)$ & 50 & $7\cdot 31^{2}$\\
+$(14,55)$ & 14 & $2^{2}\cdot 3^{5}\cdot 31$ & $(53,54)$ & 53 & $3^{3}\cdot 7$\\
+$(14,62)$ & 14 & $3\cdot 13$ & $(54,61)$ & 54 & $5^{2}$\\
+$(15,17)$ & 15 & $3$ & $(57,67)$ & 57 & $7\cdot 19$\\
+$(15,18)$ & 15 & $2^{4}\cdot 3\cdot 5^{2}\cdot 19^{2}$ & $(57,68)$ & 57 & $1$\\
+$(15,19)$ & 15 & $2^{2}\cdot 3^{6}\cdot 5^{2}\cdot 13$ & $(59,64)$ & 59 & $2^{2}\cdot 7\cdot 13\cdot 37$\\
+$(15,22)$ & 15 & $2^{8}\cdot 3\cdot 7$ & $(59,66)$ & 59 & $19$\\
+$(15,27)$ & 15 & $2^{2}\cdot 3^{2}\cdot 19$ & $(59,71)$ & 59 & $5^{2}\cdot 13$\\
+$(15,28)$ & 15 & $2^{6}\cdot 19$ & $(60,61)$ & 60 & $2^{4}\cdot 13$\\
+$(15,34)$ & 15 & $2^{4}\cdot 19$ & $(60,63)$ & 60 & $2^{2}\cdot 3^{3}$\\
+$(15,35)$ & 15 & $2^{4}\cdot 3\cdot 7$ & $(60,64)$ & 60 & $2^{4}\cdot 31$\\
+$(15,38)$ & 15 & $3^{2}\cdot 13^{2}\cdot 19$ & $(60,65)$ & 60 & $2^{4}\cdot 31$\\
+$(15,39)$ & 15 & $3^{4}\cdot 13\cdot 19$ & $(61,63)$ & 61 & $2^{6}$\\
+$(15,41)$ & 15 & $2^{2}\cdot 3^{2}\cdot 5^{4}$ & $(61,64)$ & 61 & $2^{6}$\\
+$(15,44)$ & 15 & $2^{4}\cdot 3^{3}\cdot 5^{2}\cdot 19$ & $(62,67)$ & 62 & $19^{2}$\\
+$(15,48)$ & 15 & $2^{6}\cdot 3^{2}\cdot 19$ & $(62,70)$ & 62 & $3^{2}\cdot 7\cdot 13^{3}$\\
+$(15,52)$ & 15 & $3^{2}$ & $(63,67)$ & 63 & $19^{3}$\\
+$(15,54)$ & 15 & $3^{5}\cdot 19$ & $(63,71)$ & 63 & $2^{2}\cdot 3^{8}$\\
+$(15,55)$ & 15 & $2^{4}\cdot 3^{6}$ & $(64,65)$ & 64 & $2^{8}$\\
+$(15,70)$ & 15 & $2^{4}\cdot 3^{6}\cdot 13$ & $(64,66)$ & 64 & $2^{2}\cdot 19$\\
+$(15,71)$ & 15 & $2^{4}\cdot 5^{2}$ & $(64,71)$ & 64 & $2^{2}\cdot 13^{2}$\\
+$(16,17)$ & 16 & $13\cdot 19$ & $(70,71)$ & 70 & $2^{4}$\\
+$(16,18)$ & 16 & $3^{2}\cdot 19^{2}$ & & &\\
+\multicolumn{4}{@{}l}{\emph{The second certificate.}}\\
+$(0,4)$ & 0 & $2^{8}\cdot 3^{5}$ & $(19,75)$ & 19 & $2^{4}\cdot 7^{2}$\\
+$(0,6)$ & 0 & $2^{2}\cdot 3^{4}\cdot 19$ & $(20,25)$ & 20 & $19$\\
+$(0,15)$ & 0 & $2^{2}\cdot 3^{3}\cdot 19$ & $(20,36)$ & 20 & $37$\\
+$(0,49)$ & 0 & $2^{2}\cdot 3^{4}\cdot 13$ & $(20,57)$ & 20 & $3$\\
+$(0,71)$ & 0 & $2^{4}\cdot 3^{4}\cdot 13$ & $(20,61)$ & 20 & $3\cdot 31^{2}$\\
+$(0,75)$ & 0 & $2^{6}$ & $(20,66)$ & 20 & $13\cdot 37$\\
+$(1,11)$ & 1 & $2^{6}\cdot 3^{3}\cdot 7$ & $(20,77)$ & 20 & $3^{3}\cdot 7^{2}\cdot 31$\\
+$(1,16)$ & 1 & $2^{2}\cdot 3^{4}$ & $(21,30)$ & 21 & $3^{3}\cdot 13$\\
+$(1,29)$ & 1 & $3^{2}$ & $(21,31)$ & 21 & $3\cdot 7^{2}\cdot 13$\\
+$(1,44)$ & 1 & $2^{4}\cdot 3^{3}\cdot 7$ & $(21,35)$ & 21 & $3\cdot 19$\\
+$(1,51)$ & 1 & $2^{2}\cdot 3^{2}$ & $(21,39)$ & 21 & $3^{5}\cdot 5^{2}$\\
+$(1,63)$ & 1 & $2^{2}\cdot 3^{2}\cdot 7$ & $(21,45)$ & 21 & $5^{2}$\\
+$(1,75)$ & 1 & $2^{2}\cdot 7$ & $(21,47)$ & 21 & $3^{5}\cdot 7^{2}$\\
+$(2,3)$ & 2 & $2^{2}\cdot 7^{2}$ & $(21,51)$ & 21 & $3\cdot 7$\\
+$(2,4)$ & 2 & $7$ & $(21,52)$ & 21 & $3^{3}\cdot 5^{2}$\\
+$(2,5)$ & 2 & $7$ & $(21,75)$ & 21 & $1$\\
+$(2,8)$ & 2 & $2^{2}\cdot 13^{2}$ & $(22,28)$ & 22 & $2^{2}\cdot 13$\\
+$(2,11)$ & 2 & $7^{2}\cdot 13$ & $(22,33)$ & 22 & $7\cdot 13$\\
+$(2,17)$ & 2 & $3\cdot 7$ & $(22,34)$ & 22 & $1$\\
+$(2,23)$ & 2 & $7^{2}\cdot 13$ & $(22,36)$ & 22 & $7$\\
+$(2,30)$ & 2 & $2^{2}\cdot 3^{2}$ & $(22,37)$ & 22 & $2^{2}\cdot 19^{2}$\\
+$(2,40)$ & 2 & $2^{4}$ & $(22,62)$ & 22 & $2^{2}\cdot 7^{2}$\\
+$(2,43)$ & 2 & $7$ & $(22,75)$ & 22 & $2^{2}\cdot 7^{3}$\\
+$(2,47)$ & 2 & $3^{4}\cdot 7^{2}$ & $(23,36)$ & 23 & $2^{4}\cdot 3\cdot 7$\\
+$(2,69)$ & 2 & $3\cdot 7$ & $(23,46)$ & 23 & $2^{8}\cdot 3^{2}$\\
+$(3,11)$ & 3 & $2^{10}\cdot 7^{2}$ & $(23,52)$ & 23 & $3^{3}\cdot 13\cdot 19$\\
+$(3,34)$ & 3 & $2^{4}\cdot 13$ & $(23,53)$ & 23 & $2^{6}\cdot 13$\\
+$(3,42)$ & 3 & $2^{2}\cdot 7^{2}$ & $(23,55)$ & 23 & $2^{4}\cdot 3^{2}$\\
+$(3,51)$ & 3 & $2^{2}\cdot 7^{2}$ & $(23,57)$ & 23 & $1$\\
+$(3,56)$ & 3 & $2^{6}\cdot 31$ & $(23,58)$ & 23 & $2^{2}\cdot 7^{2}$\\
+$(3,59)$ & 3 & $2^{2}\cdot 7^{2}\cdot 13$ & $(23,60)$ & 23 & $3\cdot 7$\\
+$(3,61)$ & 3 & $2^{12}$ & $(23,70)$ & 23 & $2^{8}\cdot 7\cdot 19$\\
+$(3,64)$ & 3 & $2^{6}\cdot 7\cdot 31$ & $(23,75)$ & 23 & $2^{12}$\\
+$(3,65)$ & 3 & $2^{4}\cdot 7\cdot 31^{2}$ & $(24,25)$ & 24 & $2^{2}\cdot 7^{2}\cdot 13$\\
+$(4,8)$ & 4 & $3^{3}\cdot 19$ & $(24,29)$ & 24 & $3^{2}\cdot 7^{2}\cdot 13\cdot 19$\\
+$(4,9)$ & 4 & $2^{2}\cdot 3^{3}$ & $(24,33)$ & 24 & $2^{2}\cdot 3$\\
+$(4,17)$ & 4 & $3^{3}\cdot 13$ & $(24,34)$ & 24 & $2^{2}\cdot 7\cdot 19$\\
+$(4,23)$ & 4 & $2^{4}\cdot 3^{3}$ & $(24,36)$ & 24 & $2^{2}$\\
+$(4,24)$ & 4 & $2^{8}\cdot 7\cdot 13\cdot 19$ & $(24,42)$ & 24 & $3\cdot 7^{3}\cdot 19^{2}$\\
+$(4,25)$ & 4 & $3^{2}\cdot 13$ & $(24,51)$ & 24 & $7^{3}$\\
+$(4,27)$ & 4 & $2^{2}\cdot 7\cdot 13$ & $(24,53)$ & 24 & $2^{4}\cdot 3$\\
+$(4,28)$ & 4 & $2^{8}\cdot 3$ & $(24,56)$ & 24 & $2^{4}\cdot 13\cdot 31$\\
+$(4,32)$ & 4 & $2^{2}\cdot 3^{2}\cdot 13$ & $(24,58)$ & 24 & $2^{4}\cdot 3\cdot 13$\\
+$(4,36)$ & 4 & $3^{2}\cdot 13$ & $(24,66)$ & 24 & $2^{8}\cdot 11^{2}\cdot 13$\\
+$(4,43)$ & 4 & $2^{2}\cdot 3^{4}\cdot 7$ & $(24,69)$ & 24 & $2^{2}\cdot 3^{6}\cdot 19\cdot 31$\\
+$(4,58)$ & 4 & $13$ & $(25,29)$ & 25 & $3^{3}\cdot 7$\\
+$(4,59)$ & 4 & $2^{2}\cdot 3^{3}$ & $(25,31)$ & 25 & $2^{4}\cdot 7^{2}$\\
+$(4,65)$ & 4 & $2^{4}\cdot 3^{4}\cdot 13$ & $(25,32)$ & 25 & $2^{2}\cdot 3^{3}$\\
+$(4,66)$ & 4 & $2^{12}$ & $(25,42)$ & 25 & $7\cdot 13$\\
+$(4,75)$ & 4 & $2^{2}\cdot 13\cdot 19$ & $(25,48)$ & 25 & $3^{3}\cdot 7^{2}\cdot 19$\\
+$(5,16)$ & 5 & $19^{3}$ & $(25,58)$ & 25 & $2^{2}\cdot 7$\\
+$(5,18)$ & 5 & $1$ & $(25,59)$ & 25 & $2^{4}\cdot 3\cdot 19$\\
+$(5,22)$ & 5 & $7\cdot 19$ & $(25,64)$ & 25 & $2^{10}$\\
+$(5,36)$ & 5 & $2^{2}\cdot 7\cdot 19$ & $(25,73)$ & 25 & $2^{4}\cdot 13^{2}$\\
+$(5,60)$ & 5 & $19^{2}$ & $(26,32)$ & 26 & $2^{10}\cdot 3\cdot 13$\\
+$(5,62)$ & 5 & $2^{2}\cdot 7^{2}$ & $(26,42)$ & 26 & $2^{4}\cdot 5^{2}$\\
+$(5,72)$ & 5 & $2^{4}\cdot 7^{4}$ & $(26,44)$ & 26 & $2^{10}\cdot 3\cdot 13$\\
+$(5,74)$ & 5 & $2^{2}\cdot 19^{3}$ & $(26,52)$ & 26 & $2^{2}\cdot 3^{2}$\\
+$(6,14)$ & 6 & $7$ & $(26,54)$ & 26 & $2^{12}\cdot 5^{2}$\\
+$(6,15)$ & 6 & $3^{5}\cdot 13\cdot 19$ & $(26,57)$ & 26 & $1$\\
+$(6,20)$ & 6 & $3\cdot 7\cdot 13\cdot 19$ & $(26,75)$ & 26 & $2^{2}\cdot 13^{2}$\\
+$(6,21)$ & 6 & $3^{3}\cdot 13$ & $(27,36)$ & 27 & $13$\\
+$(6,22)$ & 6 & $19$ & $(27,41)$ & 27 & $13$\\
+$(6,25)$ & 6 & $2^{2}\cdot 3\cdot 19$ & $(27,43)$ & 27 & $2^{8}\cdot 7$\\
+$(6,29)$ & 6 & $3\cdot 7\cdot 19$ & $(27,46)$ & 27 & $2^{2}\cdot 31$\\
+$(6,30)$ & 6 & $2^{2}\cdot 3\cdot 13^{2}$ & $(27,66)$ & 27 & $2^{4}\cdot 13\cdot 31$\\
+$(6,35)$ & 6 & $2^{4}$ & $(28,35)$ & 28 & $2^{4}\cdot 3$\\
+$(6,44)$ & 6 & $2^{2}\cdot 3$ & $(28,36)$ & 28 & $13$\\
+$(6,45)$ & 6 & $13^{2}$ & $(28,39)$ & 28 & $3^{5}$\\
+$(6,48)$ & 6 & $2^{2}\cdot 3^{4}\cdot 7^{2}$ & $(28,46)$ & 28 & $2^{2}\cdot 3\cdot 13\cdot 19$\\
+$(6,53)$ & 6 & $2^{2}\cdot 3\cdot 31$ & $(28,54)$ & 28 & $2^{2}$\\
+$(6,57)$ & 6 & $3$ & $(28,74)$ & 28 & $2^{4}\cdot 3^{2}\cdot 19$\\
+$(6,66)$ & 6 & $2^{8}\cdot 13\cdot 31$ & $(29,34)$ & 29 & $3\cdot 19$\\
+$(6,77)$ & 6 & $2^{2}\cdot 3^{3}\cdot 7$ & $(29,38)$ & 29 & $3$\\
+$(7,12)$ & 7 & $3^{5}\cdot 19$ & $(29,39)$ & 29 & $2^{2}\cdot 3\cdot 13$\\
+$(7,18)$ & 7 & $2^{4}\cdot 3\cdot 5^{2}\cdot 19^{2}$ & $(29,42)$ & 29 & $2^{2}\cdot 3\cdot 7\cdot 13$\\
+$(7,25)$ & 7 & $2^{4}\cdot 3\cdot 7^{2}\cdot 13$ & $(29,43)$ & 29 & $5^{2}$\\
+$(7,29)$ & 7 & $3\cdot 13\cdot 19$ & $(29,45)$ & 29 & $5^{2}\cdot 13$\\
+$(7,31)$ & 7 & $3^{2}\cdot 5^{2}\cdot 7\cdot 19$ & $(29,48)$ & 29 & $3^{3}\cdot 7\cdot 13$\\
+$(7,34)$ & 7 & $2^{4}\cdot 3\cdot 7$ & $(29,58)$ & 29 & $3\cdot 7$\\
+$(7,35)$ & 7 & $2^{4}\cdot 19$ & $(29,65)$ & 29 & $3\cdot 13$\\
+$(7,46)$ & 7 & $3^{5}\cdot 13\cdot 19$ & $(29,68)$ & 29 & $3^{2}\cdot 5^{2}\cdot 13$\\
+$(7,48)$ & 7 & $3^{6}\cdot 7^{2}$ & $(29,71)$ & 29 & $3^{2}\cdot 13$\\
+$(7,49)$ & 7 & $2^{2}\cdot 3^{4}\cdot 13\cdot 19$ & $(30,34)$ & 30 & $3$\\
+$(7,57)$ & 7 & $3^{2}$ & $(30,37)$ & 30 & $3^{2}\cdot 13$\\
+$(7,61)$ & 7 & $2^{8}\cdot 3^{4}$ & $(30,39)$ & 30 & $2^{2}\cdot 3^{2}\cdot 13$\\
+$(7,75)$ & 7 & $2^{6}\cdot 19$ & $(30,41)$ & 30 & $2^{2}\cdot 3^{2}\cdot 13$\\
+$(7,76)$ & 7 & $2^{2}\cdot 3^{3}$ & $(30,46)$ & 30 & $2^{2}\cdot 3\cdot 13^{2}$\\
+$(8,23)$ & 8 & $3\cdot 13\cdot 19$ & $(30,54)$ & 30 & $1$\\
+$(8,60)$ & 8 & $3^{2}$ & $(30,55)$ & 30 & $2^{2}\cdot 3^{3}$\\
+$(8,70)$ & 8 & $19$ & $(30,59)$ & 30 & $3^{4}$\\
+$(8,72)$ & 8 & $2^{2}\cdot 3^{3}$ & $(30,66)$ & 30 & $2^{4}\cdot 13^{2}$\\
+$(8,73)$ & 8 & $13\cdot 19$ & $(30,68)$ & 30 & $2^{2}\cdot 3^{4}\cdot 13$\\
+$(8,76)$ & 8 & $3$ & $(31,37)$ & 31 & $2^{2}\cdot 3\cdot 13\cdot 19$\\
+$(9,22)$ & 9 & $2^{2}\cdot 7^{3}$ & $(31,44)$ & 31 & $2^{2}\cdot 7\cdot 13$\\
+$(9,25)$ & 9 & $2^{2}\cdot 3\cdot 13$ & $(31,47)$ & 31 & $2^{2}\cdot 3^{4}\cdot 7^{3}$\\
+$(9,28)$ & 9 & $2^{2}\cdot 3^{5}\cdot 13$ & $(31,50)$ & 31 & $2^{4}$\\
+$(9,30)$ & 9 & $3^{5}\cdot 13^{2}$ & $(31,64)$ & 31 & $3^{2}$\\
+$(9,33)$ & 9 & $3^{2}\cdot 7$ & $(32,41)$ & 32 & $3^{2}\cdot 7$\\
+$(9,36)$ & 9 & $3\cdot 7\cdot 13$ & $(32,42)$ & 32 & $2^{2}\cdot 3^{2}$\\
+$(9,37)$ & 9 & $2^{4}\cdot 3^{2}$ & $(32,46)$ & 32 & $2^{2}\cdot 3$\\
+$(9,49)$ & 9 & $2^{4}\cdot 3^{6}\cdot 7$ & $(32,48)$ & 32 & $2^{4}\cdot 3^{3}\cdot 7$\\
+$(9,69)$ & 9 & $2^{2}\cdot 3$ & $(32,50)$ & 32 & $1$\\
+$(9,75)$ & 9 & $2^{8}\cdot 7$ & $(32,75)$ & 32 & $2^{2}\cdot 7\cdot 13$\\
+$(10,11)$ & 10 & $2^{4}\cdot 7\cdot 19$ & $(33,46)$ & 33 & $2^{2}\cdot 7\cdot 13$\\
+$(10,12)$ & 10 & $3^{2}\cdot 5^{2}\cdot 7$ & $(34,49)$ & 34 & $3^{2}\cdot 13$\\
+$(10,19)$ & 10 & $2^{2}\cdot 7^{4}$ & $(34,65)$ & 34 & $2^{2}\cdot 3^{4}$\\
+$(10,21)$ & 10 & $3^{2}\cdot 5^{2}\cdot 7$ & $(35,41)$ & 35 & $3\cdot 19$\\
+$(10,22)$ & 10 & $7^{2}\cdot 19$ & $(35,67)$ & 35 & $2^{8}$\\
+$(10,23)$ & 10 & $2^{4}\cdot 7\cdot 19$ & $(35,72)$ & 35 & $2^{8}$\\
+$(10,24)$ & 10 & $2^{4}\cdot 3^{6}\cdot 7^{2}$ & $(35,76)$ & 35 & $2^{4}\cdot 3$\\
+$(10,25)$ & 10 & $7^{2}\cdot 19$ & $(36,45)$ & 36 & $7$\\
+$(10,29)$ & 10 & $3^{2}\cdot 7^{2}\cdot 19$ & $(36,48)$ & 36 & $2^{2}\cdot 3^{4}$\\
+$(10,40)$ & 10 & $2^{6}\cdot 5^{2}$ & $(36,49)$ & 36 & $3^{3}\cdot 7$\\
+$(10,43)$ & 10 & $2^{4}\cdot 7^{2}$ & $(36,56)$ & 36 & $1$\\
+$(10,45)$ & 10 & $1$ & $(36,60)$ & 36 & $3\cdot 19$\\
+$(10,46)$ & 10 & $2^{2}\cdot 19^{2}$ & $(36,62)$ & 36 & $7$\\
+$(10,52)$ & 10 & $5^{2}\cdot 19^{2}$ & $(36,66)$ & 36 & $37$\\
+$(10,58)$ & 10 & $3^{2}\cdot 7$ & $(37,41)$ & 37 & $3^{5}$\\
+$(10,60)$ & 10 & $3^{2}\cdot 7^{2}\cdot 19$ & $(38,40)$ & 38 & $2^{4}\cdot 13$\\
+$(10,65)$ & 10 & $2^{4}\cdot 7\cdot 19$ & $(38,46)$ & 38 & $2^{2}\cdot 3\cdot 31$\\
+$(10,70)$ & 10 & $3^{6}$ & $(38,48)$ & 38 & $2^{4}\cdot 3\cdot 19$\\
+$(10,71)$ & 10 & $2^{4}\cdot 3^{2}$ & $(38,55)$ & 38 & $2^{4}\cdot 3^{3}$\\
+$(11,33)$ & 11 & $2^{2}\cdot 7^{2}$ & $(38,59)$ & 38 & $2^{2}\cdot 3\cdot 19$\\
+$(11,38)$ & 11 & $2^{6}\cdot 13$ & $(38,66)$ & 38 & $2^{4}\cdot 31$\\
+$(11,43)$ & 11 & $2^{4}\cdot 7\cdot 19$ & $(39,46)$ & 39 & $3\cdot 7\cdot 13$\\
+$(11,48)$ & 11 & $2^{2}\cdot 3^{4}$ & $(39,56)$ & 39 & $13^{2}$\\
+$(11,49)$ & 11 & $2^{4}\cdot 3^{3}$ & $(39,58)$ & 39 & $3^{2}\cdot 7$\\
+$(11,52)$ & 11 & $3^{3}\cdot 13\cdot 19$ & $(39,63)$ & 39 & $3\cdot 7$\\
+$(11,55)$ & 11 & $2^{8}\cdot 3^{4}$ & $(39,75)$ & 39 & $2^{2}\cdot 7\cdot 13$\\
+$(11,57)$ & 11 & $1$ & $(40,52)$ & 40 & $5^{2}\cdot 13^{2}$\\
+$(11,58)$ & 11 & $2^{4}$ & $(40,53)$ & 40 & $2^{4}\cdot 13$\\
+$(11,69)$ & 11 & $2^{8}\cdot 7\cdot 19$ & $(40,67)$ & 40 & $2^{6}$\\
+$(11,73)$ & 11 & $2^{4}\cdot 13$ & $(40,75)$ & 40 & $2^{2}$\\
+$(11,75)$ & 11 & $2^{12}$ & $(41,44)$ & 41 & $3^{3}\cdot 13^{2}$\\
+$(12,28)$ & 12 & $3^{3}\cdot 13$ & $(41,75)$ & 41 & $2^{2}\cdot 7\cdot 13$\\
+$(12,35)$ & 12 & $3\cdot 19$ & $(42,43)$ & 42 & $3^{2}\cdot 7\cdot 19$\\
+$(12,46)$ & 12 & $3^{3}\cdot 13$ & $(42,56)$ & 42 & $2^{4}\cdot 5^{2}$\\
+$(12,52)$ & 12 & $3^{3}\cdot 5^{2}$ & $(42,58)$ & 42 & $3$\\
+$(12,63)$ & 12 & $3^{2}$ & $(42,60)$ & 42 & $2^{2}\cdot 3\cdot 7\cdot 13$\\
+$(12,65)$ & 12 & $3^{2}\cdot 7$ & $(42,72)$ & 42 & $2^{2}\cdot 13^{2}$\\
+$(12,75)$ & 12 & $1$ & $(42,73)$ & 42 & $3^{2}\cdot 13\cdot 19$\\
+$(13,15)$ & 13 & $2^{4}\cdot 3\cdot 7^{2}\cdot 13$ & $(43,46)$ & 43 & $2^{2}\cdot 3^{2}\cdot 5^{2}$\\
+$(13,16)$ & 13 & $3^{2}$ & $(43,54)$ & 43 & $2^{4}$\\
+$(13,34)$ & 13 & $3^{2}$ & $(43,56)$ & 43 & $2^{4}\cdot 31$\\
+$(13,39)$ & 13 & $5^{2}\cdot 7^{2}$ & $(43,64)$ & 43 & $2^{2}\cdot 3^{3}\cdot 31$\\
+$(13,41)$ & 13 & $7\cdot 13$ & $(44,56)$ & 44 & $2^{6}\cdot 31$\\
+$(13,45)$ & 13 & $5^{2}\cdot 13^{2}$ & $(44,59)$ & 44 & $2^{2}\cdot 3^{5}$\\
+$(13,48)$ & 13 & $2^{2}\cdot 3^{2}\cdot 7$ & $(44,62)$ & 44 & $1$\\
+$(13,49)$ & 13 & $3^{2}\cdot 13$ & $(44,69)$ & 44 & $3^{3}\cdot 31$\\
+$(13,51)$ & 13 & $3\cdot 7$ & $(44,71)$ & 44 & $2^{4}\cdot 3^{4}$\\
+$(13,60)$ & 13 & $3^{3}\cdot 7$ & $(46,53)$ & 46 & $2^{8}\cdot 3$\\
+$(13,65)$ & 13 & $2^{2}\cdot 3^{2}\cdot 7$ & $(46,60)$ & 46 & $3\cdot 7\cdot 19$\\
+$(13,66)$ & 13 & $13$ & $(46,64)$ & 46 & $2^{2}\cdot 3^{3}\cdot 7$\\
+$(13,72)$ & 13 & $2^{4}\cdot 3^{2}\cdot 13^{2}$ & $(46,65)$ & 46 & $2^{4}\cdot 3^{2}\cdot 19$\\
+$(14,17)$ & 14 & $2^{4}\cdot 7^{3}$ & $(46,68)$ & 46 & $2^{2}\cdot 5^{2}\cdot 13$\\
+$(14,19)$ & 14 & $2^{4}\cdot 7\cdot 13$ & $(46,71)$ & 46 & $2^{4}\cdot 3^{7}$\\
+$(14,20)$ & 14 & $7\cdot 13$ & $(47,57)$ & 47 & $3^{4}$\\
+$(14,22)$ & 14 & $2^{6}\cdot 7$ & $(47,58)$ & 47 & $2^{2}\cdot 3$\\
+$(14,33)$ & 14 & $2^{4}$ & $(47,64)$ & 47 & $2^{4}\cdot 3^{8}$\\
+$(14,58)$ & 14 & $7^{3}$ & $(47,75)$ & 47 & $2^{10}$\\
+$(14,59)$ & 14 & $2^{6}\cdot 7^{2}$ & $(47,77)$ & 47 & $2^{4}\cdot 3^{8}$\\
+$(15,21)$ & 15 & $3^{5}\cdot 19$ & $(48,53)$ & 48 & $2^{8}\cdot 3$\\
+$(15,25)$ & 15 & $3\cdot 13\cdot 19$ & $(48,56)$ & 48 & $2^{6}\cdot 13\cdot 31$\\
+$(15,35)$ & 15 & $2^{4}\cdot 19$ & $(48,64)$ & 48 & $2^{2}\cdot 3^{3}\cdot 31$\\
+$(15,39)$ & 15 & $3^{2}\cdot 7^{4}$ & $(48,68)$ & 48 & $2^{2}\cdot 13^{2}$\\
+$(15,41)$ & 15 & $3^{2}\cdot 13^{2}\cdot 19$ & $(48,70)$ & 48 & $2^{4}\cdot 7\cdot 31$\\
+$(15,45)$ & 15 & $5^{2}\cdot 7\cdot 13$ & $(48,73)$ & 48 & $3^{2}\cdot 31$\\
+$(15,46)$ & 15 & $2^{4}\cdot 3^{3}\cdot 5^{2}\cdot 19$ & $(48,76)$ & 48 & $2^{2}\cdot 3^{2}\cdot 7$\\
+$(15,47)$ & 15 & $2^{6}\cdot 3^{8}\cdot 7$ & $(48,77)$ & 48 & $2^{2}\cdot 3^{2}\cdot 7$\\
+$(15,60)$ & 15 & $3\cdot 13\cdot 19$ & $(49,59)$ & 49 & $3^{2}\cdot 13$\\
+$(15,64)$ & 15 & $3^{4}$ & $(49,62)$ & 49 & $2^{2}\cdot 7\cdot 13$\\
+$(15,70)$ & 15 & $2^{4}\cdot 13$ & $(49,63)$ & 49 & $2^{2}\cdot 3^{2}$\\
+$(15,72)$ & 15 & $2^{8}\cdot 3\cdot 7$ & $(49,72)$ & 49 & $2^{2}\cdot 3^{2}\cdot 7\cdot 13^{2}$\\
+$(15,74)$ & 15 & $2^{4}\cdot 19^{2}$ & $(49,75)$ & 49 & $2^{2}\cdot 13\cdot 19$\\
+$(16,33)$ & 16 & $3$ & $(51,55)$ & 51 & $2^{2}\cdot 3$\\
+$(16,37)$ & 16 & $2^{4}\cdot 3\cdot 19$ & $(51,61)$ & 51 & $2^{4}$\\
+$(16,40)$ & 16 & $2^{6}$ & $(53,60)$ & 53 & $3$\\
+$(16,53)$ & 16 & $2^{2}\cdot 3^{3}$ & $(53,66)$ & 53 & $2^{4}\cdot 31$\\
+$(16,74)$ & 16 & $2^{4}\cdot 3\cdot 19^{2}$ & $(53,77)$ & 53 & $2^{2}\cdot 3^{4}$\\
+$(17,33)$ & 17 & $2^{2}\cdot 3^{3}$ & $(54,56)$ & 54 & $5^{2}$\\
+$(17,39)$ & 17 & $3\cdot 13$ & $(54,67)$ & 54 & $2^{6}$\\
+$(17,48)$ & 17 & $2^{6}\cdot 3^{3}\cdot 7$ & $(55,74)$ & 55 & $2^{2}\cdot 3$\\
+$(17,56)$ & 17 & $1$ & $(56,63)$ & 56 & $2^{4}$\\
+$(18,31)$ & 18 & $5^{2}\cdot 13^{2}$ & $(56,65)$ & 56 & $2^{4}\cdot 13\cdot 31$\\
+$(18,32)$ & 18 & $2^{4}\cdot 3^{4}$ & $(56,68)$ & 56 & $2^{8}\cdot 13$\\
+$(18,34)$ & 18 & $2^{2}\cdot 3$ & $(56,76)$ & 56 & $2^{4}$\\
+$(18,35)$ & 18 & $3\cdot 19$ & $(57,75)$ & 57 & $1$\\
+$(18,41)$ & 18 & $3\cdot 13$ & $(59,62)$ & 59 & $2^{2}\cdot 7^{2}\cdot 13$\\
+$(18,42)$ & 18 & $3\cdot 7^{2}\cdot 19$ & $(59,76)$ & 59 & $3^{5}\cdot 7$\\
+$(18,46)$ & 18 & $3^{2}\cdot 7\cdot 19$ & $(60,65)$ & 60 & $3^{2}\cdot 7\cdot 13^{3}$\\
+$(18,49)$ & 18 & $3^{3}\cdot 13$ & $(61,65)$ & 61 & $2^{4}\cdot 3$\\
+$(18,60)$ & 18 & $3^{2}\cdot 7^{2}$ & $(61,75)$ & 61 & $2^{4}$\\
+$(18,75)$ & 18 & $2^{2}\cdot 13\cdot 19$ & $(61,77)$ & 61 & $2^{2}\cdot 3^{2}\cdot 31$\\
+$(19,20)$ & 19 & $13\cdot 31$ & $(62,75)$ & 62 & $2^{6}$\\
+$(19,22)$ & 19 & $7$ & $(63,65)$ & 63 & $2^{8}\cdot 3$\\
+$(19,24)$ & 19 & $2^{4}\cdot 11^{2}$ & $(65,70)$ & 65 & $2^{4}\cdot 13$\\
+$(19,35)$ & 19 & $2^{4}$ & $(65,75)$ & 65 & $2^{4}$\\
+$(19,39)$ & 19 & $7$ & $(66,67)$ & 66 & $2^{8}$\\
+$(19,47)$ & 19 & $2^{12}$ & $(69,75)$ & 69 & $2^{2}$\\
+$(19,54)$ & 19 & $1$ & $(70,73)$ & 70 & $13\cdot 31$\\
+$(19,61)$ & 19 & $2^{6}\cdot 31$ & $(74,75)$ & 74 & $2^{4}$\\
+$(19,66)$ & 19 & $2^{10}\cdot 11^{2}$ & & &\\
+\end{longtable}
+\endgroup
+
+\begingroup\small
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}rrl>{\raggedright\arraybackslash}p{0.66\textwidth}@{}}
+\caption{The terminal residue classes $x\equiv a$, $y\equiv b\pmod{p^k}$ of Step~4, grouped by $p$, $k$ and the value of $(B^{(g)}_p)_g$.}\label{tab:local}\\
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endfirsthead
+\hline $p$ & $k$ & value & classes $(a,b)$\\\hline\endhead\hline\endfoot
+2 & 3 & $(0,1)$ & $(1,5)$,\allowbreak\ $(3,0)$,\allowbreak\ $(5,3)$,\allowbreak\ $(5,6)$,\allowbreak\ $(5,7)$,\allowbreak\ $(7,4)$\\
+2 & 4 & $(0,1)$ & $(9,1)$,\allowbreak\ $(9,9)$\\
+2 & 5 & $(0,1)$ & $(1,18)$,\allowbreak\ $(9,10)$,\allowbreak\ $(17,2)$,\allowbreak\ $(25,26)$\\
+\addlinespace[3pt]
+3 & 3 & $(0,0)$ & $(8,13)$,\allowbreak\ $(17,13)$,\allowbreak\ $(26,13)$\\
+3 & 3 & $(1,0)$ & $(7,0)$,\allowbreak\ $(16,9)$,\allowbreak\ $(25,18)$\\
+3 & 3 & $(1,1)$ & $(2,4)$,\allowbreak\ $(11,4)$,\allowbreak\ $(20,4)$\\
+3 & 3 & $(1,2)$ & $(24,1)$\\
+3 & 3 & $(2,0)$ & $(1,21)$,\allowbreak\ $(10,3)$,\allowbreak\ $(19,12)$\\
+3 & 4 & $(0,0)$ & $(4,51)$,\allowbreak\ $(13,60)$,\allowbreak\ $(22,69)$,\allowbreak\ $(31,78)$,\allowbreak\ $(40,6)$,\allowbreak\ $(49,15)$,\allowbreak\ $(58,24)$,\allowbreak\ $(67,33)$,\allowbreak\ $(76,42)$\\
+3 & 4 & $(1,0)$ & $(0,61)$,\allowbreak\ $(9,79)$,\allowbreak\ $(18,16)$,\allowbreak\ $(27,34)$,\allowbreak\ $(36,52)$,\allowbreak\ $(45,70)$,\allowbreak\ $(54,7)$,\allowbreak\ $(63,25)$,\allowbreak\ $(72,43)$\\
+3 & 4 & $(1,1)$ & $(3,67)$,\allowbreak\ $(12,4)$,\allowbreak\ $(21,22)$,\allowbreak\ $(30,40)$,\allowbreak\ $(39,58)$,\allowbreak\ $(48,76)$,\allowbreak\ $(57,13)$,\allowbreak\ $(66,31)$,\allowbreak\ $(75,49)$\\
+3 & 4 & $(1,2)$ & $(6,19)$,\allowbreak\ $(15,37)$,\allowbreak\ $(33,73)$,\allowbreak\ $(42,10)$,\allowbreak\ $(60,46)$,\allowbreak\ $(69,64)$\\
+3 & 4 & $(2,2)$ & $(5,49)$,\allowbreak\ $(14,22)$,\allowbreak\ $(23,76)$,\allowbreak\ $(32,49)$,\allowbreak\ $(41,22)$,\allowbreak\ $(50,76)$,\allowbreak\ $(59,49)$,\allowbreak\ $(68,22)$,\allowbreak\ $(77,76)$\\
+\addlinespace[3pt]
+5 & 1 & $(0,0)$ & $(2,4)$\\
+5 & 2 & $(0,0)$ & $(3,6)$,\allowbreak\ $(8,21)$,\allowbreak\ $(13,11)$,\allowbreak\ $(18,1)$,\allowbreak\ $(23,16)$\\
+\addlinespace[3pt]
+7 & 2 & $(0,0)$ & $(2,30)$,\allowbreak\ $(9,2)$,\allowbreak\ $(12,0)$,\allowbreak\ $(16,23)$,\allowbreak\ $(19,7)$,\allowbreak\ $(23,44)$,\allowbreak\ $(26,14)$,\allowbreak\ $(32,14)$,\allowbreak\ $(39,42)$,\allowbreak\ $(46,21)$\\
+7 & 3 & $(0,0)$ & $(4,0)$,\allowbreak\ $(5,238)$,\allowbreak\ $(6,107)$,\allowbreak\ $(13,51)$,\allowbreak\ $(18,252)$,\allowbreak\ $(20,191)$,\allowbreak\ $(25,182)$,\allowbreak\ $(27,184)$,\allowbreak\ $(30,65)$,\allowbreak\ $(33,315)$,\allowbreak\ $(34,30)$,\allowbreak\ $(40,224)$,\allowbreak\ $(41,72)$,\allowbreak\ $(44,303)$,\allowbreak\ $(47,329)$,\allowbreak\ $(53,196)$,\allowbreak\ $(55,58)$,\allowbreak\ $(60,273)$,\allowbreak\ $(62,2)$,\allowbreak\ $(67,105)$,\allowbreak\ $(69,142)$,\allowbreak\ $(74,35)$,\allowbreak\ $(76,135)$,\allowbreak\ $(79,212)$,\allowbreak\ $(82,21)$,\allowbreak\ $(83,324)$,\allowbreak\ $(86,184)$,\allowbreak\ $(89,273)$,\allowbreak\ $(90,23)$,\allowbreak\ $(93,107)$,\allowbreak\ $(96,35)$,\allowbreak\ $(102,49)$,\allowbreak\ $(103,336)$,\allowbreak\ $(104,9)$,\allowbreak\ $(109,126)$,\allowbreak\ $(111,296)$,\allowbreak\ $(116,301)$,\allowbreak\ $(118,93)$,\allowbreak\ $(123,231)$,\allowbreak\ $(125,86)$,\allowbreak\ $(128,16)$,\allowbreak\ $(131,70)$,\allowbreak\ $(132,275)$,\allowbreak\ $(135,331)$,\allowbreak\ $(138,322)$,\allowbreak\ $(139,317)$,\allowbreak\ $(142,254)$,\allowbreak\ $(145,84)$,\allowbreak\ $(146,212)$,\allowbreak\ $(151,245)$,\allowbreak\ $(152,42)$,\allowbreak\ $(153,303)$,\allowbreak\ $(158,322)$,\allowbreak\ $(160,247)$,\allowbreak\ $(165,154)$,\allowbreak\ $(167,44)$,\allowbreak\ $(172,84)$,\allowbreak\ $(174,37)$,\allowbreak\ $(177,163)$,\allowbreak\ $(180,119)$,\allowbreak\ $(181,226)$,\allowbreak\ $(184,135)$,\allowbreak\ $(187,28)$,\allowbreak\ $(188,268)$,\allowbreak\ $(191,58)$,\allowbreak\ $(194,133)$,\allowbreak\ $(195,163)$,\allowbreak\ $(200,98)$,\allowbreak\ $(201,91)$,\allowbreak\ $(202,254)$,\allowbreak\ $(207,175)$,\allowbreak\ $(209,198)$,\allowbreak\ $(214,7)$,\allowbreak\ $(216,338)$,\allowbreak\ $(221,280)$,\allowbreak\ $(223,331)$,\allowbreak\ $(226,310)$,\allowbreak\ $(229,168)$,\allowbreak\ $(230,177)$,\allowbreak\ $(233,282)$,\allowbreak\ $(236,77)$,\allowbreak\ $(237,219)$,\allowbreak\ $(240,205)$,\allowbreak\ $(243,182)$,\allowbreak\ $(249,294)$,\allowbreak\ $(250,140)$,\allowbreak\ $(251,205)$,\allowbreak\ $(256,28)$,\allowbreak\ $(258,149)$,\allowbreak\ $(263,203)$,\allowbreak\ $(265,289)$,\allowbreak\ $(270,133)$,\allowbreak\ $(272,282)$,\allowbreak\ $(275,114)$,\allowbreak\ $(278,217)$,\allowbreak\ $(279,128)$,\allowbreak\ $(282,86)$,\allowbreak\ $(285,126)$,\allowbreak\ $(286,170)$,\allowbreak\ $(289,9)$,\allowbreak\ $(292,231)$,\allowbreak\ $(298,147)$,\allowbreak\ $(299,189)$,\allowbreak\ $(300,156)$,\allowbreak\ $(305,224)$,\allowbreak\ $(307,100)$,\allowbreak\ $(312,56)$,\allowbreak\ $(314,240)$,\allowbreak\ $(319,329)$,\allowbreak\ $(321,233)$,\allowbreak\ $(324,261)$,\allowbreak\ $(327,266)$,\allowbreak\ $(328,79)$,\allowbreak\ $(331,233)$,\allowbreak\ $(335,121)$,\allowbreak\ $(338,156)$,\allowbreak\ $(341,280)$\\
+7 & 4 & $(0,0)$ & $(11,1106)$,\allowbreak\ $(37,1066)$,\allowbreak\ $(48,1682)$,\allowbreak\ $(54,630)$,\allowbreak\ $(97,1633)$,\allowbreak\ $(244,1486)$,\allowbreak\ $(293,1437)$,\allowbreak\ $(334,175)$,\allowbreak\ $(342,1388)$,\allowbreak\ $(354,77)$,\allowbreak\ $(380,2095)$,\allowbreak\ $(391,1339)$,\allowbreak\ $(397,973)$,\allowbreak\ $(440,1290)$,\allowbreak\ $(587,1143)$,\allowbreak\ $(636,1094)$,\allowbreak\ $(677,518)$,\allowbreak\ $(685,1045)$,\allowbreak\ $(697,1449)$,\allowbreak\ $(723,723)$,\allowbreak\ $(734,996)$,\allowbreak\ $(740,1316)$,\allowbreak\ $(783,947)$,\allowbreak\ $(930,800)$,\allowbreak\ $(979,751)$,\allowbreak\ $(1020,861)$,\allowbreak\ $(1028,702)$,\allowbreak\ $(1040,420)$,\allowbreak\ $(1066,1752)$,\allowbreak\ $(1077,653)$,\allowbreak\ $(1083,1659)$,\allowbreak\ $(1126,604)$,\allowbreak\ $(1273,457)$,\allowbreak\ $(1322,408)$,\allowbreak\ $(1363,1204)$,\allowbreak\ $(1371,359)$,\allowbreak\ $(1383,1792)$,\allowbreak\ $(1409,380)$,\allowbreak\ $(1420,310)$,\allowbreak\ $(1426,2002)$,\allowbreak\ $(1469,261)$,\allowbreak\ $(1616,114)$,\allowbreak\ $(1665,65)$,\allowbreak\ $(1706,1547)$,\allowbreak\ $(1714,16)$,\allowbreak\ $(1726,763)$,\allowbreak\ $(1752,1409)$,\allowbreak\ $(1763,2368)$,\allowbreak\ $(1769,2345)$,\allowbreak\ $(1812,2319)$,\allowbreak\ $(1959,2172)$,\allowbreak\ $(2008,2123)$,\allowbreak\ $(2049,1890)$,\allowbreak\ $(2057,2074)$,\allowbreak\ $(2069,2135)$,\allowbreak\ $(2095,37)$,\allowbreak\ $(2106,2025)$,\allowbreak\ $(2112,287)$,\allowbreak\ $(2155,1976)$,\allowbreak\ $(2302,1829)$,\allowbreak\ $(2351,1780)$,\allowbreak\ $(2392,2233)$,\allowbreak\ $(2400,1731)$\\
+\addlinespace[3pt]
+11 & 1 & $(0,0)$ & $(0,2)$,\allowbreak\ $(2,2)$,\allowbreak\ $(3,4)$,\allowbreak\ $(3,6)$,\allowbreak\ $(5,1)$,\allowbreak\ $(5,4)$,\allowbreak\ $(5,6)$,\allowbreak\ $(6,9)$,\allowbreak\ $(7,1)$,\allowbreak\ $(7,4)$,\allowbreak\ $(7,6)$,\allowbreak\ $(8,3)$,\allowbreak\ $(9,8)$\\
+11 & 2 & $(0,0)$ & $(3,100)$,\allowbreak\ $(14,89)$,\allowbreak\ $(25,78)$,\allowbreak\ $(36,67)$,\allowbreak\ $(47,56)$,\allowbreak\ $(58,45)$,\allowbreak\ $(69,34)$,\allowbreak\ $(80,23)$,\allowbreak\ $(91,12)$,\allowbreak\ $(102,1)$,\allowbreak\ $(113,111)$\\
+\addlinespace[3pt]
+13 & 1 & $(0,0)$ & $(0,7)$,\allowbreak\ $(4,12)$,\allowbreak\ $(8,5)$,\allowbreak\ $(12,10)$\\
+13 & 2 & $(0,0)$ & $(3,2)$,\allowbreak\ $(3,15)$,\allowbreak\ $(3,28)$,\allowbreak\ $(3,41)$,\allowbreak\ $(3,54)$,\allowbreak\ $(3,67)$,\allowbreak\ $(3,80)$,\allowbreak\ $(3,93)$,\allowbreak\ $(3,106)$,\allowbreak\ $(3,119)$,\allowbreak\ $(3,132)$,\allowbreak\ $(3,139)$,\allowbreak\ $(3,145)$,\allowbreak\ $(3,158)$,\allowbreak\ $(6,36)$,\allowbreak\ $(8,0)$,\allowbreak\ $(8,99)$,\allowbreak\ $(10,69)$,\allowbreak\ $(11,144)$,\allowbreak\ $(16,100)$,\allowbreak\ $(18,69)$,\allowbreak\ $(21,34)$,\allowbreak\ $(21,130)$,\allowbreak\ $(23,4)$,\allowbreak\ $(24,92)$,\allowbreak\ $(28,116)$,\allowbreak\ $(29,61)$,\allowbreak\ $(32,49)$,\allowbreak\ $(34,91)$,\allowbreak\ $(34,138)$,\allowbreak\ $(36,108)$,\allowbreak\ $(37,40)$,\allowbreak\ $(41,77)$,\allowbreak\ $(42,22)$,\allowbreak\ $(44,4)$,\allowbreak\ $(45,140)$,\allowbreak\ $(47,52)$,\allowbreak\ $(47,73)$,\allowbreak\ $(49,43)$,\allowbreak\ $(50,157)$,\allowbreak\ $(55,152)$,\allowbreak\ $(60,8)$,\allowbreak\ $(60,13)$,\allowbreak\ $(62,147)$,\allowbreak\ $(63,105)$,\allowbreak\ $(68,113)$,\allowbreak\ $(70,108)$,\allowbreak\ $(71,153)$,\allowbreak\ $(73,112)$,\allowbreak\ $(73,143)$,\allowbreak\ $(75,82)$,\allowbreak\ $(76,53)$,\allowbreak\ $(80,129)$,\allowbreak\ $(81,74)$,\allowbreak\ $(83,160)$,\allowbreak\ $(84,75)$,\allowbreak\ $(86,47)$,\allowbreak\ $(86,104)$,\allowbreak\ $(88,17)$,\allowbreak\ $(89,1)$,\allowbreak\ $(93,90)$,\allowbreak\ $(94,35)$,\allowbreak\ $(96,43)$,\allowbreak\ $(97,166)$,\allowbreak\ $(101,121)$,\allowbreak\ $(102,118)$,\allowbreak\ $(107,165)$,\allowbreak\ $(109,95)$,\allowbreak\ $(110,88)$,\allowbreak\ $(112,26)$,\allowbreak\ $(112,86)$,\allowbreak\ $(114,56)$,\allowbreak\ $(115,66)$,\allowbreak\ $(119,12)$,\allowbreak\ $(120,126)$,\allowbreak\ $(122,147)$,\allowbreak\ $(123,10)$,\allowbreak\ $(125,156)$,\allowbreak\ $(127,160)$,\allowbreak\ $(128,14)$,\allowbreak\ $(133,87)$,\allowbreak\ $(135,11)$,\allowbreak\ $(135,24)$,\allowbreak\ $(135,30)$,\allowbreak\ $(135,37)$,\allowbreak\ $(135,50)$,\allowbreak\ $(135,63)$,\allowbreak\ $(135,76)$,\allowbreak\ $(135,89)$,\allowbreak\ $(135,102)$,\allowbreak\ $(135,115)$,\allowbreak\ $(135,128)$,\allowbreak\ $(135,141)$,\allowbreak\ $(135,154)$,\allowbreak\ $(135,167)$,\allowbreak\ $(136,101)$,\allowbreak\ $(138,117)$,\allowbreak\ $(138,125)$,\allowbreak\ $(140,95)$,\allowbreak\ $(141,131)$,\allowbreak\ $(146,48)$,\allowbreak\ $(148,82)$,\allowbreak\ $(149,23)$,\allowbreak\ $(151,60)$,\allowbreak\ $(151,78)$,\allowbreak\ $(153,11)$,\allowbreak\ $(153,24)$,\allowbreak\ $(153,30)$,\allowbreak\ $(153,37)$,\allowbreak\ $(153,50)$,\allowbreak\ $(153,63)$,\allowbreak\ $(153,76)$,\allowbreak\ $(153,89)$,\allowbreak\ $(153,102)$,\allowbreak\ $(153,115)$,\allowbreak\ $(153,128)$,\allowbreak\ $(153,141)$,\allowbreak\ $(153,154)$,\allowbreak\ $(153,167)$,\allowbreak\ $(154,79)$,\allowbreak\ $(159,9)$,\allowbreak\ $(162,114)$,\allowbreak\ $(164,39)$,\allowbreak\ $(164,164)$,\allowbreak\ $(166,134)$,\allowbreak\ $(167,27)$\\
+13 & 3 & $(0,0)$ & $(5,1031)$,\allowbreak\ $(15,1676)$,\allowbreak\ $(19,465)$,\allowbreak\ $(31,1473)$,\allowbreak\ $(54,1559)$,\allowbreak\ $(57,732)$,\allowbreak\ $(58,1076)$,\allowbreak\ $(67,844)$,\allowbreak\ $(99,1417)$,\allowbreak\ $(99,1841)$,\allowbreak\ $(106,1065)$,\allowbreak\ $(125,528)$,\allowbreak\ $(132,987)$,\allowbreak\ $(145,441)$,\allowbreak\ $(158,1754)$,\allowbreak\ $(161,1317)$,\allowbreak\ $(171,532)$,\allowbreak\ $(174,1707)$,\allowbreak\ $(184,1169)$,\allowbreak\ $(188,1648)$,\allowbreak\ $(200,2149)$,\allowbreak\ $(223,1052)$,\allowbreak\ $(226,1408)$,\allowbreak\ $(227,62)$,\allowbreak\ $(236,337)$,\allowbreak\ $(268,910)$,\allowbreak\ $(268,996)$,\allowbreak\ $(275,558)$,\allowbreak\ $(294,1880)$,\allowbreak\ $(301,480)$,\allowbreak\ $(314,2131)$,\allowbreak\ $(327,1247)$,\allowbreak\ $(330,1993)$,\allowbreak\ $(340,25)$,\allowbreak\ $(343,186)$,\allowbreak\ $(353,662)$,\allowbreak\ $(357,634)$,\allowbreak\ $(369,628)$,\allowbreak\ $(392,545)$,\allowbreak\ $(395,2084)$,\allowbreak\ $(396,1245)$,\allowbreak\ $(405,2027)$,\allowbreak\ $(437,151)$,\allowbreak\ $(437,403)$,\allowbreak\ $(444,51)$,\allowbreak\ $(463,1035)$,\allowbreak\ $(470,2170)$,\allowbreak\ $(483,1624)$,\allowbreak\ $(496,740)$,\allowbreak\ $(499,472)$,\allowbreak\ $(509,1715)$,\allowbreak\ $(512,862)$,\allowbreak\ $(522,155)$,\allowbreak\ $(526,1817)$,\allowbreak\ $(538,1304)$,\allowbreak\ $(561,38)$,\allowbreak\ $(564,563)$,\allowbreak\ $(565,231)$,\allowbreak\ $(574,1520)$,\allowbreak\ $(606,1503)$,\allowbreak\ $(606,2093)$,\allowbreak\ $(613,1741)$,\allowbreak\ $(632,190)$,\allowbreak\ $(639,1663)$,\allowbreak\ $(652,1117)$,\allowbreak\ $(665,233)$,\allowbreak\ $(668,1148)$,\allowbreak\ $(678,1208)$,\allowbreak\ $(681,1538)$,\allowbreak\ $(691,1845)$,\allowbreak\ $(695,803)$,\allowbreak\ $(707,1980)$,\allowbreak\ $(730,1728)$,\allowbreak\ $(733,1239)$,\allowbreak\ $(734,1414)$,\allowbreak\ $(743,1013)$,\allowbreak\ $(775,658)$,\allowbreak\ $(775,1586)$,\allowbreak\ $(782,1234)$,\allowbreak\ $(801,1542)$,\allowbreak\ $(808,1156)$,\allowbreak\ $(821,610)$,\allowbreak\ $(834,1923)$,\allowbreak\ $(837,1824)$,\allowbreak\ $(847,701)$,\allowbreak\ $(850,17)$,\allowbreak\ $(860,1338)$,\allowbreak\ $(864,1986)$,\allowbreak\ $(876,459)$,\allowbreak\ $(899,1221)$,\allowbreak\ $(902,1915)$,\allowbreak\ $(903,400)$,\allowbreak\ $(912,506)$,\allowbreak\ $(944,1079)$,\allowbreak\ $(944,2010)$,\allowbreak\ $(951,727)$,\allowbreak\ $(970,697)$,\allowbreak\ $(977,649)$,\allowbreak\ $(990,103)$,\allowbreak\ $(1003,1416)$,\allowbreak\ $(1006,303)$,\allowbreak\ $(1016,194)$,\allowbreak\ $(1019,693)$,\allowbreak\ $(1029,831)$,\allowbreak\ $(1033,972)$,\allowbreak\ $(1045,1135)$,\allowbreak\ $(1068,714)$,\allowbreak\ $(1071,394)$,\allowbreak\ $(1072,1583)$,\allowbreak\ $(1081,2196)$,\allowbreak\ $(1113,572)$,\allowbreak\ $(1113,1165)$,\allowbreak\ $(1120,220)$,\allowbreak\ $(1139,2049)$,\allowbreak\ $(1146,142)$,\allowbreak\ $(1159,1793)$,\allowbreak\ $(1172,909)$,\allowbreak\ $(1175,979)$,\allowbreak\ $(1185,1884)$,\allowbreak\ $(1188,1369)$,\allowbreak\ $(1198,324)$,\allowbreak\ $(1202,2155)$,\allowbreak\ $(1214,1811)$,\allowbreak\ $(1237,207)$,\allowbreak\ $(1240,1070)$,\allowbreak\ $(1241,569)$,\allowbreak\ $(1250,1689)$,\allowbreak\ $(1282,65)$,\allowbreak\ $(1282,320)$,\allowbreak\ $(1289,1910)$,\allowbreak\ $(1308,1204)$,\allowbreak\ $(1315,1832)$,\allowbreak\ $(1328,1286)$,\allowbreak\ $(1341,402)$,\allowbreak\ $(1344,1655)$,\allowbreak\ $(1354,1377)$,\allowbreak\ $(1357,2045)$,\allowbreak\ $(1367,2014)$,\allowbreak\ $(1371,1141)$,\allowbreak\ $(1383,290)$,\allowbreak\ $(1406,1897)$,\allowbreak\ $(1409,1746)$,\allowbreak\ $(1410,1752)$,\allowbreak\ $(1419,1182)$,\allowbreak\ $(1451,1672)$,\allowbreak\ $(1451,1755)$,\allowbreak\ $(1458,1403)$,\allowbreak\ $(1477,359)$,\allowbreak\ $(1484,1325)$,\allowbreak\ $(1497,779)$,\allowbreak\ $(1510,2092)$,\allowbreak\ $(1513,134)$,\allowbreak\ $(1523,870)$,\allowbreak\ $(1526,524)$,\allowbreak\ $(1536,1507)$,\allowbreak\ $(1540,127)$,\allowbreak\ $(1552,966)$,\allowbreak\ $(1575,1390)$,\allowbreak\ $(1578,225)$,\allowbreak\ $(1579,738)$,\allowbreak\ $(1588,675)$,\allowbreak\ $(1620,827)$,\allowbreak\ $(1620,1248)$,\allowbreak\ $(1627,896)$,\allowbreak\ $(1646,1711)$,\allowbreak\ $(1653,818)$,\allowbreak\ $(1666,272)$,\allowbreak\ $(1679,1585)$,\allowbreak\ $(1682,810)$,\allowbreak\ $(1692,363)$,\allowbreak\ $(1695,1200)$,\allowbreak\ $(1705,1000)$,\allowbreak\ $(1709,1310)$,\allowbreak\ $(1721,1642)$,\allowbreak\ $(1744,883)$,\allowbreak\ $(1747,901)$,\allowbreak\ $(1748,1921)$,\allowbreak\ $(1757,168)$,\allowbreak\ $(1789,741)$,\allowbreak\ $(1789,2179)$,\allowbreak\ $(1796,389)$,\allowbreak\ $(1815,866)$,\allowbreak\ $(1822,311)$,\allowbreak\ $(1835,1962)$,\allowbreak\ $(1848,1078)$,\allowbreak\ $(1851,1486)$,\allowbreak\ $(1861,2053)$,\allowbreak\ $(1864,1876)$,\allowbreak\ $(1874,493)$,\allowbreak\ $(1878,296)$,\allowbreak\ $(1890,121)$,\allowbreak\ $(1913,376)$,\allowbreak\ $(1916,1577)$,\allowbreak\ $(1917,907)$,\allowbreak\ $(1926,1858)$,\allowbreak\ $(1958,234)$,\allowbreak\ $(1958,1334)$,\allowbreak\ $(1965,2079)$,\allowbreak\ $(1984,21)$,\allowbreak\ $(1991,2001)$,\allowbreak\ $(2004,1455)$,\allowbreak\ $(2017,571)$,\allowbreak\ $(2020,2162)$,\allowbreak\ $(2030,1546)$,\allowbreak\ $(2033,355)$,\allowbreak\ $(2043,2183)$,\allowbreak\ $(2047,1479)$,\allowbreak\ $(2059,797)$,\allowbreak\ $(2082,2066)$,\allowbreak\ $(2085,56)$,\allowbreak\ $(2086,2090)$,\allowbreak\ $(2095,1351)$,\allowbreak\ $(2127,489)$,\allowbreak\ $(2127,1924)$,\allowbreak\ $(2134,1572)$,\allowbreak\ $(2153,1373)$,\allowbreak\ $(2160,1494)$,\allowbreak\ $(2173,948)$,\allowbreak\ $(2186,64)$,\allowbreak\ $(2189,641)$\\
+13 & 4 & $(0,0)$ & $(2,14221)$,\allowbreak\ $(2199,7630)$,\allowbreak\ $(4396,1039)$,\allowbreak\ $(6593,23009)$,\allowbreak\ $(8790,16418)$,\allowbreak\ $(10987,9827)$,\allowbreak\ $(13184,3236)$,\allowbreak\ $(15381,25206)$,\allowbreak\ $(17578,18615)$,\allowbreak\ $(19775,12024)$,\allowbreak\ $(21972,5433)$,\allowbreak\ $(24169,27403)$,\allowbreak\ $(26366,20812)$\\
+\addlinespace[3pt]
+19 & 1 & $(0,0)$ & $(2,17)$,\allowbreak\ $(12,9)$,\allowbreak\ $(13,16)$,\allowbreak\ $(14,11)$\\
+19 & 2 & $(0,0)$ & $(1,196)$,\allowbreak\ $(4,237)$,\allowbreak\ $(5,96)$,\allowbreak\ $(7,305)$,\allowbreak\ $(10,86)$,\allowbreak\ $(13,140)$,\allowbreak\ $(13,281)$,\allowbreak\ $(17,158)$,\allowbreak\ $(20,44)$,\allowbreak\ $(23,351)$,\allowbreak\ $(24,248)$,\allowbreak\ $(26,134)$,\allowbreak\ $(29,105)$,\allowbreak\ $(32,64)$,\allowbreak\ $(32,243)$,\allowbreak\ $(36,253)$,\allowbreak\ $(39,253)$,\allowbreak\ $(42,104)$,\allowbreak\ $(43,39)$,\allowbreak\ $(45,324)$,\allowbreak\ $(48,124)$,\allowbreak\ $(51,205)$,\allowbreak\ $(51,349)$,\allowbreak\ $(55,348)$,\allowbreak\ $(58,101)$,\allowbreak\ $(61,218)$,\allowbreak\ $(62,191)$,\allowbreak\ $(64,153)$,\allowbreak\ $(67,143)$,\allowbreak\ $(70,167)$,\allowbreak\ $(70,273)$,\allowbreak\ $(74,82)$,\allowbreak\ $(77,310)$,\allowbreak\ $(80,5)$,\allowbreak\ $(80,24)$,\allowbreak\ $(80,43)$,\allowbreak\ $(80,62)$,\allowbreak\ $(80,81)$,\allowbreak\ $(80,100)$,\allowbreak\ $(80,119)$,\allowbreak\ $(80,138)$,\allowbreak\ $(80,157)$,\allowbreak\ $(80,176)$,\allowbreak\ $(80,195)$,\allowbreak\ $(80,214)$,\allowbreak\ $(80,233)$,\allowbreak\ $(80,252)$,\allowbreak\ $(80,271)$,\allowbreak\ $(80,290)$,\allowbreak\ $(80,309)$,\allowbreak\ $(80,328)$,\allowbreak\ $(80,332)$,\allowbreak\ $(80,347)$,\allowbreak\ $(81,343)$,\allowbreak\ $(83,343)$,\allowbreak\ $(86,162)$,\allowbreak\ $(88,5)$,\allowbreak\ $(88,24)$,\allowbreak\ $(88,43)$,\allowbreak\ $(88,62)$,\allowbreak\ $(88,81)$,\allowbreak\ $(88,100)$,\allowbreak\ $(88,119)$,\allowbreak\ $(88,138)$,\allowbreak\ $(88,157)$,\allowbreak\ $(88,176)$,\allowbreak\ $(88,195)$,\allowbreak\ $(88,214)$,\allowbreak\ $(88,233)$,\allowbreak\ $(88,252)$,\allowbreak\ $(88,271)$,\allowbreak\ $(88,290)$,\allowbreak\ $(88,309)$,\allowbreak\ $(88,328)$,\allowbreak\ $(88,347)$,\allowbreak\ $(89,129)$,\allowbreak\ $(89,197)$,\allowbreak\ $(93,177)$,\allowbreak\ $(96,158)$,\allowbreak\ $(99,85)$,\allowbreak\ $(100,134)$,\allowbreak\ $(102,172)$,\allowbreak\ $(105,181)$,\allowbreak\ $(108,91)$,\allowbreak\ $(108,121)$,\allowbreak\ $(112,272)$,\allowbreak\ $(115,6)$,\allowbreak\ $(118,199)$,\allowbreak\ $(119,286)$,\allowbreak\ $(121,1)$,\allowbreak\ $(124,200)$,\allowbreak\ $(127,45)$,\allowbreak\ $(127,53)$,\allowbreak\ $(131,6)$,\allowbreak\ $(134,215)$,\allowbreak\ $(137,313)$,\allowbreak\ $(138,77)$,\allowbreak\ $(140,191)$,\allowbreak\ $(143,219)$,\allowbreak\ $(146,15)$,\allowbreak\ $(146,330)$,\allowbreak\ $(150,101)$,\allowbreak\ $(153,63)$,\allowbreak\ $(156,66)$,\allowbreak\ $(157,229)$,\allowbreak\ $(159,20)$,\allowbreak\ $(162,238)$,\allowbreak\ $(165,254)$,\allowbreak\ $(165,338)$,\allowbreak\ $(169,196)$,\allowbreak\ $(172,272)$,\allowbreak\ $(175,180)$,\allowbreak\ $(176,20)$,\allowbreak\ $(178,210)$,\allowbreak\ $(181,257)$,\allowbreak\ $(184,178)$,\allowbreak\ $(184,300)$,\allowbreak\ $(188,291)$,\allowbreak\ $(191,120)$,\allowbreak\ $(194,294)$,\allowbreak\ $(195,172)$,\allowbreak\ $(197,39)$,\allowbreak\ $(200,276)$,\allowbreak\ $(203,102)$,\allowbreak\ $(203,262)$,\allowbreak\ $(207,25)$,\allowbreak\ $(210,329)$,\allowbreak\ $(213,47)$,\allowbreak\ $(214,324)$,\allowbreak\ $(216,229)$,\allowbreak\ $(219,295)$,\allowbreak\ $(222,26)$,\allowbreak\ $(222,224)$,\allowbreak\ $(226,120)$,\allowbreak\ $(229,177)$,\allowbreak\ $(232,161)$,\allowbreak\ $(233,115)$,\allowbreak\ $(235,58)$,\allowbreak\ $(238,314)$,\allowbreak\ $(241,186)$,\allowbreak\ $(241,311)$,\allowbreak\ $(245,215)$,\allowbreak\ $(248,25)$,\allowbreak\ $(251,275)$,\allowbreak\ $(252,267)$,\allowbreak\ $(254,248)$,\allowbreak\ $(257,333)$,\allowbreak\ $(260,148)$,\allowbreak\ $(260,235)$,\allowbreak\ $(267,234)$,\allowbreak\ $(270,28)$,\allowbreak\ $(271,58)$,\allowbreak\ $(273,77)$,\allowbreak\ $(276,352)$,\allowbreak\ $(279,110)$,\allowbreak\ $(279,159)$,\allowbreak\ $(283,44)$,\allowbreak\ $(286,82)$,\allowbreak\ $(289,142)$,\allowbreak\ $(290,210)$,\allowbreak\ $(292,267)$,\allowbreak\ $(295,10)$,\allowbreak\ $(298,72)$,\allowbreak\ $(298,83)$,\allowbreak\ $(302,139)$,\allowbreak\ $(305,291)$,\allowbreak\ $(308,256)$,\allowbreak\ $(309,1)$,\allowbreak\ $(311,96)$,\allowbreak\ $(314,14)$,\allowbreak\ $(314,29)$,\allowbreak\ $(314,33)$,\allowbreak\ $(314,52)$,\allowbreak\ $(314,71)$,\allowbreak\ $(314,90)$,\allowbreak\ $(314,109)$,\allowbreak\ $(314,128)$,\allowbreak\ $(314,147)$,\allowbreak\ $(314,166)$,\allowbreak\ $(314,185)$,\allowbreak\ $(314,204)$,\allowbreak\ $(314,223)$,\allowbreak\ $(314,242)$,\allowbreak\ $(314,261)$,\allowbreak\ $(314,280)$,\allowbreak\ $(314,299)$,\allowbreak\ $(314,337)$,\allowbreak\ $(314,356)$,\allowbreak\ $(317,7)$,\allowbreak\ $(317,34)$,\allowbreak\ $(321,234)$,\allowbreak\ $(324,139)$,\allowbreak\ $(327,9)$,\allowbreak\ $(328,153)$,\allowbreak\ $(330,286)$,\allowbreak\ $(333,48)$,\allowbreak\ $(336,292)$,\allowbreak\ $(336,357)$,\allowbreak\ $(340,329)$,\allowbreak\ $(343,348)$,\allowbreak\ $(346,123)$,\allowbreak\ $(347,305)$,\allowbreak\ $(349,115)$,\allowbreak\ $(352,67)$,\allowbreak\ $(355,216)$,\allowbreak\ $(359,63)$\\
+19 & 3 & $(0,0)$ & $(264,1393)$,\allowbreak\ $(355,1763)$,\allowbreak\ $(625,3198)$,\allowbreak\ $(716,1041)$,\allowbreak\ $(986,5003)$,\allowbreak\ $(1347,6808)$,\allowbreak\ $(1438,6456)$,\allowbreak\ $(1708,1754)$,\allowbreak\ $(1799,5734)$,\allowbreak\ $(2069,3559)$,\allowbreak\ $(2160,5012)$,\allowbreak\ $(2430,5364)$,\allowbreak\ $(2521,4290)$,\allowbreak\ $(2791,310)$,\allowbreak\ $(2882,3568)$,\allowbreak\ $(3152,2115)$,\allowbreak\ $(3243,2846)$,\allowbreak\ $(3513,3920)$,\allowbreak\ $(3604,2124)$,\allowbreak\ $(3874,5725)$,\allowbreak\ $(3965,1402)$,\allowbreak\ $(4235,671)$,\allowbreak\ $(4285,318)$,\allowbreak\ $(4285,679)$,\allowbreak\ $(4285,1040)$,\allowbreak\ $(4285,1401)$,\allowbreak\ $(4285,1762)$,\allowbreak\ $(4285,2123)$,\allowbreak\ $(4285,2484)$,\allowbreak\ $(4285,2845)$,\allowbreak\ $(4285,3206)$,\allowbreak\ $(4285,3567)$,\allowbreak\ $(4285,3928)$,\allowbreak\ $(4285,4289)$,\allowbreak\ $(4285,4650)$,\allowbreak\ $(4285,5011)$,\allowbreak\ $(4285,5372)$,\allowbreak\ $(4285,5733)$,\allowbreak\ $(4285,6094)$,\allowbreak\ $(4285,6455)$,\allowbreak\ $(4285,6816)$,\allowbreak\ $(4326,680)$,\allowbreak\ $(4596,2476)$,\allowbreak\ $(4687,6817)$,\allowbreak\ $(4957,4281)$,\allowbreak\ $(5048,6095)$,\allowbreak\ $(5318,6086)$,\allowbreak\ $(5409,5373)$,\allowbreak\ $(5679,1032)$,\allowbreak\ $(5770,4651)$,\allowbreak\ $(6040,2837)$,\allowbreak\ $(6131,3929)$,\allowbreak\ $(6401,4642)$,\allowbreak\ $(6492,3207)$,\allowbreak\ $(6762,6447)$,\allowbreak\ $(6853,2485)$\\
+19 & 4 & $(0,0)$ & $(1077,7178)$,\allowbreak\ $(7936,123781)$,\allowbreak\ $(14795,110063)$,\allowbreak\ $(21654,96345)$,\allowbreak\ $(28513,82627)$,\allowbreak\ $(35372,68909)$,\allowbreak\ $(42231,55191)$,\allowbreak\ $(49090,41473)$,\allowbreak\ $(55949,27755)$,\allowbreak\ $(62808,14037)$,\allowbreak\ $(69667,319)$,\allowbreak\ $(76526,116922)$,\allowbreak\ $(83385,103204)$,\allowbreak\ $(90244,89486)$,\allowbreak\ $(97103,75768)$,\allowbreak\ $(103962,62050)$,\allowbreak\ $(110821,48332)$,\allowbreak\ $(117680,34614)$,\allowbreak\ $(124539,20896)$\\
+\addlinespace[3pt]
+31 & 1 & $(0,0)$ & $(0,3)$,\allowbreak\ $(0,14)$,\allowbreak\ $(1,9)$,\allowbreak\ $(1,26)$,\allowbreak\ $(1,27)$,\allowbreak\ $(3,21)$,\allowbreak\ $(4,26)$,\allowbreak\ $(4,27)$,\allowbreak\ $(5,6)$,\allowbreak\ $(7,30)$,\allowbreak\ $(8,4)$,\allowbreak\ $(8,5)$,\allowbreak\ $(8,22)$,\allowbreak\ $(10,2)$,\allowbreak\ $(12,14)$,\allowbreak\ $(16,4)$,\allowbreak\ $(16,5)$,\allowbreak\ $(20,6)$,\allowbreak\ $(21,14)$,\allowbreak\ $(22,29)$,\allowbreak\ $(23,18)$,\allowbreak\ $(23,20)$,\allowbreak\ $(23,24)$,\allowbreak\ $(25,30)$,\allowbreak\ $(29,3)$,\allowbreak\ $(29,14)$,\allowbreak\ $(30,19)$\\
+31 & 2 & $(0,0)$ & $(2,304)$,\allowbreak\ $(4,691)$,\allowbreak\ $(12,437)$,\allowbreak\ $(15,240)$,\allowbreak\ $(16,239)$,\allowbreak\ $(21,499)$,\allowbreak\ $(27,466)$,\allowbreak\ $(33,955)$,\allowbreak\ $(35,226)$,\allowbreak\ $(43,406)$,\allowbreak\ $(46,519)$,\allowbreak\ $(47,22)$,\allowbreak\ $(52,468)$,\allowbreak\ $(58,466)$,\allowbreak\ $(64,645)$,\allowbreak\ $(66,722)$,\allowbreak\ $(74,375)$,\allowbreak\ $(77,798)$,\allowbreak\ $(78,766)$,\allowbreak\ $(89,466)$,\allowbreak\ $(95,335)$,\allowbreak\ $(97,257)$,\allowbreak\ $(105,344)$,\allowbreak\ $(108,116)$,\allowbreak\ $(109,549)$,\allowbreak\ $(114,406)$,\allowbreak\ $(120,466)$,\allowbreak\ $(126,25)$,\allowbreak\ $(128,753)$,\allowbreak\ $(136,313)$,\allowbreak\ $(139,395)$,\allowbreak\ $(140,332)$,\allowbreak\ $(145,375)$,\allowbreak\ $(151,466)$,\allowbreak\ $(157,676)$,\allowbreak\ $(159,288)$,\allowbreak\ $(167,282)$,\allowbreak\ $(170,674)$,\allowbreak\ $(171,115)$,\allowbreak\ $(176,344)$,\allowbreak\ $(182,466)$,\allowbreak\ $(188,366)$,\allowbreak\ $(190,784)$,\allowbreak\ $(198,251)$,\allowbreak\ $(201,953)$,\allowbreak\ $(202,859)$,\allowbreak\ $(207,313)$,\allowbreak\ $(213,466)$,\allowbreak\ $(219,56)$,\allowbreak\ $(221,319)$,\allowbreak\ $(229,220)$,\allowbreak\ $(232,271)$,\allowbreak\ $(233,642)$,\allowbreak\ $(238,282)$,\allowbreak\ $(244,466)$,\allowbreak\ $(250,707)$,\allowbreak\ $(252,815)$,\allowbreak\ $(260,189)$,\allowbreak\ $(263,550)$,\allowbreak\ $(264,425)$,\allowbreak\ $(269,251)$,\allowbreak\ $(275,466)$,\allowbreak\ $(281,397)$,\allowbreak\ $(283,350)$,\allowbreak\ $(291,158)$,\allowbreak\ $(294,829)$,\allowbreak\ $(295,208)$,\allowbreak\ $(300,220)$,\allowbreak\ $(306,466)$,\allowbreak\ $(312,87)$,\allowbreak\ $(314,846)$,\allowbreak\ $(322,127)$,\allowbreak\ $(325,147)$,\allowbreak\ $(326,952)$,\allowbreak\ $(331,189)$,\allowbreak\ $(337,466)$,\allowbreak\ $(343,738)$,\allowbreak\ $(345,381)$,\allowbreak\ $(353,96)$,\allowbreak\ $(356,426)$,\allowbreak\ $(357,735)$,\allowbreak\ $(362,158)$,\allowbreak\ $(368,466)$,\allowbreak\ $(374,428)$,\allowbreak\ $(376,877)$,\allowbreak\ $(384,65)$,\allowbreak\ $(387,705)$,\allowbreak\ $(388,518)$,\allowbreak\ $(393,127)$,\allowbreak\ $(399,466)$,\allowbreak\ $(405,118)$,\allowbreak\ $(407,412)$,\allowbreak\ $(415,34)$,\allowbreak\ $(418,23)$,\allowbreak\ $(419,301)$,\allowbreak\ $(424,96)$,\allowbreak\ $(430,466)$,\allowbreak\ $(436,769)$,\allowbreak\ $(438,908)$,\allowbreak\ $(446,3)$,\allowbreak\ $(449,302)$,\allowbreak\ $(450,84)$,\allowbreak\ $(455,65)$,\allowbreak\ $(461,466)$,\allowbreak\ $(467,459)$,\allowbreak\ $(469,443)$,\allowbreak\ $(477,933)$,\allowbreak\ $(480,581)$,\allowbreak\ $(481,828)$,\allowbreak\ $(486,34)$,\allowbreak\ $(492,466)$,\allowbreak\ $(498,149)$,\allowbreak\ $(500,939)$,\allowbreak\ $(508,902)$,\allowbreak\ $(511,860)$,\allowbreak\ $(512,611)$,\allowbreak\ $(517,3)$,\allowbreak\ $(523,466)$,\allowbreak\ $(529,800)$,\allowbreak\ $(531,474)$,\allowbreak\ $(539,871)$,\allowbreak\ $(542,178)$,\allowbreak\ $(543,394)$,\allowbreak\ $(548,933)$,\allowbreak\ $(554,466)$,\allowbreak\ $(560,490)$,\allowbreak\ $(562,9)$,\allowbreak\ $(570,840)$,\allowbreak\ $(573,457)$,\allowbreak\ $(574,177)$,\allowbreak\ $(579,902)$,\allowbreak\ $(585,466)$,\allowbreak\ $(591,180)$,\allowbreak\ $(593,505)$,\allowbreak\ $(601,809)$,\allowbreak\ $(604,736)$,\allowbreak\ $(605,921)$,\allowbreak\ $(610,871)$,\allowbreak\ $(616,466)$,\allowbreak\ $(622,831)$,\allowbreak\ $(624,40)$,\allowbreak\ $(632,778)$,\allowbreak\ $(635,54)$,\allowbreak\ $(636,704)$,\allowbreak\ $(641,840)$,\allowbreak\ $(647,466)$,\allowbreak\ $(653,521)$,\allowbreak\ $(655,536)$,\allowbreak\ $(663,747)$,\allowbreak\ $(666,333)$,\allowbreak\ $(667,487)$,\allowbreak\ $(672,809)$,\allowbreak\ $(678,466)$,\allowbreak\ $(684,211)$,\allowbreak\ $(686,71)$,\allowbreak\ $(694,716)$,\allowbreak\ $(697,612)$,\allowbreak\ $(698,270)$,\allowbreak\ $(703,778)$,\allowbreak\ $(709,466)$,\allowbreak\ $(715,862)$,\allowbreak\ $(717,567)$,\allowbreak\ $(725,685)$,\allowbreak\ $(728,891)$,\allowbreak\ $(729,53)$,\allowbreak\ $(734,747)$,\allowbreak\ $(740,466)$,\allowbreak\ $(746,552)$,\allowbreak\ $(748,102)$,\allowbreak\ $(756,654)$,\allowbreak\ $(759,209)$,\allowbreak\ $(760,797)$,\allowbreak\ $(765,716)$,\allowbreak\ $(771,466)$,\allowbreak\ $(777,242)$,\allowbreak\ $(779,598)$,\allowbreak\ $(787,623)$,\allowbreak\ $(790,488)$,\allowbreak\ $(791,580)$,\allowbreak\ $(796,685)$,\allowbreak\ $(802,466)$,\allowbreak\ $(808,893)$,\allowbreak\ $(810,133)$,\allowbreak\ $(818,592)$,\allowbreak\ $(821,767)$,\allowbreak\ $(822,363)$,\allowbreak\ $(827,654)$,\allowbreak\ $(833,466)$,\allowbreak\ $(839,583)$,\allowbreak\ $(841,629)$,\allowbreak\ $(849,561)$,\allowbreak\ $(852,85)$,\allowbreak\ $(853,146)$,\allowbreak\ $(858,623)$,\allowbreak\ $(864,466)$,\allowbreak\ $(870,273)$,\allowbreak\ $(872,164)$,\allowbreak\ $(880,530)$,\allowbreak\ $(883,364)$,\allowbreak\ $(884,890)$,\allowbreak\ $(889,592)$,\allowbreak\ $(895,466)$,\allowbreak\ $(901,924)$,\allowbreak\ $(903,660)$,\allowbreak\ $(911,499)$,\allowbreak\ $(914,643)$,\allowbreak\ $(915,673)$,\allowbreak\ $(920,561)$,\allowbreak\ $(926,466)$,\allowbreak\ $(932,614)$,\allowbreak\ $(934,195)$,\allowbreak\ $(942,468)$,\allowbreak\ $(945,922)$,\allowbreak\ $(946,456)$,\allowbreak\ $(951,530)$,\allowbreak\ $(957,466)$\\
+31 & 3 & $(0,0)$ & $(83,5242)$,\allowbreak\ $(1044,4281)$,\allowbreak\ $(2005,3320)$,\allowbreak\ $(2966,2359)$,\allowbreak\ $(3927,1398)$,\allowbreak\ $(4888,437)$,\allowbreak\ $(5849,29267)$,\allowbreak\ $(6810,28306)$,\allowbreak\ $(7771,27345)$,\allowbreak\ $(8732,26384)$,\allowbreak\ $(9693,25423)$,\allowbreak\ $(10654,24462)$,\allowbreak\ $(11615,23501)$,\allowbreak\ $(12576,22540)$,\allowbreak\ $(13537,21579)$,\allowbreak\ $(14498,20618)$,\allowbreak\ $(15459,19657)$,\allowbreak\ $(16420,18696)$,\allowbreak\ $(17381,17735)$,\allowbreak\ $(18342,16774)$,\allowbreak\ $(19303,15813)$,\allowbreak\ $(20264,14852)$,\allowbreak\ $(21225,13891)$,\allowbreak\ $(22186,12930)$,\allowbreak\ $(23147,11969)$,\allowbreak\ $(24108,11008)$,\allowbreak\ $(25069,10047)$,\allowbreak\ $(26030,9086)$,\allowbreak\ $(26991,8125)$,\allowbreak\ $(27952,7164)$,\allowbreak\ $(28913,6203)$\\
+\addlinespace[3pt]
+37 & 1 & $(0,0)$ & $(0,25)$,\allowbreak\ $(1,4)$,\allowbreak\ $(3,16)$,\allowbreak\ $(5,2)$,\allowbreak\ $(5,11)$,\allowbreak\ $(5,24)$,\allowbreak\ $(6,27)$,\allowbreak\ $(8,9)$,\allowbreak\ $(8,29)$,\allowbreak\ $(8,36)$,\allowbreak\ $(13,9)$,\allowbreak\ $(13,29)$,\allowbreak\ $(13,36)$,\allowbreak\ $(14,5)$,\allowbreak\ $(18,13)$,\allowbreak\ $(18,26)$,\allowbreak\ $(18,35)$,\allowbreak\ $(19,27)$,\allowbreak\ $(20,16)$,\allowbreak\ $(23,2)$,\allowbreak\ $(23,11)$,\allowbreak\ $(23,24)$,\allowbreak\ $(26,7)$,\allowbreak\ $(26,23)$,\allowbreak\ $(27,33)$,\allowbreak\ $(29,22)$,\allowbreak\ $(31,12)$,\allowbreak\ $(32,14)$,\allowbreak\ $(32,30)$,\allowbreak\ $(34,10)$,\allowbreak\ $(35,10)$,\allowbreak\ $(36,19)$\\
+37 & 2 & $(0,0)$ & $(2,1218)$,\allowbreak\ $(4,108)$,\allowbreak\ $(10,1014)$,\allowbreak\ $(11,1316)$,\allowbreak\ $(39,1292)$,\allowbreak\ $(41,367)$,\allowbreak\ $(47,1088)$,\allowbreak\ $(48,391)$,\allowbreak\ $(76,1366)$,\allowbreak\ $(78,626)$,\allowbreak\ $(84,1162)$,\allowbreak\ $(85,835)$,\allowbreak\ $(113,71)$,\allowbreak\ $(115,885)$,\allowbreak\ $(121,1236)$,\allowbreak\ $(122,1279)$,\allowbreak\ $(150,145)$,\allowbreak\ $(152,1144)$,\allowbreak\ $(158,1310)$,\allowbreak\ $(159,354)$,\allowbreak\ $(187,219)$,\allowbreak\ $(189,34)$,\allowbreak\ $(195,15)$,\allowbreak\ $(196,798)$,\allowbreak\ $(224,293)$,\allowbreak\ $(226,293)$,\allowbreak\ $(232,89)$,\allowbreak\ $(233,1242)$,\allowbreak\ $(261,367)$,\allowbreak\ $(263,552)$,\allowbreak\ $(269,163)$,\allowbreak\ $(270,317)$,\allowbreak\ $(298,441)$,\allowbreak\ $(300,811)$,\allowbreak\ $(306,237)$,\allowbreak\ $(307,761)$,\allowbreak\ $(335,515)$,\allowbreak\ $(337,1070)$,\allowbreak\ $(343,311)$,\allowbreak\ $(344,1205)$,\allowbreak\ $(372,589)$,\allowbreak\ $(374,1329)$,\allowbreak\ $(380,385)$,\allowbreak\ $(381,280)$,\allowbreak\ $(409,663)$,\allowbreak\ $(411,219)$,\allowbreak\ $(417,459)$,\allowbreak\ $(418,724)$,\allowbreak\ $(446,737)$,\allowbreak\ $(448,478)$,\allowbreak\ $(454,533)$,\allowbreak\ $(455,1168)$,\allowbreak\ $(483,811)$,\allowbreak\ $(485,737)$,\allowbreak\ $(491,607)$,\allowbreak\ $(492,243)$,\allowbreak\ $(520,885)$,\allowbreak\ $(522,996)$,\allowbreak\ $(528,681)$,\allowbreak\ $(529,687)$,\allowbreak\ $(557,959)$,\allowbreak\ $(559,1255)$,\allowbreak\ $(565,755)$,\allowbreak\ $(566,1131)$,\allowbreak\ $(594,1033)$,\allowbreak\ $(596,145)$,\allowbreak\ $(602,829)$,\allowbreak\ $(603,206)$,\allowbreak\ $(631,1107)$,\allowbreak\ $(633,404)$,\allowbreak\ $(639,903)$,\allowbreak\ $(640,650)$,\allowbreak\ $(668,1181)$,\allowbreak\ $(670,663)$,\allowbreak\ $(676,977)$,\allowbreak\ $(677,1094)$,\allowbreak\ $(705,1255)$,\allowbreak\ $(707,922)$,\allowbreak\ $(713,1051)$,\allowbreak\ $(714,169)$,\allowbreak\ $(742,1329)$,\allowbreak\ $(744,1181)$,\allowbreak\ $(750,1125)$,\allowbreak\ $(751,613)$,\allowbreak\ $(779,34)$,\allowbreak\ $(781,71)$,\allowbreak\ $(787,1199)$,\allowbreak\ $(788,1057)$,\allowbreak\ $(816,108)$,\allowbreak\ $(818,330)$,\allowbreak\ $(824,1273)$,\allowbreak\ $(825,132)$,\allowbreak\ $(853,182)$,\allowbreak\ $(855,589)$,\allowbreak\ $(861,1347)$,\allowbreak\ $(862,576)$,\allowbreak\ $(890,256)$,\allowbreak\ $(892,848)$,\allowbreak\ $(898,52)$,\allowbreak\ $(899,1020)$,\allowbreak\ $(927,330)$,\allowbreak\ $(929,1107)$,\allowbreak\ $(935,126)$,\allowbreak\ $(936,95)$,\allowbreak\ $(964,404)$,\allowbreak\ $(966,1366)$,\allowbreak\ $(972,200)$,\allowbreak\ $(973,539)$,\allowbreak\ $(1001,478)$,\allowbreak\ $(1003,256)$,\allowbreak\ $(1009,274)$,\allowbreak\ $(1010,983)$,\allowbreak\ $(1038,552)$,\allowbreak\ $(1040,515)$,\allowbreak\ $(1046,348)$,\allowbreak\ $(1047,58)$,\allowbreak\ $(1075,626)$,\allowbreak\ $(1077,774)$,\allowbreak\ $(1083,422)$,\allowbreak\ $(1084,502)$,\allowbreak\ $(1112,700)$,\allowbreak\ $(1114,1033)$,\allowbreak\ $(1120,496)$,\allowbreak\ $(1121,946)$,\allowbreak\ $(1149,774)$,\allowbreak\ $(1151,1292)$,\allowbreak\ $(1157,570)$,\allowbreak\ $(1158,21)$,\allowbreak\ $(1186,848)$,\allowbreak\ $(1188,182)$,\allowbreak\ $(1194,644)$,\allowbreak\ $(1195,465)$,\allowbreak\ $(1223,922)$,\allowbreak\ $(1225,441)$,\allowbreak\ $(1231,718)$,\allowbreak\ $(1232,909)$,\allowbreak\ $(1260,996)$,\allowbreak\ $(1262,700)$,\allowbreak\ $(1268,792)$,\allowbreak\ $(1269,1353)$,\allowbreak\ $(1297,1070)$,\allowbreak\ $(1299,959)$,\allowbreak\ $(1305,866)$,\allowbreak\ $(1306,428)$,\allowbreak\ $(1334,1144)$,\allowbreak\ $(1336,1218)$,\allowbreak\ $(1342,940)$,\allowbreak\ $(1343,872)$\\
+\addlinespace[3pt]
+\end{longtable}
+\endgroup
+\end{document}
