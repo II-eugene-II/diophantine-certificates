@@ -14,7 +14,7 @@ This equation has **no integer solutions**.
 
 One reciprocity graph over $K=\mathbb{Q}(\omega)$, where $\omega^2+\omega+1=0$, for the cubic Hilbert symbol. Its 44 vertices are auxiliary polynomials $H_0,\dots,H_{43}$ with coefficients in $\mathbb{Z}[\omega]$, each with a constant $c_i\in\mathbb{Z}[\omega]$, and it has 187 weighted edges.
 
-At an integer solution, the edges give local contributions $B_p\in\mathbb{Z}/3\mathbb{Z}$ of the primes $p$, and by the Hilbert reciprocity law their sum is $0$. The proof shows that $B_p=0$ for every prime $p$ outside $S=\{2,3,7,13\}$, while $\sum_{p\in S}B_p=1$.
+At an integer solution, the edges give local contributions $B_p\in\mathbb{Z}/3\mathbb{Z}$ of the primes $p$, and by the Hilbert reciprocity law their sum is $0$. The proof shows that $B_p=0$ for every prime $p$ outside $S=\lbrace 2,3,7,13 \rbrace$, while $\sum_{p\in S}B_p=1$.
 
 The complete proof, with all the identities and tables that it uses, is in [E524064_25.pdf](E524064_25.pdf) (11 pages).
 
