@@ -1,0 +1,165 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E268433851185\_2: x\textasciicircum 4+2x+4y\textasciicircum 3+y-1=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+% Legendre and Jacobi symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E268433851185\_2}\\[4pt] {\Large The equation $x^{4}+2x+4y^{3}+y-1=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=55$, length $l=12$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+2x+4y^{3}+y-1=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses two polynomial identities of the form $H_kT_k=U_k^2+d_kV_k^2$ on the curve \eqref{eq:main}, with $(d_1,d_2)=(-6,1)$, and the fact that an odd prime $p$ with $\leg{-d_k}{p}=-1$ divides $U_k^2+d_kV_k^2$ only to an even power. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Jacobi symbol and the law of quadratic reciprocity.
+
+\section{Jacobi symbols and the norm forms $a^2+db^2$}
+
+Throughout this section, $d$ is a squarefree integer with $d\neq0,-1$; we apply the results with $d\in\{-6,1\}$. For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. For an odd positive integer $n$, the Jacobi symbol is $\leg{a}{n}=\prod_p\leg{a}{p}^{v_p(n)}$, the product over the prime factors $p$ of $n$. It is multiplicative in $a$ and in $n$, it depends only on $a$ modulo $n$, and it is non-zero exactly when $a$ and $n$ are coprime. We use the law of quadratic reciprocity for Jacobi symbols together with its supplements \cite[Chapter~5, \S2]{IR}: for odd positive integers $m$ and $n$,
+\begin{gather*}
+\leg{-1}{n}=(-1)^{(n-1)/2},\qquad\leg{2}{n}=(-1)^{(n^2-1)/8},\\
+\leg{m}{n}\leg{n}{m}=(-1)^{(m-1)(n-1)/4}\quad\text{if }\gcd(m,n)=1.
+\end{gather*}
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be an odd prime with $\leg{-d}{p}=-1$, and let $a,b\in\Z$. If $p\mid a^2+db^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$. Then $(ac)^2\equiv-d(bc)^2\equiv-d\pmod p$, so $-d$ is a square modulo $p$. As $\leg{-d}{p}\neq0$, it is a non-zero square, so $\leg{-d}{p}=1$, a contradiction. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $a,b\in\Z$ be not both zero. Then $a^2+db^2\neq0$, and $v_p(a^2+db^2)$ is even for every odd prime $p$ with $\leg{-d}{p}=-1$.
+\end{lemma}
+
+\begin{proof}
+If $d>0$, then clearly $a^2+db^2>0$. If $d<0$, then $-d>1$ is squarefree, hence not a square, so $a^2+db^2\neq0$. Let $p$ be an odd prime with $\leg{-d}{p}=-1$, let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2+db'^2$ by Lemma~\ref{lem:divides}. Since $a^2+db^2=p^{2k}(a'^2+db'^2)$, we get $v_p(a^2+db^2)=2k$.
+\end{proof}
+
+\begin{lemma}\label{lem:period}
+Let $n$ and $n'$ be odd positive integers with $n'\equiv n\pmod{4|d|}$, or, if $d<0$, with $n'\equiv-n\pmod{4|d|}$. Then $\leg{-d}{n'}=\leg{-d}{n}$.
+\end{lemma}
+
+\begin{proof}
+Since $d$ is squarefree, we can write $-d=\varepsilon2^eq$ with $\varepsilon\in\{1,-1\}$, $e\in\{0,1\}$ and $q$ odd and positive. By multiplicativity and the reciprocity laws,
+\[
+\leg{-d}{n}=\leg{\varepsilon}{n}\leg{2}{n}^e(-1)^{(n-1)(q-1)/4}\leg{n}{q}.
+\]
+Here $\leg{\varepsilon}{n}$ and $(-1)^{(n-1)(q-1)/4}$ depend only on $n$ modulo $4$, $\leg{2}{n}$ depends only on $n$ modulo $8$, and $\leg{n}{q}$ depends only on $n$ modulo $q$. Since $4|d|$ is divisible by $4q$, and by $8q$ if $e=1$, the claim for $n'\equiv n$ follows. If $d<0$ and $n'\equiv-n\pmod{4|d|}$, then, as $\varepsilon=1$, the factor $\leg{\varepsilon}{n}$ does not change, $\leg{2}{n}$ does not change because $n'^2\equiv n^2\pmod{16}$, and each of $(-1)^{(n-1)(q-1)/4}$ and $\leg{n}{q}$ is multiplied by $(-1)^{(q-1)/2}$, because $(n'-1)/2\equiv(n-1)/2+1\pmod 2$ and $\leg{n'}{q}=\leg{-1}{q}\leg{n}{q}=(-1)^{(q-1)/2}\leg{n}{q}$.
+\end{proof}
+
+\begin{lemma}\label{lem:odd}
+Let $n$ be a non-zero integer, and let $s$, $u$ and $m$ be positive integers such that every prime factor of $s$ divides $2|d|$, both $2s$ and $4|d|s$ divide $m$, $u$ is odd, $\leg{-d}{u}=-1$, and $n\equiv su\pmod m$. If $d>0$, suppose also that $n>0$. Then there is an odd prime $p$ with $\leg{-d}{p}=-1$ such that $v_p(n)$ is odd.
+\end{lemma}
+
+\begin{proof}
+Since $s\mid m$, we have $s\mid n$, and $n'=n/s$ satisfies $n'\equiv u\pmod{m/s}$. Since $m/s$ is even and divisible by $4|d|$, $n'$ is odd and $n'\equiv u\pmod{4|d|}$. If $d>0$, then $n'>0$, and if $d<0$, then $|n'|\equiv\pm u\pmod{4|d|}$; in both cases Lemma~\ref{lem:period} gives $\leg{-d}{|n'|}=\leg{-d}{u}=-1$. By multiplicativity, the product of $\leg{-d}{p}^{v_p(n')}$ over the prime factors $p$ of $|n'|$ is $-1$, so some prime factor $p$ of $n'$ satisfies $\leg{-d}{p}=-1$ and $v_p(n')$ is odd. Then $p$ is odd, and $p\nmid2d$, so $p\nmid s$ and $v_p(n)=v_p(n')$ is odd.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=x^{4}+2x+4y^{3}+y-1$, so that \eqref{eq:main} is the equation $F(x,y)=0$.
+For the first identity, $d_{1}=-6$, and we define
+\begin{align*}
+H_{1}&=3x^{2}+4xy-2x+2y^{2}+2y+1,\\
+T_{1}&=16x^{5}-8x^{4}y+80x^{4}-96x^{3}y-96x^{3}+80x^{2}y^{2}+16x^{2}y\\
+&\quad+120x^{2}+160xy^{2}-16xy+16x+24y^{2}-8y+2,\\
+U_{1}&=2x^{4}+4x^{3}+2x^{2}-134x+76,\\
+V_{1}&=-2x^{3}+55x-31,\\
+G_{1}&=-4x^{4}+32x^{3}+40x^{2}y+208x^{2}+80xy+96x+12y+8,\\
+A_{1}&=-348482x^{2}-198358x+9477449,\\
+B_{1}&=-348482x^{3}-895322x^{2}-851004x+22884950,\\
+\intertext{for the second identity, $d_{2}=1$, and we define}
+H_{2}&=x^{2}-2y+2,\\
+T_{2}&=x^{4}+2x^{2}y+4x^{2}+4y^{2}+4y+5,\\
+U_{2}&=x^{3}+2x+2,\\
+V_{2}&=-2x^{2}+x-2,\\
+G_{2}&=-2,\\
+A_{2}&=-10x+17,\\
+B_{2}&=-5x^{2}+6x-2,\\
+\intertext{and, for the signs, we also use}
+Q_{2}&=4x^{4}+8x^{2}y+16x^{2}+16y^{2}+16y+20,\\
+M_{2}&=4x^{6}+32x^{4}+52x^{2}+16x+32,\\
+E_{2}&=192x^{4}+768x^{2}+1024.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+H_{1}T_{1}-U_{1}^2+6V_{1}^2&=G_{1}F,\label{eq:norm1}\\
+H_{2}T_{2}-U_{2}^2-V_{2}^2&=G_{2}F,\label{eq:norm2}\\
+A_{1}U_{1}+B_{1}V_{1}&=2\cdot 3\cdot 7\cdot 233\cdot 1109,\label{eq:bez1}\\
+A_{2}U_{2}+B_{2}V_{2}&=2\cdot 19,\label{eq:bez2}\\
+-8F&=Q_{2}H_{2}-M_{2},\label{eq:sign2}\\
+64Q_{2}&=(8x^{2}+32y+16)^2+E_{2}.\label{eq:sign2b}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm1} and \eqref{eq:norm2} give
+\begin{equation}\label{eq:HT}
+H_kT_k=U_k^2+d_kV_k^2\qquad(k=1,2),
+\end{equation}
+where the polynomials now denote their values at $(x,y)$.
+
+\paragraph{Step 1: congruences.} Checking the $648^2$ residue pairs modulo $648$, we find that \eqref{eq:main} has exactly 648 solutions modulo $648$, and that at each of them $H_{1}\bmod 648$ lies in the set $\mathcal R_{1}$ listed in Table~\ref{tab:res} or $H_{2}\bmod 648$ lies in the set $\mathcal R_{2}$ listed in Table~\ref{tab:res}. For $k=1$, each $r\in\mathcal R_{1}$ is listed as $r=su$ with $s$ and $u$ positive and $u$ odd, or as $r$ if $s=1$, and in each case $\leg{6}{u}=-1$; here every prime factor of each $s\in\{1,9,27\}$ divides $12$, and $2s$ and $24s$ divide $648$ for each such $s$. For $k=2$, each $r\in\mathcal R_{2}$ is listed as $r=su$ with $s$ and $u$ positive and $u$ odd, or as $r$ if $s=1$, and in each case $\leg{-1}{u}=-1$; here for $s=1$, $2s=2$ and $4s=4$ divide $648$.
+
+\paragraph{Step 2: signs.} \emph{The value of $H_{1}$.} By \eqref{eq:bez1}, $U_{1}$ and $V_{1}$ are not both zero, so $U_{1}^2-6V_{1}^2\neq0$ by Lemma~\ref{lem:even} with $d=-6$, and \eqref{eq:HT} gives $H_{1}\neq0$.
+
+\emph{The sign of $H_{2}$.} Since $F(x,y)=0$, \eqref{eq:sign2} gives $Q_{2}H_{2}=M_{2}$, and $M_{2}$ and $E_{2}$ depend only on $x$. We show that $M_{2}>0$ and $E_{2}>0$. If $x\geq1$, write $x=1+z$ with $z\geq0$; if $x\leq-1$, write $x=-1-z$ with $z\geq0$. In both cases, expanding $M_{2}$ and $E_{2}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{2}>0$ and $E_{2}>0$. It remains to consider $x=0$. For $x=0$ we have $M_{2}>0$ and $E_{2}>0$. Hence $M_{2}>0$ and $E_{2}>0$, so \eqref{eq:sign2b} gives $64Q_{2}\geq E_{2}>0$, and $Q_{2}H_{2}=M_{2}>0$ gives $H_{2}>0$.
+
+\paragraph{Step 3: primes $p$ with $\leg{-d_k}{p}=-1$.} Let $k\in\{1,2\}$, and let $p$ be an odd prime with $\leg{-d_k}{p}=-1$, where $(d_{1},d_{2})=(-6,1)$. We show that $v_p(H_k)$ is even. By \eqref{eq:bez1}--\eqref{eq:bez2}, $U_k$ and $V_k$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(H_kT_k)=v_p(U_k^2+d_kV_k^2)$ is even. Suppose that $p$ divides both $H_k$ and $T_k$. Then $p\mid U_k^2+d_kV_k^2$ by \eqref{eq:HT}, so $p\mid U_k$ and $p\mid V_k$ by Lemma~\ref{lem:divides}, and $p\mid R_k$, where $R_k$ is the right-hand side of the identity for $A_kU_k+B_kV_k$. For $k=1$, we have $R_{1}=2\cdot 3\cdot 7\cdot 233\cdot 1109$. As $p$ is odd and $p\neq3$ and $p\neq1109$ because $\leg{6}{3}=0$ and $\leg{6}{1109}=1$, we get $p\in\{7,233\}$. Checking the $7^2$ residue pairs modulo $7$ and the $233^2$ residue pairs modulo $233$, we find that $F$, $H_{1}$ and $T_{1}$ have no common zero modulo $7$ and $233$, a contradiction. For $k=2$, we have $R_{2}=2\cdot 19$. As $p$ is odd, we get $p=19$. Checking the $19^2$ residue pairs modulo $19$, we find that $F$, $H_{2}$ and $T_{2}$ have no common zero modulo $19$, a contradiction. Hence $p$ does not divide both $H_k$ and $T_k$. If $p\nmid T_k$, then $v_p(H_k)=v_p(H_kT_k)$ is even, and if $p\nmid H_k$, then $v_p(H_k)=0$.
+
+\paragraph{Step 4: contradiction.} By Step~1, there is $k$ such that $H_k\equiv su\pmod{648}$ with $s$ and $u$ as in Lemma~\ref{lem:odd} for $d=d_k$. By Step~2, $H_k\neq0$, and $H_k>0$ if $d_k>0$. Hence Lemma~\ref{lem:odd} applies to $n=H_k$ and $d=d_k$, so there is an odd prime $p$ with $\leg{-d_k}{p}=-1$ such that $v_p(H_k)$ is odd. This contradicts Step~3, and the theorem is proved.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\end{thebibliography}
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{The sets $\mathcal R_k$ of residues modulo $648$ in Step~1.}\label{tab:res}
+\begin{tabular}{@{}llllll@{}}
+\hline
+\multicolumn{6}{@{}l}{$\mathcal R_{1}$, the residues of $H_{1}$}\\[2pt]
+$13$ & $133$ & $253$ & $373$ & $517$ & $637$\\
+$37$ & $157$ & $277$ & $397$ & $541$ & \\
+$61$ & $181$ & $301$ & $421$ & $549=9\cdot61$ & \\
+$85$ & $189=27\cdot7$ & $325$ & $445$ & $565$ & \\
+$109$ & $205$ & $333=9\cdot37$ & $469$ & $589$ & \\
+$117=9\cdot13$ & $229$ & $349$ & $493$ & $613$ & \\
+\hline
+\multicolumn{6}{@{}l}{$\mathcal R_{2}$, the residues of $H_{2}$}\\[2pt]
+$7$ & $119$ & $223$ & $335$ & $439$ & $551$\\
+$23$ & $127$ & $239$ & $343$ & $455$ & $559$\\
+$31$ & $143$ & $247$ & $359$ & $463$ & $575$\\
+$47$ & $151$ & $263$ & $367$ & $479$ & $583$\\
+$55$ & $167$ & $271$ & $383$ & $487$ & $599$\\
+$71$ & $175$ & $287$ & $391$ & $503$ & $607$\\
+$79$ & $191$ & $295$ & $407$ & $511$ & $623$\\
+$95$ & $199$ & $311$ & $415$ & $527$ & $631$\\
+$103$ & $215$ & $319$ & $431$ & $535$ & $647$\\
+\hline
+\end{tabular}
+\end{table}
+\end{document}
