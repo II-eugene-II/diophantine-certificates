@@ -18,7 +18,7 @@ $$H=x-2y,\qquad U=16x^2+x+2,\qquad V=3x+6,\qquad T=32x^2+64xy+128x+128y^2+256y.$
 
 Then
 
-$$HT-U^2-7V^2=-256\,F,$$
+$$HT-U^2-7V^2=-256 F,$$
 
 so $HT=U^2+7V^2$ at every integer solution. The proof shows that $H>0$, that $\left(\frac{H}{7}\right)=-1$, and that every odd prime $p$ with $\left(\frac{-7}{p}\right)=-1$ divides $H$ to an even power. By quadratic reciprocity, these three facts cannot hold together.
 
