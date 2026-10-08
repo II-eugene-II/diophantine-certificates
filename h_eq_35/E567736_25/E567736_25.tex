@@ -1,0 +1,159 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={E567736\_25: x\textasciicircum 4+xy+y\textasciicircum 3-2y+3=0 has no integer solutions}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+% keep the space around binary operators in inline formulas
+\medmuskip=4mu plus 2mu\relax
+\emergencystretch=1.5em
+\tolerance=400
+\allowdisplaybreaks
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+% Legendre symbols: one fixed size in running text, one in displays
+\newcommand{\leg}[2]{\mathchoice{\biggl(\dfrac{#1}{#2}\biggr)}{(#1/#2)}{(#1/#2)}{(#1/#2)}}
+\title{\textbf{E567736\_25}\\[4pt] {\Large The equation $x^{4}+xy+y^{3}-2y+3=0$ has no integer solutions}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\vspace{-8ex}
+\begin{center}
+Size $h=35$, length $l=12.58$
+\end{center}
+
+\begin{theorem}\label{thm:main}
+The equation
+\begin{equation}\label{eq:main}
+x^{4}+xy+y^{3}-2y+3=0
+\end{equation}
+has no integer solutions.
+\end{theorem}
+
+The proof uses two polynomial identities of the form $H_kT_k=U_k^2+d_kV_k^2$ on the curve \eqref{eq:main}, with $(d_{1},d_{2})=(15,15)$, the fact that an odd prime $p$ with $\leg{-d_k}{p}=-1$ divides $U_k^2+d_kV_k^2$ only to an even power, and the product formula for Hilbert symbols. Apart from polynomial identities, which can be checked by expanding both sides, and finite checks of congruences, the proof uses only basic properties of the Legendre symbol and of the Hilbert symbol.
+
+\section{Legendre symbols, Hilbert symbols and the norm forms $a^2+db^2$}
+
+Throughout this section, $d$ is an odd squarefree integer with $d\neq-1$; we apply the results with $d\in\{15\}$. For a prime $p$ and a non-zero integer $N$, we write $v_p(N)$ for the exponent of $p$ in the prime factorization of $N$. For an integer $a$ and an odd prime $p$, the Legendre symbol $\leg{a}{p}$ is $0$ if $p\mid a$, $1$ if $a$ is a non-zero square modulo $p$, and $-1$ otherwise. It is multiplicative in $a$, it depends only on $a$ modulo $p$, and $\leg{-1}{p}=(-1)^{(p-1)/2}$ \cite[Chapter~5]{IR}.
+
+\begin{lemma}\label{lem:divides}
+Let $p$ be an odd prime with $\leg{-d}{p}=-1$, and let $a,b\in\Z$. If $p\mid a^2+db^2$, then $p\mid a$ and $p\mid b$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $p\nmid b$. Choose $c\in\Z$ with $bc\equiv1\pmod p$. Then $(ac)^2\equiv-d(bc)^2\equiv-d\pmod p$, so $-d$ is a square modulo $p$. As $\leg{-d}{p}\neq0$, it is a non-zero square, so $\leg{-d}{p}=1$, a contradiction. Hence $p\mid b$, and then $p\mid a^2$, so $p\mid a$.
+\end{proof}
+
+\begin{lemma}\label{lem:even}
+Let $a,b\in\Z$ be not both zero. Then $a^2+db^2\neq0$, and $v_p(a^2+db^2)$ is even for every odd prime $p$ with $\leg{-d}{p}=-1$.
+\end{lemma}
+
+\begin{proof}
+If $d>0$, then clearly $a^2+db^2>0$. If $d<0$, then $-d>1$ is squarefree, hence not a square, so $a^2+db^2\neq0$. Let $p$ be an odd prime with $\leg{-d}{p}=-1$, let $p^k$ be the largest power of $p$ dividing both $a$ and $b$, and write $a=p^ka'$ and $b=p^kb'$. Then $p$ does not divide both $a'$ and $b'$, so $p\nmid a'^2+db'^2$ by Lemma~\ref{lem:divides}. Since $a^2+db^2=p^{2k}(a'^2+db'^2)$, we get $v_p(a^2+db^2)=2k$.
+\end{proof}
+
+For a prime $p$, let $\Q_p$ be the field of $p$-adic numbers, and put $\Q_\infty=\mathbb R$. For $v$ a prime or $v=\infty$, and non-zero $a,b\in\Q$, the Hilbert symbol $(a,b)_v$ is $1$ if the equation $z^2=ar^2+bs^2$ has a solution $(r,s,z)\neq(0,0,0)$ in $\Q_v$, and $-1$ otherwise. For an odd integer $t$, we put $\varepsilon(t)=(t-1)/2$ and $\omega(t)=(t^2-1)/8$. We use the following facts \cite[Chapter~III, Theorems~1 and~3]{Se}.
+
+\begin{theorem}\label{thm:hilbert}
+Let $a$ and $b$ be non-zero integers.
+\begin{itemize}
+\item[(i)] $(a,b)_\infty=-1$ if and only if $a<0$ and $b<0$.
+\item[(ii)] Let $p$ be an odd prime, and write $a=p^\alpha u$ and $b=p^\beta w$ with $p\nmid uw$. Then $(a,b)_p=(-1)^{\alpha\beta\varepsilon(p)}\leg{u}{p}^\beta\leg{w}{p}^\alpha$.
+\item[(iii)] Write $a=2^\alpha u$ and $b=2^\beta w$ with $u$ and $w$ odd. Then $(a,b)_2=(-1)^{\varepsilon(u)\varepsilon(w)+\alpha\omega(w)+\beta\omega(u)}$.
+\item[(iv)] $(a,b)_v=1$ for all but finitely many $v$, and $\prod_v(a,b)_v=1$, the product over all primes $v$ and $v=\infty$.
+\end{itemize}
+\end{theorem}
+
+\begin{lemma}\label{lem:local}
+Let $n$ be a non-zero integer.
+\begin{itemize}
+\item[(a)] If $n>0$ or $d<0$, then $(n,-d)_\infty=1$.
+\item[(b)] If $p$ is a prime with $p\nmid2d$, then $(n,-d)_p=\leg{-d}{p}^{v_p(n)}$.
+\item[(c)] If $p$ is a prime with $p\mid d$, write $d=pd'$ and $n=p^ju$ with $p\nmid u$. Then $(n,-d)_p=\leg{u}{p}\leg{d'}{p}^j$.
+\item[(d)] Write $n=2^ju$ with $u$ odd. Then $(n,-d)_2=(-1)^{\varepsilon(u)\varepsilon(-d)+j\omega(d)}$. In particular, $(n,-d)_2=1$ if $-d\equiv1\pmod8$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+Part (a) follows from Theorem~\ref{thm:hilbert}(i), as $-d<0$ only if $d>0$. For (b) and (c), we apply Theorem~\ref{thm:hilbert}(ii) with $a=n$ and $b=-d$. If $p\nmid d$, then $\beta=0$ and $w=-d$, which gives (b). If $p\mid d$, then $\beta=1$ and $w=-d'$, which gives $(n,-d)_p=(-1)^{j\varepsilon(p)}\leg{u}{p}\leg{-d'}{p}^j=\leg{u}{p}\leg{d'}{p}^j$, because $\leg{-1}{p}=(-1)^{\varepsilon(p)}$. Part (d) is Theorem~\ref{thm:hilbert}(iii) with $a=n$, $b=-d$, $\beta=0$ and $w=-d$, because $\omega(-d)=\omega(d)$. If $-d\equiv1\pmod8$, then $\varepsilon(-d)$ is divisible by $4$ and $d^2\equiv1\pmod{16}$, so both exponents are even.
+\end{proof}
+
+\section{The auxiliary polynomials}
+
+Put $F(x,y)=x^{4}+xy+y^{3}-2y+3$, so that \eqref{eq:main} is the equation $F(x,y)=0$.
+For the first identity, $d_{1}=15$, and we define
+\begin{align*}
+H_{1}&=x^{2}-9x-y+14,\\
+T_{1}&=4x^{4}-72x^{3}+4x^{2}y+436x^{2}-36xy-1004x+4y^{2}+56y+776,\\
+U_{1}&=2x^{3}-27x^{2}+100x-104,\\
+V_{1}&=x^{2}-4x+2,\\
+G_{1}&=-4,\\
+A_{1}&=10x-7,\\
+B_{1}&=-20x^{2}+204x-333,\\
+\intertext{for the second identity, $d_{2}=15$, and we define}
+H_{2}&=x^{2}-y-1,\\
+T_{2}&=4x^{4}+4x^{2}y-8x^{2}+4x+4y^{2}-4y-4,\\
+U_{2}&=2x^{3}-2x+1,\\
+V_{2}&=1,\\
+G_{2}&=-4,\\
+A_{2}&=0,\\
+B_{2}&=1,\\
+\intertext{and, for the signs, we also use}
+Q_{1}&=x^{4}-18x^{3}+x^{2}y+109x^{2}-9xy-251x+y^{2}+14y+194,\\
+M_{1}&=x^{6}-27x^{5}+286x^{4}-1484x^{3}+3979x^{2}-5260x+2719,\\
+E_{1}&=3x^{4}-54x^{3}+327x^{2}-752x+580,\\
+Q_{2}&=x^{4}+x^{2}y-2x^{2}+x+y^{2}-y-1,\\
+M_{2}&=x^{6}-2x^{4}+x^{3}+x^{2}-x+4,\\
+E_{2}&=3x^{4}-6x^{2}+4x-5.
+\end{align*}
+Expanding both sides, one checks the identities
+\begin{align}
+H_{1}T_{1}-U_{1}^2-15V_{1}^2&=G_{1}F,\label{eq:norm1}\\
+H_{2}T_{2}-U_{2}^2-15V_{2}^2&=G_{2}F,\label{eq:norm2}\\
+A_{1}U_{1}+B_{1}V_{1}&=2\cdot 31,\label{eq:bez1}\\
+A_{2}U_{2}+B_{2}V_{2}&=1,\label{eq:bez2}\\
+-F&=Q_{1}H_{1}-M_{1},\label{eq:sign1}\\
+4Q_{1}&=(x^{2}-9x+2y+14)^2+E_{1}.\label{eq:sign1b}\\
+-F&=Q_{2}H_{2}-M_{2},\label{eq:sign2}\\
+4Q_{2}&=(x^{2}+2y-1)^2+E_{2}.\label{eq:sign2b}
+\end{align}
+
+\section{Proof of Theorem~\ref{thm:main}}
+
+Suppose that $(x,y)\in\Z^2$ is a solution of \eqref{eq:main}. Then $F(x,y)=0$, and \eqref{eq:norm1} and \eqref{eq:norm2} give
+\begin{equation}\label{eq:HT}
+H_kT_k=U_k^2+d_kV_k^2\qquad(k=1,2),
+\end{equation}
+where the polynomials now denote their values at $(x,y)$.
+
+\paragraph{Step 1: local symbols.} For a prime $p$, let $B_p$ be the set of $k$ such that $p\mid d_k$, or, if $p=2$, such that $-d_k\not\equiv1\pmod8$, and let $S$ be the set of primes $p$ with $B_p\neq\emptyset$. Here $S=\{3,5\}$, with $B_{3}=\{1,2\}$ and $B_{5}=\{1,2\}$. For $p\in S$ and $k\in B_p$, we write $H_k=p^{j_k}u_k$ with $p\nmid u_k$, and $p^j\cdot u$ for the class of the integers $p^ju'$ with $p\nmid u'$ and $u'\equiv u\pmod p$, or $u'\equiv u\pmod 8$ if $p=2$. By Lemma~\ref{lem:local}(c) and~(d), the class of $H_k$ determines $(H_k,-d_k)_p$.
+
+\emph{The prime $3$.} Checking the $3^2$ residue pairs modulo $3$, we find that \eqref{eq:main} has exactly 2 solutions modulo $3$, and that at each of them $3\nmid H_k$ for $k\in B_{3}$, so that the residue of $(H_{1},H_{2})$ modulo $3$ determines its class. The classes of $(H_{1},H_{2})$ that occur, and the values of $((H_k,-d_k)_{3})_{k\in B_{3}}$, are $(1,1)\mapsto(1,1)$ and $(2,2)\mapsto(-1,-1)$. Hence $((H_k,-d_k)_{3})_{k\in B_{3}}$ is $(1,1)$ or $(-1,-1)$.
+
+\emph{The prime $5$.} Checking the $5^2$ residue pairs modulo $5$, we find that \eqref{eq:main} has exactly 2 solutions modulo $5$, and that at each of them $5\nmid H_k$ for $k\in B_{5}$, so that the residue of $(H_{1},H_{2})$ modulo $5$ determines its class. The classes of $(H_{1},H_{2})$ that occur, and the values of $((H_k,-d_k)_{5})_{k\in B_{5}}$, are $(4,2)\mapsto(1,-1)$ and $(4,3)\mapsto(1,-1)$. Hence $((H_k,-d_k)_{5})_{k\in B_{5}}$ is $(1,-1)$.
+
+\paragraph{Step 2: signs.} \emph{The sign of $H_{1}$.} Since $F(x,y)=0$, \eqref{eq:sign1} gives $Q_{1}H_{1}=M_{1}$, and $M_{1}$ and $E_{1}$ depend only on $x$. We show that $M_{1}>0$ and $E_{1}>0$. If $x\geq7$, write $x=7+z$ with $z\geq0$; if $x\leq-1$, write $x=-1-z$ with $z\geq0$. In both cases, expanding $M_{1}$ and $E_{1}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{1}>0$ and $E_{1}>0$. It remains to consider $0\leq x\leq6$. For $x\in\{0,1,3,4,5,6\}$ we have $M_{1}>0$ and $E_{1}>0$. For $x=2$, we have $F(x,y)\not\equiv0\pmod{7}$ for every $y$, as one checks for the 7 residues of $y$ modulo $7$, so \eqref{eq:main} has no solution with this $x$. Hence $M_{1}>0$ and $E_{1}>0$, so \eqref{eq:sign1b} gives $4Q_{1}\geq E_{1}>0$, and $Q_{1}H_{1}=M_{1}>0$ gives $H_{1}>0$.
+
+\emph{The sign of $H_{2}$.} Since $F(x,y)=0$, \eqref{eq:sign2} gives $Q_{2}H_{2}=M_{2}$, and $M_{2}$ and $E_{2}$ depend only on $x$. We show that $M_{2}>0$ and $E_{2}>0$. If $x\geq2$, write $x=2+z$ with $z\geq0$; if $x\leq-2$, write $x=-2-z$ with $z\geq0$. In both cases, expanding $M_{2}$ and $E_{2}$ as polynomials in $z$ gives non-negative coefficients and positive constant terms, so $M_{2}>0$ and $E_{2}>0$. It remains to consider $-1\leq x\leq1$. For $x=1$, we have $F(x,y)\not\equiv0\pmod{3}$ for every $y$, as one checks for the 3 residues of $y$ modulo $3$, so \eqref{eq:main} has no solution with this $x$. For $x=-1$ and $x=0$, we have $F(x,y)\not\equiv0\pmod{5}$ for every $y$, as one checks for the 5 residues of $y$ modulo $5$, so \eqref{eq:main} has no solution with such $x$. Hence $M_{2}>0$ and $E_{2}>0$, so \eqref{eq:sign2b} gives $4Q_{2}\geq E_{2}>0$, and $Q_{2}H_{2}=M_{2}>0$ gives $H_{2}>0$.
+
+\paragraph{Step 3: primes $p$ with $\leg{-d_k}{p}=-1$.} Let $k\in\{1,2\}$, and let $p$ be an odd prime with $\leg{-d_k}{p}=-1$, where $(d_{1},d_{2})=(15,15)$. We show that $v_p(H_k)$ is even. By \eqref{eq:bez1}--\eqref{eq:bez2}, $U_k$ and $V_k$ are not both zero, so \eqref{eq:HT} and Lemma~\ref{lem:even} show that $v_p(H_kT_k)=v_p(U_k^2+d_kV_k^2)$ is even. Suppose that $p$ divides both $H_k$ and $T_k$. Then $p\mid U_k^2+d_kV_k^2$ by \eqref{eq:HT}, so $p\mid U_k$ and $p\mid V_k$ by Lemma~\ref{lem:divides}, and $p\mid R_k$, where $R_k$ is the right-hand side of the identity for $A_kU_k+B_kV_k$. For $k=1$, we have $R_{1}=2\cdot 31$. But $p$ is odd, and $p\neq31$ because $\leg{-15}{31}=1$, a contradiction. For $k=2$, we have $R_{2}=1$. This is impossible. Hence $p$ does not divide both $H_k$ and $T_k$. If $p\nmid T_k$, then $v_p(H_k)=v_p(H_kT_k)$ is even, and if $p\nmid H_k$, then $v_p(H_k)=0$.
+
+\paragraph{Step 4: contradiction.} Let $k\in\{1,2\}$. By Step~2 and Lemma~\ref{lem:local}(a), $(H_k,-d_k)_\infty=1$. Let $p$ be a prime with $p\nmid2d_k$. By Lemma~\ref{lem:local}(b), $(H_k,-d_k)_p=\leg{-d_k}{p}^{v_p(H_k)}$, which is $1$ if $\leg{-d_k}{p}=1$, and also if $\leg{-d_k}{p}=-1$, because then $v_p(H_k)$ is even by Step~3. If $-d_k\equiv1\pmod8$, then $(H_k,-d_k)_2=1$ by Lemma~\ref{lem:local}(d). Hence $(H_k,-d_k)_v=1$ unless $v$ is a prime $p\in S$ with $k\in B_p$, and Theorem~\ref{thm:hilbert}(iv) gives $\prod_{p\in S}(H_k,-d_k)_p=1$.
+
+For $p\in S$, let $\sigma_p=((H_1,-d_1)_p,\dots,(H_{2},-d_{2})_p)$. Its entries with $k\notin B_p$ are $1$, as we have just seen, so Step~1 gives $\sigma_p\in V_p$, where
+\begin{align*}
+V_{3}&=\{(1,1),(-1,-1)\},\\
+V_{5}&=\{(1,-1)\}.
+\end{align*}
+As shown above, the componentwise product $\prod_{p\in S}\sigma_p$ is $(1,1)$. The only vector in $V_{5}$ is $(1,-1)$, so $\sigma_{3}$ would have to be $(1,-1)$, which is not in $V_{3}$. This contradiction proves the theorem.
+\qed
+
+\begin{thebibliography}{9}
+\bibitem{IR} K. Ireland and M. Rosen, \emph{A Classical Introduction to Modern Number Theory}, 2nd ed., Graduate Texts in Mathematics 84, Springer, New York, 1990.
+\bibitem{Se} J.-P. Serre, \emph{A Course in Arithmetic}, Graduate Texts in Mathematics 7, Springer, New York, 1973.
+\end{thebibliography}
+
+
+\end{document}
