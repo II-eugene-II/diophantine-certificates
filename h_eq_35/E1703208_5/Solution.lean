@@ -11,19 +11,19 @@ import Mathlib.Data.Nat.Factorization.Induction
 set_option maxHeartbeats 100000000
 set_option maxRecDepth 100000
 
-/-! Standalone proof for E1703208_5.
-Target: Lean 4.34.0; Mathlib 5ed2965256430c3649e86755f9576b54eca72435.
-All certificate data and auxiliary proofs are included in this file. -/
+                                    
+                                                                      
+                                                                       
 set_option Elab.async false
 set_option linter.all false
 
 
 
 
-/-!
-Quadratic norm certificate kernel. No equation-specific data are stored here.
-`Coeffs` is an internal representation. User input uses ordinary integer functions.
--/
+   
+                                                                             
+                                                                                   
+  
 namespace QuadraticNorm
 
 /-- Normalize constants and univariate functions when certificate rows have different types. -/
@@ -237,8 +237,8 @@ theorem prime_dvd_pow_sub (p : ℕ) (hp : p.Prime) (z : ℤ) : (p:ℤ) ∣ z^p-z
 
 end QuadraticNorm
 
-/- General rational Hilbert reciprocity and norm lemmas.
-Adapted from the existing generic RatHilbert library; no curve data. -/
+                                                        
+                                                                       
 
 namespace RatHilbert
 
@@ -2912,7 +2912,7 @@ without_editor_info theorem no_integer_solutions : ¬ ∃ x y : ℤ, f x y = 0 :
 end OriginalEquation
 
 
--- Canonical equation: q = 1703208/5.
+                                     
 theorem E1703208_5 : ¬ ∃ x y : ℤ, x^4 + x*y + x + y^3 - y + 3 = 0 := by
   rintro ⟨x, y, h⟩
   apply OriginalEquation.no_integer_solutions

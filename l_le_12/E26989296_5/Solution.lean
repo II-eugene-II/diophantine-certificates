@@ -30,13 +30,13 @@ import Mathlib.Tactic.Positivity
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
 
-/-! Standalone proof for E26989296_5.
-Target: Lean 4.34.0; Mathlib 5ed2965256430c3649e86755f9576b54eca72435.
-All certificate data and auxiliary proofs are included in this file. -/
+                                     
+                                                                      
+                                                                       
 
 set_option Elab.async false
 set_option linter.all false
-/- Source module: GraphCert.Input. -/
+                                     
 /-! Input data for graph certificates. Polynomial and arithmetic witnesses are
 checked by the corresponding backend; a well-formed matrix is not a proof. -/
 
@@ -138,24 +138,24 @@ def Graph.validate (g : Graph) : Except String (Array Matrix.Edge) := do
 
 end GraphCert
 
-/- Source module: GraphCert.CubicCore. -/
+                                         
 elab "without_editor_info " c:command : command =>
   Lean.Elab.withEnableInfoTree false (Lean.Elab.Command.elabCommand c)
 
-/-
-Explicit cubic reciprocity and finite graph-certificate infrastructure.
-Target: Lean 4.34.0 and Mathlib 5ed2965256430c3649e86755f9576b54eca72435.
-The global product formula is proved for all nonzero Eisenstein integers.
-The later graph and finite-computation lemmas support the compact certificates.
-Generic cubic graph foundation. Equation-specific applications are external.
-All graph identities, reciprocity, and local computations are included below.
-It imports Mathlib only and uses no additional axioms or unchecked computations.
--/
+  
+                                                                       
+                                                                         
+                                                                         
+                                                                               
+                                                                            
+                                                                             
+                                                                                
+  
 
 set_option backward.isDefEq.respectTransparency false
 
-/- The Gauss/Jacobi-sum part of cubic reciprocity. These theorems alone
-   are not the global product formula needed by the seven certificates. -/
+                                                                       
+                                                                          
 
 namespace CubicSpecial
 open MulChar AddChar
@@ -1309,8 +1309,8 @@ without_editor_info theorem induction_away_lambda {P : Eisenstein → Prop}
         (hp q hqprime hq) (hu u u.isUnit)
     exact hm p b hnP hnB hPp (ih hnB)
 
-/- Algebraic properties to be checked for the explicit sum of local symbols.
-No reciprocity or product formula is assumed in this structure. -/
+                                                                            
+                                                                  
 structure CubicPairing where
   val : Eisenstein → Eisenstein → ZMod 3
   mul_left : ∀ a b c, a≠0 → b≠0 → c≠0 → val (a*b) c=val a c+val b c
@@ -3464,7 +3464,7 @@ without_editor_info theorem graphStar_neighbors {n m : ℕ} (edges : Fin m → G
 
 end CubicSpecial
 
-/- Source module: GraphCert.GaussianArithmetic. -/
+                                                  
 /-!
 Exact Gaussian integer polynomial arithmetic.  The executable checks below
 produce ordinary kernel-checked equalities; no reciprocity theorem is assumed.
@@ -3575,11 +3575,11 @@ theorem StarWitness.at_root (s : StarWitness) (h : s.valid) (t : G)
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.GaussianDyadic. -/
+                                              
 
-/-! Finite arithmetic underlying the dyadic quartic table.  This file does
-not identify the table with a local Hilbert symbol: that separate comparison
-requires normalized reciprocity and a fourth-power Hensel theorem. -/
+                                                                          
+                                                                            
+                                                                     
 namespace GraphCert.Quartic
 
 def signature : ℕ → G → ℕ
@@ -3654,7 +3654,7 @@ theorem dyadicPair_skew (a b : ClassVector) : dyadicPair a b = -dyadicPair b a :
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.GaussianHensel. -/
+                                              
 /-
 Copyright (c) 2021 Johan Commelin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -3681,7 +3681,7 @@ theorem hensel_simple {R : Type*} [CommRing R] (I : Ideal R) [IsAdicComplete I R
     have hc : ∀ n, c (n + 1) = c n - f.eval (c n) * (f'.eval (c n))⁻¹ʳ := by
       intro n
       simp only [c]
-    -- we now spend some time determining properties of the sequence `c : ℕ → R`
+                                                                                    
     -- `hc_mod`: for every `n`, we have `c n ≡ a₀ [SMOD I]`
     -- `hf'c`  : for every `n`, `f'.eval (c n)` is a unit
     -- `hfcI`  : for every `n`, `f.eval (c n)` is contained in `I ^ (n+1)`
@@ -3830,7 +3830,7 @@ end PrincipalUnits
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.GaussianResidue. -/
+                                               
 /-! The executable dyadic signature represents the actual residue modulo π^k,
 not just an encoding checked on finitely many examples. -/
 namespace GraphCert.Quartic
@@ -3997,7 +3997,7 @@ theorem unit_fourth_classes_complete {R : Type*} [CommRing R]
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.PowerResidueCharacter. -/
+                                                     
 /-! Power-residue characters obtained from a primitive root in a finite field.
 The construction works for composite powers as well as prime powers. -/
 
@@ -4065,7 +4065,7 @@ theorem exists_power_residue_character {F R : Type*} [Field F] [Fintype F]
 
 end GraphCert
 
-/- Source module: GraphCert.QuarticCore. -/
+                                           
 /-! Elementary Gauss and Jacobi sum foundations for quartic reciprocity. -/
 
 namespace GraphCert.Quartic
@@ -4147,7 +4147,7 @@ theorem jacobi_mul_star {F : Type*} [Field F] [Fintype F]
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticPrimeCharacter. -/
+                                                     
 /-! Gaussian prime residue fields and their fourth-power characters. -/
 
 namespace GraphCert.Quartic
@@ -4235,7 +4235,7 @@ theorem exists_prime_character (π:G) [Fact (Prime π)] (h2:¬π∣2) :
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticJacobi. -/
+                                             
 /-! Finite-field identities for fourth-power residue characters. -/
 
 namespace GraphCert.Quartic
@@ -4390,7 +4390,7 @@ theorem jacobi_norm {F:Type*} [Field F] [Fintype F]
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticJacobiSquare. -/
+                                                   
 /-! The square of the quartic Jacobi sum determines its Gaussian prime.
 Only congruence modulo two is needed, avoiding a choice of its sign. -/
 
@@ -4440,7 +4440,7 @@ theorem jacobi_square {F:Type*} [Field F] [Fintype F]
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticGaussInert. -/
+                                                 
 /-! The Frobenius identity at primes congruent to three modulo four. -/
 
 namespace GraphCert.Quartic
@@ -4505,7 +4505,7 @@ theorem jacobi_inert_residue {F E:Type*} [Field F] [Fintype F]
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticSymbol. -/
+                                             
 /-! Quartic symbols at Gaussian primes, defined by finite residue fields. -/
 
 namespace GraphCert.Quartic
@@ -4621,7 +4621,7 @@ theorem quarticSymbol_star (π:G) [Fact (Prime π)] [Fact (Prime (star π))]
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticInertReciprocity. -/
+                                                       
 /-! Reciprocity between a quartic character and an inert rational prime. -/
 
 namespace GraphCert.Quartic
@@ -4685,7 +4685,7 @@ theorem inert_reciprocity {F E:Type*} [Field F] [Fintype F] [Field E] [Fintype E
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticJacobiSymbol. -/
+                                                   
 /-! Multiplicative extension of the prime quartic symbol to odd moduli. -/
 
 namespace GraphCert.Quartic
@@ -4849,7 +4849,7 @@ theorem quarticJacobi_star (b a:G) : quarticJacobi (star b) a=star (quarticJacob
 end
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticRationalPrimes. -/
+                                                     
 /-! Reciprocity for a rational prime in the numerator. -/
 
 namespace GraphCert.Quartic
@@ -4980,7 +4980,7 @@ theorem rational_prime_reciprocity_split (π:G) [Fact (Prime π)] (h2:¬π∣2)
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticRationalReciprocity. -/
+                                                          
 /-! Rational-numerator reciprocity extended multiplicatively to odd integers. -/
 
 namespace GraphCert.Quartic
@@ -5081,7 +5081,7 @@ theorem rational_reciprocity_primary (π:G) [Fact (Prime π)] (h2:¬π∣2) (hp:
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticIntegerSymbol. -/
+                                                    
 /-! Symbols with rational integer numerator and denominator. -/
 
 namespace GraphCert.Quartic
@@ -5189,7 +5189,7 @@ theorem rational_integer_symbol (n a:ℤ) (hn:n%2=1)
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticUnitSymbol. -/
+                                                 
 /-! The supplementary formula for the Gaussian unit i. -/
 
 namespace GraphCert.Quartic
@@ -5238,7 +5238,7 @@ theorem quarticJacobi_imaginary (b:G) (hb:b≠0) (h2:IsCoprime b 2) :
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticPrimary. -/
+                                              
 /-! Primary Gaussian integers and the sign in quartic reciprocity. -/
 
 namespace GraphCert.Quartic
@@ -5335,7 +5335,7 @@ theorem primary_not_dvd_two {z:G} (hp:Prime z) (hz:Primary z) : ¬z∣2 := by
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticUnitSigns. -/
+                                                
 /-! Small residue formulas for the unit terms in quartic reciprocity. -/
 
 namespace GraphCert.Quartic
@@ -5393,7 +5393,7 @@ theorem primary_rational_sign (a b c d:ℤ)
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticReciprocityAlgebra. -/
+                                                         
 /-! Algebraic identities used to assemble primary-prime reciprocity. -/
 
 namespace GraphCert.Quartic
@@ -5476,7 +5476,7 @@ theorem prime_not_dvd_re {π:G} (hp:Prime π) (hprim:Primary π) (hi:π.im≠0) 
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticReciprocity. -/
+                                                  
 /-! Quartic reciprocity for primary Gaussian primes. -/
 
 namespace GraphCert.Quartic
@@ -5618,7 +5618,7 @@ theorem quartic_reciprocity (π ρ:G) [hπ:Fact (Prime π)] [hρ:Fact (Prime ρ)
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticNormalization. -/
+                                                    
 namespace GraphCert.Quartic
 
 theorem uniformizer_prime : Prime uniformizer := by
@@ -5719,7 +5719,7 @@ theorem induction_uniformizer_primary {P:G→Prop}
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticWildTable. -/
+                                                
 
 namespace GraphCert.Quartic
 
@@ -5757,7 +5757,7 @@ theorem unitLog_neg_one : unitLog (-1)=![2,0,0] := by decide +kernel
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticPairing. -/
+                                              
 namespace GraphCert.Quartic
 
 structure QuarticPairing where
@@ -5920,7 +5920,7 @@ end QuarticPairing
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticTame. -/
+                                           
 namespace GraphCert.Quartic
 
 noncomputable def primeUnit (π : G) [hp : Fact (Prime π)] (a : G) :
@@ -6052,7 +6052,7 @@ theorem tame_self (π:G) [hp:Fact (Prime π)] (h2:¬π∣2) (a:G) :
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticTameTotal. -/
+                                                
 namespace GraphCert.Quartic
 
 noncomputable instance gaussian_units_finite : Finite Gˣ := by
@@ -6135,7 +6135,7 @@ noncomputable def tamePairing : QuarticPairing where
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticWild. -/
+                                           
 namespace GraphCert.Quartic
 
 instance uniformizer_fact : Fact (Prime uniformizer) := ⟨uniformizer_prime⟩
@@ -6269,7 +6269,7 @@ noncomputable def globalPairing : QuarticPairing where
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticTameReciprocity. -/
+                                                      
 namespace GraphCert.Quartic
 
 theorem uniformizer_dvd_two : uniformizer∣(2:G) := ⟨gi 1 (-1),by decide⟩
@@ -6361,7 +6361,7 @@ theorem quarticLog_imaginary (π:G) [Fact (Prime π)] (h2:¬π∣2) :
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticWildReciprocity. -/
+                                                      
 
 namespace GraphCert.Quartic
 
@@ -6458,7 +6458,7 @@ theorem wild_imaginary_primary (π:G) [hπ:Fact (Prime π)] (hp:Primary π) :
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticGlobal. -/
+                                             
 namespace GraphCert.Quartic
 
 theorem globalPairing_imaginary (a:G) (ha:a≠0) : globalPairing.val imaginary a=0 := by
@@ -6499,7 +6499,7 @@ theorem quartic_global_product {a b:G} (ha:a≠0) (hb:b≠0) : tameTotal a b+wil
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticGraphCore. -/
+                                                
 namespace GraphCert.Quartic
 
 structure GraphEdge (n : ℕ) where
@@ -6900,7 +6900,7 @@ theorem graphStar_neighbors {n m r : ℕ} (edges : Fin m → GraphEdge n)
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticPolynomial. -/
+                                                 
 open scoped QuadraticAlgebra
 
 namespace GraphCert.Quartic
@@ -7193,7 +7193,7 @@ theorem real_congr (p : Poly) {M x y a b : ℤ}
 
 end GraphCert.Quartic.Polynomial
 
-/- Source module: GraphCert.QuarticComputable. -/
+                                                 
 namespace GraphCert.Quartic
 
 theorem primeUnit_factorization (π : G) [hp : Fact (Prime π)]
@@ -7379,7 +7379,7 @@ theorem tameClass_congr (π : G) [Fact (Prime π)] (h2 : ¬π ∣ 2)
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticBackend. -/
+                                              
 namespace GraphCert.Quartic
 
 
@@ -7471,7 +7471,7 @@ theorem support_not_dvd [DecidableEq PrimaryPrime] {k : ℕ} (primes : Fin k →
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticCells. -/
+                                            
 namespace GraphCert.Quartic
 
 def dyadicBilinear : ClassVector→ₗ[ZMod 4]ClassVector→ₗ[ZMod 4]ZMod 4 where
@@ -7641,7 +7641,7 @@ theorem tame_cell {n m:ℕ} (edges:Fin m→GraphEdge n)
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.QuarticCover. -/
+                                            
 namespace GraphCert.Quartic
 
 namespace CompactResidueCover
@@ -7682,7 +7682,7 @@ end CompactResidueCover
 
 end GraphCert.Quartic
 
-/- Source module: GraphCert.LocalObstruction. -/
+                                                
 /-! A joint finite obstruction. Coordinates with different powers remain
 in the same row throughout the check. Taking separate coordinate projections
 would lose information and is intentionally not part of this interface. -/
@@ -7723,9 +7723,9 @@ theorem LocalObstruction.sound {f : ℤ → ℤ → ℤ} {A : Type*} [AddMonoid 
 
 end GraphCert
 
-/- Source module: GraphCert.NormBase. -/
-/-! Rational Hilbert reciprocity used by graph certificates.
-No equation data or certificate search is included. -/
+                                        
+                                                            
+                                                      
 
 namespace QuadraticNorm
 
@@ -8488,8 +8488,8 @@ theorem oddH_norm_cofactor {p : ℕ} [Fact p.Prime] {a b t r c : ℤ}
 
 end RatHilbert
 
-/- Source module: GraphCert.NormAutomation. -/
-/-! Reused arithmetic search and proof emitters from the standalone norm checker. -/
+                                              
+                                                                                    
 
 namespace QuadraticNorm
 
@@ -8692,8 +8692,8 @@ theorem prime_dvd_pow_sub (p : ℕ) (hp : p.Prime) (z : ℤ) : (p:ℤ) ∣ z^p-z
 
 end QuadraticNorm
 
-/- General rational Hilbert reciprocity and norm lemmas.
-Adapted from the existing generic RatHilbert library; no curve data. -/
+                                                        
+                                                                       
 
 
 namespace RatHilbert
@@ -9537,7 +9537,7 @@ def readValue (value x y : Expr) (definitions : Option (IO.Ref (List Name)) := n
 
 end QuadraticNorm.Search
 
-/- Source module: GraphCert.RationalSigns. -/
+                                             
 namespace GraphCert.Auto
 open Lean Meta Elab QuadraticNorm.Search QuadraticNorm.Search.Poly
 
@@ -9564,7 +9564,7 @@ def rationalSigns (f : Expr) (vertices : List Expr) (x y : Expr) : TermElabM Jso
 
 end GraphCert.Auto
 
-/- Source module: GraphCert.Quadratic. -/
+                                         
 /- Rational quadratic graph reciprocity. Graphs contain arbitrary integer
    symbol arguments; polynomial evaluation belongs to the input certificate. -/
 namespace GraphCert.Quadratic
@@ -9731,7 +9731,7 @@ theorem Certificate.sound {f : ℤ → ℤ → ℤ} {n : ℕ}
 
 end GraphCert.Quadratic
 
-/- Source module: GraphCert.QuadraticLocal. -/
+                                              
 namespace GraphCert.Quadratic
 
 lemma cast_three (a : ℤ) : ((a : ZMod 4) = 3) ↔ a % 4 = 3 := by
@@ -10281,7 +10281,7 @@ lemma cons_mem {α:Type*} {x:α} {xs ys:List α} {xss:List (List α)}
   exact List.mem_flatMap.mpr ⟨x,hx,List.mem_map.mpr ⟨ys,hy,rfl⟩⟩
 end ClassChoices
 
-/- Source module: GraphCert.RationalGraph. -/
+                                             
 namespace GraphCert.Quadratic
 
 theorem square_of_identity {p : ℕ} [Fact p.Prime]
@@ -10307,7 +10307,7 @@ theorem separate_of_identity {p : ℕ} {F H K A B C D : ℤ}
 
 end GraphCert.Quadratic
 
-/- Source module: GraphCert.RationalClasses. -/
+                                               
 /-! Finite local square classes for rational quadratic graph certificates. -/
 
 namespace GraphCert.RationalClasses
@@ -10478,7 +10478,7 @@ theorem finite_lifts (p : ℕ) [Fact p.Prime] {a b : ℤ} (hb : b≠0) (k : ℕ)
 
 end GraphCert.RationalClasses
 
-/- Source module: GraphCert.RationalEnvelope. -/
+                                                
 namespace GraphCert.RationalClasses
 open RatHilbert
 
@@ -72249,7 +72249,7 @@ theorem no_integer_solutions : ¬ ∃ x y : ℤ, f x y = 0 := by
 end OriginalEquation
 
 
--- Canonical equation: q = 26989296/5.
+                                      
 theorem E26989296_5 : ¬ ∃ x y : ℤ, x^4 + x + 2*y^3 - y + 4 = 0 := by
   rintro ⟨x, y, h⟩
   apply OriginalEquation.no_integer_solutions

@@ -16,16 +16,16 @@ import Mathlib.Tactic.Positivity
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
 
-/-! Standalone proof for E146192020_1.
-Target: Lean 4.34.0; Mathlib 5ed2965256430c3649e86755f9576b54eca72435.
-All certificate data and auxiliary proofs are included in this file. -/
+                                      
+                                                                      
+                                                                       
 
 set_option Elab.async false
 set_option linter.all false
 elab "without_editor_info " c:command : command =>
   Lean.Elab.withEnableInfoTree false (Lean.Elab.Command.elabCommand c)
 
-/- Source module: GraphCert.Input. -/
+                                     
 /-! Input data for graph certificates. Polynomial and arithmetic witnesses are
 checked by the corresponding backend; a well-formed matrix is not a proof. -/
 
@@ -127,7 +127,7 @@ def Graph.validate (g : Graph) : Except String (Array Matrix.Edge) := do
 
 end GraphCert
 
-/- Source module: GraphCert.LocalObstruction. -/
+                                                
 /-! A joint finite obstruction. Coordinates with different powers remain
 in the same row throughout the check. Taking separate coordinate projections
 would lose information and is intentionally not part of this interface. -/
@@ -168,9 +168,9 @@ theorem LocalObstruction.sound {f : ℤ → ℤ → ℤ} {A : Type*} [AddMonoid 
 
 end GraphCert
 
-/- Source module: GraphCert.NormBase. -/
-/-! Rational Hilbert reciprocity used by graph certificates.
-No equation data or certificate search is included. -/
+                                        
+                                                            
+                                                      
 
 namespace QuadraticNorm
 
@@ -933,8 +933,8 @@ theorem oddH_norm_cofactor {p : ℕ} [Fact p.Prime] {a b t r c : ℤ}
 
 end RatHilbert
 
-/- Source module: GraphCert.NormAutomation. -/
-/-! Reused arithmetic search and proof emitters from the standalone norm checker. -/
+                                              
+                                                                                    
 
 namespace QuadraticNorm
 
@@ -1137,8 +1137,8 @@ theorem prime_dvd_pow_sub (p : ℕ) (hp : p.Prime) (z : ℤ) : (p:ℤ) ∣ z^p-z
 
 end QuadraticNorm
 
-/- General rational Hilbert reciprocity and norm lemmas.
-Adapted from the existing generic RatHilbert library; no curve data. -/
+                                                        
+                                                                       
 
 
 namespace RatHilbert
@@ -1982,7 +1982,7 @@ def readValue (value x y : Expr) (definitions : Option (IO.Ref (List Name)) := n
 
 end QuadraticNorm.Search
 
-/- Source module: GraphCert.RationalSigns. -/
+                                             
 namespace GraphCert.Auto
 open Lean Meta Elab QuadraticNorm.Search QuadraticNorm.Search.Poly
 
@@ -2009,7 +2009,7 @@ def rationalSigns (f : Expr) (vertices : List Expr) (x y : Expr) : TermElabM Jso
 
 end GraphCert.Auto
 
-/- Source module: GraphCert.Quadratic. -/
+                                         
 /- Rational quadratic graph reciprocity. Graphs contain arbitrary integer
    symbol arguments; polynomial evaluation belongs to the input certificate. -/
 namespace GraphCert.Quadratic
@@ -2176,7 +2176,7 @@ theorem Certificate.sound {f : ℤ → ℤ → ℤ} {n : ℕ}
 
 end GraphCert.Quadratic
 
-/- Source module: GraphCert.QuadraticLocal. -/
+                                              
 namespace GraphCert.Quadratic
 
 lemma cast_three (a : ℤ) : ((a : ZMod 4) = 3) ↔ a % 4 = 3 := by
@@ -2726,7 +2726,7 @@ lemma cons_mem {α:Type*} {x:α} {xs ys:List α} {xss:List (List α)}
   exact List.mem_flatMap.mpr ⟨x,hx,List.mem_map.mpr ⟨ys,hy,rfl⟩⟩
 end ClassChoices
 
-/- Source module: GraphCert.RationalGraph. -/
+                                             
 namespace GraphCert.Quadratic
 
 theorem square_of_identity {p : ℕ} [Fact p.Prime]
@@ -2752,7 +2752,7 @@ theorem separate_of_identity {p : ℕ} {F H K A B C D : ℤ}
 
 end GraphCert.Quadratic
 
-/- Source module: GraphCert.RationalClasses. -/
+                                               
 /-! Finite local square classes for rational quadratic graph certificates. -/
 
 namespace GraphCert.RationalClasses
@@ -2923,7 +2923,7 @@ theorem finite_lifts (p : ℕ) [Fact p.Prime] {a b : ℤ} (hb : b≠0) (k : ℕ)
 
 end GraphCert.RationalClasses
 
-/- Source module: GraphCert.RationalEnvelope. -/
+                                                
 namespace GraphCert.RationalClasses
 open RatHilbert
 
@@ -7745,7 +7745,7 @@ theorem no_integer_solutions : ¬ ∃ x y : ℤ, f x y = 0 := by
 end OriginalEquation
 
 
--- Canonical equation: q = 146192020/1.
+                                       
 theorem E146192020_1 : ¬ ∃ x y : ℤ, x^4 + x*y + 2*y^3 + y + 2 = 0 := by
   rintro ⟨x, y, h⟩
   apply OriginalEquation.no_integer_solutions

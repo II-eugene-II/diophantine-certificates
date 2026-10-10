@@ -26,13 +26,13 @@ import Mathlib.Tactic.Positivity
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
 
-/-! Standalone proof for E22567506_5.
-Target: Lean 4.34.0; Mathlib 5ed2965256430c3649e86755f9576b54eca72435.
-All certificate data and auxiliary proofs are included in this file. -/
+                                     
+                                                                      
+                                                                       
 
 set_option Elab.async false
 set_option linter.all false
-/- Source module: GraphCert.Input. -/
+                                     
 /-! Input data for graph certificates. Polynomial and arithmetic witnesses are
 checked by the corresponding backend; a well-formed matrix is not a proof. -/
 
@@ -134,24 +134,24 @@ def Graph.validate (g : Graph) : Except String (Array Matrix.Edge) := do
 
 end GraphCert
 
-/- Source module: GraphCert.CubicCore. -/
+                                         
 elab "without_editor_info " c:command : command =>
   Lean.Elab.withEnableInfoTree false (Lean.Elab.Command.elabCommand c)
 
-/-
-Explicit cubic reciprocity and finite graph-certificate infrastructure.
-Target: Lean 4.34.0 and Mathlib 5ed2965256430c3649e86755f9576b54eca72435.
-The global product formula is proved for all nonzero Eisenstein integers.
-The later graph and finite-computation lemmas support the compact certificates.
-Generic cubic graph foundation. Equation-specific applications are external.
-All graph identities, reciprocity, and local computations are included below.
-It imports Mathlib only and uses no additional axioms or unchecked computations.
--/
+  
+                                                                       
+                                                                         
+                                                                         
+                                                                               
+                                                                            
+                                                                             
+                                                                                
+  
 
 set_option backward.isDefEq.respectTransparency false
 
-/- The Gauss/Jacobi-sum part of cubic reciprocity. These theorems alone
-   are not the global product formula needed by the seven certificates. -/
+                                                                       
+                                                                          
 
 namespace CubicSpecial
 open MulChar AddChar
@@ -1305,8 +1305,8 @@ without_editor_info theorem induction_away_lambda {P : Eisenstein → Prop}
         (hp q hqprime hq) (hu u u.isUnit)
     exact hm p b hnP hnB hPp (ih hnB)
 
-/- Algebraic properties to be checked for the explicit sum of local symbols.
-No reciprocity or product formula is assumed in this structure. -/
+                                                                            
+                                                                  
 structure CubicPairing where
   val : Eisenstein → Eisenstein → ZMod 3
   mul_left : ∀ a b c, a≠0 → b≠0 → c≠0 → val (a*b) c=val a c+val b c
@@ -3460,7 +3460,7 @@ without_editor_info theorem graphStar_neighbors {n m : ℕ} (edges : Fin m → G
 
 end CubicSpecial
 
-/- Source module: GraphCert.CubicBackend. -/
+                                            
 namespace GraphCert.Cubic
 open CubicSpecial
 
@@ -3613,7 +3613,7 @@ theorem inert_cell {n m : ℕ} (edges : Fin m → GraphEdge n)
 
 end GraphCert.Cubic
 
-/- Source module: GraphCert.CubicSplit. -/
+                                          
 namespace GraphCert.Cubic
 open CubicSpecial
 
@@ -3701,7 +3701,7 @@ theorem split_cell {n m : ℕ} (edges : Fin m → GraphEdge n)
 
 end GraphCert.Cubic
 
-/- Source module: GraphCert.CubicPolynomial. -/
+                                               
 namespace CubicSpecial.Dense
 
 abbrev Poly := List Eisenstein
@@ -3971,7 +3971,7 @@ theorem real_congr (p : Poly) {M x y a b : ℤ}
 
 end GraphCert.Cubic.Polynomial
 
-/- Source module: GraphCert.LocalObstruction. -/
+                                                
 /-! A joint finite obstruction. Coordinates with different powers remain
 in the same row throughout the check. Taking separate coordinate projections
 would lose information and is intentionally not part of this interface. -/
@@ -4012,9 +4012,9 @@ theorem LocalObstruction.sound {f : ℤ → ℤ → ℤ} {A : Type*} [AddMonoid 
 
 end GraphCert
 
-/- Source module: GraphCert.NormBase. -/
-/-! Rational Hilbert reciprocity used by graph certificates.
-No equation data or certificate search is included. -/
+                                        
+                                                            
+                                                      
 
 namespace QuadraticNorm
 
@@ -4777,8 +4777,8 @@ theorem oddH_norm_cofactor {p : ℕ} [Fact p.Prime] {a b t r c : ℤ}
 
 end RatHilbert
 
-/- Source module: GraphCert.NormAutomation. -/
-/-! Reused arithmetic search and proof emitters from the standalone norm checker. -/
+                                              
+                                                                                    
 
 namespace QuadraticNorm
 
@@ -4981,8 +4981,8 @@ theorem prime_dvd_pow_sub (p : ℕ) (hp : p.Prime) (z : ℤ) : (p:ℤ) ∣ z^p-z
 
 end QuadraticNorm
 
-/- General rational Hilbert reciprocity and norm lemmas.
-Adapted from the existing generic RatHilbert library; no curve data. -/
+                                                        
+                                                                       
 
 
 namespace RatHilbert
@@ -5826,7 +5826,7 @@ def readValue (value x y : Expr) (definitions : Option (IO.Ref (List Name)) := n
 
 end QuadraticNorm.Search
 
-/- Source module: GraphCert.RationalSigns. -/
+                                             
 namespace GraphCert.Auto
 open Lean Meta Elab QuadraticNorm.Search QuadraticNorm.Search.Poly
 
@@ -5853,7 +5853,7 @@ def rationalSigns (f : Expr) (vertices : List Expr) (x y : Expr) : TermElabM Jso
 
 end GraphCert.Auto
 
-/- Source module: GraphCert.Quadratic. -/
+                                         
 /- Rational quadratic graph reciprocity. Graphs contain arbitrary integer
    symbol arguments; polynomial evaluation belongs to the input certificate. -/
 namespace GraphCert.Quadratic
@@ -6020,7 +6020,7 @@ theorem Certificate.sound {f : ℤ → ℤ → ℤ} {n : ℕ}
 
 end GraphCert.Quadratic
 
-/- Source module: GraphCert.QuadraticLocal. -/
+                                              
 namespace GraphCert.Quadratic
 
 lemma cast_three (a : ℤ) : ((a : ZMod 4) = 3) ↔ a % 4 = 3 := by
@@ -6570,7 +6570,7 @@ lemma cons_mem {α:Type*} {x:α} {xs ys:List α} {xss:List (List α)}
   exact List.mem_flatMap.mpr ⟨x,hx,List.mem_map.mpr ⟨ys,hy,rfl⟩⟩
 end ClassChoices
 
-/- Source module: GraphCert.RationalGraph. -/
+                                             
 namespace GraphCert.Quadratic
 
 theorem square_of_identity {p : ℕ} [Fact p.Prime]
@@ -6596,7 +6596,7 @@ theorem separate_of_identity {p : ℕ} {F H K A B C D : ℤ}
 
 end GraphCert.Quadratic
 
-/- Source module: GraphCert.RationalClasses. -/
+                                               
 /-! Finite local square classes for rational quadratic graph certificates. -/
 
 namespace GraphCert.RationalClasses
@@ -6767,7 +6767,7 @@ theorem finite_lifts (p : ℕ) [Fact p.Prime] {a b : ℤ} (hb : b≠0) (k : ℕ)
 
 end GraphCert.RationalClasses
 
-/- Source module: GraphCert.RationalEnvelope. -/
+                                                
 namespace GraphCert.RationalClasses
 open RatHilbert
 
@@ -22587,7 +22587,7 @@ theorem no_integer_solutions : ¬ ∃ x y : ℤ, f x y = 0 := by
 end OriginalEquation
 
 
--- Canonical equation: q = 22567506/5.
+                                      
 theorem E22567506_5 : ¬ ∃ x y : ℤ, 2*x^4 + x*y + x + y^3 - y + 1 = 0 := by
   rintro ⟨x, y, h⟩
   apply OriginalEquation.no_integer_solutions
