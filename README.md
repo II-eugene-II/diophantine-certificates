@@ -9,6 +9,15 @@ Each of the 209 equations in this repository has **no integer solutions**. These
 - a self-contained proof in PDF, together with its LaTeX source, and
 - a proof in Lean 4, with its statement in a separate file of a few lines, ready to be checked with [comparator](https://github.com/leanprover/comparator).
 
+## Complete classification reports
+
+The paper also determines the integer solubility of all two-variable equations of size $h \le 35$ and of length $l \le 12$, apart from two equations of length $12$. Two companion reports record the result for every equation, counted up to the equivalences of the paper: an integer solution, or a proof or certificate that none exists. The 209 equations of this repository are those among them that resisted the previously known methods. Each report has a reproducibility archive with its LaTeX source, data, certificates and verification scripts; the `README.md` inside the archive explains how to rerun the checks. The files are attached to the release [v1.0](https://github.com/II-eugene-II/diophantine-certificates/releases/tag/v1.0).
+
+| Report | Equations | PDF | Archive |
+|---|---:|---|---|
+| Size $h \le 35$ | 243,145 | [6,123 pages, 27.2 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.0/integer_solvability_H_le_35_final.pdf) | [zip, 62.8 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.0/integer_solvability_H_le_35_reproducibility.zip) |
+| Length $l \le 12$ | 751,836 | [10,726 pages, 58.4 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.0/Two_Variable_Integer_Existence_all_length12_final.pdf) | [zip, 57.3 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.0/Two_Variable_Integer_Existence_all_length12_final_reproducibility.zip) |
+
 ## Equations
 
 | Folder | Equations | Number |
