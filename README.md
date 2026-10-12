@@ -345,7 +345,8 @@ The certificates were found by computer search, and the Lean proofs were written
 }
 ```
 
-<!-- ## License
+## License
 
-TODO: choose the licences. 
-The Lean code is released under the Apache License 2.0, and the PDF and LaTeX files under CC BY 4.0.-->
+Copyright (c) 2026 Bogdan Grechuk and Eugene Go.
+
+The proofs in PDF, their LaTeX sources and the documentation are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The Lean files and the configuration files for building and checking them are licensed under the MIT License. See [LICENSE](LICENSE) for the full terms. The reports and archives of the release [v1.0](https://github.com/II-eugene-II/diophantine-certificates/releases/tag/v1.0) are licensed in the same way; each archive contains its own `LICENSE` file.
