@@ -4,7 +4,7 @@ Certificates, self-contained proofs and Lean formalisations for the paper
 
 > Bogdan Grechuk and Eugene Go, *Certifying non-existence of integer points on curves*, arXiv:XXXX.XXXXX.
 
-Each of the 208 equations in this repository has **no integer solutions**. These are all the equations which the paper proves to have no integer solutions. For each equation there is
+Each of the 209 equations in this repository has **no integer solutions**. These are all the equations which the paper proves to have no integer solutions. For each equation there is
 
 - a self-contained proof in PDF, together with its LaTeX source, and
 - a proof in Lean 4, with its statement in a separate file of a few lines, ready to be checked with [comparator](https://github.com/leanprover/comparator).
@@ -15,13 +15,13 @@ Each of the 208 equations in this repository has **no integer solutions**. These
 |---|---|---:|
 | [h_le_34](#equations-of-size-h--34) | size $h \le 34$: the two-variable equations which were open | 30 |
 | [h_eq_35](#equations-of-size-h--35) | size $h = 35$ | 41 |
-| [l_le_12](#equations-of-length-l--12) | size $h > 35$ and length $l \le 12$ | 137 |
-| | **total** | **208** |
+| [l_le_12](#equations-of-length-l--12) | size $h > 35$ and length $l \le 12$ | 138 |
+| | **total** | **209** |
 
 The certificates are of two kinds.
 
 - **Quadratic norm.** One or several identities which express a multiple of an auxiliary polynomial $H(x,y)$ as a quadratic norm $U^2 + dV^2$ modulo the equation. Quadratic reciprocity then shows that $H$ cannot take the required values.
-- **Reciprocity graphs.** A graph whose vertices are auxiliary polynomials and whose edges carry Hilbert symbols over $K = \mathbb{Q}$, $\mathbb{Q}(\omega)$ or $\mathbb{Q}(i)$, of degree $n = 2$, $3$ or $4$. The Hilbert reciprocity law fails at every integer point of the curve. Some equations use several graphs over different fields.
+- **Reciprocity graphs.** A graph whose vertices are auxiliary polynomials and whose edges carry Hilbert symbols over $K = \mathbb{Q}$, $\mathbb{Q}(\omega)$, $\mathbb{Q}(i)$ or $\mathbb{Q}(\zeta_8)$, of degree $n = 2$, $3$, $4$ or $8$. The Hilbert reciprocity law fails at every integer point of the curve. Some equations use several graphs over different fields.
 
 | Method | $h \le 34$ | $h = 35$ | $l \le 12$ | Total |
 |---|---:|---:|---:|---:|
@@ -31,7 +31,8 @@ The certificates are of two kinds.
 | Quartic graph ($\mathbb{Q}(i)$, $n=4$) |  | 1 | 5 | 6 |
 | Cubic and quadratic graphs | 3 |  | 3 | 6 |
 | Quartic and quadratic graphs |  |  | 1 | 1 |
-| **Total** | **30** | **41** | **137** | **208** |
+| Cubic graph and graph of order 8 ($\mathbb{Q}(\zeta_8)$, $n=8$) |  |  | 1 | 1 |
+| **Total** | **30** | **41** | **138** | **209** |
 
 In the tables below, the name of an equation links to its folder, which contains all files for this equation. The columns *Proof* and *Lean* link directly to the PDF proof and to the Lean proof. The equations are ordered by $h$ and then by $l$, except in the last table, where they are ordered by $l$ and then by $h$.
 
@@ -246,6 +247,7 @@ The two-variable equations of size $h > 35$ and length $l \le 12$.
 | [E465285342054_1](l_le_12/E465285342054_1) | $x^4+xy+x+4y^3+1=0$ | 55 | 12 | Quadratic norm | [PDF](l_le_12/E465285342054_1/E465285342054_1.pdf) | [Lean](l_le_12/E465285342054_1/Solution.lean) |
 | [E232642671027_2](l_le_12/E232642671027_2) | $x^4+xy+x+4y^3-1=0$ | 55 | 12 | Quadratic norm | [PDF](l_le_12/E232642671027_2/E232642671027_2.pdf) | [Lean](l_le_12/E232642671027_2/Solution.lean) |
 | [E77547557009_6](l_le_12/E77547557009_6) | $x^4+xy-x+4y^3-1=0$ | 55 | 12 | Quadratic norm | [PDF](l_le_12/E77547557009_6/E77547557009_6.pdf) | [Lean](l_le_12/E77547557009_6/Solution.lean) |
+| [E775475570090_1](l_le_12/E775475570090_1) | $x^4+xy+4y^3+y+1=0$ | 55 | 12 | Cubic graph and graph of order 8 | [PDF](l_le_12/E775475570090_1/E775475570090_1.pdf) | [Lean](l_le_12/E775475570090_1/Solution.lean) |
 | [E54201381_2](l_le_12/E54201381_2) | $x^5+xy+x+2y^3-1=0$ | 55 | 12 | Quadratic norm | [PDF](l_le_12/E54201381_2/E54201381_2.pdf) | [Lean](l_le_12/E54201381_2/Solution.lean) |
 | [E9484662741870_1](l_le_12/E9484662741870_1) | $2x^4+x+4y^3+y+1=0$ | 69 | 12 | Quadratic norm | [PDF](l_le_12/E9484662741870_1/E9484662741870_1.pdf) | [Lean](l_le_12/E9484662741870_1/Solution.lean) |
 | [E147441654110_3](l_le_12/E147441654110_3) | $x^5-x+4y^3+y+1=0$ | 69 | 12 | Quartic graph | [PDF](l_le_12/E147441654110_3/E147441654110_3.pdf) | [Lean](l_le_12/E147441654110_3/Solution.lean) |
