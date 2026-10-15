@@ -2,7 +2,7 @@
 
 Certificates, self-contained proofs and Lean formalisations for the paper
 
-> Bogdan Grechuk and Eugene Go, *Certifying non-existence of integer points on curves*, arXiv:XXXX.XXXXX.
+> Bogdan Grechuk and Eugene Go, *Certifying non-existence of integer points on curves*, arXiv:2610.18916.
 
 Each of the 209 equations in this repository has **no integer solutions**. These are all the equations which the paper proves to have no integer solutions. For each equation there is
 
@@ -339,9 +339,10 @@ The certificates were found by computer search, and the Lean proofs were written
   author        = {Bogdan Grechuk and Eugene Go},
   title         = {Certifying non-existence of integer points on curves},
   year          = {2026},
-  eprint        = {XXXX.XXXXX},
+  eprint        = {2610.18916},
   archivePrefix = {arXiv},
-  primaryClass  = {math.NT}
+  primaryClass  = {math.GM},
+  doi           = {10.48550/arXiv.2610.18916}
 }
 ```
 
