@@ -4,19 +4,19 @@ Certificates, self-contained proofs and Lean formalisations for the paper
 
 > Bogdan Grechuk and Eugene Go, *Certifying non-existence of integer points on curves*, arXiv:2610.18916.
 
-Each of the 209 equations in this repository has **no integer solutions**. These are all the equations which the paper proves to have no integer solutions. For each equation there is
+Each of the 210 equations in this repository has **no integer solutions**. These are all the equations which the paper proves to have no integer solutions, together with one equation of length $12$ which the paper left open ([E4110020521477_2](l_le_12/E4110020521477_2)). For each equation there is
 
 - a self-contained proof in PDF, together with its LaTeX source, and
 - a proof in Lean 4, with its statement in a separate file of a few lines, ready to be checked with [comparator](https://github.com/leanprover/comparator).
 
 ## Complete classification reports
 
-The paper also determines the integer solubility of all two-variable equations of size $h \le 35$ and of length $l \le 12$, apart from two equations of length $12$. Two companion reports record the result for every equation, counted up to the equivalences of the paper: an integer solution, or a proof or certificate that none exists. The 209 equations of this repository are those among them that resisted the previously known methods. Each report has a reproducibility archive with its LaTeX source, data, certificates and verification scripts; the `README.md` inside the archive explains how to rerun the checks. The files are attached to the release [v1.1](https://github.com/II-eugene-II/diophantine-certificates/releases/tag/v1.1).
+The paper also determines the integer solubility of all two-variable equations of size $h \le 35$ and of length $l \le 12$, apart from two equations of length $12$; one of them is now solved in this repository, and the revised length-12 report leaves one equation open. Two companion reports record the result for every equation, counted up to the equivalences of the paper: an integer solution, or a proof or certificate that none exists. The 210 equations of this repository are those among them that resisted the previously known methods. Each report has a reproducibility archive with its LaTeX source, data, certificates and verification scripts; the `README.md` inside the archive explains how to rerun the checks. The files of the size-35 report are attached to the release [v1.1](https://github.com/II-eugene-II/diophantine-certificates/releases/tag/v1.1), and those of the revised length-12 report to the release [v1.2](https://github.com/II-eugene-II/diophantine-certificates/releases/tag/v1.2).
 
 | Report | Equations | PDF | Archive |
 |---|---:|---|---|
 | Size $h \le 35$ | 243,145 | [6,123 pages, 27.2 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.1/integer_solvability_H_le_35_final.pdf) | [zip, 62.8 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.1/integer_solvability_H_le_35_reproducibility.zip) |
-| Length $l \le 12$ | 751,836 | [10,726 pages, 58.4 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.1/Two_Variable_Integer_Existence_all_length12_final.pdf) | [zip, 57.3 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.1/Two_Variable_Integer_Existence_all_length12_final_reproducibility.zip) |
+| Length $l \le 12$ | 751,836 | [10,840 pages, 59.7 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.2/Two_Variable_Integer_Existence_all_length12_final.pdf) | [zip, 58.8 MB](https://github.com/II-eugene-II/diophantine-certificates/releases/download/v1.2/Two_Variable_Integer_Existence_all_length12_final_reproducibility.zip) |
 
 ## Equations
 
@@ -24,8 +24,8 @@ The paper also determines the integer solubility of all two-variable equations o
 |---|---|---:|
 | [h_le_34](#equations-of-size-h--34) | size $h \le 34$: the two-variable equations which were open | 30 |
 | [h_eq_35](#equations-of-size-h--35) | size $h = 35$ | 41 |
-| [l_le_12](#equations-of-length-l--12) | size $h > 35$ and length $l \le 12$ | 138 |
-| | **total** | **209** |
+| [l_le_12](#equations-of-length-l--12) | size $h > 35$ and length $l \le 12$ | 139 |
+| | **total** | **210** |
 
 The certificates are of two kinds.
 
@@ -41,7 +41,8 @@ The certificates are of two kinds.
 | Cubic and quadratic graphs | 3 |  | 3 | 6 |
 | Quartic and quadratic graphs |  |  | 1 | 1 |
 | Cubic graph and graph of order 8 ($\mathbb{Q}(\zeta_8)$, $n=8$) |  |  | 1 | 1 |
-| **Total** | **30** | **41** | **138** | **209** |
+| Graph of order 8 ($\mathbb{Q}(\zeta_8)$, $n=8$) |  |  | 1 | 1 |
+| **Total** | **30** | **41** | **139** | **210** |
 
 In the tables below, the name of an equation links to its folder, which contains all files for this equation. The columns *Proof* and *Lean* link directly to the PDF proof and to the Lean proof. The equations are ordered by $h$ and then by $l$, except in the last table, where they are ordered by $l$ and then by $h$.
 
@@ -259,6 +260,7 @@ The two-variable equations of size $h > 35$ and length $l \le 12$.
 | [E775475570090_1](l_le_12/E775475570090_1) | $x^4+xy+4y^3+y+1=0$ | 55 | 12 | Cubic graph and graph of order 8 | [PDF](l_le_12/E775475570090_1/E775475570090_1.pdf) | [Lean](l_le_12/E775475570090_1/Solution.lean) |
 | [E54201381_2](l_le_12/E54201381_2) | $x^5+xy+x+2y^3-1=0$ | 55 | 12 | Quadratic norm | [PDF](l_le_12/E54201381_2/E54201381_2.pdf) | [Lean](l_le_12/E54201381_2/Solution.lean) |
 | [E9484662741870_1](l_le_12/E9484662741870_1) | $2x^4+x+4y^3+y+1=0$ | 69 | 12 | Quadratic norm | [PDF](l_le_12/E9484662741870_1/E9484662741870_1.pdf) | [Lean](l_le_12/E9484662741870_1/Solution.lean) |
+| [E4110020521477_2](l_le_12/E4110020521477_2) | $2x^4+xy+4y^3-1=0$ | 69 | 12 | Graph of order 8 | [PDF](l_le_12/E4110020521477_2/E4110020521477_2.pdf) | [Lean](l_le_12/E4110020521477_2/Solution.lean) |
 | [E147441654110_3](l_le_12/E147441654110_3) | $x^5-x+4y^3+y+1=0$ | 69 | 12 | Quartic graph | [PDF](l_le_12/E147441654110_3/E147441654110_3.pdf) | [Lean](l_le_12/E147441654110_3/Solution.lean) |
 | [E114892895_2](l_le_12/E114892895_2) | $2x^5+xy+y^3+y-1=0$ | 79 | 12 | Quadratic graph | [PDF](l_le_12/E114892895_2/E114892895_2.pdf) | [Lean](l_le_12/E114892895_2/Solution.lean) |
 | [E121907931450_1](l_le_12/E121907931450_1) | $4x^4+x+y^3+2y+1=0$ | 79 | 12 | Quadratic graph | [PDF](l_le_12/E121907931450_1/E121907931450_1.pdf) | [Lean](l_le_12/E121907931450_1/Solution.lean) |
